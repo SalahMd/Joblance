@@ -12,10 +12,8 @@ class TextStyles {
       TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold);
   static TextStyle w50017 =
       TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500);
-  // static TextStyle w40016grey = TextStyle(
-  //     color: lightAppColors.greyColor,
-  //     fontSize: 15.sp,
-  //     fontWeight: FontWeight.w500);
+  static TextStyle w40014grey = TextStyle(
+      color: Colors.grey[700], fontSize: 14.sp, fontWeight: FontWeight.w500);
   static TextStyle w50012 =
       TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500);
   static TextStyle w50013 =
@@ -29,7 +27,8 @@ class TextStyles {
   static TextStyle w50012White = TextStyle(
       color: Colors.white, fontSize: 12.sp, fontWeight: FontWeight.w500);
   static TextStyle w50016White =
-      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500);
+  
+      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500,color: Colors.white);
   // static TextStyle w50015White = TextStyle(
   //     color: lightAppColors.whiteColor,
   //     fontSize: 15.sp,
