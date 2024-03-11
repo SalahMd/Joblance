@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/on_boarding_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
+import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/data/statics/static.dart';
@@ -17,8 +19,9 @@ class OnBoarding extends GetView<OnBoardingControllerImpl> {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(
-            flex: 7,
+          Container(
+            height: Dimensions.screenHeight(context) - 150.h,
+            width: Dimensions.screenwidth(context),
             child: PageView.builder(
                 controller: controller.pageController,
                 onPageChanged: (val) {
@@ -79,44 +82,39 @@ class OnBoarding extends GetView<OnBoardingControllerImpl> {
                       ],
                     )),
           ),
-          Expanded(
-              flex: 1,
-              child: Column(
-                children: [
-                  GetBuilder<OnBoardingControllerImpl>(
-                    builder: (controller) => Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ...List.generate(
-                            Onbordingmodel.length,
-                            (index) => AnimatedContainer(
-                                  duration: const Duration(milliseconds: 700),
-                                  width:
-                                      controller.currentPage == index ? 20 : 8,
-                                  height: 8,
-                                  margin: const EdgeInsets.all(2),
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primaryContainer,
-                                      borderRadius: BorderRadius.circular(20)),
-                                )),
-                      ],
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(top: 20.h)),
-                  ElevatedButton(
-                    onPressed: () {
-                      controller.next();
-                    },
-                    style: AppButtons.elevatedButtonStyle,
-                    child: Text(
-                      "continuebutton".tr,
-                      style: TextStyles.w50016White,
-                    ),
-                  ),
-                ],
-              ))
+          Column(
+            children: [
+              GetBuilder<OnBoardingControllerImpl>(
+                builder: (controller) => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ...List.generate(
+                        Onbordingmodel.length,
+                        (index) => AnimatedContainer(
+                              duration: const Duration(milliseconds: 700),
+                              width: controller.currentPage == index ? 20 : 8,
+                              height: 8,
+                              margin: const EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                  color: LightAppColors.primaryColor,
+                                  borderRadius: BorderRadius.circular(20)),
+                            )),
+                  ],
+                ),
+              ),
+              Padding(padding: EdgeInsets.only(top: 50.h)),
+              ElevatedButton(
+                onPressed: () {
+                  controller.next();
+                },
+                style: AppButtons.elevatedButtonStyle,
+                child: Text(
+                  "continuebutton".tr,
+                  style: TextStyles.w50016White,
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/animations.dart';
@@ -7,7 +8,6 @@ import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/core/localization/change_language.dart';
-
 
 bool isarabic = false;
 bool isenglish = false;
@@ -22,15 +22,17 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: Dimensions.screenHeight(context) / 10,
+            height:40.h,
           ),
-          Text(
-            "chooselanguage".tr,
-            style: Theme.of(context).textTheme.headline1,
+          SafeArea(
+            child: Text(
+              "chooselanguage".tr,
+              style: Theme.of(context).textTheme.headline1,
+            ),
           ),
-          const Padding(padding: EdgeInsets.only(top: 20)),
+          const Padding(padding: EdgeInsets.only(top: 30)),
           SizedBox(
-            height: Dimensions.screenHeight(context) / 3.5,
+            height: 200.h,
             child: Image.asset(AppImages.language),
           ),
           const Padding(padding: EdgeInsets.only(top: 40)),
@@ -134,10 +136,10 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
             child: Container(
               width: Dimensions.screenwidth(context),
               height: 40.h,
-              margin: const EdgeInsets.symmetric(horizontal: 80),
+              margin: const EdgeInsets.symmetric(horizontal: 70),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                 color: lightAppColors.primaryColor,
+                  color: LightAppColors.primaryColor,
                   borderRadius: BorderRadius.circular(20)),
               child: Text(
                 "continuebutton".tr,

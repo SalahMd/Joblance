@@ -58,6 +58,7 @@ class Translation extends Translations {
           "yes": "نعم",
           "no": "لا",
           "myfavorite": "المفضلة",
+          "continuewithgoogle": "التسجيل عن طريق غوغل"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -69,7 +70,8 @@ class Translation extends Translations {
           "body2": "Explore thousands of great jobs\n or add your job chance ",
           "body3":
               "Connect easly between company and\nthe freelancer through messaging",
-          "body4": "Explore suggested jobs accoarding\n to your major or search",
+          "body4":
+              "Explore suggested jobs accoarding\n to your major or search",
           "body5": "",
           "continuebutton": "Continue",
           "chooselanguage": "Choose your language",
@@ -113,6 +115,7 @@ class Translation extends Translations {
           "yes": "Yes",
           "no": "No",
           "myfavorite": "My Favorite",
+          "continuewithgoogle": "Continue with google",
           "deletingapointment": "Do you want to cancel this appointment?",
         }
       };

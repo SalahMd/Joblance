@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/localization/change_language.dart';
-import 'package:joblance/core/middlewere/midlleware.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/auth/login.dart';
+import 'package:joblance/view/screens/auth/sign_up.dart';
 import 'package:joblance/view/screens/choose_language.dart';
 import 'package:joblance/view/screens/on_boarding.dart';
 import 'controller/dark_mode.dart';
@@ -37,11 +37,12 @@ class MyApp extends StatelessWidget {
              GetPage(
                 name: "/",
                 page: () => ChooseLanguage(),
-                middlewares: [MiddleWare()]),
+                //middlewares: [MiddleWare()]
+                ),
              GetPage(name: "/Login", page: () => const Login()),
-            // GetPage(name: "/ChooseLanguage", page: () => ChooseLanguage()),
+             GetPage(name: "/ChooseLanguage", page: () => ChooseLanguage()),
              GetPage(name: "/OnBoarding", page: () => OnBoarding()),
-            // GetPage(name: "/SignUp", page: () => const SignUp()),
+             GetPage(name: "/SignUp", page: () => const SignUp()),
             // GetPage(name: "/Search", page: () => const Search()),
             // GetPage(name: "/HomePage", page: () => ButtomBar()),
           ],
