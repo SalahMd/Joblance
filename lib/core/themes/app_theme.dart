@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:joblance/core/constants/colors.dart';
 
 class AppTheme {
   static var darkTheme = ColorScheme.dark(
-//     primary: darkAppColors.primaryColor,
+     primary: DarkAppColors.primaryColor,
 //    // onSecondary: Colors.indigo,
 //     //for numbers after picking in date picker
 //     //onPrimary: Colors.indigo,
 //     //surfaceTint: Colors.blue,
-//     primaryContainer: darkAppColors.whiteColor,
+    primaryContainer: DarkAppColors.whiteColor,
 //     onPrimaryContainer: Color.fromARGB(255, 250, 248, 248),
 //     onErrorContainer: Color(0xFFF9DEDC),
 //     outline: Color(0xFF938F99),
-//     background: Colors.grey[900]!,
+     background: Colors.grey[900]!,
 //     onBackground: Color.fromARGB(255, 2, 2, 2),
 //     surface: Color.fromARGB(255, 52, 50, 50),
 //     onSurface: Color(0xFFF3F3F3),
@@ -36,10 +37,10 @@ class AppTheme {
   );
 
   static ColorScheme lightTheme = ColorScheme.light(
-    // primary: lightAppColors.primaryColor,
-    // primaryContainer: lightAppColors.whiteColor,
+     primary: LightAppColors.primaryColor,
+     primaryContainer: LightAppColors.whiteColor,
     // onPrimaryContainer: lightAppColors.blackColor,
-    // background: lightAppColors.backGround,
+     background: LightAppColors.backGround,
     // //onPrimary: Colors.indigo,
     // //onSecondary: Colors.indigo,
     // //for date picker
