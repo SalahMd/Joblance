@@ -34,7 +34,7 @@ class Customtextformfiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10, left: 15, right: 15),
+      margin: const EdgeInsets.only(top: 25, left: 15, right: 15),
       child: TextFormField(
         obscureText: ispassword,
         style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
@@ -50,6 +50,7 @@ class Customtextformfiled extends StatelessWidget {
         decoration: InputDecoration(
           enabled: true,
           hintText: hinttext,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
           labelStyle: TextStyle(
             color: Theme.of(context).colorScheme.onSurface,
           ),
@@ -57,7 +58,7 @@ class Customtextformfiled extends StatelessWidget {
               fontSize: 17, color: Colors.grey), // Set hint text color
           floatingLabelBehavior: FloatingLabelBehavior.always,
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           label: Container(
             margin: const EdgeInsets.only(left: 5, right: 5),
             child: Text(

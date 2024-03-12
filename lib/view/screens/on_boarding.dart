@@ -112,7 +112,7 @@ class OnBoarding extends GetView<OnBoardingControllerImpl> {
                   "continuebutton".tr,
                   style: TextStyles.w50016White,
                 ),
-              ),
+              ).animate().fade(duration: 500.ms).slideY(begin: 0.5),
             ],
           )
         ],

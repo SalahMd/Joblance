@@ -1,18 +1,20 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/localization/change_language.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/auth/login.dart';
-import 'package:joblance/view/screens/auth/sign_up.dart';
+import 'package:joblance/view/screens/auth/sign_up/sign_up.dart';
 import 'package:joblance/view/screens/choose_language.dart';
+import 'package:joblance/view/screens/navigation_bar/nav_bar.dart';
 import 'package:joblance/view/screens/on_boarding.dart';
 import 'controller/dark_mode.dart';
 import 'core/localization/translation.dart';
 import 'core/themes/app_theme.dart';
 
-void main() async{
-   WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initialServices();
   runApp(const MyApp());
 }
@@ -27,24 +29,35 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
         designSize: const Size(320, 790),
         child: GetMaterialApp(
+          supportedLocales: [
+            const Locale('en'),
+            const Locale('ar'),
+            const Locale('es'),
+            const Locale('de'),
+            const Locale('fr'),
+            const Locale('el'),
+          ],
+          localizationsDelegates: [
+            CountryLocalizations.delegate,
+          ],
           locale: controller.language,
           translations: Translation(),
           themeMode: themeController.themeMode,
           theme: AppTheme.light,
           darkTheme: AppTheme.dark,
-          debugShowCheckedModeBanner:false,
+          debugShowCheckedModeBanner: false,
           getPages: [
-             GetPage(
-                name: "/",
-                page: () => ChooseLanguage(),
-                //middlewares: [MiddleWare()]
-                ),
-             GetPage(name: "/Login", page: () => const Login()),
-             GetPage(name: "/ChooseLanguage", page: () => ChooseLanguage()),
-             GetPage(name: "/OnBoarding", page: () => OnBoarding()),
-             GetPage(name: "/SignUp", page: () => const SignUp()),
+            GetPage(
+              name: "/",
+              page: () => SignUp(),
+              //middlewares: [MiddleWare()]
+            ),
+            GetPage(name: "/Login", page: () => const Login()),
+            GetPage(name: "/ChooseLanguage", page: () => ChooseLanguage()),
+            GetPage(name: "/OnBoarding", page: () => OnBoarding()),
+            GetPage(name: "/SignUp", page: () => const SignUp()),
             // GetPage(name: "/Search", page: () => const Search()),
-            // GetPage(name: "/HomePage", page: () => ButtomBar()),
+             GetPage(name: "/HomePage", page: () => ButtomBar()),
           ],
         ));
   }

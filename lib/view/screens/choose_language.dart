@@ -22,7 +22,7 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height:40.h,
+            height: 40.h,
           ),
           SafeArea(
             child: Text(
@@ -135,15 +135,15 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
             },
             child: Container(
               width: Dimensions.screenwidth(context),
-              height: 40.h,
-              margin: const EdgeInsets.symmetric(horizontal: 70),
+              height: 45.h,
+              margin: const EdgeInsets.symmetric(horizontal: 70, vertical: 20),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   color: LightAppColors.primaryColor,
                   borderRadius: BorderRadius.circular(20)),
               child: Text(
                 "continuebutton".tr,
-                style: TextStyles.w50012White,
+                style: TextStyles.w50016White,
               ),
             ),
           ),
