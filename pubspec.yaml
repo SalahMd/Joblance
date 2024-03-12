@@ -24,11 +24,17 @@ dependencies:
   shared_preferences: ^2.2.1
   shimmer: ^3.0.0
   show_up_animation: ^2.0.0
-
+  country_picker: ^2.0.25
+  flutter_launcher_icons: ^0.13.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo2.png"
+  min_sdk_android: 21
   flutter_lints: ^3.0.0
 
 
