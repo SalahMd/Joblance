@@ -73,7 +73,7 @@ class OnBoarding extends GetView<OnBoardingControllerImpl> {
                                 child: Text(
                                   Onbordingmodel[i].body!,
                                   textAlign: TextAlign.center,
-                                  style: TextStyles.w40014grey,
+                                  style: TextStyles.w40013grey,
                                 ))
                             .animate()
                             .animate()

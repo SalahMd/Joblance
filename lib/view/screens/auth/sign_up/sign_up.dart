@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +10,7 @@ import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/auth/sign_up/company_or_freelancer.dart';
 import 'package:joblance/view/screens/auth/sign_up/drop_down.dart';
 import 'package:joblance/view/screens/auth/sign_up/text_fileds.dart';
 
@@ -59,12 +61,50 @@ class SignUp extends StatelessWidget {
                           ),
                   ),
                 ),
+                CompanyOrFreeLancer(
+                  controller: controller,
+                ),
                 TextFileds(controller: controller),
+                SizedBox(height: 15.h),
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Container(
+                    margin: EdgeInsetsDirectional.only(
+                      start: 20.w,
+                    ),
+                    child: controller.isFreelancer
+                        ? Text(
+                            "studycase".tr,
+                            style: TextStyles.w50012,
+                          )
+                        : Text(
+                            "numofemployees".tr,
+                            style: TextStyles.w50012,
+                          ),
+                  ),
+                ),
                 DropDownWidget(
-                    title: "study",
-                    choices: controller.studyCase,
-                    elementValue: controller.studyCaseValue,
+                    title: "employees",
+                    choices: controller.isFreelancer
+                        ? controller.studyCase
+                        : controller.numOfEmployeesList,
+                    elementValue: controller.numOfEmployees,
                     controller: controller),
+                SizedBox(
+                  height: 15.h,
+                ),
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Container(
+                    margin: EdgeInsetsDirectional.only(
+                      start: 20.w,
+                    ),
+                    child: Text(
+                      "major".tr,
+                      style: TextStyles.w50012,
+                    ),
+                  ),
+                ),
                 DropDownWidget(
                     title: "major",
                     choices: controller.major,
@@ -84,21 +124,25 @@ class SignUp extends StatelessWidget {
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Wrap(
                   children: [
-                    Text(
-                      "alreadyhaveaccount".tr,
-                      style: TextStyles.w50013,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "alreadyhaveaccount".tr,
+                          style: TextStyles.w50013,
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              controller.goToLogiIn();
+                            },
+                            child: Text(
+                              "login".tr,
+                              style: TextStyle(color: Colors.blue),
+                            ))
+                      ],
                     ),
-                    TextButton(
-                        onPressed: () {
-                          controller.goToLogiIn();
-                        },
-                        child: Text(
-                          "login".tr,
-                          style: TextStyle(color: Colors.blue),
-                        ))
                   ],
                 ),
                 SizedBox(

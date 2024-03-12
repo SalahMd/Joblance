@@ -11,6 +11,7 @@ abstract class SignUpController extends GetxController {
   goToSuccessfulSignUp();
   showPassword();
   pickImage();
+  changeState(bool isSale);
   updateDropDownValue(String? newValue, String changingElement);
 }
 
@@ -20,13 +21,14 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController email;
   late TextEditingController phoneController;
   late TextEditingController location;
-  late TextEditingController numOfEmployees;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
   bool openToWork = false;
+  bool isFreelancer = true;
   String studyCaseValue = '1';
   String majorValue = '1';
   String? country;
+  String numOfEmployees = '1';
 
   List<DropdownMenuItem<String>> studyCase = [
     DropdownMenuItem<String>(
@@ -48,6 +50,32 @@ class SignUpControllerImpl extends SignUpController {
     DropdownMenuItem<String>(
       value: '5',
       child: Text("phd".tr),
+    ),
+  ];
+  List<DropdownMenuItem<String>> numOfEmployeesList = [
+    DropdownMenuItem<String>(
+      value: '1',
+      child: Text("1 - 10"),
+    ),
+    DropdownMenuItem<String>(
+      value: '2',
+      child: Text("11 - 50"),
+    ),
+    DropdownMenuItem<String>(
+      value: '3',
+      child: Text("51 - 100"),
+    ),
+    DropdownMenuItem<String>(
+      value: '4',
+      child: Text("101 - 200"),
+    ),
+    DropdownMenuItem<String>(
+      value: '5',
+      child: Text("201 - 300"),
+    ),
+    DropdownMenuItem<String>(
+      value: '6',
+      child: Text("301 - 500"),
     ),
   ];
   List<DropdownMenuItem<String>> major = [
@@ -136,12 +164,20 @@ class SignUpControllerImpl extends SignUpController {
       studyCaseValue = newValue!;
     } else if (changingElement == "major") {
       majorValue = newValue!;
+    } else {
+      numOfEmployees = newValue!;
     }
     update();
   }
 
-  updateCountry(BuildContext context)async {
+  updateCountry(BuildContext context) async {
     country = await showCountries(context);
+    update();
+  }
+
+  @override
+  changeState(bool value) {
+    isFreelancer = value;
     update();
   }
 }

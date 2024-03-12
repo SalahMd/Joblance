@@ -29,17 +29,17 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
         designSize: const Size(320, 790),
         child: GetMaterialApp(
-          supportedLocales: [
-            const Locale('en'),
-            const Locale('ar'),
-            const Locale('es'),
-            const Locale('de'),
-            const Locale('fr'),
-            const Locale('el'),
-          ],
-          localizationsDelegates: [
-            CountryLocalizations.delegate,
-          ],
+          // supportedLocales: [
+          //   const Locale('en'),
+          //   const Locale('ar'),
+          //   const Locale('es'),
+          //   const Locale('de'),
+          //   const Locale('fr'),
+          //   const Locale('el'),
+          // ],
+          // localizationsDelegates: [
+          //   CountryLocalizations.delegate,
+          // ],
           locale: controller.language,
           translations: Translation(),
           themeMode: themeController.themeMode,
