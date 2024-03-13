@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
+import 'package:joblance/view/screens/job_info/about_company.dart';
 import 'package:joblance/view/screens/job_info/about_job.dart';
 import 'package:joblance/view/screens/job_info/company_info.dart';
 import 'package:joblance/view/screens/job_info/requirments.dart';
@@ -36,9 +37,13 @@ class JobInfo extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
+            SizedBox(height: 10.h),
+            AboutCompany(),
             AboutJob(),
             SizedBox(height: 10.h),
-            Requirements()
+            Requirements(),
+            SizedBox(height: 10.h),
+            
           ],
         ),
       ),

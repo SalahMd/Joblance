@@ -72,7 +72,8 @@ class Translation extends Translations {
           "notifications":"الإشعارات",
           "hello":"مرحبا",
           "active":"مغلة",
-          "inactive":"متوقفة"
+          "inactive":"متوقفة",
+          "applay":"تقدم"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -144,7 +145,8 @@ class Translation extends Translations {
           "notifications":"Notifications",
           "hello":"Hello",
           "active":"Active",
-          "inactive":"In active"
+          "inactive":"In active",
+          "applay":"Apply",
         }
       };
 }
