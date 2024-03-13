@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/login_controller.dart';
@@ -9,7 +7,6 @@ import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
-import 'package:joblance/view/widgets/divider.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -38,7 +35,7 @@ class Login extends StatelessWidget {
                   child: Image.asset(AppImages.logo)),
               Padding(
                 padding: EdgeInsetsDirectional.only(
-                    start: 10.w, top: 20.h, bottom: 10.h),
+                    start: 15.w, top: 20.h, bottom: 10.h),
                 child: Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Text(
@@ -89,7 +86,7 @@ class Login extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 30.h),
+                padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
                 child: Row(
                   children: [
                     const Expanded(
@@ -99,7 +96,10 @@ class Login extends StatelessWidget {
                     )),
                     Padding(
                         padding: EdgeInsets.symmetric(horizontal: 5.w),
-                        child: Text("or".tr)),
+                        child: Text(
+                          "or".tr,
+                          style: TextStyles.w40014grey,
+                        )),
                     const Expanded(
                         child: Divider(
                       thickness: 0.3,
@@ -115,7 +115,7 @@ class Login extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primaryContainer,
-                    borderRadius: BorderRadius.circular(20)),
+                    borderRadius: BorderRadius.circular(17)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

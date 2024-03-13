@@ -34,15 +34,15 @@ class DropDownWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
         iconSize: 20,
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        style: TextStyle(fontSize: 17, color: Colors.grey),
-
+        style: TextStyle(fontSize: 14.sp, color: Colors.black),
+        underline: Container(),
         dropdownColor: Theme.of(context).colorScheme.primaryContainer,
         value: elementValue,
-        //icon: const Icon(Icons.arrow_downward),
-        
-        elevation: 16,
+        icon: const Icon(Icons.arrow_downward),
+        isExpanded: true,
+        elevation: 8,
         onChanged: (String? value) {
-           controller.updateDropDownValue(value, title);
+          controller.updateDropDownValue(value, title);
         },
         items: choices,
       ),

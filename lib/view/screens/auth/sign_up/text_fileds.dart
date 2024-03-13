@@ -21,8 +21,12 @@ class TextFileds extends StatelessWidget {
           children: [
             Expanded(
               child: Customtextformfiled(
-                hinttext: "firstname2".tr,
-                labelText: "firstname1".tr,
+                hinttext: controller.isFreelancer
+                    ? "firstname1".tr
+                    : "companyname1".tr,
+                labelText: controller.isFreelancer
+                    ? "firstname2".tr
+                    : "companyname2".tr,
                 icondata: Icons.person_outline,
                 controller: controller.firstName,
                 min: 3,
@@ -32,17 +36,20 @@ class TextFileds extends StatelessWidget {
                 isBorder: true,
               ),
             ),
-            Expanded(
-              child: Customtextformfiled(
-                hinttext: "lastname2".tr,
-                labelText: "lastname1".tr,
-                icondata: Icons.person_outline,
-                controller: controller.lastName,
-                min: 3,
-                max: 10,
-                isnumber: false,
-                ispassword: false,
-                isBorder: true,
+            Visibility(
+              visible: controller.isFreelancer,
+              child: Expanded(
+                child: Customtextformfiled(
+                  hinttext: "lastname1".tr,
+                  labelText: "lastname2".tr,
+                  icondata: Icons.person_outline,
+                  controller: controller.lastName,
+                  min: 3,
+                  max: 10,
+                  isnumber: false,
+                  ispassword: false,
+                  isBorder: true,
+                ),
               ),
             )
           ],

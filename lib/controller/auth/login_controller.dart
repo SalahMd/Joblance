@@ -44,7 +44,7 @@ class LogInControllerImpl extends LogiInController {
 
   @override
   logIn() async {
-    Get.to("HomePage");
+    Get.offAllNamed("HomePage");
   }
 
   @override
