@@ -98,7 +98,7 @@ class Login extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 5.w),
                         child: Text(
                           "or".tr,
-                          style: TextStyles.w40013grey,
+                          style: TextStyles.w40014grey,
                         )),
                     const Expanded(
                         child: Divider(

@@ -58,7 +58,21 @@ class Translation extends Translations {
           "yes": "نعم",
           "no": "لا",
           "myfavorite": "المفضلة",
-          "continuewithgoogle": "التسجيل عن طريق غوغل"
+          "continuewithgoogle": "التسجيل عن طريق غوغل",
+          "addyourinfo":"أدخل معلوماتك",
+          "companyname1":"اسم الشركة",
+          "companyname2":"أدخل اسم الشركة",
+          "chooseyourcountry":"اختر مكان إقامتك",
+          "numofemployees":"عدد الموظفين",
+          "major":"الإختصاص",
+          "company":"شركة",
+          "freelancer":"مستقل",
+          "recentjobs":"أضيفت مؤخرا",
+          "relatedtoyou":"متعلقة باختصاصك",
+          "notifications":"الإشعارات",
+          "hello":"مرحبا",
+          "active":"مغلة",
+          "inactive":"متوقفة"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -117,6 +131,20 @@ class Translation extends Translations {
           "myfavorite": "My Favorite",
           "continuewithgoogle": "Continue with google",
           "deletingapointment": "Do you want to cancel this appointment?",
+          "addyourinfo":"Add your information",
+          "companyname2":"Company name",
+          "companyname1":"Enter your company name",
+          "chooseyourcountry":"Choose your country",
+          "numofemployees":"Num of employees",
+          "major":"Major",
+          "company":"Company",
+          "freelancer":"Freelancer",
+          "recentjobs":"Recent jobs",
+          "relatedtoyou":"Related jobs",
+          "notifications":"Notifications",
+          "hello":"Hello",
+          "active":"Active",
+          "inactive":"In active"
         }
       };
 }

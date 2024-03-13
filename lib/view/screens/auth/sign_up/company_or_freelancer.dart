@@ -28,13 +28,13 @@ class CompanyOrFreeLancer extends StatelessWidget {
               if (controller.isFreelancer)
                 Padding(
                   padding: EdgeInsetsDirectional.only(
-                      start: 125.w, top: 10.h, bottom: 10.h),
+                      start: 120.w, top: 10.h, bottom: 10.h),
                   child: GestureDetector(
                     onTap: () {
                       controller.changeState(false);
                     },
                     child: Container(
-                      width: Dimensions.screenwidth(context) / 2.5,
+                      width: Dimensions.screenwidth(context) / 2.3,
                       height: 45.h,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -60,7 +60,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
                   height: 45.h,
                   alignment: Alignment.center,
                   margin: EdgeInsetsDirectional.only(
-                    start: 25.w,
+                    start: 15.w,
                     top: 10.h,
                     bottom: 10.h,
                   ),
@@ -87,9 +87,9 @@ class CompanyOrFreeLancer extends StatelessWidget {
                   },
                   child: Padding(
                     padding: EdgeInsetsDirectional.only(
-                        start: 125.w, top: 10.h, bottom: 10.h),
+                        start: 120.w, top: 10.h, bottom: 10.h),
                     child: Container(
-                      width: Dimensions.screenwidth(context) / 2.5,
+                      width: Dimensions.screenwidth(context) / 2.3,
                       height: 45.h,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
