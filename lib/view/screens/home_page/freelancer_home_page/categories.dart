@@ -13,7 +13,7 @@ class Categories extends StatelessWidget {
     return Container(
         width: Dimensions.screenwidth(context),
         height: 100.h,
-        margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
+        margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(children: [

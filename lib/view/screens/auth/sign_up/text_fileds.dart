@@ -1,14 +1,9 @@
-import 'package:country_picker/country_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/signup_controller.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
-import 'package:joblance/core/functions/show_countries.dart';
-import 'package:joblance/view/screens/auth/sign_up/drop_down.dart';
 
 class TextFileds extends StatelessWidget {
   final SignUpControllerImpl controller;
