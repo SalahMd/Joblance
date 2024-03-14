@@ -22,7 +22,7 @@ class ButtomBar extends StatelessWidget {
                 //backgroundColor: Color.fromARGB(249, 28, 29, 48),
                 gap: 8.w,
                 color: Color.fromARGB(249, 28, 29, 48),
-                activeColor: Colors.blue,
+                activeColor: Colors.white,
                 padding: EdgeInsets.symmetric(
                     horizontal: 10, vertical: 10), // navigation bar padding
                 onTabChange: (index) {
@@ -30,7 +30,7 @@ class ButtomBar extends StatelessWidget {
                 },
                 textSize: 2,
                 haptic: true, // haptic feedback
-                textStyle: TextStyle(fontSize: 15.sp, color: Colors.blue),
+                textStyle: TextStyle(fontSize: 13.sp, color: Colors.white),
                 tabs: [
                   GButton(
                     icon: Icons.account_circle_outlined,
@@ -41,6 +41,11 @@ class ButtomBar extends StatelessWidget {
                   GButton(
                     icon: Icons.home_outlined,
                     text: 'homepage'.tr,
+                    iconColor: LightAppColors.primaryColor,
+                  ),
+                  GButton(
+                    icon: Icons.message_outlined,
+                    text: 'messages'.tr,
                     iconColor: LightAppColors.primaryColor,
                   ),
                   GButton(

@@ -96,7 +96,7 @@ class JobDesign extends StatelessWidget {
                     height: 25.h,
                     alignment: AlignmentDirectional.center,
                     decoration: BoxDecoration(
-                      color: Colors.grey[100],
+                      color: Theme.of(context).colorScheme.background,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
@@ -111,7 +111,7 @@ class JobDesign extends StatelessWidget {
                         ),
                         Text(
                           "active".tr,
-                          style: TextStyles.w40011grey,
+                          style: TextStyles.w40011,
                         ),
                       ],
                     ),

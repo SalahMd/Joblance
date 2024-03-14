@@ -28,6 +28,8 @@ class TextStyles {
       color: Colors.grey[700], fontSize: 14.sp, fontWeight: FontWeight.w500);
   static TextStyle w50012 =
       TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500);
+      static TextStyle w40011 =
+      TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w400);
   static TextStyle w50013 =
       TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500);
   // static TextStyle w40013grey = TextStyle(

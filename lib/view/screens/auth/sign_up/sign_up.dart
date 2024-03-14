@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/signup_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
+import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
@@ -53,7 +54,6 @@ class SignUp extends StatelessWidget {
                               size: 50,
                             )
                           : ClipRRect(
-                              //clipBehavior: Clip.antiAlias,
                               borderRadius: BorderRadius.circular(70),
                               child: Image.file(File(controller.image.path),
                                   fit: BoxFit.fill,
@@ -140,7 +140,7 @@ class SignUp extends StatelessWidget {
                               },
                               child: Text(
                                 "login".tr,
-                                style: TextStyle(color: Colors.blue),
+                                style: TextStyle(color: LightAppColors.primaryColor),
                               ))
                         ],
                       ),

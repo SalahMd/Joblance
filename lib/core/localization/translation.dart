@@ -98,6 +98,8 @@ class Translation extends Translations {
           "abouttheapp":"عن التطبيق",
           "language":"اللغة",
           "follow":"متابعة",
+          "suggestedjobs":"وظائف مقترحة",
+          "messages":"الرسائل"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -195,6 +197,8 @@ class Translation extends Translations {
           "abouttheapp":"About job",
           "language":"Language",
           "follow":"Follow",
+          "suggestedjobs":"Suggested jobs",
+          "messages":"Messages",
           
 
         }

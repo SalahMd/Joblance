@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/login_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
+import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
@@ -16,8 +17,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(LogInControllerImpl());
     return WillPopScope(
-      onWillPop: 
-        exitAlert,
+      onWillPop: exitAlert,
       child: Scaffold(
           body: GetBuilder<LogInControllerImpl>(
         builder: (controller) => SingleChildScrollView(
@@ -90,7 +90,8 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
                   child: Row(
                     children: [
                       const Expanded(
@@ -148,7 +149,7 @@ class Login extends StatelessWidget {
                       TextButton(
                         child: Text(
                           "signup".tr,
-                          style: TextStyle(color: Colors.blue),
+                          style: TextStyle(color: LightAppColors.primaryColor),
                         ),
                         onPressed: () {
                           controller.goToSignup();
