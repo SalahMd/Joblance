@@ -34,18 +34,18 @@ class ButtomBar extends StatelessWidget {
                 tabs: [
                   GButton(
                     icon: Icons.account_circle_outlined,
-                    text: 'Profile',
+                    text: 'profile'.tr,
                     iconColor: LightAppColors.primaryColor,
                     //    textSize: 5,
                   ),
                   GButton(
                     icon: Icons.home_outlined,
-                    text: 'Home',
+                    text: 'homepage'.tr,
                     iconColor: LightAppColors.primaryColor,
                   ),
                   GButton(
-                    icon: Icons.favorite_outline,
-                    text: 'Favourite',
+                    icon: Icons.settings_outlined,
+                    text: 'settings'.tr,
                     iconColor: LightAppColors.primaryColor,
                   ),
                 ]),

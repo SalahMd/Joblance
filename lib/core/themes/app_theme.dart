@@ -5,7 +5,7 @@ import 'package:joblance/core/constants/colors.dart';
 
 class AppTheme {
   static var darkTheme = ColorScheme.dark(
-     primary: DarkAppColors.primaryColor,
+    primary: DarkAppColors.primaryColor,
 //    // onSecondary: Colors.indigo,
 //     //for numbers after picking in date picker
 //     //onPrimary: Colors.indigo,
@@ -14,7 +14,7 @@ class AppTheme {
 //     onPrimaryContainer: Color.fromARGB(255, 250, 248, 248),
 //     onErrorContainer: Color(0xFFF9DEDC),
 //     outline: Color(0xFF938F99),
-     background: Colors.grey[900]!,
+    background: Colors.grey[900]!,
 //     onBackground: Color.fromARGB(255, 2, 2, 2),
 //     surface: Color.fromARGB(255, 52, 50, 50),
 //     onSurface: Color(0xFFF3F3F3),
@@ -37,10 +37,10 @@ class AppTheme {
   );
 
   static ColorScheme lightTheme = ColorScheme.light(
-     primary: LightAppColors.primaryColor,
-     primaryContainer: LightAppColors.whiteColor,
+    primary: LightAppColors.primaryColor,
+    primaryContainer: LightAppColors.whiteColor,
     // onPrimaryContainer: lightAppColors.blackColor,
-     background: LightAppColors.backGround,
+    background: LightAppColors.backGround,
     // //onPrimary: Colors.indigo,
     // //onSecondary: Colors.indigo,
     // //for date picker
@@ -75,7 +75,7 @@ class AppTheme {
       textTheme: TextTheme(
         headline1: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 23.sp,
+            fontSize: 21.sp,
             fontFamily: "PlayfairDisplay"),
         headline2: TextStyle(
             color: Get.theme.cardColor,

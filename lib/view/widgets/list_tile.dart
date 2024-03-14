@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 
-
 class ListTiles extends StatelessWidget {
   final IconData leadingIcon;
   final IconData trailingIcon;
@@ -18,28 +17,32 @@ class ListTiles extends StatelessWidget {
   Widget build(BuildContext context) {
     double circleSize = 35.h;
 
-    return ListTile(
-      leading: Container(
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 5.h),
+      child: ListTile(
+        leading: Container(
+            width: circleSize,
+            height: circleSize,
+            //margin: EdgeInsets.symmetric(vertical: 10.h),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: LightAppColors.primaryColor),
+            child: Icon(
+              leadingIcon,
+              color: Colors.white,
+            )),
+        trailing: Container(
           width: circleSize,
           height: circleSize,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              color: LightAppColors.primaryColor),
-          child: Icon(
-            leadingIcon,
-            color: Colors.white,
-          )),
-      trailing: Container(
-        width: circleSize,
-        height: circleSize,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
+            borderRadius: BorderRadius.circular(100),
+          ),
+          child: Icon(trailingIcon),
         ),
-        child: Icon(trailingIcon),
-      ),
-      title: Padding(
-        padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0),
-        child: Text(listText, style: TextStyles.bold14),
+        title: Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0),
+          child: Text(listText, style: TextStyles.bold14),
+        ),
       ),
     );
   }

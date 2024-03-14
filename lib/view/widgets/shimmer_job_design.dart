@@ -12,7 +12,7 @@ class ShimmerJobDesign extends StatelessWidget {
       width: Dimensions.screenwidth(context),
       height: 120.h,
       padding: EdgeInsets.symmetric(horizontal: 7.w),
-      margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+      margin: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primaryContainer,
           borderRadius: BorderRadius.circular(10)),
