@@ -5,6 +5,7 @@ import 'package:joblance/core/services/services.dart';
 abstract class DarkMode extends GetxController {
   changeMode(String theme);
 }
+
 class DarkModeImpl extends DarkMode {
   Myservices myServices = Get.find();
   late ThemeMode themeMode;
@@ -29,7 +30,7 @@ class DarkModeImpl extends DarkMode {
     } else if (sharedpreflang == "light") {
       themeMode = ThemeMode.light;
     } else {
-      themeMode = ThemeMode.light;
+      themeMode = ThemeMode.system;
     }
     super.onInit();
   }

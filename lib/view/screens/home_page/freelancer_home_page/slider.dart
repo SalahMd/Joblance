@@ -36,8 +36,8 @@ class SliderWidget extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: Colors.grey,
-                spreadRadius: 1.5,
+                color: Colors.grey[800]!,
+                spreadRadius: 0.5,
                 blurRadius: 0.5,
                 offset: const Offset(0.5, 1),
               ),

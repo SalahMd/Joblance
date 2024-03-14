@@ -72,7 +72,8 @@ class TextFileds extends StatelessWidget {
               padding: EdgeInsetsDirectional.symmetric(horizontal: 15.w),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
-                  border: Border.all()),
+                  border: Border.all(
+                      color: Theme.of(context).colorScheme.onSecondary)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

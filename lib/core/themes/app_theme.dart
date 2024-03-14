@@ -6,7 +6,7 @@ import 'package:joblance/core/constants/colors.dart';
 class AppTheme {
   static var darkTheme = ColorScheme.dark(
     primary: DarkAppColors.primaryColor,
-//    // onSecondary: Colors.indigo,
+    onSecondary: Colors.white,
 //     //for numbers after picking in date picker
 //     //onPrimary: Colors.indigo,
 //     //surfaceTint: Colors.blue,
@@ -39,6 +39,8 @@ class AppTheme {
   static ColorScheme lightTheme = ColorScheme.light(
     primary: LightAppColors.primaryColor,
     primaryContainer: LightAppColors.whiteColor,
+        onSecondary: Colors.black,
+
     // onPrimaryContainer: lightAppColors.blackColor,
     background: LightAppColors.backGround,
     // //onPrimary: Colors.indigo,

@@ -29,12 +29,16 @@ class DropDownWidget extends StatelessWidget {
       width: Dimensions.screenwidth(context),
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       decoration: BoxDecoration(
-          border: Border.all(), borderRadius: BorderRadius.circular(25)),
+          border: Border.all(color: Theme.of(context).colorScheme.onSecondary),
+          borderRadius: BorderRadius.circular(25)),
       child: DropdownButton<String>(
         borderRadius: BorderRadius.circular(25),
         iconSize: 20,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        style: TextStyle(fontSize: 14.sp, color: Colors.black),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10,
+        ),
+        style: TextStyle(
+            fontSize: 14.sp, color: Theme.of(context).colorScheme.onSecondary),
         underline: Container(),
         dropdownColor: Theme.of(context).colorScheme.primaryContainer,
         value: elementValue,

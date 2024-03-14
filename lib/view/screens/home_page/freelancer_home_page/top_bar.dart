@@ -60,14 +60,6 @@ class TopBar extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey[300]!,
-                        spreadRadius: 0.6,
-                        blurRadius: 0.5,
-                        offset: const Offset(0.2, 0.3),
-                      ),
-                    ],
                     color: Theme.of(context).colorScheme.primaryContainer),
               ),
             ],
