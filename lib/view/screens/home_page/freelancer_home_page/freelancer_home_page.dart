@@ -10,6 +10,7 @@ import 'package:joblance/view/screens/home_page/freelancer_home_page/slider.dart
 import 'package:joblance/view/screens/home_page/freelancer_home_page/swiper.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/top_bar.dart';
 import 'package:joblance/view/widgets/job_design.dart';
+import 'package:joblance/view/widgets/shimmer_job_design.dart';
 
 class FreelancerHomePage extends StatelessWidget {
   const FreelancerHomePage({super.key});
@@ -24,7 +25,7 @@ class FreelancerHomePage extends StatelessWidget {
               alignment: AlignmentDirectional.centerStart,
               child: Padding(
                   padding: EdgeInsetsDirectional.only(
-                      start: 15.w, top: 20.h, bottom: 20.h),
+                      start: 15.w, top: 15.h, bottom: 20.h),
                   child: Text(
                     "popularjobs".tr,
                     style: TextStyles.bold20,
@@ -52,11 +53,15 @@ class FreelancerHomePage extends StatelessWidget {
                     style: TextStyles.bold20,
                   )),
             ),
+            // JobDesign(),
+             JobDesign(),
+             JobDesign(),
+             JobDesign(),
             JobDesign(),
-            JobDesign(),
-            JobDesign(),
-            JobDesign(),
-            JobDesign()
+            //ShimmerJobDesign(),
+            //ShimmerJobDesign(),
+            //ShimmerJobDesign(),
+            // ShimmerJobDesign(),
           ],
         ),
       ),

@@ -34,6 +34,14 @@ class SliderWidget extends StatelessWidget {
             horizontal: 15.w,
           ),
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                spreadRadius: 1.5,
+                blurRadius: 0.5,
+                offset: const Offset(0.5, 1),
+              ),
+            ],
             borderRadius: BorderRadius.circular(20),
             color: Color.fromARGB(249, 28, 29, 48),
           ),
@@ -83,7 +91,6 @@ class SliderWidget extends StatelessWidget {
           decoration: BoxDecoration(
               color: LightAppColors.primaryColor.withOpacity(0.7),
               borderRadius: BorderRadiusDirectional.only(
-                  //topEnd: Radius.circular(20),
                   bottomEnd: Radius.circular(230),
                   topStart: Radius.circular(22),
                   bottomStart: Radius.circular(22))),
@@ -132,7 +139,7 @@ class SliderWidget extends StatelessWidget {
                     width: 10.w,
                   ),
                   Text(
-                    applicants + " Applicants".tr,
+                    applicants + "applicants".tr,
                     style: TextStyles.w50011White,
                   ),
                 ],

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -35,9 +34,6 @@ class CompanyInfo extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 15.w),
       child: Column(
         children: [
-          SizedBox(
-            height: 10.h,
-          ),
           Container(
             width: Dimensions.screenwidth(context),
             height: 95.h,
@@ -66,12 +62,10 @@ class CompanyInfo extends StatelessWidget {
                           jobTitle,
                           style: TextStyles.w50017,
                         ),
-                        //SizedBox(height: .h),
                         Text(
                           companyName,
                           style: TextStyles.w50014,
                         ),
-                        //izedBox(height: 3.h),
                         Row(
                           children: [
                             Text(
@@ -101,7 +95,6 @@ class CompanyInfo extends StatelessWidget {
                     ),
                   ],
                 ),
-                //SizedBox(height: 7.h),
                 Row(
                   children: [
                     Icon(Icons.apartment_outlined, size: 18),

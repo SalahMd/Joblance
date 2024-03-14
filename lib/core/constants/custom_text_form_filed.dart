@@ -11,7 +11,7 @@ class Customtextformfiled extends StatelessWidget {
   final bool isnumber;
   final bool ispassword;
   final bool? isBorder;
-  final int? maxLines;
+  final int maxLines;
   final int? letters;
   final void Function()? ontapicon;
   Customtextformfiled({
@@ -27,7 +27,7 @@ class Customtextformfiled extends StatelessWidget {
     this.ontapicon,
     this.isBorder,
     TextStyle? style,
-    this.maxLines,
+    this.maxLines = 1,
     this.letters,
   });
 
@@ -47,6 +47,7 @@ class Customtextformfiled extends StatelessWidget {
         //maxLines: maxLines,
         maxLength: letters,
         controller: controller,
+        maxLines: maxLines,
         decoration: InputDecoration(
           enabled: true,
           hintText: hinttext,
