@@ -23,6 +23,7 @@ dependencies:
   path: ^1.8.3
   shared_preferences: ^2.2.1
   shimmer: ^3.0.0
+  carousel_slider: ^4.2.1
   show_up_animation: ^2.0.0
   country_picker: ^2.0.25
   flutter_launcher_icons: ^0.13.1

@@ -63,7 +63,7 @@ class JobDesign extends StatelessWidget {
                       "United states" + " - " + "OnSite",
                       style: TextStyles.w40011grey,
                     ),
-                    SizedBox(height: 7.h),
+                    //SizedBox(height: 3.h),
                     Text(
                       "2 weeks ago",
                       style: TextStyles.w4009grey,

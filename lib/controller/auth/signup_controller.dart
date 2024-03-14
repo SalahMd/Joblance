@@ -23,6 +23,7 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController location;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
+  late TextEditingController aboutCompanyController;
   bool openToWork = false;
   bool isFreelancer = true;
   String studyCaseValue = '1';
@@ -130,6 +131,7 @@ class SignUpControllerImpl extends SignUpController {
     email = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
+    aboutCompanyController = TextEditingController();
     super.onInit();
   }
 
@@ -141,6 +143,7 @@ class SignUpControllerImpl extends SignUpController {
     passwordController.dispose();
     confirmPasswordController.dispose();
     email.dispose();
+    aboutCompanyController.dispose();
     super.dispose();
   }
 

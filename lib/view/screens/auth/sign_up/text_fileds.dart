@@ -123,6 +123,22 @@ class TextFileds extends StatelessWidget {
           ispassword: false,
           isBorder: true,
         ),
+        Visibility(
+          visible: !controller.isFreelancer,
+          child: Customtextformfiled(
+            hinttext: "aboutcompany2".tr,
+            labelText: "aboutcompany".tr,
+            icondata: Icons.lock_outline,
+            controller: controller.aboutCompanyController,
+            min: 10,
+            max: 150,
+            isnumber: false,
+            ispassword: false,
+            isBorder: false,
+            letters: 150,
+            maxLines: 3,
+          ),
+        ),
       ],
     );
   }

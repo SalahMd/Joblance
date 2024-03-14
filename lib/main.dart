@@ -9,6 +9,7 @@ import 'package:joblance/view/screens/auth/sign_up/sign_up.dart';
 import 'package:joblance/view/screens/choose_language.dart';
 import 'package:joblance/view/screens/navigation_bar/nav_bar.dart';
 import 'package:joblance/view/screens/on_boarding.dart';
+import 'package:joblance/view/screens/search/search.dart';
 import 'controller/dark_mode.dart';
 import 'core/localization/translation.dart';
 import 'core/themes/app_theme.dart';
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
             GetPage(name: "/ChooseLanguage", page: () => ChooseLanguage()),
             GetPage(name: "/OnBoarding", page: () => OnBoarding()),
             GetPage(name: "/SignUp", page: () => const SignUp()),
-            // GetPage(name: "/Search", page: () => const Search()),
+             GetPage(name: "/Search", page: () => const Search()),
              GetPage(name: "/HomePage", page: () => ButtomBar()),
           ],
         ));

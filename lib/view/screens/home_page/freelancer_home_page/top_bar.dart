@@ -64,7 +64,7 @@ class TopBar extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            //Get.toNamed("Search");
+            Get.toNamed("Search");
           },
           child: Container(
             width: Dimensions.screenwidth(context),

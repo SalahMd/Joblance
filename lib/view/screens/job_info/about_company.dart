@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
-class Requirements extends StatelessWidget {
-  const Requirements({super.key});
+class AboutCompany extends StatelessWidget {
+  const AboutCompany({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +16,18 @@ class Requirements extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "requirments".tr,
+            "aboutcompany".tr,
             style: TextStyles.w50017,
           ),
           SizedBox(
             height: 10.h,
           ),
           Text(
-            "- fsnesoifn oin eosienfo foishfesoih ieshf\n- opesihf olfsn isen ieusfn esibf iuiun nosohi\n- insef noeisfnheisnof nseoifn senfoi nsef noeisnfi nesoifnoi\n- snief niesnfo isneofin esoifn iosenfoi nesoinf oiesnifonb njfn;odifnv\n- ;iofdn io bsoi beoisb eoisbf oiesbf oibes",
+            "fsnesoifn oin eosienfo foishfesoih ieshf opesihf olfsn isen ieusfn esibf iuiun nosohi insef noeisfnheisnof nseoifn senfoi nsef noeisnfi nesoifnoi snief niesnfo isneofin esoifn iosenfoi nesoinf oiesnifonb njfn;odifnv ;iofdn io bsoi beoisb eoisbf oiesbf oibes",
             style: TextStyles.w40011grey,
           )
         ],
       ),
     );
-    ;
   }
 }
