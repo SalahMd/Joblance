@@ -48,8 +48,8 @@ class Login extends StatelessWidget {
                       )),
                 ),
                 Customtextformfiled(
-                  hinttext: "email2".tr,
-                  labelText: "email1".tr,
+                  hinttext: "email1".tr,
+                  labelText: "email2".tr,
                   icondata: Icons.mail_outlined,
                   controller: controller.emailController,
                   min: 10,
@@ -59,8 +59,8 @@ class Login extends StatelessWidget {
                   isBorder: true,
                 ),
                 Customtextformfiled(
-                  hinttext: "password2".tr,
-                  labelText: "password1".tr,
+                  hinttext: "password1".tr,
+                  labelText: "password2".tr,
                   icondata: Icons.lock_outline,
                   controller: controller.passwordController,
                   min: 8,

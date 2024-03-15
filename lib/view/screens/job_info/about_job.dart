@@ -16,7 +16,7 @@ class AboutJob extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "abotjob".tr,
+            "aboutjob".tr,
             style: TextStyles.w50017,
           ),
           SizedBox(

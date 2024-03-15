@@ -29,62 +29,52 @@ class CompanyInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dimensions.screenwidth(context),
-      height: 210.h,
-      margin: EdgeInsets.symmetric(horizontal: 15.w),
+      margin: EdgeInsets.symmetric(horizontal: 10.w),
       child: Column(
         children: [
-          Container(
-            width: Dimensions.screenwidth(context),
-            height: 95.h,
-            padding: EdgeInsets.symmetric(vertical: 5.h),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 50.w,
-                      height: 60.h,
-                      decoration:
-                          BoxDecoration(borderRadius: BorderRadius.circular(5)),
-                      child: ClipRRect(
-                          child: companyImage,
-                          borderRadius: BorderRadius.circular(5)),
-                    ),
-                    SizedBox(
-                      width: 15.w,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          jobTitle,
-                          style: TextStyles.w50017,
-                        ),
-                        Text(
-                          companyName,
-                          style: TextStyles.w50014,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              jobLocation + " - " + remote,
-                              style: TextStyles.w40012grey,
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
           Row(
             children: [
+              Container(
+                width: 50.w,
+                height: 60.h,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                child: ClipRRect(
+                    child: companyImage,
+                    borderRadius: BorderRadius.circular(5)),
+              ),
+              SizedBox(
+                width: 15.w,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    jobTitle,
+                    style: TextStyles.w50017,
+                  ),
+                  Text(
+                    companyName,
+                    style: TextStyles.w50014,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        jobLocation + " - " + remote,
+                        style: TextStyles.w40012grey,
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                SizedBox(height: 10.h),
+                SizedBox(height: 20.h),
                 Row(
                   children: [
                     Icon(Icons.work_outline, size: 18),
@@ -100,7 +90,7 @@ class CompanyInfo extends StatelessWidget {
                     Icon(Icons.apartment_outlined, size: 18),
                     SizedBox(width: 8.w),
                     Text(
-                      numOfEmployees + " " + "employees".tr,
+                      "employees".tr + ": " + numOfEmployees,
                       style: TextStyles.w40012grey,
                     ),
                   ],
@@ -117,7 +107,6 @@ class CompanyInfo extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    //Icon(Icons.event_available_outlined, size: 18),
                     Container(
                       width: 10.w,
                       height: 12.h,
@@ -135,15 +124,12 @@ class CompanyInfo extends StatelessWidget {
                 ),
               ]),
               Padding(
-                padding: EdgeInsetsDirectional.only(start: 50.w, top: 65.h),
+                padding: EdgeInsets.only(top: 65.h),
                 child: Container(
                   width: 90.w,
                   height: 30.h,
                   alignment: Alignment.center,
                   decoration: AppButtons.buttonDecoration,
-                  // decoration: BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(20),
-                  //     border: Border.all(color: LightAppColors.primaryColor)),
                   child: Text(
                     "applay".tr,
                     style: TextStyles.w50016White,

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
@@ -21,7 +19,7 @@ class JobDesign extends StatelessWidget {
       child: Container(
         width: Dimensions.screenwidth(context),
         height: 120.h,
-        padding: EdgeInsets.symmetric(horizontal: 15.w),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
@@ -86,6 +84,7 @@ class JobDesign extends StatelessWidget {
                         child: Image.asset(
                           AppImages.save,
                           fit: BoxFit.fill,
+                          color: Theme.of(context).colorScheme.onSecondary,
                         )),
                   ),
                   SizedBox(

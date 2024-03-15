@@ -15,22 +15,20 @@ class ButtomBar extends StatelessWidget {
           decoration: BoxDecoration(
               color: Color.fromARGB(249, 28, 29, 48), border: Border.all()),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4),
+            padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 4.h),
             child: GNav(
                 selectedIndex: 1,
-                //hoverColor: lightAppColors.whiteColor,
-                //backgroundColor: Color.fromARGB(249, 28, 29, 48),
-                gap: 8.w,
+                gap: 3.w,
                 color: Color.fromARGB(249, 28, 29, 48),
                 activeColor: Colors.white,
                 padding: EdgeInsets.symmetric(
-                    horizontal: 10, vertical: 10), // navigation bar padding
+                    horizontal: 5.w, vertical: 10.h), // navigation bar padding
                 onTabChange: (index) {
                   controllerImp.changePage(index);
                 },
-                textSize: 2,
+                textSize: 1,
                 haptic: true, // haptic feedback
-                textStyle: TextStyle(fontSize: 13.sp, color: Colors.white),
+                textStyle: TextStyle(fontSize: 12.sp, color: Colors.white),
                 tabs: [
                   GButton(
                     icon: Icons.account_circle_outlined,

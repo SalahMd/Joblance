@@ -28,7 +28,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
               if (controller.isFreelancer)
                 Padding(
                   padding: EdgeInsetsDirectional.only(
-                      start: 120.w, top: 10.h, bottom: 10.h),
+                      start: 115.w, top: 10.h, bottom: 10.h),
                   child: GestureDetector(
                     onTap: () {
                       controller.changeState(false);
@@ -87,7 +87,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
                   },
                   child: Padding(
                     padding: EdgeInsetsDirectional.only(
-                        start: 120.w, top: 10.h, bottom: 10.h),
+                        start: 115.w, top: 10.h, bottom: 10.h),
                     child: Container(
                       width: Dimensions.screenwidth(context) / 2.3,
                       height: 45.h,
