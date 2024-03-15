@@ -14,14 +14,26 @@ class DarkMode extends StatelessWidget {
     Get.put(DarkModeImpl());
     return Scaffold(
       body: GetBuilder<DarkModeImpl>(
-        builder: (controller) => Column(children: [
+        builder: (controller) =>
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
             height: 10.h,
           ),
           SafeArea(
-              child: Text(
-            "choosemode".tr,
-            style: Theme.of(context).textTheme.headline1,
+              child: Row(
+            children: [
+              SizedBox(width: 10.w),
+              GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Icon(Icons.arrow_back_outlined)),
+              SizedBox(width: 10.w),
+              Text(
+                "choosemode".tr,
+                style: Theme.of(context).textTheme.headline1,
+              ),
+            ],
           )),
           SizedBox(height: 50.h),
           GestureDetector(

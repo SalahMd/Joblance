@@ -18,6 +18,8 @@ class AppImages {
    static const moon = "assets/images/moon.png";
    static const sun = "assets/images/sun.png";
   static const save = "assets/images/save.png";
+  static const followers = "assets/images/followers.png";
+  static const studyCase = "assets/images/studycase.png";
   static String englishimage = "assets/images/english.png";
   static String arabicimage = "assets/images/arabic.png";
 }

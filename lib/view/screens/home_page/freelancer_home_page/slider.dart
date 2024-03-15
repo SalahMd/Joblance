@@ -82,102 +82,102 @@ class SliderWidget extends StatelessWidget {
           ),
         ),
         Container(
-                  width: Dimensions.screenwidth(context) / 1.55,
-                  margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-                  padding: EdgeInsetsDirectional.only(start: 6.w, top: 12.h),
-                  decoration: BoxDecoration(
-          color: LightAppColors.primaryColor.withOpacity(0.7),
-          borderRadius: BorderRadiusDirectional.only(
-              bottomEnd: Radius.circular(230),
-              topStart: Radius.circular(22),
-              bottomStart: Radius.circular(22))),
-                  child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+          width: Dimensions.screenwidth(context) / 1.55,
+          margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+          padding: EdgeInsetsDirectional.only(start: 6.w, top: 12.h),
+          decoration: BoxDecoration(
+              color: LightAppColors.primaryColor.withOpacity(0.7),
+              borderRadius: BorderRadiusDirectional.only(
+                  bottomEnd: Radius.circular(230),
+                  topStart: Radius.circular(22),
+                  bottomStart: Radius.circular(22))),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                  width: 35.w,
-                  height: 50.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(companyImage))),
-              SizedBox(
-                width: 10.w,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  Text(
-                    jobTitle,
-                    style: TextStyles.w50016White,
+                  Container(
+                      width: 35.w,
+                      height: 50.h,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(companyImage))),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        jobTitle,
+                        style: TextStyles.w50016White,
+                      ),
+                      Text(
+                        companyName,
+                        style: TextStyles.w50016White,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.person_outline,
+                    size: 20,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                  SizedBox(
+                    width: 10.w,
                   ),
                   Text(
-                    companyName,
-                    style: TextStyles.w50016White,
+                    applicants + "applicants".tr,
+                    style: TextStyles.w50011White,
+                  ),
+                ],
+              ),
+              SizedBox(height: 10.h),
+              Row(
+                children: [
+                  Icon(
+                    Icons.calendar_month_outlined,
+                    size: 20,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Text(
+                    "12" + " hours ago".tr,
+                    style: TextStyles.w50011White,
+                  ),
+                ],
+              ),
+              SizedBox(height: 10.h),
+              Row(
+                children: [
+                  Icon(
+                    Icons.attach_money_outlined,
+                    size: 20,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Text(
+                    "45k - 60k".tr,
+                    style: TextStyles.w50011White,
                   ),
                 ],
               ),
             ],
           ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Row(
-            children: [
-              Icon(
-                Icons.person_outline,
-                size: 20,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
-              Text(
-                applicants + "applicants".tr,
-                style: TextStyles.w50011White,
-              ),
-            ],
-          ),
-          SizedBox(height: 10.h),
-          Row(
-            children: [
-              Icon(
-                Icons.calendar_month_outlined,
-                size: 20,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
-              Text(
-                "12" + " hours ago".tr,
-                style: TextStyles.w50011White,
-              ),
-            ],
-          ),
-          SizedBox(height: 10.h),
-          Row(
-            children: [
-              Icon(
-                Icons.attach_money_outlined,
-                size: 20,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
-              Text(
-                "45k - 60k".tr,
-                style: TextStyles.w50011White,
-              ),
-            ],
-          ),
-        ],
-                  ),
-                ),
+        ),
       ],
     );
   }
