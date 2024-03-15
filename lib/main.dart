@@ -1,4 +1,3 @@
-import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -30,17 +29,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
         designSize: const Size(320, 790),
         child: GetMaterialApp(
-          // supportedLocales: [
-          //   const Locale('en'),
-          //   const Locale('ar'),
-          //   const Locale('es'),
-          //   const Locale('de'),
-          //   const Locale('fr'),
-          //   const Locale('el'),
-          // ],
-          // localizationsDelegates: [
-          //   CountryLocalizations.delegate,
-          // ],
+         
           locale: controller.language,
           translations: Translation(),
           themeMode: themeController.themeMode,

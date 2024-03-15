@@ -12,8 +12,7 @@ class FreelancerProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: 
-        exitAlert,
+      onWillPop: exitAlert,
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -34,7 +33,8 @@ class FreelancerProfile extends StatelessWidget {
                     width: 90.w,
                     height: 100.h,
                     alignment: Alignment.center,
-                    margin: EdgeInsets.only(left: 10.w, right: 10.w, top: 125.h),
+                    margin:
+                        EdgeInsets.only(left: 10.w, right: 10.w, top: 125.h),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(60),
                     ),
@@ -71,58 +71,125 @@ class FreelancerProfile extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(height: 5.h),
                     Row(
                       children: [
-                        Icon(
-                          Icons.location_on_outlined,
-                          size: 18,
+                        Container(
+                          width: 13.w,
+                          height: 15.h,
+                          child: Image.asset(
+                            AppImages.followers,
+                            color: Theme.of(context).colorScheme.onSecondary,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                         SizedBox(width: 5.w),
                         Text(
-                          "Syria",
+                          "100 followersn",
                           style: TextStyles.w40012grey,
                         ),
                       ],
                     ),
                     MyDivider(),
-                    SizedBox(height: 60.h),
-                    Row(
-                      children: [
-                        Icon(Icons.person_outline),
-                        SizedBox(width: 10.w),
-                        Text("Salah Aldeen Mdaghmesh")
-                      ],
-                    ),
-                    MyDivider(
-                      height: 10.h,
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.mail_outline),
-                        SizedBox(width: 10.w),
-                        Text("salahaldeenmdaghmesh@gmail.com")
-                      ],
-                    ),
-                    MyDivider(
-                      height: 10.h,
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.phone_outlined),
-                        SizedBox(width: 10.w),
-                        Text("+963996541809")
-                      ],
-                    ),
-                    MyDivider(
-                      height: 10.h,
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.phone_outlined),
-                        SizedBox(width: 10.w),
-                        Text("+963996541809")
-                      ],
-                    ),
+                    SizedBox(height: 20.h),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 20.h),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 20.w, horizontal: 10.w),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.person_outline),
+                              SizedBox(width: 10.w),
+                              Text(
+                                "Salah Aldeen Mdaghmesh",
+                                style: TextStyles.w40011,
+                              )
+                            ],
+                          ),
+                          MyDivider(
+                            height: 12.h,
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.mail_outline),
+                              SizedBox(width: 10.w),
+                              Text(
+                                "salahaldeenmdaghmesh@gmail.com",
+                                style: TextStyles.w40011,
+                              )
+                            ],
+                          ),
+                          MyDivider(
+                            height: 12.h,
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.phone_outlined),
+                              SizedBox(width: 10.w),
+                              Text(
+                                "+963996541809",
+                                style: TextStyles.w40011,
+                              )
+                            ],
+                          ),
+                          MyDivider(
+                            height: 12.h,
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.location_on_outlined),
+                              SizedBox(width: 10.w),
+                              Text(
+                                "Syria",
+                                style: TextStyles.w40011,
+                              )
+                            ],
+                          ),
+                          MyDivider(
+                            height: 12.h,
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.work_outline),
+                              SizedBox(width: 10.w),
+                              Text(
+                                "IT engineer",
+                                style: TextStyles.w40011,
+                              )
+                            ],
+                          ),
+                          MyDivider(
+                            height: 12.h,
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                width: 20.w,
+                                height: 23.h,
+                                child: Image.asset(
+                                  AppImages.studyCase,
+                                  fit: BoxFit.fill,
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                ),
+                              ),
+                              SizedBox(width: 10.w),
+                              Text(
+                                "Ungraduated",
+                                style: TextStyles.w40011,
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               )

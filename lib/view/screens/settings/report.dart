@@ -23,11 +23,11 @@ class Report extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 20.h,
+                  height: 10.h,
                 ),
                 SafeArea(
                     child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: Row(
                     children: [
                       GestureDetector(
@@ -35,7 +35,7 @@ class Report extends StatelessWidget {
                             Get.back();
                           },
                           child: Icon(Icons.arrow_back)),
-                      SizedBox(width: 15.w),
+                      SizedBox(width: 10.w),
                       Text(
                         "report".tr,
                         style: TextStyles.bold17,

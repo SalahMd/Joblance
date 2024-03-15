@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/images.dart';
@@ -6,21 +7,31 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/localization/change_language.dart';
 import 'package:joblance/view/widgets/divider.dart';
 
-
 class ChangeTheLanguage extends GetView<ChangeLanguage> {
   @override
   Widget build(BuildContext context) {
-    // Get.put(HomePageControllerImp());
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: 10.h,
           ),
           SafeArea(
-              child: Text(
-            "chooselanguage".tr,
-            style: Theme.of(context).textTheme.headline1,
+              child: Row(
+            children: [
+              SizedBox(width: 10.w),
+              GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Icon(Icons.arrow_back_outlined)),
+              SizedBox(width: 10.w),
+              Text(
+                "changelanguage".tr,
+                style: Theme.of(context).textTheme.headline1,
+              ),
+            ],
           )),
           SizedBox(height: 50.h),
           GestureDetector(
@@ -48,7 +59,7 @@ class ChangeTheLanguage extends GetView<ChangeLanguage> {
           GestureDetector(
             onTap: () {
               controller.changeLang("en");
-    
+
               Get.back();
             },
             child: Container(

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/notifications.dart';
 
 class TopBar extends StatelessWidget {
   const TopBar({super.key});
@@ -44,23 +46,28 @@ class TopBar extends StatelessWidget {
                   style: TextStyles.w50017,
                 ),
               ]),
-              Container(
-                width: 40.w,
-                height: 40.h,
-                child: Icon(
-                  Icons.notifications_outlined,
-                  size: 25,
-                  color: LightAppColors.primaryColor,
-                  shadows: [
-                    Shadow(
-                        color: LightAppColors.greyColor!,
-                        offset: Offset(0.2, 0.3),
-                        blurRadius: 0.5)
-                  ],
+              GestureDetector(
+                onTap: () {
+                  Get.to(Notifications());
+                },
+                child: Container(
+                  width: 40.w,
+                  height: 40.h,
+                  child: Icon(
+                    Icons.notifications_outlined,
+                    size: 25,
+                    color: LightAppColors.primaryColor,
+                    shadows: [
+                      Shadow(
+                          color: LightAppColors.greyColor!,
+                          offset: Offset(0.2, 0.3),
+                          blurRadius: 0.5)
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Theme.of(context).colorScheme.primaryContainer),
                 ),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Theme.of(context).colorScheme.primaryContainer),
               ),
             ],
           ),
