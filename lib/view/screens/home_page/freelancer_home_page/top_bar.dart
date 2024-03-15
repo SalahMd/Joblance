@@ -40,7 +40,7 @@ class TopBar extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Hello, Salah",
+                  "hello".tr + ", " + "freelancer".tr,
                   style: TextStyles.w50017,
                 ),
               ]),

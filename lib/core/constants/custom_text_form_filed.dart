@@ -4,7 +4,7 @@ import '../functions/valid_input.dart';
 class Customtextformfiled extends StatelessWidget {
   final String hinttext;
   final String labelText;
-  final IconData icondata;
+  final IconData? icondata;
   final TextEditingController? controller;
   final int min;
   final int max;

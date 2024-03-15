@@ -15,6 +15,8 @@ class AppImages {
   static const Linkedin = "assets/images/linkedin.png";
   static const googleLogo = "assets/images/googlelogo.png";
   static const google = "assets/images/google.png";
+   static const moon = "assets/images/moon.png";
+   static const sun = "assets/images/sun.png";
   static const save = "assets/images/save.png";
   static String englishimage = "assets/images/english.png";
   static String arabicimage = "assets/images/arabic.png";

@@ -37,7 +37,10 @@ class ListTiles extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
           ),
-          child: Icon(trailingIcon),
+          child: Icon(
+            trailingIcon,
+            size: 18,
+          ),
         ),
         title: Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0),
