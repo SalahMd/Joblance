@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/applay_job_page.dart';
 
 class CompanyInfo extends StatelessWidget {
   final Image companyImage;
@@ -32,6 +34,9 @@ class CompanyInfo extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 10.w),
       child: Column(
         children: [
+          SizedBox(
+            height: 10.h,
+          ),
           Row(
             children: [
               Container(
@@ -52,17 +57,17 @@ class CompanyInfo extends StatelessWidget {
                 children: [
                   Text(
                     jobTitle,
-                    style: TextStyles.w50017,
+                    style: TextStyles.w50017(context),
                   ),
                   Text(
                     companyName,
-                    style: TextStyles.w50014,
+                    style: TextStyles.w50014(context),
                   ),
                   Row(
                     children: [
                       Text(
                         jobLocation + " - " + remote,
-                        style: TextStyles.w40012grey,
+                        style: TextStyles.w40012grey(context),
                       ),
                     ],
                   ),
@@ -81,7 +86,7 @@ class CompanyInfo extends StatelessWidget {
                     SizedBox(width: 8.w),
                     Text(
                       "major".tr + ": " + major,
-                      style: TextStyles.w40012grey,
+                      style: TextStyles.w40012grey(context),
                     ),
                   ],
                 ),
@@ -91,7 +96,7 @@ class CompanyInfo extends StatelessWidget {
                     SizedBox(width: 8.w),
                     Text(
                       "employees".tr + ": " + numOfEmployees,
-                      style: TextStyles.w40012grey,
+                      style: TextStyles.w40012grey(context),
                     ),
                   ],
                 ),
@@ -101,7 +106,7 @@ class CompanyInfo extends StatelessWidget {
                     SizedBox(width: 8.w),
                     Text(
                       "2 weeks ago".tr,
-                      style: TextStyles.w40012grey,
+                      style: TextStyles.w40012grey(context),
                     ),
                   ],
                 ),
@@ -118,21 +123,26 @@ class CompanyInfo extends StatelessWidget {
                     SizedBox(width: 10.w),
                     Text(
                       "active".tr,
-                      style: TextStyles.w40012grey,
+                      style: TextStyles.w40012grey(context),
                     ),
                   ],
                 ),
               ]),
-              Padding(
-                padding: EdgeInsets.only(top: 65.h),
-                child: Container(
-                  width: 90.w,
-                  height: 30.h,
-                  alignment: Alignment.center,
-                  decoration: AppButtons.buttonDecoration,
-                  child: Text(
-                    "applay".tr,
-                    style: TextStyles.w50016White,
+              GestureDetector(
+                onTap: () {
+                  Get.to(ApplayJobPage());
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(top: 65.h),
+                  child: Container(
+                    width: 90.w,
+                    height: 30.h,
+                    alignment: Alignment.center,
+                    decoration: AppButtons.buttonDecoration,
+                    child: Text(
+                      "applay".tr,
+                      style: TextStyles.w50016White(context),
+                    ),
                   ),
                 ),
               )

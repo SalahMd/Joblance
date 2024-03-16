@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,12 +10,14 @@ class NotificationDesign extends StatelessWidget {
   final String name;
   final String notificationBody;
   final String notificationDate;
-  const NotificationDesign(
-      {super.key,
-      required this.image,
-      required this.name,
-      required this.notificationBody,
-      required this.notificationDate});
+
+  const NotificationDesign({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.notificationBody,
+    required this.notificationDate,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +41,6 @@ class NotificationDesign extends StatelessWidget {
               borderRadius: BorderRadius.circular(50),
               child: Image.asset(
                 image,
-                //width: 40.w,
-                //height: 40.h,
                 fit: BoxFit.fill,
               ),
             ),
@@ -47,23 +48,26 @@ class NotificationDesign extends StatelessWidget {
           SizedBox(
             width: 8.w,
           ),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              name + " ",
-              style: TextStyles.w50014,
+          Expanded(
+            // Wrap the Column with Expanded
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name + " ",
+                  style: TextStyles.w50014(context),
+                ),
+                Text(
+                  notificationBody,
+                  style: TextStyles.w40011grey(context),
+                ),
+                Text(
+                  notificationDate,
+                  style: TextStyles.w40011grey(context),
+                ),
+              ],
             ),
-            Expanded(
-              child: Text(
-                notificationBody,
-                softWrap: true,
-                style: TextStyles.w40011grey,
-              ),
-            ),
-            Text(
-              notificationDate,
-              style: TextStyles.w40011grey,
-            ),
-          ])
+          ),
         ],
       ),
     );

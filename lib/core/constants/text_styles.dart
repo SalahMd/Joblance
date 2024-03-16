@@ -1,52 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:joblance/core/constants/colors.dart';
 
 class TextStyles {
-  static TextStyle bold17 =
-      TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold);
-  static TextStyle bold20 =
-      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold);
-  static TextStyle w50018 =
-      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500);
-  static TextStyle bold14 =
-      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold);
-  static TextStyle w50014 =
-      TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold);
-  static TextStyle bold16 =
-      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold);
-  static TextStyle w50017 =
-      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500);
-  static TextStyle w50015 =
-      TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500);
-  static TextStyle w40011grey = TextStyle(
+  static TextStyle _getCustomTextStyle(double fontSize) {
+    return TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold);
+  }
+
+  static TextStyle get dynamicText {
+    double fontSize = ScreenUtil().setSp(17);
+    return _getCustomTextStyle(fontSize);
+  }
+
+  static TextStyle bold17(BuildContext context) => _getCustomTextStyle(17.sp);
+  static TextStyle w50019(BuildContext context) => _getCustomTextStyle(19.sp);
+  static TextStyle bold20(BuildContext context) => _getCustomTextStyle(20.sp);
+  static TextStyle w50018(BuildContext context) => _getCustomTextStyle(18.sp);
+  static TextStyle bold14(BuildContext context) => _getCustomTextStyle(14.sp);
+  static TextStyle w50014(BuildContext context) => _getCustomTextStyle(14.sp);
+  static TextStyle bold16(BuildContext context) => _getCustomTextStyle(16.sp);
+  static TextStyle w50017(BuildContext context) => _getCustomTextStyle(17.sp);
+  static TextStyle w50015(BuildContext context) => _getCustomTextStyle(15.sp);
+
+  static TextStyle w50012(BuildContext context) => _getCustomTextStyle(12.sp);
+  static TextStyle w40011(BuildContext context) => _getCustomTextStyle(11.sp);
+  static TextStyle w50013(BuildContext context) => _getCustomTextStyle(13.sp);
+
+ static TextStyle w40011grey(BuildContext context) => TextStyle(
       color: Colors.grey[700], fontSize: 11.sp, fontWeight: FontWeight.w500);
-  static TextStyle w4009grey = TextStyle(
+  static TextStyle w4009grey (BuildContext context) => TextStyle(
       color: Colors.grey[700], fontSize: 9.sp, fontWeight: FontWeight.w500);
-  static TextStyle w40012grey = TextStyle(
+  static TextStyle w40012grey(BuildContext context) => TextStyle(
       color: Colors.grey[700], fontSize: 12.sp, fontWeight: FontWeight.w500);
-  static TextStyle w40014grey = TextStyle(
+  static TextStyle w40014grey (BuildContext context) => TextStyle(
       color: Colors.grey[700], fontSize: 14.sp, fontWeight: FontWeight.w500);
-  static TextStyle w50012 =
-      TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500);
-      static TextStyle w40011 =
-      TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w400);
-  static TextStyle w50013 =
-      TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500);
-  // static TextStyle w40013grey = TextStyle(
-  //     color: lightAppColors.greyColor,
-  //     fontSize: 13.sp,
-  //     fontWeight: FontWeight.w400);
-  static TextStyle w40010White = TextStyle(
-      color: Colors.white, fontSize: 10.sp, fontWeight: FontWeight.w400);
-  static TextStyle w50012White = TextStyle(
-      color: Colors.white, fontSize: 12.sp, fontWeight: FontWeight.w500);
-       static TextStyle w50011White = TextStyle(
-      color: Colors.white, fontSize: 11.sp, fontWeight: FontWeight.w500);
-  static TextStyle w50016White = TextStyle(
-      fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.white);
-      
-  // static TextStyle w50015White = TextStyle(
-  //     color: lightAppColors.whiteColor,
-  //     fontSize: 15.sp,
-  //     fontWeight: FontWeight.w500);
+
+  static TextStyle w40010White(BuildContext context) => TextStyle(
+        color: Colors.white,
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w400,
+      );
+
+  static TextStyle w50012White(BuildContext context) => TextStyle(
+        color: Colors.white,
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w500,
+      );
+
+  static TextStyle w50011White(BuildContext context) => TextStyle(
+        color: Colors.white,
+        fontSize: 11.sp,
+        fontWeight: FontWeight.w500,
+      );
+
+  static TextStyle w50016White(BuildContext context) => TextStyle(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+        color: LightAppColors.whiteColor,
+      );
 }

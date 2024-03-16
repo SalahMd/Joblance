@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/job_info/about_company.dart';
 import 'package:joblance/view/screens/job_info/about_job.dart';
+import 'package:joblance/view/screens/job_info/additiona_info.dart';
 import 'package:joblance/view/screens/job_info/company_info.dart';
 import 'package:joblance/view/screens/job_info/requirments.dart';
 import 'package:joblance/view/screens/job_info/tob_bar.dart';
@@ -15,7 +17,6 @@ class JobInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -34,19 +35,10 @@ class JobInfo extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            SizedBox(height: 10.h),
             AboutCompany(),
             AboutJob(),
-            SizedBox(height: 10.h),
             Requirements(),
-            SizedBox(height: 10.h),
-            SizedBox(height: 10.h),
-            Container(
-              width: Dimensions.screenwidth(context),
-              height: 100.h,
-              margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-              color: Theme.of(context).colorScheme.primaryContainer,
-            )
+            AdditionalInfo()
           ],
         ),
       ),

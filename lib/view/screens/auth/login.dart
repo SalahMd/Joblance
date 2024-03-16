@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:joblance/controller/auth/login_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
@@ -44,7 +47,7 @@ class Login extends StatelessWidget {
                       alignment: AlignmentDirectional.centerStart,
                       child: Text(
                         "logintocontinue".tr,
-                        style: TextStyles.bold17,
+                        style: TextStyles.bold17(context),
                       )),
                 ),
                 Customtextformfiled(
@@ -85,7 +88,7 @@ class Login extends StatelessWidget {
                     decoration: AppButtons.buttonDecoration,
                     child: Text(
                       "login".tr,
-                      style: TextStyles.w50016White,
+                      style: TextStyles.w50016White(context),
                     ),
                   ),
                 ),
@@ -103,7 +106,7 @@ class Login extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 5.w),
                           child: Text(
                             "or".tr,
-                            style: TextStyles.w40014grey,
+                            style: TextStyles.w40014grey(context),
                           )),
                       const Expanded(
                           child: Divider(
@@ -132,7 +135,7 @@ class Login extends StatelessWidget {
                       SizedBox(
                         width: 8.w,
                       ),
-                      Text("continuewithgoogle".tr),
+                      Text("continuewithgoogle".tr,style: TextStyles.w50015(context),),
                     ],
                   ),
                 ),
@@ -144,7 +147,7 @@ class Login extends StatelessWidget {
                     children: [
                       Text(
                         "createaccount".tr,
-                        style: TextStyles.w50013,
+                        style: TextStyles.w50013(context),
                       ),
                       TextButton(
                         child: Text(

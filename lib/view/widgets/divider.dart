@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: must_be_immutable
 class MyDivider extends StatelessWidget {
    double? height = 5.h;
    MyDivider({super.key, this.height});

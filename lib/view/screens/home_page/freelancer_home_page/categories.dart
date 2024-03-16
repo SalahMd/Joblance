@@ -42,7 +42,7 @@ class Categories extends StatelessWidget {
                             ),
                             Text(
                               categories[index].name,
-                              style: TextStyles.w50012,
+                              style: TextStyles.w50012(context),
                             )
                           ]),
                     )),

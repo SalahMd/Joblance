@@ -44,7 +44,7 @@ class ListTiles extends StatelessWidget {
         ),
         title: Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0),
-          child: Text(listText, style: TextStyles.bold14),
+          child: Text(listText, style: TextStyles.bold14(context)),
         ),
       ),
     );

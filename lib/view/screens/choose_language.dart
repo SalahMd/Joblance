@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
@@ -77,7 +78,7 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
                           children: [
                             Text(
                               "arabic".tr,
-                              style: TextStyles.bold17,
+                              style: TextStyles.bold17(context),
                             ),
                             SizedBox(
                                 width: 40,
@@ -113,7 +114,7 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
                           children: [
                             Text(
                               "english".tr,
-                              style: TextStyles.bold17,
+                              style: TextStyles.bold17(context),
                             ),
                             SizedBox(
                                 width: 40,
@@ -139,10 +140,8 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
               decoration: BoxDecoration(
                   color: LightAppColors.primaryColor,
                   borderRadius: BorderRadius.circular(20)),
-              child: Text(
-                "continuebutton".tr,
-                style: TextStyles.w50016White,
-              ),
+              child: Text("continuebutton".tr,
+                  style: TextStyle(color: Colors.white, fontSize: 15.sp)),
             ),
           ),
         ],

@@ -17,7 +17,7 @@ class AppTheme {
     background: Colors.grey[900]!,
 //     onBackground: Color.fromARGB(255, 2, 2, 2),
 //     surface: Color.fromARGB(255, 52, 50, 50),
-//     onSurface: Color(0xFFF3F3F3),
+     onSurface: Color(0xFFF3F3F3),
 //     surfaceVariant: Color.fromARGB(255, 222, 52, 30),
 //     //for chips after picking
 //  //   inversePrimary: Colors.amber,
@@ -48,7 +48,7 @@ class AppTheme {
     // //for date picker
     // surface: lightAppColors.whiteColor,
     // surfaceVariant: lightAppColors.blackColor,
-    // onSurface: lightAppColors.blackColor,
+     onSurface: LightAppColors.blackColor,
     // onSurfaceVariant: lightAppColors.blackColor,
     // outlineVariant: Colors.grey[600],
 
@@ -77,7 +77,7 @@ class AppTheme {
       textTheme: TextTheme(
         headline1: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 21.sp,
+            fontSize: 24,
             fontFamily: "PlayfairDisplay"),
         headline2: TextStyle(
             color: Get.theme.cardColor,
@@ -97,7 +97,7 @@ class AppTheme {
       textTheme: TextTheme(
         headline1: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 23.sp,
+            fontSize: 24,
             fontFamily: "PlayfairDisplay"),
         headline2: TextStyle(
             //color: Get.theme.cardColor,

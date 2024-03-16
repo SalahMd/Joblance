@@ -73,7 +73,7 @@ class OnBoarding extends GetView<OnBoardingControllerImpl> {
                                 child: Text(
                                   Onbordingmodel[i].body!,
                                   textAlign: TextAlign.center,
-                                  style: TextStyles.w40014grey,
+                                  style: TextStyles.w40014grey(context),
                                 ))
                             .animate()
                             .animate()
@@ -110,7 +110,7 @@ class OnBoarding extends GetView<OnBoardingControllerImpl> {
                 style: AppButtons.elevatedButtonStyle,
                 child: Text(
                   "continuebutton".tr,
-                  style: TextStyles.w50016White,
+                  style: TextStyles.w50016White(context),
                 ),
               ).animate().fade(duration: 500.ms).slideY(begin: 0.5),
             ],

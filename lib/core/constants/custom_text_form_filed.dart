@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../functions/valid_input.dart';
 
 class Customtextformfiled extends StatelessWidget {
@@ -13,6 +14,7 @@ class Customtextformfiled extends StatelessWidget {
   final bool? isBorder;
   final int maxLines;
   final int? letters;
+  final bool isLabel;
   final void Function()? ontapicon;
   Customtextformfiled({
     super.key,
@@ -29,6 +31,7 @@ class Customtextformfiled extends StatelessWidget {
     TextStyle? style,
     this.maxLines = 1,
     this.letters,
+    this.isLabel = true,
   });
 
   @override
@@ -44,7 +47,6 @@ class Customtextformfiled extends StatelessWidget {
         validator: (val) {
           return validInput(val!, min, max);
         },
-        //maxLines: maxLines,
         maxLength: letters,
         controller: controller,
         maxLines: maxLines,
@@ -55,26 +57,29 @@ class Customtextformfiled extends StatelessWidget {
           labelStyle: TextStyle(
             color: Theme.of(context).colorScheme.onSurface,
           ),
-          hintStyle: const TextStyle(
-              fontSize: 17, color: Colors.grey), // Set hint text color
+          hintStyle: const TextStyle(fontSize: 17, color: Colors.grey),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          label: Container(
-            margin: const EdgeInsets.only(left: 5, right: 5),
-            child: Text(
-              labelText,
-              style: TextStyle(
-                fontSize: 16,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-            ),
-          ),
-
+          label: isLabel
+              ? Container(
+                  margin: const EdgeInsets.only(left: 5, right: 5),
+                  child: Text(
+                    labelText,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                )
+              : null,
           suffixIcon: GestureDetector(
             onTap: ontapicon,
-            child: Icon(
-              icondata,
+            child: Container(
+              
+              child: Icon(
+                icondata,
+              ),
             ),
           ),
           focusedBorder: isBorder == null

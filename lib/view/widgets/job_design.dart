@@ -18,8 +18,8 @@ class JobDesign extends StatelessWidget {
       },
       child: Container(
         width: Dimensions.screenwidth(context),
-        height: 120.h,
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        // height: 110,
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
@@ -30,8 +30,8 @@ class JobDesign extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  width: 40.w,
-                  height: 50.h,
+                  width: 45,
+                  height: 45,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
@@ -49,22 +49,22 @@ class JobDesign extends StatelessWidget {
                   children: [
                     Text(
                       "Flutter Developer",
-                      style: TextStyles.w50014,
+                      style: TextStyles.w50014(context),
                     ),
                     //SizedBox(height: .h),
                     Text(
                       "Linkedin",
-                      style: TextStyles.w50012,
+                      style: TextStyles.w50012(context),
                     ),
                     SizedBox(height: 3.h),
                     Text(
                       "United states" + " - " + "OnSite",
-                      style: TextStyles.w40011grey,
+                      style: TextStyles.w40011grey(context),
                     ),
                     //SizedBox(height: 3.h),
                     Text(
                       "2 weeks ago",
-                      style: TextStyles.w4009grey,
+                      style: TextStyles.w4009grey(context),
                     )
                   ],
                 ),
@@ -91,8 +91,8 @@ class JobDesign extends StatelessWidget {
                     height: 10.h,
                   ),
                   Container(
-                    width: 60.w,
-                    height: 25.h,
+                    width: 60,
+                    height: 25,
                     alignment: AlignmentDirectional.center,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.background,
@@ -102,15 +102,15 @@ class JobDesign extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          width: 7.w,
-                          height: 8.h,
+                          width: 8,
+                          height: 8,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: LightAppColors.greenColor),
                         ),
                         Text(
                           "active".tr,
-                          style: TextStyles.w40011,
+                          style: TextStyles.w40011(context),
                         ),
                       ],
                     ),

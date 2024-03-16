@@ -29,7 +29,7 @@ class ChangeTheLanguage extends GetView<ChangeLanguage> {
               SizedBox(width: 10.w),
               Text(
                 "changelanguage".tr,
-                style: Theme.of(context).textTheme.headline1,
+                style: TextStyles.w50019(context),
               ),
             ],
           )),
@@ -47,7 +47,7 @@ class ChangeTheLanguage extends GetView<ChangeLanguage> {
                     children: [
                       Text(
                         "arabic".tr,
-                        style: TextStyles.bold17,
+                        style: TextStyles.bold17(context),
                       ),
                       Container(
                           width: 35.w,
@@ -70,7 +70,7 @@ class ChangeTheLanguage extends GetView<ChangeLanguage> {
                 children: [
                   Text(
                     "english".tr,
-                    style: TextStyles.bold17,
+                    style: TextStyles.bold17(context),
                   ),
                   Container(
                       width: 35.w,
