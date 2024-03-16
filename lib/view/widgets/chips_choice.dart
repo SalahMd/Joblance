@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/search_controller.dart';
 
+// ignore: must_be_immutable
 class ChipsChoices extends StatelessWidget {
   List<String> tags = [];
   final List<String> options;

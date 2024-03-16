@@ -43,9 +43,10 @@ class CompanyOrFreeLancer extends StatelessWidget {
                           border: Border.all(color: Colors.white)),
                       child: Text(
                         "company".tr,
-                        style: !controller.isFreelancer
-                            ? TextStyles.w50016White
-                            : null,
+                        style: TextStyle(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w500,
+                            color: LightAppColors.whiteColor),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -74,8 +75,10 @@ class CompanyOrFreeLancer extends StatelessWidget {
                   ),
                   child: Text(
                     "freelancer".tr,
-                    style:
-                        controller.isFreelancer ? TextStyles.w50016White : null,
+                    style: TextStyle(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w500,
+                        color: LightAppColors.whiteColor),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -100,9 +103,10 @@ class CompanyOrFreeLancer extends StatelessWidget {
                           border: Border.all(color: Colors.white)),
                       child: Text(
                         "company".tr,
-                        style: !controller.isFreelancer
-                            ? TextStyles.w50016White
-                            : null,
+                        style: TextStyle(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w500,
+                            color: LightAppColors.whiteColor),
                         textAlign: TextAlign.center,
                       ),
                     ),

@@ -14,5 +14,6 @@ class MiddleWare extends GetMiddleware {
     if (myservices.sharedPreferences.getString("step") == "1") {
       return const RouteSettings(name: "Login");
     }
+    return null;
   }
 }

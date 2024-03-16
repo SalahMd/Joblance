@@ -106,7 +106,11 @@ class Translation extends Translations {
           "send":"إرسال",
           "employees":"الموظفين",
           "studycase":"الوضع الدراسي",
-          "savedjobs":"الوظائف المحفوظة"
+          "savedjobs":"الوظائف المحفوظة",
+          "applayforthejob":"التقدم للعمل",
+          "uploadyourcv":"أضف السيرة الذاتية",
+          "coverletter":"رسالة حافز","optional":"(اختياري)",
+          "additionalinfo":"معلومات إضافية:"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -214,6 +218,10 @@ class Translation extends Translations {
           "studycase":"Study case",
           "employees":"Employees",
           "savedjobs":"Saved jobs",
+          "applayforthejob":"Applay for the job",
+          "uploadyourcv":"Upload your CV",
+          "coverletter":"Cover letter","optional":"(Optional)",
+          "additionalinfo":"Additional info:"
         }
       };
 }

@@ -55,7 +55,7 @@ class FreelancerProfile extends StatelessWidget {
                     SizedBox(height: 10.h),
                     Text(
                       "Salah Aldeen Mdaghmesh",
-                      style: TextStyles.w50017,
+                      style: TextStyles.w50017(context),
                     ),
                     SizedBox(height: 5.h),
                     Row(
@@ -67,7 +67,7 @@ class FreelancerProfile extends StatelessWidget {
                         SizedBox(width: 5.w),
                         Text(
                           "IT engineer",
-                          style: TextStyles.w40012grey,
+                          style: TextStyles.w40012grey(context),
                         ),
                       ],
                     ),
@@ -86,7 +86,7 @@ class FreelancerProfile extends StatelessWidget {
                         SizedBox(width: 5.w),
                         Text(
                           "100 followersn",
-                          style: TextStyles.w40012grey,
+                          style: TextStyles.w40012grey(context),
                         ),
                       ],
                     ),
@@ -109,7 +109,7 @@ class FreelancerProfile extends StatelessWidget {
                               SizedBox(width: 10.w),
                               Text(
                                 "Salah Aldeen Mdaghmesh",
-                                style: TextStyles.w40011,
+                                style: TextStyles.w40011(context),
                               )
                             ],
                           ),
@@ -122,7 +122,7 @@ class FreelancerProfile extends StatelessWidget {
                               SizedBox(width: 10.w),
                               Text(
                                 "salahaldeenmdaghmesh@gmail.com",
-                                style: TextStyles.w40011,
+                                style: TextStyles.w40011(context),
                               )
                             ],
                           ),
@@ -135,7 +135,7 @@ class FreelancerProfile extends StatelessWidget {
                               SizedBox(width: 10.w),
                               Text(
                                 "+963996541809",
-                                style: TextStyles.w40011,
+                                style: TextStyles.w40011(context),
                               )
                             ],
                           ),
@@ -148,7 +148,7 @@ class FreelancerProfile extends StatelessWidget {
                               SizedBox(width: 10.w),
                               Text(
                                 "Syria",
-                                style: TextStyles.w40011,
+                                style: TextStyles.w40011(context),
                               )
                             ],
                           ),
@@ -161,7 +161,7 @@ class FreelancerProfile extends StatelessWidget {
                               SizedBox(width: 10.w),
                               Text(
                                 "IT engineer",
-                                style: TextStyles.w40011,
+                                style: TextStyles.w40011(context),
                               )
                             ],
                           ),
@@ -183,7 +183,7 @@ class FreelancerProfile extends StatelessWidget {
                               SizedBox(width: 10.w),
                               Text(
                                 "Ungraduated",
-                                style: TextStyles.w40011,
+                                style: TextStyles.w40011(context),
                               )
                             ],
                           ),

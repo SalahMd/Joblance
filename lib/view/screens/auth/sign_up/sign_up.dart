@@ -76,11 +76,11 @@ class SignUp extends StatelessWidget {
                       child: controller.isFreelancer
                           ? Text(
                               "studycase".tr,
-                              style: TextStyles.w50012,
+                              style: TextStyles.w50012(context),
                             )
                           : Text(
                               "numofemployees".tr,
-                              style: TextStyles.w50012,
+                              style: TextStyles.w50012(context),
                             ),
                     ),
                   ),
@@ -102,7 +102,7 @@ class SignUp extends StatelessWidget {
                       ),
                       child: Text(
                         "major".tr,
-                        style: TextStyles.w50012,
+                        style: TextStyles.w50012(context),
                       ),
                     ),
                   ),
@@ -121,7 +121,7 @@ class SignUp extends StatelessWidget {
                       decoration: AppButtons.buttonDecoration,
                       child: Text(
                         "signup".tr,
-                        style: TextStyles.w50016White,
+                        style: TextStyles.w50016White(context),
                       ),
                     ),
                   ),
@@ -132,7 +132,7 @@ class SignUp extends StatelessWidget {
                         children: [
                           Text(
                             "alreadyhaveaccount".tr,
-                            style: TextStyles.w50013,
+                            style: TextStyles.w50013(context),
                           ),
                           TextButton(
                               onPressed: () {
@@ -140,7 +140,8 @@ class SignUp extends StatelessWidget {
                               },
                               child: Text(
                                 "login".tr,
-                                style: TextStyle(color: LightAppColors.primaryColor),
+                                style: TextStyle(
+                                    color: LightAppColors.primaryColor),
                               ))
                         ],
                       ),

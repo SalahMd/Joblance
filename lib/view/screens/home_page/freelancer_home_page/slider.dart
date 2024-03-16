@@ -25,11 +25,10 @@ class SliderWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          // width: Dimensions.screenwidth(context),
-          // height: 185.h,
+          //   height: 200,
           alignment: AlignmentDirectional.centerEnd,
           padding:
-              EdgeInsetsDirectional.only(end: 10.w, top: 15.h, bottom: 7.h),
+              EdgeInsetsDirectional.only(end: 10.w, top: 10.h, bottom: 6.h),
           margin: EdgeInsets.symmetric(
             vertical: 10.h,
             horizontal: 15.w,
@@ -75,7 +74,7 @@ class SliderWidget extends StatelessWidget {
                     color: LightAppColors.primaryColor,
                   ),
                   Text("United states" + " - " + remote,
-                      style: TextStyles.w50011White),
+                      style: TextStyles.w50011White(context)),
                 ],
               )
             ],
@@ -84,7 +83,7 @@ class SliderWidget extends StatelessWidget {
         Container(
           width: Dimensions.screenwidth(context) / 1.55,
           margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-          padding: EdgeInsetsDirectional.only(start: 6.w, top: 12.h),
+          padding: EdgeInsetsDirectional.only(start: 6.w, top: 10.h),
           decoration: BoxDecoration(
               color: LightAppColors.primaryColor.withOpacity(0.7),
               borderRadius: BorderRadiusDirectional.only(
@@ -112,18 +111,18 @@ class SliderWidget extends StatelessWidget {
                     children: [
                       Text(
                         jobTitle,
-                        style: TextStyles.w50016White,
+                        style: TextStyles.w50016White(context),
                       ),
                       Text(
                         companyName,
-                        style: TextStyles.w50016White,
+                        style: TextStyles.w50016White(context),
                       ),
                     ],
                   ),
                 ],
               ),
               SizedBox(
-                height: 20.h,
+                height: 10.h,
               ),
               Row(
                 children: [
@@ -137,11 +136,11 @@ class SliderWidget extends StatelessWidget {
                   ),
                   Text(
                     applicants + "applicants".tr,
-                    style: TextStyles.w50011White,
+                    style: TextStyles.w50011White(context),
                   ),
                 ],
               ),
-              SizedBox(height: 10.h),
+              SizedBox(height: 5.h),
               Row(
                 children: [
                   Icon(
@@ -154,11 +153,11 @@ class SliderWidget extends StatelessWidget {
                   ),
                   Text(
                     "12" + " hours ago".tr,
-                    style: TextStyles.w50011White,
+                    style: TextStyles.w50011White(context),
                   ),
                 ],
               ),
-              SizedBox(height: 10.h),
+              SizedBox(height: 5.h),
               Row(
                 children: [
                   Icon(
@@ -171,10 +170,10 @@ class SliderWidget extends StatelessWidget {
                   ),
                   Text(
                     "45k - 60k".tr,
-                    style: TextStyles.w50011White,
+                    style: TextStyles.w50011White(context),
                   ),
                 ],
-              ),
+              )
             ],
           ),
         ),

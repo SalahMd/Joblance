@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/report_controller.dart';
@@ -13,7 +12,7 @@ class Report extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ReportControllerImpl());
+     Get.put(ReportControllerImpl());
     return Scaffold(
       body: GetBuilder<ReportControllerImpl>(
         builder: (controller) => SingleChildScrollView(
@@ -38,7 +37,7 @@ class Report extends StatelessWidget {
                       SizedBox(width: 10.w),
                       Text(
                         "report".tr,
-                        style: TextStyles.bold17,
+                        style: TextStyles.w50019(context),
                       ),
                     ],
                   ),
@@ -50,7 +49,7 @@ class Report extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: Text(
                     "reporttitle".tr,
-                    style: TextStyles.bold17,
+                    style: TextStyles.bold17(context),
                   ),
                 ),
                 Customtextformfiled(
@@ -63,13 +62,17 @@ class Report extends StatelessWidget {
                   isnumber: false,
                   ispassword: false,
                   isBorder: true,
+                  isLabel: false,
                 ),
                 SizedBox(
                   height: 20.h,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Text("reportdescription".tr),
+                  child: Text(
+                    "reportdescription".tr,
+                    style: TextStyles.bold17(context),
+                  ),
                 ),
                 Customtextformfiled(
                   hinttext: "".tr,
@@ -82,6 +85,7 @@ class Report extends StatelessWidget {
                   ispassword: false,
                   maxLines: 5,
                   isBorder: true,
+                  isLabel: false,
                 ),
                 Container(
                   width: Dimensions.screenwidth(context),
@@ -92,7 +96,7 @@ class Report extends StatelessWidget {
                   decoration: AppButtons.buttonDecoration,
                   child: Text(
                     "send".tr,
-                    style: TextStyles.w50016White,
+                    style: TextStyles.w50016White(context),
                   ),
                 )
               ],

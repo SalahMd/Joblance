@@ -26,6 +26,7 @@ dependencies:
   carousel_slider: ^4.2.1
   show_up_animation: ^2.0.0
   country_picker: ^2.0.25
+  file_picker: ^6.2.0
   flutter_launcher_icons: ^0.13.1
 dev_dependencies:
   flutter_test:

@@ -9,7 +9,7 @@ Future<bool> exitAlert() {
   Get.defaultDialog(
       title: "",
       middleText: "warningbody".tr,
-      middleTextStyle: TextStyles.w50013,
+      middleTextStyle:TextStyle(fontSize: 13.sp,fontWeight: FontWeight.w500),
       actions: [
         TextButton(
           onPressed: () {
@@ -36,7 +36,7 @@ Future<bool> animationedAlertWithActions(
     var animation, String title, void Function() onYesTap) {
   Get.defaultDialog(
       title: title,
-      titleStyle: TextStyles.w50017,
+      titleStyle: TextStyle(fontSize: 17.sp,fontWeight: FontWeight.w500),
       titlePadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       content: animation != null
           ? Container(
@@ -50,13 +50,13 @@ Future<bool> animationedAlertWithActions(
             },
             child: Text(
               "yes".tr,
-              style: TextStyles.bold14,
+              style: TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w500),
             )),
         TextButton(
             onPressed: () {
               Get.back();
             },
-            child: Text("no".tr, style: TextStyles.bold14))
+            child: Text("no".tr, style:TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w500)))
       ]);
   return Future.value(true);
 }
@@ -64,7 +64,7 @@ Future<bool> animationedAlertWithActions(
 Future<bool> animationedAlert(var animation, String title) {
   Get.defaultDialog(
     title: title,
-    titleStyle: TextStyles.w50017,
+    titleStyle: TextStyle(fontSize: 17.sp,fontWeight: FontWeight.w500),
     titlePadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
     content: animation != null
         ? Container(
@@ -75,38 +75,38 @@ Future<bool> animationedAlert(var animation, String title) {
   return Future.value(true);
 }
 
-alert(String title) {
-  Get.defaultDialog(
-    title: title,
-    titleStyle: TextStyles.bold16,
-    titlePadding: const EdgeInsets.symmetric(vertical: 40, horizontal: 10),
-  );
-}
+// alert(String title) {
+//   Get.defaultDialog(
+//     title: title,
+//     titleStyle: TextStyles.bold16,
+//     titlePadding: const EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+//   );
+// }
 
-Future<bool> alertWithActions(String title,void Function ()onYesTap) {
-  Get.defaultDialog(
-      title: "",
-      middleText: title,
-      middleTextStyle: TextStyles.bold16,
-      actions: [
-        TextButton(
-          onPressed:onYesTap,
-          child: Text(
-            "yes".tr,
-            style: const TextStyle(color: Colors.blue),
-          ),
-        ),
-        TextButton(
-            onPressed: () {
-              Get.back();
-            },
-            child: Text(
-              "no".tr,
-              style: const TextStyle(color: Colors.blue),
-            ))
-      ]);
-  return Future.value(false);
-}
+// Future<bool> alertWithActions(String title,void Function ()onYesTap) {
+//   Get.defaultDialog(
+//       title: "",
+//       middleText: title,
+//       middleTextStyle: TextStyles.bold16,
+//       actions: [
+//         TextButton(
+//           onPressed:onYesTap,
+//           child: Text(
+//             "yes".tr,
+//             style: const TextStyle(color: Colors.blue),
+//           ),
+//         ),
+//         TextButton(
+//             onPressed: () {
+//               Get.back();
+//             },
+//             child: Text(
+//               "no".tr,
+//               style: const TextStyle(color: Colors.blue),
+//             ))
+//       ]);
+//   return Future.value(false);
+// }
 
 // Future<bool> popUp(
 //   BuildContext context,

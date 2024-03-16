@@ -11,7 +11,7 @@ class DarkMode extends StatelessWidget {
   const DarkMode({super.key});
   @override
   Widget build(BuildContext context) {
-    Get.put(DarkModeImpl());
+     Get.put(DarkModeImpl());
     return Scaffold(
       body: GetBuilder<DarkModeImpl>(
         builder: (controller) =>
@@ -31,7 +31,7 @@ class DarkMode extends StatelessWidget {
               SizedBox(width: 10.w),
               Text(
                 "choosemode".tr,
-                style: Theme.of(context).textTheme.headline1,
+                style: TextStyles.bold20(context),
               ),
             ],
           )),
@@ -48,7 +48,7 @@ class DarkMode extends StatelessWidget {
                     children: [
                       Text(
                         "darkmode".tr,
-                        style: TextStyles.bold17,
+                        style: TextStyles.bold17(context),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.only(end: 7.w),
@@ -77,7 +77,7 @@ class DarkMode extends StatelessWidget {
                 children: [
                   Text(
                     "lightmode".tr,
-                    style: TextStyles.bold17,
+                    style: TextStyles.bold17(context),
                   ),
                   Container(
                     width: 40.w,

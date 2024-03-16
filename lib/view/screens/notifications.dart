@@ -32,7 +32,7 @@ class Notifications extends StatelessWidget {
                   SizedBox(width: 10.w),
                   Text(
                     "notifications".tr,
-                    style: TextStyles.bold17,
+                    style: TextStyles.bold17(context),
                   ),
                 ],
               ),

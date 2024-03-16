@@ -27,6 +27,7 @@ class FreelancerHomePage extends StatelessWidget {
                 ? ShimmerFreelancerHomePage()
                 : Column(
                     children: [
+
                       TopBar()
                           .animate()
                           .fade(duration: 600.ms)
@@ -38,7 +39,7 @@ class FreelancerHomePage extends StatelessWidget {
                                 start: 15.w, top: 10.h, bottom: 15.h),
                             child: Text(
                               "popularjobs".tr,
-                              style: TextStyles.bold20,
+                              style: TextStyles.bold20(context),
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
                       Swiper()
@@ -52,7 +53,7 @@ class FreelancerHomePage extends StatelessWidget {
                                 start: 15.w, top: 10.h, bottom: 10.h),
                             child: Text(
                               "categories".tr,
-                              style: TextStyles.bold20,
+                              style: TextStyles.bold20(context),
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
                       Categories()
@@ -66,7 +67,7 @@ class FreelancerHomePage extends StatelessWidget {
                                 start: 15.w, top: 10.h, bottom: 5.h),
                             child: Text(
                               "recentjobs".tr,
-                              style: TextStyles.bold20,
+                              style: TextStyles.bold20(context),
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
                       // JobDesign(),

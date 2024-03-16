@@ -28,7 +28,7 @@ class Settings extends StatelessWidget {
                   child: Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
-                      child: Text("account".tr, style: TextStyles.w40014grey)),
+                      child: Text("account".tr, style: TextStyles.w40014grey(context))),
                 ),
                 Container(
                     width: Dimensions.screenwidth(context),
@@ -62,7 +62,7 @@ class Settings extends StatelessWidget {
                 Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
-                    child: Text("general".tr, style: TextStyles.w40014grey)),
+                    child: Text("general".tr, style: TextStyles.w40014grey(context))),
                 Container(
                   width: Dimensions.screenwidth(context),
                   padding:
@@ -101,7 +101,7 @@ class Settings extends StatelessWidget {
                 Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
-                    child: Text("helpcenter".tr, style: TextStyles.w40014grey)),
+                    child: Text("helpcenter".tr, style: TextStyles.w40014grey(context))),
                 Container(
                   width: Dimensions.screenwidth(context),
                   padding:
