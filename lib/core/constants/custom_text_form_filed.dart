@@ -37,7 +37,7 @@ class Customtextformfiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 25, left: 15, right: 15),
+      margin: EdgeInsets.only(top: 25.h, left: 15.w, right: 15.w),
       child: TextFormField(
         obscureText: ispassword,
         style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
@@ -76,7 +76,6 @@ class Customtextformfiled extends StatelessWidget {
           suffixIcon: GestureDetector(
             onTap: ontapicon,
             child: Container(
-              
               child: Icon(
                 icondata,
               ),

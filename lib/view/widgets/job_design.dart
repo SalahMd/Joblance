@@ -91,8 +91,8 @@ class JobDesign extends StatelessWidget {
                     height: 10.h,
                   ),
                   Container(
-                    width: 60,
-                    height: 25,
+                    width: 60.w,
+                    height: 25.h,
                     alignment: AlignmentDirectional.center,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.background,

@@ -25,7 +25,6 @@ class SliderWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          //   height: 200,
           alignment: AlignmentDirectional.centerEnd,
           padding:
               EdgeInsetsDirectional.only(end: 10.w, top: 10.h, bottom: 6.h),
@@ -115,14 +114,14 @@ class SliderWidget extends StatelessWidget {
                       ),
                       Text(
                         companyName,
-                        style: TextStyles.w50016White(context),
+                        style: TextStyles.w50013White(context),
                       ),
                     ],
                   ),
                 ],
               ),
               SizedBox(
-                height: 10.h,
+                height: 15.h,
               ),
               Row(
                 children: [
