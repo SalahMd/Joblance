@@ -16,6 +16,7 @@ class Customtextformfiled extends StatelessWidget {
   final int? letters;
   final bool isLabel;
   final void Function()? ontapicon;
+  final double? padding;
   Customtextformfiled({
     super.key,
     required this.hinttext,
@@ -31,13 +32,13 @@ class Customtextformfiled extends StatelessWidget {
     TextStyle? style,
     this.maxLines = 1,
     this.letters,
-    this.isLabel = true,
+    this.isLabel = true, this.padding=20,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 25.h, left: 10.w, right: 10.w),
+      margin: EdgeInsets.only(top: padding!.h, left: 10.w, right: 10.w),
       child: TextFormField(
         obscureText: ispassword,
         style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
