@@ -28,8 +28,8 @@ class TopBar extends StatelessWidget {
             children: [
               Row(children: [
                 Container(
-                  width: 39,
-                  height: 45,
+                  width: 40,
+                  height: 40,
                   margin: EdgeInsetsDirectional.only(end: 10.w),
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(20)),
@@ -101,7 +101,7 @@ class TopBar extends StatelessWidget {
                 size: 25,
               ),
               SizedBox(width: 5.w),
-              Text("search".tr, style:TextStyles.w40014grey(context))
+              Text("search".tr, style: TextStyles.w40014grey(context))
             ]),
           ),
         )

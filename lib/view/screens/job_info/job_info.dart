@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:joblance/core/constants/images.dart';
-import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/job_info/about_company.dart';
 import 'package:joblance/view/screens/job_info/about_job.dart';
 import 'package:joblance/view/screens/job_info/additiona_info.dart';

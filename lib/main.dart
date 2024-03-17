@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/localization/change_language.dart';
@@ -16,6 +17,8 @@ import 'core/themes/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialServices();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
 
@@ -29,7 +32,6 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
         designSize: const Size(320, 790),
         child: GetMaterialApp(
-         
           locale: controller.language,
           translations: Translation(),
           themeMode: themeController.themeMode,
@@ -46,8 +48,8 @@ class MyApp extends StatelessWidget {
             GetPage(name: "/ChooseLanguage", page: () => ChooseLanguage()),
             GetPage(name: "/OnBoarding", page: () => OnBoarding()),
             GetPage(name: "/SignUp", page: () => const SignUp()),
-             GetPage(name: "/Search", page: () => const Search()),
-             GetPage(name: "/HomePage", page: () => ButtomBar()),
+            GetPage(name: "/Search", page: () => const Search()),
+            GetPage(name: "/HomePage", page: () => ButtomBar()),
           ],
         ));
   }

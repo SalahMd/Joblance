@@ -71,7 +71,7 @@ class JobDesign extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 5.h, top: 20.h),
+              padding: EdgeInsets.only(bottom: 5.h, top: 10.h),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -88,7 +88,7 @@ class JobDesign extends StatelessWidget {
                         )),
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 20.h,
                   ),
                   Container(
                     width: 60.w,
@@ -110,7 +110,7 @@ class JobDesign extends StatelessWidget {
                         ),
                         Text(
                           "active".tr,
-                          style: TextStyles.w40011(context),
+                          style: TextStyles.w40010(context),
                         ),
                       ],
                     ),

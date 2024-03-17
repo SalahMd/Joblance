@@ -53,7 +53,7 @@ class Customtextformfiled extends StatelessWidget {
         decoration: InputDecoration(
           enabled: true,
           hintText: hinttext,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
           labelStyle: TextStyle(
             color: Theme.of(context).colorScheme.onSurface,
           ),
