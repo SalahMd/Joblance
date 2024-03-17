@@ -25,12 +25,11 @@ class TextStyles {
   static TextStyle w50012(BuildContext context) => _getCustomTextStyle(12.sp);
   static TextStyle w40011(BuildContext context) => _getCustomTextStyle(11.sp);
   static TextStyle w50013(BuildContext context) => _getCustomTextStyle(13.sp);
-    static TextStyle w40010(BuildContext context) => _getCustomTextStyle(10.sp);
-
+  static TextStyle w40010(BuildContext context) => _getCustomTextStyle(9.sp);
 
   static TextStyle w40011grey(BuildContext context) => TextStyle(
       color: Colors.grey[700], fontSize: 11.sp, fontWeight: FontWeight.w500);
-      static TextStyle w40010grey(BuildContext context) => TextStyle(
+  static TextStyle w40010grey(BuildContext context) => TextStyle(
       color: Colors.grey[700], fontSize: 10.sp, fontWeight: FontWeight.w500);
   static TextStyle w4009grey(BuildContext context) => TextStyle(
       color: Colors.grey[700], fontSize: 9.sp, fontWeight: FontWeight.w500);

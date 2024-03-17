@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
@@ -8,7 +9,22 @@ import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/job_info/job_info.dart';
 
 class JobDesign extends StatelessWidget {
-  const JobDesign({super.key});
+  final String jobTitle;
+  final String companyName;
+  final String location;
+  final String date;
+  final String remote;
+  final String image;
+  final bool isActive;
+  const JobDesign(
+      {super.key,
+      required this.jobTitle,
+      required this.companyName,
+      required this.location,
+      required this.date,
+      required this.remote,
+      required this.image,
+      required this.isActive});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +34,7 @@ class JobDesign extends StatelessWidget {
       },
       child: Container(
         width: Dimensions.screenwidth(context),
-        // height: 110,
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
         margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
@@ -35,7 +50,7 @@ class JobDesign extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
-                      AppImages.Linkedin,
+                      image,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -48,22 +63,22 @@ class JobDesign extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Flutter Developer",
+                      jobTitle,
                       style: TextStyles.w50014(context),
                     ),
                     //SizedBox(height: .h),
                     Text(
-                      "Linkedin",
+                      companyName,
                       style: TextStyles.w50012(context),
                     ),
                     SizedBox(height: 3.h),
                     Text(
-                      "United states" + " - " + "OnSite",
+                      location + " - " + remote,
                       style: TextStyles.w40011grey(context),
                     ),
                     //SizedBox(height: 3.h),
                     Text(
-                      "2 weeks ago",
+                      date,
                       style: TextStyles.w4009grey(context),
                     )
                   ],
@@ -106,10 +121,12 @@ class JobDesign extends StatelessWidget {
                           height: 8,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              color: LightAppColors.greenColor),
+                              color: isActive
+                                  ? LightAppColors.greenColor
+                                  : Colors.red[800]),
                         ),
                         Text(
-                          "active".tr,
+                          isActive ? "active".tr : "inactive".tr,
                           style: TextStyles.w40010(context),
                         ),
                       ],
@@ -120,7 +137,7 @@ class JobDesign extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      ).animate().fade(duration: 600.ms).slideY(begin: 0.5),
     );
   }
 }

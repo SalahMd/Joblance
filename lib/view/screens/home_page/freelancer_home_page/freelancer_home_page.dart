@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/freelancer_home_page_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/images.dart';
 
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
@@ -27,7 +28,6 @@ class FreelancerHomePage extends StatelessWidget {
                 ? ShimmerFreelancerHomePage()
                 : Column(
                     children: [
-
                       TopBar()
                           .animate()
                           .fade(duration: 600.ms)
@@ -71,22 +71,39 @@ class FreelancerHomePage extends StatelessWidget {
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
                       // JobDesign(),
-                      JobDesign()
-                          .animate()
-                          .fade(duration: 600.ms)
-                          .slideY(begin: 0.5),
-                      JobDesign()
-                          .animate()
-                          .fade(duration: 600.ms)
-                          .slideY(begin: 0.5),
-                      JobDesign()
-                          .animate()
-                          .fade(duration: 600.ms)
-                          .slideY(begin: 0.5),
-                      JobDesign()
-                          .animate()
-                          .fade(duration: 600.ms)
-                          .slideY(begin: 0.5),
+                      JobDesign(
+                          jobTitle: "Ai developer",
+                          companyName: "Google",
+                          location: "Germany",
+                          date: "5 days ago",
+                          remote: "onsite".tr,
+                          image: AppImages.googleLogo,
+                          isActive: true),
+
+                      JobDesign(
+                          jobTitle: "Flutter developer",
+                          companyName: "Linkedin",
+                          location: "United states",
+                          date: "2 days ago",
+                          remote: "remote".tr,
+                          image: AppImages.Linkedin,
+                          isActive: true),
+                      JobDesign(
+                          jobTitle: "Java developer",
+                          companyName: "Linkedin",
+                          location: "United states",
+                          date: "8 days ago",
+                          remote: "remote".tr,
+                          image: AppImages.Linkedin,
+                          isActive: true),
+                      JobDesign(
+                          jobTitle: "React developer",
+                          companyName: "Linkedin",
+                          location: "United states",
+                          date: "9 days ago",
+                          remote: "remote".tr,
+                          image: AppImages.Linkedin,
+                          isActive: false)
                     ],
                   ),
           ),
