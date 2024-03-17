@@ -68,10 +68,10 @@ class TextFileds extends StatelessWidget {
               width: Dimensions.screenWidth(context),
               height: 55.h,
               alignment: AlignmentDirectional.centerStart,
-              margin: EdgeInsets.only(top: 15.h, left: 15.w, right: 12.w),
+              margin: EdgeInsets.only(top: 15.h, left: 10.w, right: 10.w),
               padding: EdgeInsetsDirectional.symmetric(horizontal: 15.w),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                       color: Theme.of(context).colorScheme.onSecondary)),
               child: Row(

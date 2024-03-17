@@ -19,15 +19,15 @@ class MessageDesign extends StatelessWidget {
   final String date;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Get.to(TextingPage());
-      },
-      child: Column(
-        children: [
-          Container(
+    return Column(
+      children: [
+        InkWell(
+          onTap: () {
+            Get.to(TextingPage());
+          },
+          child: Container(
             width: Dimensions.screenWidth(context),
-            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -81,15 +81,15 @@ class MessageDesign extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.h),
-            child: Divider(
-              color: LightAppColors.greyColor,
-              thickness: 0.5,
-            ),
-          )
-        ],
-      ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.h),
+          child: Divider(
+            color: LightAppColors.greyColor,
+            thickness: 0.5,
+          ),
+        )
+      ],
     );
   }
 }

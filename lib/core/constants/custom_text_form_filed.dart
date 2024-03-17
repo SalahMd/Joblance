@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:joblance/core/constants/colors.dart';
 import '../functions/valid_input.dart';
 
 class Customtextformfiled extends StatelessWidget {
@@ -14,6 +15,7 @@ class Customtextformfiled extends StatelessWidget {
   final bool? isBorder;
   final int maxLines;
   final int? letters;
+  final bool isFilled ;
   final bool isLabel;
   final void Function()? ontapicon;
   final double? padding;
@@ -32,13 +34,19 @@ class Customtextformfiled extends StatelessWidget {
     TextStyle? style,
     this.maxLines = 1,
     this.letters,
-    this.isLabel = true, this.padding=20,
+    this.isLabel = true,
+    this.padding = 20,
+    this.isFilled = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: padding!.h, left: 10.w, right: 10.w),
+      decoration:isFilled? BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Theme.of(context).colorScheme.primaryContainer,
+      ):null,
       child: TextFormField(
         obscureText: ispassword,
         style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
@@ -54,7 +62,9 @@ class Customtextformfiled extends StatelessWidget {
         decoration: InputDecoration(
           enabled: true,
           hintText: hinttext,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
           labelStyle: TextStyle(
             color: Theme.of(context).colorScheme.onSurface,
           ),

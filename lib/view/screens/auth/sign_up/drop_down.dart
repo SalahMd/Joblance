@@ -22,13 +22,13 @@ class DropDownWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 15, right: 15, top: 10),
+      margin: EdgeInsets.only(left: 10.w, right: 10.w, top: 10),
       height: 60.h,
       width: Dimensions.screenWidth(context),
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       decoration: BoxDecoration(
           border: Border.all(color: Theme.of(context).colorScheme.onSecondary),
-          borderRadius: BorderRadius.circular(25)),
+          borderRadius: BorderRadius.circular(20)),
       child: DropdownButton<String>(
         borderRadius: BorderRadius.circular(25),
         iconSize: 20,

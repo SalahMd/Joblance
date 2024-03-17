@@ -1,3 +1,4 @@
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,8 @@ import 'package:joblance/controller/texting_page_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/images.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart' as foundation;
+
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/widgets/divider.dart';
 
@@ -19,15 +22,14 @@ class TextingPage extends StatelessWidget {
       body: GetBuilder<TextingPageControllerImpl>(
         builder: (controller) => Column(
           children: [
-            SizedBox(
-              height: 10.h,
-            ),
+            // SizedBox(
+            //   height: 10.h,
+            // ),
             SafeArea(
               child: Container(
+                color: Theme.of(context).colorScheme.primaryContainer,
                 alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.w,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
                 child: Row(
                   children: [
                     GestureDetector(
@@ -59,8 +61,9 @@ class TextingPage extends StatelessWidget {
               ),
             ),
             Divider(
+              height: 2,
               thickness: 0.3,
-              color: LightAppColors.greyColor,
+              color: Theme.of(context).colorScheme.onSecondary,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -81,8 +84,8 @@ class TextingPage extends StatelessWidget {
                                 vertical: 10.h,
                               ),
                               margin: EdgeInsets.symmetric(
-                                vertical: 7,
-                                horizontal: 10,
+                                vertical: 5.h,
+                                horizontal: 15.w,
                               ),
                               constraints: BoxConstraints(
                                 maxWidth:
@@ -92,7 +95,10 @@ class TextingPage extends StatelessWidget {
                                 color: Theme.of(context)
                                     .colorScheme
                                     .primaryContainer,
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadiusDirectional.only(
+                                    topEnd: Radius.circular(22),
+                                    topStart: Radius.circular(20),
+                                    bottomStart: Radius.circular(20)),
                               ),
                               child: Text(
                                 controller.messages[index],
@@ -107,25 +113,45 @@ class TextingPage extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 10.h),
-              child: Customtextformfiled(
-                hinttext: "message".tr,
-                labelText: "",
-                icondata: Icons.send_outlined,
-                controller: controller.message,
-                min: 0,
-                max: 100,
-                isnumber: false,
-                ispassword: false,
-                isBorder: true,
-                isLabel: false,
-                padding: 1,
-                ontapicon: () {
-                  controller.sendMessage();
-                  print(controller.messages);
-                },
-              ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 10.h),
+                    child: Customtextformfiled(
+                      hinttext: "message".tr,
+                      labelText: "",
+                      icondata: null,
+                      controller: controller.message,
+                      min: 0,
+                      max: 100,
+                      isnumber: false,
+                      ispassword: false,
+                      isBorder: true,
+                      isLabel: false,
+                      padding: 2,
+                      isFilled: true,
+                    ),
+                  ),
+                ),
+                Expanded(
+                    child: GestureDetector(
+                        onTap: () {
+                          controller.sendMessage();
+                        },
+                        child: Container(
+                            margin: EdgeInsetsDirectional.only(
+                                end: 20, bottom: 5.h),
+                            height: 50.h,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: LightAppColors.greenColor),
+                            child: Icon(
+                              Icons.send_outlined,
+                              size: 20.sp,
+                            ))))
+              ],
             ),
           ],
         ),

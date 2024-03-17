@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           getPages: [
             GetPage(
               name: "/",
-              page: () => ButtomBar(),
+              page: () => Login(),
               //middlewares: [MiddleWare()]
             ),
             GetPage(name: "/Login", page: () => const Login()),
