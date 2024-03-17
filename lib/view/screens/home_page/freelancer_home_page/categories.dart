@@ -11,7 +11,7 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: Dimensions.screenwidth(context),
+        width: Dimensions.screenWidth(context),
         height: 100.h,
         margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
         child: SingleChildScrollView(

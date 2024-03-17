@@ -37,7 +37,7 @@ class Login extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline1,
                 )),
                 SizedBox(
-                    width: Dimensions.screenwidth(context),
+                    width: Dimensions.screenWidth(context),
                     height: 250.h,
                     child: Image.asset(AppImages.logo)),
                 Padding(
@@ -81,7 +81,7 @@ class Login extends StatelessWidget {
                     controller.logIn();
                   },
                   child: Container(
-                    width: Dimensions.screenwidth(context),
+                    width: Dimensions.screenWidth(context),
                     height: 45.h,
                     margin: EdgeInsets.symmetric(horizontal: 30.w),
                     alignment: Alignment.center,
@@ -117,7 +117,7 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: Dimensions.screenwidth(context),
+                  width: Dimensions.screenWidth(context),
                   height: 45.h,
                   margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
                   alignment: Alignment.center,
@@ -135,7 +135,10 @@ class Login extends StatelessWidget {
                       SizedBox(
                         width: 8.w,
                       ),
-                      Text("continuewithgoogle".tr,style: TextStyles.w50015(context),),
+                      Text(
+                        "continuewithgoogle".tr,
+                        style: TextStyles.w50015(context),
+                      ),
                     ],
                   ),
                 ),

@@ -21,7 +21,7 @@ class OnBoarding extends GetView<OnBoardingControllerImpl> {
         children: [
           Container(
             height: Dimensions.screenHeight(context) - 150.h,
-            width: Dimensions.screenwidth(context),
+            width: Dimensions.screenWidth(context),
             child: PageView.builder(
                 controller: controller.pageController,
                 onPageChanged: (val) {
@@ -36,7 +36,7 @@ class OnBoarding extends GetView<OnBoardingControllerImpl> {
                         ),
                         SafeArea(
                           child: Container(
-                            width: Dimensions.screenwidth(context),
+                            width: Dimensions.screenWidth(context),
                             height: 300.h,
                             child: Image.asset(
                               Onbordingmodel[i].animation,

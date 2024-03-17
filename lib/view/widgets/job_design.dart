@@ -33,7 +33,7 @@ class JobDesign extends StatelessWidget {
         Get.to(JobInfo());
       },
       child: Container(
-        width: Dimensions.screenwidth(context),
+        width: Dimensions.screenWidth(context),
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
         margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
         decoration: BoxDecoration(

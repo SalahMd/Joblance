@@ -4,14 +4,13 @@ import 'package:get/get.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
-
 class Filters extends StatelessWidget {
   const Filters({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dimensions.screenwidth(context),
+      width: Dimensions.screenWidth(context),
       height: 40.h,
       margin: const EdgeInsetsDirectional.only(start: 10),
       child: Row(

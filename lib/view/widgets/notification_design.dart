@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
@@ -23,7 +21,7 @@ class NotificationDesign extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-      width: Dimensions.screenwidth(context),
+      width: Dimensions.screenWidth(context),
       color: Theme.of(context).colorScheme.primaryContainer,
       height: 100.h,
       child: Row(

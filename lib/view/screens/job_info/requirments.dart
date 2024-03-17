@@ -10,7 +10,7 @@ class Requirements extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dimensions.screenwidth(context),
+      width: Dimensions.screenWidth(context),
       margin: EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.w),
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primaryContainer,
@@ -33,6 +33,5 @@ class Requirements extends StatelessWidget {
         ],
       ),
     );
-    
   }
 }

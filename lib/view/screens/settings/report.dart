@@ -12,7 +12,7 @@ class Report extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     Get.put(ReportControllerImpl());
+    Get.put(ReportControllerImpl());
     return Scaffold(
       body: GetBuilder<ReportControllerImpl>(
         builder: (controller) => SingleChildScrollView(
@@ -88,7 +88,7 @@ class Report extends StatelessWidget {
                   isLabel: false,
                 ),
                 Container(
-                  width: Dimensions.screenwidth(context),
+                  width: Dimensions.screenWidth(context),
                   height: 40.h,
                   alignment: Alignment.center,
                   margin:

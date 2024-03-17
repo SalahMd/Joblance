@@ -18,7 +18,7 @@ class ChangeLanguage extends GetxController {
     } else if (sharedpreflang == "en") {
       language = const Locale("en");
     } else {
-      language = Locale(Get.deviceLocale!.languageCode);
+      language = Locale("en");
     }
     super.onInit();
   }

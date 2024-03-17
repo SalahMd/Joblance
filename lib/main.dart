@@ -7,6 +7,7 @@ import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/auth/login.dart';
 import 'package:joblance/view/screens/auth/sign_up/sign_up.dart';
 import 'package:joblance/view/screens/choose_language.dart';
+import 'package:joblance/view/screens/home_page/freelancer_home_page/freelancer_home_page.dart';
 import 'package:joblance/view/screens/navigation_bar/nav_bar.dart';
 import 'package:joblance/view/screens/on_boarding.dart';
 import 'package:joblance/view/screens/search/search.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
           getPages: [
             GetPage(
               name: "/",
-              page: () => ChooseLanguage(),
+              page: () => ButtomBar(),
               //middlewares: [MiddleWare()]
             ),
             GetPage(name: "/Login", page: () => const Login()),

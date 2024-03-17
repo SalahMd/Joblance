@@ -113,7 +113,7 @@ class SignUp extends StatelessWidget {
                       controller: controller),
                   GestureDetector(
                     child: Container(
-                      width: Dimensions.screenwidth(context),
+                      width: Dimensions.screenWidth(context),
                       height: 45.h,
                       alignment: Alignment.center,
                       margin: EdgeInsets.symmetric(

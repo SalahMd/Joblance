@@ -28,7 +28,7 @@ class ShimmerFreelancerHomePage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-          ShimmerItem(width: Dimensions.screenwidth(context), height: 50.h),
+          ShimmerItem(width: Dimensions.screenWidth(context), height: 50.h),
           SizedBox(
             height: 20.h,
           ),
@@ -36,7 +36,7 @@ class ShimmerFreelancerHomePage extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          ShimmerItem(width: Dimensions.screenwidth(context), height: 185.h),
+          ShimmerItem(width: Dimensions.screenWidth(context), height: 185.h),
           SizedBox(
             height: 20.h,
           ),

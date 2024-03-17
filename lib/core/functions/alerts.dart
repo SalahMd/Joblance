@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-
 Future<bool> exitAlert() {
   Get.defaultDialog(
       title: "",
       middleText: "warningbody".tr,
-      middleTextStyle:TextStyle(fontSize: 13.sp,fontWeight: FontWeight.w500),
+      middleTextStyle: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
       actions: [
         TextButton(
           onPressed: () {
@@ -35,7 +34,7 @@ Future<bool> animationedAlertWithActions(
     var animation, String title, void Function() onYesTap) {
   Get.defaultDialog(
       title: title,
-      titleStyle: TextStyle(fontSize: 17.sp,fontWeight: FontWeight.w500),
+      titleStyle: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500),
       titlePadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       content: animation != null
           ? Container(
@@ -49,13 +48,14 @@ Future<bool> animationedAlertWithActions(
             },
             child: Text(
               "yes".tr,
-              style: TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
             )),
         TextButton(
             onPressed: () {
               Get.back();
             },
-            child: Text("no".tr, style:TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w500)))
+            child: Text("no".tr,
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500)))
       ]);
   return Future.value(true);
 }
@@ -63,11 +63,13 @@ Future<bool> animationedAlertWithActions(
 Future<bool> animationedAlert(var animation, String title) {
   Get.defaultDialog(
     title: title,
-    titleStyle: TextStyle(fontSize: 17.sp,fontWeight: FontWeight.w500),
-    titlePadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+    titleStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
+    //middleText: title,
+    //middleTextStyle:TextStyle(fontSize: 17.sp,fontWeight: FontWeight.w500),
+    titlePadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
     content: animation != null
         ? Container(
-            alignment: Alignment.center, height: 200.h, child: animation)
+            alignment: Alignment.center, height: 120.h, child: animation)
         : null,
     barrierDismissible: true,
   );

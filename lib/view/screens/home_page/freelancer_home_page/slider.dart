@@ -80,7 +80,7 @@ class SliderWidget extends StatelessWidget {
           ),
         ),
         Container(
-          width: Dimensions.screenwidth(context) / 1.55,
+          width: Dimensions.screenWidth(context) / 1.55,
           margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
           padding: EdgeInsetsDirectional.only(start: 6.w, top: 10.h),
           decoration: BoxDecoration(

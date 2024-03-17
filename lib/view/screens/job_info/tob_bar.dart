@@ -13,7 +13,7 @@ class TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        width: Dimensions.screenwidth(context),
+        width: Dimensions.screenWidth(context),
         height: 50.h,
         padding: EdgeInsets.symmetric(horizontal: 15.w),
         child: Row(

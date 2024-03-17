@@ -24,7 +24,7 @@ class DropDownWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(left: 15, right: 15, top: 10),
       height: 60.h,
-      width: Dimensions.screenwidth(context),
+      width: Dimensions.screenWidth(context),
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       decoration: BoxDecoration(
           border: Border.all(color: Theme.of(context).colorScheme.onSecondary),

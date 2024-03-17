@@ -17,7 +17,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dimensions.screenwidth(context),
+      width: Dimensions.screenWidth(context),
       margin: EdgeInsets.symmetric(horizontal: 20.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -34,7 +34,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
                       controller.changeState(false);
                     },
                     child: Container(
-                      width: Dimensions.screenwidth(context) / 2.3,
+                      width: Dimensions.screenWidth(context) / 2.3,
                       height: 45.h,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -57,7 +57,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
                   controller.changeState(true);
                 },
                 child: Container(
-                  width: Dimensions.screenwidth(context) / 2.5,
+                  width: Dimensions.screenWidth(context) / 2.5,
                   height: 45.h,
                   alignment: Alignment.center,
                   margin: EdgeInsetsDirectional.only(
@@ -92,7 +92,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
                     padding: EdgeInsetsDirectional.only(
                         start: 115.w, top: 10.h, bottom: 10.h),
                     child: Container(
-                      width: Dimensions.screenwidth(context) / 2.3,
+                      width: Dimensions.screenWidth(context) / 2.3,
                       height: 45.h,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(

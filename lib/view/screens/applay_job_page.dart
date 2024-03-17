@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/applay_job_controller.dart';
@@ -112,7 +113,7 @@ class ApplayJobPage extends StatelessWidget {
                     controller.uploadCV();
                   },
                   child: Container(
-                    width: Dimensions.screenwidth(context),
+                    width: Dimensions.screenWidth(context),
                     height: 40.h,
                     alignment: Alignment.center,
                     margin:
@@ -130,16 +131,21 @@ class ApplayJobPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  width: Dimensions.screenwidth(context),
-                  height: 40.h,
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 50.w, vertical: 30.h),
-                  decoration: AppButtons.buttonDecoration,
-                  alignment: Alignment.center,
-                  child: Text(
-                    "applay".tr,
-                    style: TextStyles.w50012White(context),
+                GestureDetector(
+                  onTap: () {
+                    controller.applay();
+                  },
+                  child: Container(
+                    width: Dimensions.screenWidth(context),
+                    height: 40.h,
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 50.w, vertical: 30.h),
+                    decoration: AppButtons.buttonDecoration,
+                    alignment: Alignment.center,
+                    child: Text(
+                      "applay".tr,
+                      style: TextStyles.w50012White(context),
+                    ),
                   ),
                 )
               ],

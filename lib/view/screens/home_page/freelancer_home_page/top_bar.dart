@@ -21,7 +21,7 @@ class TopBar extends StatelessWidget {
         ),
         SafeArea(
             child: Container(
-          width: Dimensions.screenwidth(context),
+          width: Dimensions.screenWidth(context),
           padding: EdgeInsets.symmetric(horizontal: 17.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,7 +80,7 @@ class TopBar extends StatelessWidget {
             Get.toNamed("Search");
           },
           child: Container(
-            width: Dimensions.screenwidth(context),
+            width: Dimensions.screenWidth(context),
             height: 50.h,
             margin: EdgeInsets.symmetric(horizontal: 15.w),
             decoration: BoxDecoration(

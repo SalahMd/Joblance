@@ -65,7 +65,7 @@ class TextFileds extends StatelessWidget {
             controller.updateCountry(context);
           },
           child: Container(
-              width: Dimensions.screenwidth(context),
+              width: Dimensions.screenWidth(context),
               height: 55.h,
               alignment: AlignmentDirectional.centerStart,
               margin: EdgeInsets.only(top: 15.h, left: 15.w, right: 12.w),

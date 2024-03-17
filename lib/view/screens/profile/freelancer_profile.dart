@@ -21,7 +21,7 @@ class FreelancerProfile extends StatelessWidget {
               Stack(
                 children: [
                   Container(
-                    width: Dimensions.screenwidth(context),
+                    width: Dimensions.screenWidth(context),
                     height: 180.h,
                     color: Colors.grey,
                     child: Image.asset(

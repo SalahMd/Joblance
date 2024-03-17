@@ -37,7 +37,7 @@ class Customtextformfiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 25.h, left: 15.w, right: 15.w),
+      margin: EdgeInsets.only(top: 25.h, left: 10.w, right: 10.w),
       child: TextFormField(
         obscureText: ispassword,
         style: TextStyle(color: Theme.of(context).colorScheme.onSurface),

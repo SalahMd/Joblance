@@ -3,9 +3,12 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:joblance/core/constants/animations.dart';
+import 'package:joblance/core/functions/alerts.dart';
 
 abstract class ApplayJobController extends GetxController {
   uploadCV();
+  applay();
 }
 
 class ApplayJobControllerImpl extends ApplayJobController {
@@ -40,11 +43,20 @@ class ApplayJobControllerImpl extends ApplayJobController {
 
   @override
   uploadCV() async {
-    result = await FilePicker.platform.pickFiles(allowedExtensions: ["jpg", "png","gif","pdf","svg","txt","docx"],type: FileType.custom);
+    result = await FilePicker.platform.pickFiles(
+        allowedExtensions: ["jpg", "png", "gif", "pdf", "svg", "txt", "docx"],
+        type: FileType.custom);
     if (result != null) {
       file = File(result!.files.single.path!);
       fileName = result!.files.single.name;
       update();
     } else {}
+  }
+
+  @override
+  applay() {
+    Get.back();
+    animationedAlert(AppAnimations.done, "yourrequesthasbeensent".tr);
+    update();
   }
 }

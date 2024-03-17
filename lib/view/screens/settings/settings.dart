@@ -32,7 +32,7 @@ class Settings extends StatelessWidget {
                           style: TextStyles.w40014grey(context))),
                 ),
                 Container(
-                    width: Dimensions.screenwidth(context),
+                    width: Dimensions.screenWidth(context),
                     //  height: 150.h,
                     padding:
                         EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
@@ -66,7 +66,7 @@ class Settings extends StatelessWidget {
                     child: Text("general".tr,
                         style: TextStyles.w40014grey(context))),
                 Container(
-                  width: Dimensions.screenwidth(context),
+                  width: Dimensions.screenWidth(context),
                   padding:
                       EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
                   decoration: BoxDecoration(
@@ -106,7 +106,7 @@ class Settings extends StatelessWidget {
                     child: Text("helpcenter".tr,
                         style: TextStyles.w40014grey(context))),
                 Container(
-                  width: Dimensions.screenwidth(context),
+                  width: Dimensions.screenWidth(context),
                   padding:
                       EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
                   decoration: BoxDecoration(

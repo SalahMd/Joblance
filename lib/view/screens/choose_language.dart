@@ -133,7 +133,7 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
               if (isarabic || isenglish) Get.offNamed("OnBoarding");
             },
             child: Container(
-              width: Dimensions.screenwidth(context),
+              width: Dimensions.screenWidth(context),
               height: 45.h,
               margin: const EdgeInsets.symmetric(horizontal: 70, vertical: 20),
               alignment: Alignment.center,

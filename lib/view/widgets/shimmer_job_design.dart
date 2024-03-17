@@ -9,7 +9,7 @@ class ShimmerJobDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dimensions.screenwidth(context),
+      width: Dimensions.screenWidth(context),
       height: 120.h,
       padding: EdgeInsets.symmetric(horizontal: 7.w),
       margin: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),

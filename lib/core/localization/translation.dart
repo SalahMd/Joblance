@@ -111,7 +111,9 @@ class Translation extends Translations {
           "uploadyourcv":"أضف السيرة الذاتية",
           "coverletter":"رسالة حافز","optional":"(اختياري)",
           "additionalinfo":"معلومات إضافية:",
-          "editprofile":"تعديل الحساب"
+          "editprofile":"تعديل الحساب",
+          "yourrequesthasbeensent":"تم إرسال طلبك",
+          "message":"رسالة"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -224,6 +226,8 @@ class Translation extends Translations {
           "coverletter":"Cover letter","optional":"(Optional)",
           "additionalinfo":"Additional info:",
           "editprofile":"Edit profile",
+          "yourrequesthasbeensent":"Your request has been sent",
+          "message":"Message",
         }
       };
 }
