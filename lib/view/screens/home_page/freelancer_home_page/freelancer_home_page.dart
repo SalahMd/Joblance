@@ -7,10 +7,10 @@ import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
-import 'package:joblance/view/screens/home_page/freelancer_home_page/categories.dart';
+import 'package:joblance/view/screens/home_page/categories.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/shimmer_freelancer_home_page.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/swiper.dart';
-import 'package:joblance/view/screens/home_page/freelancer_home_page/top_bar.dart';
+import 'package:joblance/view/screens/home_page/top_bar.dart';
 import 'package:joblance/view/widgets/job_design.dart';
 
 class FreelancerHomePage extends StatelessWidget {
@@ -27,10 +27,8 @@ class FreelancerHomePage extends StatelessWidget {
                 ? ShimmerFreelancerHomePage()
                 : Column(
                     children: [
-                      TopBar()
-                          .animate()
-                          .fade(duration: 600.ms)
-                          .slideY(begin: 0.3),
+                      TopBar(name:  "freelancer".tr,image: AppImages.Linkedin,),
+                          
                       Align(
                         alignment: AlignmentDirectional.centerStart,
                         child: Padding(
@@ -56,9 +54,7 @@ class FreelancerHomePage extends StatelessWidget {
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
                       Categories()
-                          .animate()
-                          .fade(duration: 600.ms)
-                          .slideX(begin: 0.5),
+                         ,
                       Align(
                         alignment: AlignmentDirectional.centerStart,
                         child: Padding(
