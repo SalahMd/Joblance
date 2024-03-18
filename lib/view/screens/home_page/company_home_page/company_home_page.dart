@@ -7,6 +7,7 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/view/screens/home_page/categories.dart';
 import 'package:joblance/view/screens/home_page/top_bar.dart';
+import 'package:joblance/view/widgets/freelancer_design.dart';
 
 class CompanyHomePage extends StatelessWidget {
   const CompanyHomePage({super.key});
@@ -38,12 +39,16 @@ class CompanyHomePage extends StatelessWidget {
                 alignment: AlignmentDirectional.centerStart,
                 child: Padding(
                     padding: EdgeInsetsDirectional.only(
-                        start: 15.w, top: 10.h, bottom: 5.h),
+                        start: 15.w, top: 10.h, bottom: 10.h),
                     child: Text(
                       "popularfreelancers".tr,
                       style: TextStyles.bold20(context),
                     )),
               ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
+              FreeLancerDesign(),
+              FreeLancerDesign(),
+              FreeLancerDesign(),
+              FreeLancerDesign()
             ],
           ),
         ),
