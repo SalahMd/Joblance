@@ -22,7 +22,7 @@ class AboutJob extends StatelessWidget {
         children: [
           Text(
             "aboutjob".tr,
-            style: TextStyles.w50017(context),
+            style: TextStyles.w50015(context),
           ),
           SizedBox(
             height: 10.h,

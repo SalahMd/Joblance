@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/applay_job_page.dart';
+import 'package:joblance/view/screens/profile/company_profile.dart';
 
 class CompanyInfo extends StatelessWidget {
   final Image companyImage;
@@ -37,14 +39,19 @@ class CompanyInfo extends StatelessWidget {
           ),
           Row(
             children: [
-              Container(
-                width: 50.w,
-                height: 60.h,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(5)),
-                child: ClipRRect(
-                    child: companyImage,
-                    borderRadius: BorderRadius.circular(5)),
+              GestureDetector(
+                onTap: () {
+                  Get.to(CompanyProfile());
+                },
+                child: Container(
+                  width: 50.w,
+                  height: 60.h,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                  child: ClipRRect(
+                      child: companyImage,
+                      borderRadius: BorderRadius.circular(5)),
+                ),
               ),
               SizedBox(
                 width: 15.w,

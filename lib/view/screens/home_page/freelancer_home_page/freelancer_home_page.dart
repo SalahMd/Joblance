@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/freelancer_home_page_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/images.dart';
-
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/categories.dart';
@@ -70,7 +69,6 @@ class FreelancerHomePage extends StatelessWidget {
                               style: TextStyles.bold20(context),
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                      // JobDesign(),
                       JobDesign(
                           jobTitle: "Ai developer",
                           companyName: "Google",
@@ -90,11 +88,11 @@ class FreelancerHomePage extends StatelessWidget {
                           isActive: true),
                       JobDesign(
                           jobTitle: "Java developer",
-                          companyName: "Linkedin",
-                          location: "United states",
-                          date: "8 days ago",
+                          companyName: "Meta",
+                          location: "United kingdom",
+                          date: "2 weeks ago",
                           remote: "remote".tr,
-                          image: AppImages.Linkedin,
+                          image: AppImages.meta,
                           isActive: true),
                       JobDesign(
                           jobTitle: "React developer",

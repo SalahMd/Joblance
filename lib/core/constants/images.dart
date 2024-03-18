@@ -13,6 +13,7 @@ class AppImages {
   static const cat6 = "assets/images/servicing.png";
   static const joblance = "assets/images/joblance.png";
   static const Linkedin = "assets/images/linkedin.png";
+  static const meta = "assets/images/meta.png";
   static const googleLogo = "assets/images/googlelogo.png";
   static const google = "assets/images/google.png";
    static const moon = "assets/images/moon.png";

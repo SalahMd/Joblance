@@ -1,16 +1,11 @@
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/images.dart';
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart' as foundation;
-
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/view/widgets/divider.dart';
 
 class TextingPage extends StatelessWidget {
   TextingPage({Key? key}) : super(key: key);

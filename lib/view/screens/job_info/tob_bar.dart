@@ -25,8 +25,8 @@ class TopBar extends StatelessWidget {
                 Get.back();
               },
               child: Container(
-                width: 35.w,
-                height: 40.h,
+                width: 40,
+                height: 40,
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primaryContainer,
                     borderRadius: BorderRadius.circular(20)),

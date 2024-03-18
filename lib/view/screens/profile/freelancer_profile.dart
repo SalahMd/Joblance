@@ -30,8 +30,8 @@ class FreelancerProfile extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 90.w,
-                    height: 100.h,
+                    width: 110,
+                    height: 110,
                     alignment: Alignment.center,
                     margin:
                         EdgeInsets.only(left: 10.w, right: 10.w, top: 125.h),
