@@ -113,7 +113,8 @@ class Translation extends Translations {
           "additionalinfo":"معلومات إضافية:",
           "editprofile":"تعديل الحساب",
           "yourrequesthasbeensent":"تم إرسال طلبك",
-          "message":"رسالة"
+          "message":"رسالة",
+          "popularfreelancers":"أبرز المستقلين"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -228,6 +229,7 @@ class Translation extends Translations {
           "editprofile":"Edit profile",
           "yourrequesthasbeensent":"Your request has been sent",
           "message":"Message",
+          "popularfreelancers":"Popular freelancers",
         }
       };
 }

@@ -1,16 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/notifications.dart';
 
 class TopBar extends StatelessWidget {
-  const TopBar({super.key});
+  final String name;
+  final String image;
+
+  const TopBar({super.key, required this.name, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +37,13 @@ class TopBar extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
                     child: Image.asset(
-                      AppImages.Linkedin,
+                      image,
                       fit: BoxFit.fill,
                     ),
                   ),
                 ),
                 Text(
-                  "hello".tr + ", " + "freelancer".tr,
+                  "hello".tr + ", " + name,
                   style: TextStyles.w50017(context),
                 ),
               ]),
@@ -106,6 +107,6 @@ class TopBar extends StatelessWidget {
           ),
         )
       ],
-    );
+    ).animate().fade(duration: 600.ms).slideY(begin: 0.3);
   }
 }

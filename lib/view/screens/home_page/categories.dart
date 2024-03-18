@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
@@ -47,6 +48,8 @@ class Categories extends StatelessWidget {
                           ]),
                     )),
           ]),
-        ));
+        )) .animate()
+                          .fade(duration: 600.ms)
+                          .slideX(begin: 0.5);
   }
 }
