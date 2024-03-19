@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/animations.dart';
+import 'package:joblance/core/functions/alerts.dart';
+import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/remote/auth/login_back.dart';
 
 abstract class LogiInController extends GetxController {
   logIn();
@@ -15,7 +20,7 @@ class LogInControllerImpl extends LogiInController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   late TextEditingController emailController;
   late TextEditingController passwordController;
-  //LoginData loginData = LoginData(Get.put(Crud())); //(Get.find)
+  LoginBack loginBata = LoginBack(Get.put(Crud()));
   StatusRequest? statusRequest;
   Myservices myServices = Get.find();
   bool isshown = true;
@@ -44,9 +49,33 @@ class LogInControllerImpl extends LogiInController {
 
   @override
   logIn() async {
-    Get.offAllNamed("HomePage");
+    var formdata = formState.currentState;
+    if (formdata!.validate()) {
+      statusRequest = StatusRequest.loading;
+      update();
+      var response = await loginBata.postData(
+          emailController.text, passwordController.text);
+      statusRequest = hadelingData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          myServices.sharedPreferences
+              .setInt("id", response['data']["user"]["user_id"]);
+          myServices.sharedPreferences
+              .setString("token", response['data']["accessToken"]);
+          myServices.sharedPreferences
+              .setString("role", response['data']["user"]["role"]);
+          myServices.sharedPreferences.setString("step", "2");
+          Get.off("HomePage");
+        } else {
+          animationedAlert(AppAnimations.wrong, "wronglogin".tr);
+          update();
+        }
+      } else {
+        animationedAlert(AppAnimations.wrong, "errorloggingin".tr);
+        update();
+      }
+    }
   }
-
   @override
   goToSignup() {
     Get.offNamed("SignUp");

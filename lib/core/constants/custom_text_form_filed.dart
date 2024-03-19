@@ -15,7 +15,7 @@ class Customtextformfiled extends StatelessWidget {
   final bool? isBorder;
   final int maxLines;
   final int? letters;
-  final bool isFilled ;
+  final bool isFilled;
   final bool isLabel;
   final void Function()? ontapicon;
   final double? padding;
@@ -43,13 +43,15 @@ class Customtextformfiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: padding!.h, left: 10.w, right: 10.w),
-      decoration:isFilled? BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).colorScheme.primaryContainer,
-      ):null,
+      decoration: isFilled
+          ? BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Theme.of(context).colorScheme.primaryContainer,
+            )
+          : null,
       child: TextFormField(
         obscureText: ispassword,
-        style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+        style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
         keyboardType: isnumber
             ? const TextInputType.numberWithOptions(decimal: true)
             : TextInputType.text,
@@ -66,7 +68,7 @@ class Customtextformfiled extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           labelStyle: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
+            color: Theme.of(context).colorScheme.onSecondary,
           ),
           hintStyle: const TextStyle(fontSize: 17, color: Colors.grey),
           floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -79,7 +81,7 @@ class Customtextformfiled extends StatelessWidget {
                     labelText,
                     style: TextStyle(
                       fontSize: 16,
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                 )
