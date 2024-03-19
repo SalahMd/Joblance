@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:joblance/core/constants/colors.dart';
 import '../functions/valid_input.dart';
 
 class Customtextformfiled extends StatelessWidget {

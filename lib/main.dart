@@ -52,6 +52,8 @@ class MyApp extends StatelessWidget {
             GetPage(name: "/SignUp", page: () => const SignUp()),
             GetPage(name: "/Search", page: () => const Search()),
             GetPage(name: "/HomePage", page: () => ButtomBar()),
+            GetPage(
+                name: "/EmailVerification", page: () => EmailVerification()),
           ],
         ));
   }

@@ -8,8 +8,8 @@ import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
-class EmailVerifiction extends StatelessWidget {
-  const EmailVerifiction({super.key});
+class EmailVerification extends StatelessWidget {
+  const EmailVerification({super.key});
 
   @override
   Widget build(BuildContext context) {

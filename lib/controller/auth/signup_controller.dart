@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/functions/show_countries.dart';
+import 'package:joblance/data/remote/auth/signup_back.dart';
 
 abstract class SignUpController extends GetxController {
   goToLogiIn();
@@ -20,7 +23,6 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController lastName;
   late TextEditingController email;
   late TextEditingController phoneController;
-  late TextEditingController location;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
   late TextEditingController aboutCompanyController;
@@ -28,6 +30,7 @@ class SignUpControllerImpl extends SignUpController {
   bool isFreelancer = true;
   String studyCaseValue = '1';
   String majorValue = '1';
+  SignUpBack signUpBack = new SignUpBack(Get.put(Crud()));
   String? country;
   String numOfEmployees = '1';
 
@@ -78,6 +81,22 @@ class SignUpControllerImpl extends SignUpController {
       value: '6',
       child: Text("301 - 500"),
     ),
+    DropdownMenuItem<String>(
+      value: '7',
+      child: Text("501 - 1000"),
+    ),
+    DropdownMenuItem<String>(
+      value: '8',
+      child: Text("1001 - 5000"),
+    ),
+    DropdownMenuItem<String>(
+      value: '8',
+      child: Text("5001 - 10000"),
+    ),
+    DropdownMenuItem<String>(
+      value: '8',
+      child: Text("+ 10000"),
+    ),
   ];
   List<DropdownMenuItem<String>> major = [
     DropdownMenuItem<String>(
@@ -120,7 +139,37 @@ class SignUpControllerImpl extends SignUpController {
 
   @override
   goToSuccessfulSignUp() async {
-    Get.offAllNamed("Login");
+    var formdata = formState.currentState;
+    if (formdata!.validate()) {
+      statusRequest = StatusRequest.loading;
+      update();
+      var response = await signUpBack.postData({
+        "name":firstName.text,
+        "first_name": firstName.text,
+        "last_name": lastName.text,
+        "email": email.text,
+        "phone_number": phoneController.text,
+        "password": passwordController.text,
+        "is_company":isFreelancer?"0":"1",
+        "major":majorValue,
+        "description":aboutCompanyController.text,
+        "study_case":studyCase,
+        "num_of_employees":numOfEmployees,
+        "open_to_work":openToWork?"1":"0",
+        "location":country,
+      }, image);
+      statusRequest = hadelingData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          Get.offNamed("EmailVerification");
+        } else {
+          Get.defaultDialog(title: "", middleText: "warningbody2".tr);
+        }
+      }
+      update();
+    } else {
+      print("Not Valid");
+    }
   }
 
   @override
