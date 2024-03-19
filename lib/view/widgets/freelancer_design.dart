@@ -12,17 +12,20 @@ class FreeLancerDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {},
+        onTap: () {
+         // Get.to(FreelancerProfile());
+        },
         child: Container(
             width: Dimensions.screenWidth(context),
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
             margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
             decoration: BoxDecoration(
-              border: Border.all(color: LightAppColors.greyColor!),
+              border: Border.all(color: Colors.grey[400]!),
               // color: Theme.of(context).colorScheme.primaryContainer,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,6 +75,18 @@ class FreeLancerDesign extends StatelessWidget {
                         child: Icon(Icons.favorite_border_outlined),
                       ),
                     ]),
+                SizedBox(
+                  height: 15.h,
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.only(start: 5.w),
+                  child: Text(
+                    "Third year Information technology engineering student Junior Flutter developer",
+                    style: TextStyles.w40010grey(context),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                ),
                 SizedBox(
                   height: 10.h,
                 ),
