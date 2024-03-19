@@ -21,7 +21,7 @@ class AppImages {
   static const save = "assets/images/save.png";
   static const followers = "assets/images/followers.png";
     static const salah = "assets/images/salah.jpg";
-
+static const verification = "assets/images/verification.png";
   static const studyCase = "assets/images/studycase.png";
   static String englishimage = "assets/images/english.png";
   static String arabicimage = "assets/images/arabic.png";

@@ -5,10 +5,13 @@ class LoginBack {
   Crud crud;
   LoginBack(this.crud);
   postData(String phone, String password) async {
-    var response = await crud.postData(AppLinks.logIn, {
-      "email":phone,
-      "password":password,
-    },true);
+    var response = await crud.requestData(
+        AppLinks.logIn,
+        {
+          "email": phone,
+          "password": password,
+        },
+        true);
     return response.fold((l) => l, (r) => r);
   }
 }

@@ -20,7 +20,7 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
 
   @override
   void onInit() {
-    email = Get.arguments['email'];
+    //email = Get.arguments['email'];
     super.onInit();
   }
 }

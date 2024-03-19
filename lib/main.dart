@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:joblance/core/localization/change_language.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/auth/login.dart';
+import 'package:joblance/view/screens/auth/sign_up/email_verifiction.dart';
 import 'package:joblance/view/screens/auth/sign_up/sign_up.dart';
 import 'package:joblance/view/screens/choose_language.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/freelancer_home_page.dart';
