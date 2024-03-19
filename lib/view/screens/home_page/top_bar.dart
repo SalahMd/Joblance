@@ -44,7 +44,7 @@ class TopBar extends StatelessWidget {
                 ),
                 Text(
                   "hello".tr + ", " + name,
-                  style: TextStyles.w50017(context),
+                  style: TextStyles.w50015(context),
                 ),
               ]),
               GestureDetector(
