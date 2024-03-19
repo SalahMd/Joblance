@@ -14,10 +14,10 @@ class Crud {
         var request = http.MultipartRequest('POST', Uri.parse(linkurl));
         // Add file to the request
         if (file != null) {
-          http.Response imageResponse = await http.get(Uri.parse(file.path));
+          http.Response fileResponse = await http.get(Uri.parse(file.path));
           request.files.add(http.MultipartFile.fromBytes(
-              'image', imageResponse.bodyBytes,
-              filename: 'image.jpg'));
+              'file', fileResponse.bodyBytes,
+              ));
         }
         data.forEach((key, value) {
           request.fields[key] = value;
@@ -47,7 +47,7 @@ class Crud {
     }
   }
 
-  Future<Either<StatusRequest, Map>> requestDataEithHeaders(
+  Future<Either<StatusRequest, Map>> requestDataWithHeaders(
       String linkurl,
       Map data,
       Map<String, String> headers,
@@ -62,10 +62,10 @@ class Crud {
         request.headers.addAll(headers);
         // Add file to the request
         if (file != null) {
-          http.Response imageResponse = await http.get(Uri.parse(file.path));
-          request.files.add(http.MultipartFile.fromBytes(
-              'image', imageResponse.bodyBytes,
-              filename: 'image.jpg'));
+          http.Response fileResponse = await http.get(Uri.parse(file.path));
+          request.files.add(http.MultipartFile.fromBytes("file",
+               fileResponse.bodyBytes,
+            ));
         }
         data.forEach((key, value) {
           request.fields[key] = value;

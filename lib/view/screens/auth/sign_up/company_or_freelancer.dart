@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/signup_controller.dart';
@@ -43,10 +42,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
                           border: Border.all(color: Colors.white)),
                       child: Text(
                         "company".tr,
-                        style: TextStyle(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
-                            color: LightAppColors.whiteColor),
+                        style: TextStyles.w50013White(context),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -75,10 +71,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
                   ),
                   child: Text(
                     "freelancer".tr,
-                    style: TextStyle(
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w500,
-                        color: LightAppColors.whiteColor),
+                    style: TextStyles.w50013White(context),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -103,10 +96,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
                           border: Border.all(color: Colors.white)),
                       child: Text(
                         "company".tr,
-                        style: TextStyle(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
-                            color: LightAppColors.whiteColor),
+                        style: TextStyles.w50013White(context),
                         textAlign: TextAlign.center,
                       ),
                     ),

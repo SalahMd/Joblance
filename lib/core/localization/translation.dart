@@ -119,7 +119,8 @@ class Translation extends Translations {
           "verifyingcode": "التحقق من البريد الالكتروني",
           "receivedcode": "أدخل الكود الذي استلمته",
           "youbirthdate":"أدخل تاريخ ميلادك",
-          "birthdate": "تاريخ الميلاد"
+          "birthdate": "تاريخ الميلاد",
+          "errorsendingyourrequest":"لم يتم إرسال طلبك بنجاح"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -239,7 +240,8 @@ class Translation extends Translations {
           "verifyingcode": "Email verification",
           "receivedcode": "Please enter verification code send to ",
           "youbirthdate":"Your birth date",
-          "birthdate": "Birth date"
+          "birthdate": "Birth date",
+          "errorsendingyourrequest":"Your request has not been sent"
         }
       };
 }

@@ -6,7 +6,6 @@ import 'package:joblance/controller/auth/email_verifiction.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/core/functions/dimenesions.dart';
 
 class EmailVerification extends StatelessWidget {
   const EmailVerification({super.key});
