@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/functions/date_picker.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/functions/show_countries.dart';
 import 'package:joblance/data/remote/auth/signup_back.dart';
@@ -14,6 +15,7 @@ abstract class SignUpController extends GetxController {
   goToSuccessfulSignUp();
   showPassword();
   pickImage();
+  pickBirthDate(BuildContext context);
   changeState(bool isSale);
   updateDropDownValue(String? newValue, String changingElement);
 }
@@ -28,6 +30,7 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController aboutCompanyController;
   bool openToWork = false;
   bool isFreelancer = true;
+  String? birthDate ;
   String studyCaseValue = '1';
   String majorValue = '1';
   SignUpBack signUpBack = new SignUpBack(Get.put(Crud()));
@@ -140,33 +143,35 @@ class SignUpControllerImpl extends SignUpController {
   @override
   goToSuccessfulSignUp() async {
     var formdata = formState.currentState;
-    if (formdata!.validate()) {
-      statusRequest = StatusRequest.loading;
-      update();
-      var response = await signUpBack.postData({
-        "name":firstName.text,
-        "first_name": firstName.text,
-        "last_name": lastName.text,
-        "email": email.text,
-        "phone_number": phoneController.text,
-        "password": passwordController.text,
-        "is_company":isFreelancer?"0":"1",
-        "major":majorValue,
-        "description":aboutCompanyController.text,
-        "study_case":studyCase,
-        "num_of_employees":numOfEmployees,
-        "open_to_work":openToWork?"1":"0",
-        "location":country,
-      }, image);
-      statusRequest = hadelingData(response);
-      if (StatusRequest.success == statusRequest) {
-        if (response['status'] == "success") {
-          Get.offNamed("EmailVerification");
-        } else {
-          Get.defaultDialog(title: "", middleText: "warningbody2".tr);
+    if (formdata!.validate() && image != null) {
+      if (country != "") {
+        statusRequest = StatusRequest.loading;
+        update();
+        var response = await signUpBack.postData({
+          "name": firstName.text,
+          "first_name": firstName.text,
+          "last_name": lastName.text,
+          "email": email.text,
+          "phone_number": phoneController.text,
+          "password": passwordController.text,
+          "is_company": isFreelancer ? "0" : "1",
+          "major": majorValue,
+          "description": aboutCompanyController.text,
+          "study_case": studyCase,
+          "num_of_employees": numOfEmployees,
+          "open_to_work": openToWork ? "1" : "0",
+          "location": country,
+        }, image);
+        statusRequest = hadelingData(response);
+        if (StatusRequest.success == statusRequest) {
+          if (response['status'] == "success") {
+            Get.offNamed("EmailVerification");
+          } else {
+            Get.defaultDialog(title: "", middleText: "warningbody2".tr);
+          }
         }
+        update();
       }
-      update();
     } else {
       print("Not Valid");
     }
@@ -230,6 +235,12 @@ class SignUpControllerImpl extends SignUpController {
   @override
   changeState(bool value) {
     isFreelancer = value;
+    update();
+  }
+
+  @override
+  pickBirthDate(BuildContext context) async {
+    birthDate = await selectDate(context).toString();
     update();
   }
 }

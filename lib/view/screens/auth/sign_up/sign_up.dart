@@ -8,6 +8,7 @@ import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/auth/sign_up/birthdate.dart';
 import 'package:joblance/view/screens/auth/sign_up/company_or_freelancer.dart';
 import 'package:joblance/view/screens/auth/sign_up/drop_down.dart';
 import 'package:joblance/view/screens/auth/sign_up/text_fileds.dart';
@@ -67,6 +68,8 @@ class SignUp extends StatelessWidget {
                   ),
                   TextFileds(controller: controller),
                   SizedBox(height: 15.h),
+                  BirthDate(controller: controller),
+                  SizedBox(height: 15.h),
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Container(
@@ -97,9 +100,8 @@ class SignUp extends StatelessWidget {
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Container(
-                      margin: EdgeInsetsDirectional.only(
-                        start: 20.w,
-                      ),
+                      margin:
+                          EdgeInsetsDirectional.only(start: 20.w, top: 10.h),
                       child: Text(
                         "major".tr,
                         style: TextStyles.w50012(context),

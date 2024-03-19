@@ -118,6 +118,8 @@ class Translation extends Translations {
           "popularfreelancers": "أبرز المستقلين",
           "verifyingcode": "التحقق من البريد الالكتروني",
           "receivedcode": "أدخل الكود الذي استلمته",
+          "youbirthdate":"أدخل تاريخ ميلادك",
+          "birthdate": "تاريخ الميلاد"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -236,7 +238,8 @@ class Translation extends Translations {
           "popularfreelancers": "Popular freelancers",
           "verifyingcode": "Email verification",
           "receivedcode": "Please enter verification code send to ",
-          "": ""
+          "youbirthdate":"Your birth date",
+          "birthdate": "Birth date"
         }
       };
 }
