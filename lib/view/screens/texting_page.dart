@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
@@ -6,6 +7,7 @@ import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/view/screens/profile/company_profile.dart';
 
 class TextingPage extends StatelessWidget {
   TextingPage({Key? key}) : super(key: key);
@@ -22,35 +24,45 @@ class TextingPage extends StatelessWidget {
             // ),
             SafeArea(
               child: Container(
-                color: Theme.of(context).colorScheme.primaryContainer,
+                color: Theme.of(context).colorScheme.surface,
                 alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(Icons.arrow_back),
+                        ),
+                        SizedBox(width: 8.w),
+                        Container(
+                          width: 35,
+                          height: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: Image.asset(AppImages
+                                .Linkedin), // Replace with actual image path
+                          ),
+                        ),
+                        SizedBox(width: 10.w),
+                        Text(
+                          "Linkedin",
+                          style: TextStyles.w50014(context),
+                        ),
+                      ],
+                    ),
                     GestureDetector(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Icon(Icons.arrow_back),
-                    ),
-                    SizedBox(width: 8.w),
-                    Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.asset(AppImages
-                            .Linkedin), // Replace with actual image path
-                      ),
-                    ),
-                    SizedBox(width: 10.w),
-                    Text(
-                      "Linkedin",
-                      style: TextStyles.w50014(context),
-                    ),
+                        onTap: () {
+                          Get.to(CompanyProfile());
+                        },
+                        child: Icon(Icons.info_outline)),
                   ],
                 ),
               ),

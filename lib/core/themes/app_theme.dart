@@ -17,7 +17,8 @@ class AppTheme {
     background: Colors.grey[900]!,
 //     onBackground: Color.fromARGB(255, 2, 2, 2),
 //     surface: Color.fromARGB(255, 52, 50, 50),
-     onSurface: Color(0xFFF3F3F3),
+    surface: Colors.black.withOpacity(0.2),
+    onSurface: Color(0xFFF3F3F3),
 //     surfaceVariant: Color.fromARGB(255, 222, 52, 30),
 //     //for chips after picking
 //  //   inversePrimary: Colors.amber,
@@ -39,16 +40,17 @@ class AppTheme {
   static ColorScheme lightTheme = ColorScheme.light(
     primary: LightAppColors.primaryColor,
     primaryContainer: LightAppColors.whiteColor,
-        onSecondary: Colors.black,
+    onSecondary: Colors.black,
 
     // onPrimaryContainer: lightAppColors.blackColor,
     background: LightAppColors.backGround,
     // //onPrimary: Colors.indigo,
     // //onSecondary: Colors.indigo,
     // //for date picker
+    surface: LightAppColors.whiteColor,
     // surface: lightAppColors.whiteColor,
     // surfaceVariant: lightAppColors.blackColor,
-     onSurface: LightAppColors.blackColor,
+    onSurface: LightAppColors.blackColor,
     // onSurfaceVariant: lightAppColors.blackColor,
     // outlineVariant: Colors.grey[600],
 

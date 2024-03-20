@@ -6,6 +6,7 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/settings/change_language.dart';
+import 'package:joblance/view/screens/settings/change_password.dart';
 import 'package:joblance/view/screens/settings/dark_mode.dart';
 import 'package:joblance/view/screens/settings/report.dart';
 import 'package:joblance/view/widgets/list_tile.dart';
@@ -50,6 +51,17 @@ class Settings extends StatelessWidget {
                                 leadingIcon: Icons.edit_outlined,
                                 trailingIcon: Icons.arrow_forward_ios_outlined,
                                 listText: "editprofile".tr),
+                                
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                               Get.to(CahngePassword());
+                            },
+                            child: ListTiles(
+                                leadingIcon: Icons.lock_outline,
+                                trailingIcon: Icons.arrow_forward_ios_outlined,
+                                listText: "changepassword".tr),
+                                
                           ),
                           ListTiles(
                               leadingIcon: Icons.work_outlined,

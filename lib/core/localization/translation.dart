@@ -120,7 +120,15 @@ class Translation extends Translations {
           "receivedcode": "أدخل الكود الذي استلمته",
           "youbirthdate":"أدخل تاريخ ميلادك",
           "birthdate": "تاريخ الميلاد",
-          "errorsendingyourrequest":"لم يتم إرسال طلبك بنجاح"
+          "errorsendingyourrequest":"لم يتم إرسال طلبك بنجاح",
+          "changepassword":"تغيير كلمة المرور",
+          "oldpassword1":"أدخل كلمة المرور الحالية",
+          "oldpassword2":"كلمة المرور الحالية",
+          "newpassword1":"أدخل كلمة المرور الجديدة",
+          "newpassword2":"كلمة المرور الجديدة",
+          "confirmnewpassword1":"تأكيد كلمة المرور",
+          "confirmnewpassword2":"أعد إدخال كلمةالمرور",
+          "":""
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -241,7 +249,16 @@ class Translation extends Translations {
           "receivedcode": "Please enter verification code send to ",
           "youbirthdate":"Your birth date",
           "birthdate": "Birth date",
-          "errorsendingyourrequest":"Your request has not been sent"
+          "errorsendingyourrequest":"Your request has not been sent",
+           "changepassword":"Change password",
+          "oldpassword1":"Enter old password",
+          "oldpassword2":"Old password",
+          "newpassword1":"Enter new password",
+          "newpassword2":"new password",
+          "confirmnewpassword1":"Confirm password",
+          "confirmnewpassword2":"Confirm new password",
+          "":""
+          
         }
       };
 }
