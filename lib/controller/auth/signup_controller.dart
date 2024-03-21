@@ -143,7 +143,7 @@ class SignUpControllerImpl extends SignUpController {
   @override
   goToSuccessfulSignUp() async {
     var formdata = formState.currentState;
-    if (formdata!.validate() && image != null) {
+    if ( image != null) {
       if (country != "") {
         statusRequest = StatusRequest.loading;
         update();
@@ -162,10 +162,11 @@ class SignUpControllerImpl extends SignUpController {
           "open_to_work": openToWork ? "1" : "0",
           "location": country,
         }, image);
+        print (response);
         statusRequest = hadelingData(response);
         if (StatusRequest.success == statusRequest) {
           if (response['status'] == "success") {
-            Get.offNamed("EmailVerification");
+            Get.offNamed("Login");
           } else {
             Get.defaultDialog(title: "", middleText: "warningbody2".tr);
           }
@@ -208,6 +209,7 @@ class SignUpControllerImpl extends SignUpController {
     if (pickedImage != null) {
       print(pickedImage.path);
       image = File(pickedImage.path);
+      
     } else {
       print("Image picking canceled");
     }

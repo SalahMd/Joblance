@@ -14,10 +14,9 @@ class ForgotPasswordControllerImpl extends ForgotPasswordController {
 
   @override
   checkCode() {}
-
+  
   @override
-
-  void dispise() {
+  void dispose() {
     email.dispose();
     super.dispose;
   }

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/localization/change_language.dart';
+import 'package:joblance/core/middlewere/midlleware.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/auth/login.dart';
 import 'package:joblance/view/screens/auth/email_verifiction.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
             GetPage(
               name: "/",
               page: () => Login(),
-              //middlewares: [MiddleWare()]
+              middlewares: [MiddleWare()]
             ),
             GetPage(name: "/Login", page: () => const Login()),
             GetPage(name: "/ChooseLanguage", page: () => ChooseLanguage()),

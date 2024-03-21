@@ -3,7 +3,7 @@ import 'package:joblance/core/constants/links.dart';
 
 class LogOutBack {
   Crud crud;
-  LogOutBack.LogoutBack(this.crud);
+  LogOutBack(this.crud);
   postData(var token) async {
     var response = await crud.requestDataWithHeaders(AppLinks.logOut, {},
         {'Authorization': 'Bearer $token'}, true, false, null);

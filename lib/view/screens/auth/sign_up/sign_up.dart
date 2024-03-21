@@ -114,6 +114,9 @@ class SignUp extends StatelessWidget {
                       elementValue: controller.majorValue,
                       controller: controller),
                   GestureDetector(
+                    onTap: () {
+                      controller.goToSuccessfulSignUp();
+                    },
                     child: Container(
                       width: Dimensions.screenWidth(context),
                       height: 45.h,

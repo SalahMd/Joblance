@@ -65,7 +65,7 @@ class LogInControllerImpl extends LogiInController {
           myServices.sharedPreferences
               .setString("role", response['data']["user"]["role"]);
           myServices.sharedPreferences.setString("step", "2");
-          Get.off("HomePage");
+          Get.offNamed("HomePage");
         } else {
           animationedAlert(AppAnimations.wrong, "wronglogin".tr);
           update();
