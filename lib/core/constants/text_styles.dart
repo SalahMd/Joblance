@@ -37,6 +37,8 @@ class TextStyles {
       color: Colors.grey[700], fontSize: 12.sp, fontWeight: FontWeight.w500);
   static TextStyle w40014grey(BuildContext context) => TextStyle(
       color: Colors.grey[700], fontSize: 14.sp, fontWeight: FontWeight.w500);
+  static TextStyle w50015grey(BuildContext context) => TextStyle(
+      color: Colors.grey[700], fontSize: 14.sp, fontWeight: FontWeight.w500);
 
   static TextStyle w40010White(BuildContext context) => TextStyle(
         color: Colors.white,

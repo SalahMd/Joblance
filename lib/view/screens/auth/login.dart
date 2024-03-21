@@ -9,6 +9,7 @@ import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/auth/forgot_password/forgot_password.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -69,6 +70,17 @@ class Login extends StatelessWidget {
                   ispassword: controller.isshown,
                   isBorder: true,
                   ontapicon: controller.showPassword(),
+                ),
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.to(ForgotPassword());
+                    },
+                    child: Padding(
+                        padding: EdgeInsetsDirectional.only(end: 10.w),
+                        child: Text("forgotyourpassword".tr)),
+                  ),
                 ),
                 SizedBox(
                   height: 50.h,

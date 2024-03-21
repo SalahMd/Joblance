@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 
@@ -9,6 +10,8 @@ abstract class EmailVerifictionController extends GetxController {
 
 class EmailVerifictionControllerImpl extends EmailVerifictionController {
   String? email;
+    GlobalKey<FormState> formState = GlobalKey<FormState>();
+
   StatusRequest? statusRequest;
   @override
   checkCode() {}

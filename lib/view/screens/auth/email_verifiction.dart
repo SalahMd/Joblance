@@ -26,14 +26,9 @@ class EmailVerification extends StatelessWidget {
                 "verifyingcode".tr,
                 style: Theme.of(context).textTheme.headline1,
               )),
-              Container(
-                width: 220.w,
-                height: 270.h,
-                margin: EdgeInsets.symmetric(horizontal: 0.w, vertical: 20.h),
-                child: Image.asset(
-                  AppImages.verification,
-                  fit: BoxFit.fill,
-                ),
+           
+              SizedBox(
+                height: 50.h,
               ),
               Align(
                 alignment: AlignmentDirectional.centerStart,
@@ -43,7 +38,7 @@ class EmailVerification extends StatelessWidget {
                     child: Text(
                       "receivedcode".tr + "salahaldeenmdaghmesh@gmail.com",
                       maxLines: 3,
-                      style: TextStyles.w50014(context),
+                      style: TextStyles.w50015grey(context),
                     )),
               ),
               OtpTextField(
@@ -61,6 +56,15 @@ class EmailVerification extends StatelessWidget {
                   controller.goToSuccessSignUp(verificationCode);
                 },
               ),
+              SizedBox(
+                height: 30.h,
+              ),
+              TextButton(
+                  onPressed: () {},
+                  child: Text("resendthecode".tr,
+                      style: TextStyle(
+                          color: LightAppColors.primaryColor,
+                          fontSize: 13.sp))),
             ],
           ),
         ),

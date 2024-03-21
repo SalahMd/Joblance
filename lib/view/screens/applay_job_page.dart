@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,14 +24,18 @@ class ApplayJobPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 20.h,
+                  height: 10.h,
                 ),
                 SafeArea(
                     child: Padding(
                   padding: EdgeInsetsDirectional.only(start: 10.w),
                   child: Row(
                     children: [
-                      Icon(Icons.arrow_back),
+                      GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(Icons.arrow_back)),
                       SizedBox(width: 10.w),
                       Text(
                         "applayforthejob".tr,
