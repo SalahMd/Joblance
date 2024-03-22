@@ -18,6 +18,7 @@ class Customtextformfiled extends StatelessWidget {
   final bool isLabel;
   final void Function()? ontapicon;
   final double? padding;
+  final bool isValidation;
   Customtextformfiled({
     super.key,
     required this.hinttext,
@@ -35,7 +36,7 @@ class Customtextformfiled extends StatelessWidget {
     this.letters,
     this.isLabel = true,
     this.padding = 20,
-    this.isFilled = false,
+    this.isFilled = false,  this.isValidation = true,
   });
 
   @override
@@ -54,9 +55,9 @@ class Customtextformfiled extends StatelessWidget {
         keyboardType: isnumber
             ? const TextInputType.numberWithOptions(decimal: true)
             : TextInputType.text,
-        validator: (val) {
+        validator:isValidation? (val) {
           return validInput(val!, min, max);
-        },
+        }:null,
         maxLength: letters,
         controller: controller,
         maxLines: maxLines,

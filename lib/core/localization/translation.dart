@@ -131,7 +131,13 @@ class Translation extends Translations {
           "resendthecode": "إعادة إرسال الرمز؟",
           "forgotyourpassword": "هل نسيت كلمة السر؟",
           "enteremail": "أدخل البريد الالكتروني لإرسال رمز التحقق",
-          "resetyourpassword": "إعادة تعيين كلمو المرور"
+          "resetyourpassword": "إعادة تعيين كلمو المرور",
+          "emailverified":"تم التحقق",
+          "enternewpassword":"أدخل كلمة المرور الجديدة",
+          "reset":"أعادة تعيين",
+          "sendingcodetoemail":"إرسال رمز التفعيل",
+          "passworddoesntmatch":"كلمة المرور غير مطابقة",
+          "pleaseaddanimage":"الرجاء إضافة صورة"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -263,7 +269,13 @@ class Translation extends Translations {
           "resendthecode": "Resend the code?",
           "forgotyourpassword": "Forgot your password?",
           "enteremail": "Enter your email adress to send the verification code",
-          "resetyourpassword": "Reset your password"
+          "resetyourpassword": "Reset your password",
+          "emailverified":"Email verified",
+          "reset":"Reset",
+          "enternewpassword":"Enter your new password",
+          "sendingcodetoemail":"Sending Code Verification",
+          "passworddoesntmatch":"Password doesn't match",
+          "pleaseaddanimage":"Please add an image"
         }
       };
 }

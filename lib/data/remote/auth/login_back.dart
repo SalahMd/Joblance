@@ -4,14 +4,27 @@ import 'package:joblance/core/constants/links.dart';
 class LoginBack {
   Crud crud;
   LoginBack(this.crud);
-  postData(String phone, String password) async {
+  login(String email, String password) async {
     var response = await crud.requestData(
         AppLinks.logIn,
         {
-          "email": phone,
+          "email": email,
           "password": password,
         },
-        true,false,null);
+        true,
+        false,
+        null);
     return response.fold((l) => l, (r) => r);
+  }
+
+  googleLogin(String token) async {
+    var response = await crud.requestData(
+        AppLinks.googleSignin,
+        {
+          "token": token,
+        },
+        true,
+        false,
+        null);
   }
 }

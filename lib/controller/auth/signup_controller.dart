@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/animations.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/date_picker.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/functions/show_countries.dart';
@@ -30,7 +32,7 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController aboutCompanyController;
   bool openToWork = false;
   bool isFreelancer = true;
-  String? birthDate ;
+  String? birthDate;
   String studyCaseValue = '1';
   String majorValue = '1';
   SignUpBack signUpBack = new SignUpBack(Get.put(Crud()));
@@ -143,38 +145,45 @@ class SignUpControllerImpl extends SignUpController {
   @override
   goToSuccessfulSignUp() async {
     var formdata = formState.currentState;
-    if ( image != null) {
-      if (country != "") {
-        statusRequest = StatusRequest.loading;
+    if (formdata!.validate()) {
+      if (!isPasswordMatch()) {
+        animationedAlert(AppAnimations.wrong, "passworddoesntmatch".tr);
         update();
-        var response = await signUpBack.postData({
-          "name": firstName.text,
-          "first_name": firstName.text,
-          "last_name": lastName.text,
-          "email": email.text,
-          "phone_number": phoneController.text,
-          "password": passwordController.text,
-          "is_company": isFreelancer ? "0" : "1",
-          "major": majorValue,
-          "description": aboutCompanyController.text,
-          "study_case": studyCase,
-          "num_of_employees": numOfEmployees,
-          "open_to_work": openToWork ? "1" : "0",
-          "location": country,
-        }, image);
-        print (response);
-        statusRequest = hadelingData(response);
-        if (StatusRequest.success == statusRequest) {
-          if (response['status'] == "success") {
-            Get.offNamed("Login");
-          } else {
-            Get.defaultDialog(title: "", middleText: "warningbody2".tr);
-          }
-        }
-        update();
+        return;
       }
-    } else {
-      print("Not Valid");
+      if (image != null) {
+        if (country != "") {
+          statusRequest = StatusRequest.loading;
+          update();
+          var response = await signUpBack.postData({
+            "name": firstName.text,
+            "first_name": firstName.text,
+            "last_name": lastName.text,
+            "email": email.text,
+            "phone_number": phoneController.text,
+            "password": passwordController.text,
+            "is_company": isFreelancer ? "0" : "1",
+            "major": majorValue,
+            "description": aboutCompanyController?.text,
+            "study_case": studyCase,
+            "num_of_employees": numOfEmployees,
+            "open_to_work": openToWork ? "1" : "0",
+            "location": country,
+          }, image);
+          print(response);
+          statusRequest = hadelingData(response);
+          if (StatusRequest.success == statusRequest) {
+            if (response['status'] == "success") {
+              Get.offNamed("Login");
+            } else {
+              Get.defaultDialog(title: "", middleText: "warningbody2".tr);
+            }
+          }
+          update();
+        }
+      } else {
+        animationedAlert(null, "pleaseaddanimage".tr);
+      }
     }
   }
 
@@ -198,7 +207,7 @@ class SignUpControllerImpl extends SignUpController {
     passwordController.dispose();
     confirmPasswordController.dispose();
     email.dispose();
-    aboutCompanyController.dispose();
+    aboutCompanyController?.dispose();
     super.dispose();
   }
 
@@ -209,7 +218,6 @@ class SignUpControllerImpl extends SignUpController {
     if (pickedImage != null) {
       print(pickedImage.path);
       image = File(pickedImage.path);
-      
     } else {
       print("Image picking canceled");
     }
@@ -244,5 +252,10 @@ class SignUpControllerImpl extends SignUpController {
   pickBirthDate(BuildContext context) async {
     birthDate = await selectDate(context).toString();
     update();
+  }
+
+  @override
+  bool isPasswordMatch() {
+    return passwordController.text == confirmPasswordController.text;
   }
 }

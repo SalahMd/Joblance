@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/animations.dart';
@@ -13,6 +14,7 @@ abstract class LogiInController extends GetxController {
   logIn();
   goToHomePage();
   goToSignup();
+  googleSignin();
   showPassword();
 }
 
@@ -53,8 +55,8 @@ class LogInControllerImpl extends LogiInController {
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
-      var response = await loginBata.postData(
-          emailController.text, passwordController.text);
+      var response =
+          await loginBata.login(emailController.text, passwordController.text);
       statusRequest = hadelingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
@@ -76,6 +78,7 @@ class LogInControllerImpl extends LogiInController {
       }
     }
   }
+
   @override
   goToSignup() {
     Get.offNamed("SignUp");
@@ -93,5 +96,22 @@ class LogInControllerImpl extends LogiInController {
     emailController = TextEditingController();
     passwordController = TextEditingController();
     super.onInit();
+  }
+
+  @override
+  googleSignin() async {
+    GoogleSignIn googleSignIn = GoogleSignIn(
+      scopes: ['email'],
+    );
+    try {
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+     if (googleUser != null) {
+            GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+            String? googleToken = googleAuth.idToken;
+            // Now you can use googleToken to send to your backend for verification
+          } 
+    } catch (error) {
+      print('Error signing in with Google: $error');
+    }
   }
 }

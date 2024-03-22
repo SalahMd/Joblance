@@ -25,6 +25,7 @@ class SignUp extends StatelessWidget {
         body: GetBuilder<SignUpControllerImpl>(
           builder: (controller) => SingleChildScrollView(
             child: Form(
+              key: controller.formState,
               child: Column(
                 children: [
                   SizedBox(

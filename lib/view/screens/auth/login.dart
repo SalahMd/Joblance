@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/login_controller.dart';
@@ -91,7 +92,7 @@ class Login extends StatelessWidget {
                   },
                   child: Container(
                     width: Dimensions.screenWidth(context),
-                    height: 45.h,
+                    height: 40.h,
                     margin: EdgeInsets.symmetric(horizontal: 30.w),
                     alignment: Alignment.center,
                     decoration: AppButtons.buttonDecoration,
@@ -125,30 +126,36 @@ class Login extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  width: Dimensions.screenWidth(context),
-                  height: 45.h,
-                  margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      borderRadius: BorderRadius.circular(17)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 25.w,
-                        height: 25.h,
-                        child: Image.asset(AppImages.google),
-                      ),
-                      SizedBox(
-                        width: 8.w,
-                      ),
-                      Text(
-                        "continuewithgoogle".tr,
-                        style: TextStyles.w50015(context),
-                      ),
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    controller.googleSignin();
+                  },
+                  child: Container(
+                    width: Dimensions.screenWidth(context),
+                    height: 40.h,
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(17)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 20.w,
+                          height: 20.h,
+                          child: Image.asset(AppImages.google),
+                        ),
+                        SizedBox(
+                          width: 8.w,
+                        ),
+                        Text(
+                          "continuewithgoogle".tr,
+                          style: TextStyles.w50014(context),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 //SizedBox(height: 30.h),

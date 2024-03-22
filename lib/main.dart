@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:joblance/core/localization/change_language.dart';
 import 'package:joblance/core/middlewere/midlleware.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/view/screens/auth/forgot_password/new_password.dart';
 import 'package:joblance/view/screens/auth/login.dart';
 import 'package:joblance/view/screens/auth/email_verifiction.dart';
 import 'package:joblance/view/screens/auth/sign_up/sign_up.dart';
@@ -43,10 +44,10 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           getPages: [
             GetPage(
-              name: "/",
-              page: () => Login(),
-              middlewares: [MiddleWare()]
-            ),
+                name: "/",
+                page: () => Login(),
+                middlewares: [MiddleWare()]
+                ),
             GetPage(name: "/Login", page: () => const Login()),
             GetPage(name: "/ChooseLanguage", page: () => ChooseLanguage()),
             GetPage(name: "/OnBoarding", page: () => OnBoarding()),

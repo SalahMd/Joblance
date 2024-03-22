@@ -1,8 +1,10 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
 class AppAnimations {
   static const String path = "assets/animations/";
-  static LottieBuilder wrong = Lottie.asset(path+"wrong.json",repeat: false);
-  static LottieBuilder done = Lottie.asset(path+"done.json",repeat: false);
-  static LottieBuilder info = Lottie.asset(path+"info.json",repeat: false);
+  static LottieBuilder wrong = Lottie.asset(path + "wrong.json", repeat: false);
+  static LottieBuilder done = Lottie.asset(path + "done.json", repeat: false);
+  static LottieBuilder info = Lottie.asset(path + "info.json", repeat: false);
+  static LottieBuilder loadings = Lottie.asset(path + "confirmloading.json",width: 50.w,height: 50.h);
 }

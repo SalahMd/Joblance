@@ -133,6 +133,7 @@ class TextFileds extends StatelessWidget {
             isBorder: false,
             letters: 150,
             maxLines: 3,
+            isValidation: false,
           ),
         ),
       ],

@@ -15,7 +15,8 @@ class Crud {
         var request = http.MultipartRequest('POST', Uri.parse(linkurl));
         var length = await file.length();
         var stream = http.ByteStream(file.openRead());
-        var multiPartFile = http.MultipartFile('image',stream,length, filename: basename(file.path));
+        var multiPartFile = http.MultipartFile('image', stream, length,
+            filename: basename(file.path));
         request.files.add(
           multiPartFile,
         );
@@ -24,12 +25,14 @@ class Crud {
         });
         var myRequest = await request.send();
         response = await http.Response.fromStream(myRequest);
- 
+
         print(response.body);
       }
       // Handle other types of requests
       else if (isPost && !isFile) {
-        response = await http.post(Uri.parse(linkurl), body: data);
+        response = await http.post(Uri.parse(linkurl),
+            body: data, headers: {'accept': 'application/json'});
+        print(response.body);
       } else if (!isPost && !isFile) {
         response = await http.get(Uri.parse(linkurl));
       }
@@ -58,11 +61,12 @@ class Crud {
       // Check if the request is a POST with a file
       if (isFile && isPost && file != null) {
         var request = http.MultipartRequest('POST', Uri.parse(linkurl));
-         var length = await file.length();
+        var length = await file.length();
         var stream = http.ByteStream(file.openRead());
-        var multiPartFile = http.MultipartFile('image',stream,length, filename: basename(file.path));
+        var multiPartFile = http.MultipartFile('image', stream, length,
+            filename: basename(file.path));
         request.headers.addAll(headers);
-         request.files.add(
+        request.files.add(
           multiPartFile,
         );
         data.forEach((key, value) {
