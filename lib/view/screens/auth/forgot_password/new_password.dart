@@ -46,7 +46,7 @@ class NewPassword extends StatelessWidget {
                 Customtextformfiled(
                   hintText: "password1".tr,
                   labelText: "password2".tr,
-                  iconData: Icons.lock_outline,
+                  iconData: Icons.remove_red_eye_outlined,
                   controller: controller.password,
                   min: 7,
                   max: 30,
@@ -58,7 +58,7 @@ class NewPassword extends StatelessWidget {
                 Customtextformfiled(
                   hintText: "confirmpassword1".tr,
                   labelText: "confirmpassword2".tr,
-                  iconData: Icons.lock_outline,
+                  iconData: Icons.remove_red_eye_outlined,
                   controller: controller.confirmPassword,
                   min: 7,
                   max: 30,

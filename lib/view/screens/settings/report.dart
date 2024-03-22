@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:joblance/controller/report_controller.dart';
+import 'package:joblance/controller/settings_controller/report_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/text_styles.dart';

@@ -2,12 +2,12 @@ import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/constants/links.dart';
 class ProfileBack {
   Crud crud;
-  ProfileBack.ProfileBack(this.crud);
+  ProfileBack(this.crud);
 
-  postData(String category,var token,var language) async {
+  postData(var token,String id) async {
     var response = await crud.requestDataWithHeaders(
-      AppLinks.jobs,
-      {'Authorization': 'Bearer $token'},{},
+      AppLinks.profile+id.toString(),
+      {'Authorization': 'Bearer $token',},{},
       false,
       false,
       null

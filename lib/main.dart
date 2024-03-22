@@ -14,7 +14,7 @@ import 'package:joblance/view/screens/home_page/freelancer_home_page/freelancer_
 import 'package:joblance/view/screens/navigation_bar/nav_bar.dart';
 import 'package:joblance/view/screens/on_boarding.dart';
 import 'package:joblance/view/screens/search/search.dart';
-import 'controller/dark_mode.dart';
+import 'controller/settings_controller/dark_mode.dart';
 import 'core/localization/translation.dart';
 import 'core/themes/app_theme.dart';
 

@@ -47,7 +47,12 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
 
   resetPassword() async {
     var formdata = formState.currentState;
-    if (formdata!.validate() && isPasswordMatch()) {
+    if (formdata!.validate()) {
+      if (!isPasswordMatch()) {
+        animationedAlert(AppAnimations.wrong, "passworddoesntmatch".tr);
+        update();
+        return;
+      }
       statusRequest = StatusRequest.loading;
       update();
       var response =
@@ -68,7 +73,8 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
   void onInit() {
     password = TextEditingController();
     confirmPassword = TextEditingController();
-    email = Get.arguments['email'];
+    Map<String, dynamic>? arguments = Get.arguments as Map<String, dynamic>?;
+    email = arguments?['email'] as String?;
     super.onInit();
   }
 
@@ -85,16 +91,15 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
 
   reSendCode() async {
     var formdata = formState.currentState;
-      statusRequest = StatusRequest.loading;
-      animationedAlert(AppAnimations.loadings, "sendingcodetoemail".tr);
-      update();
-      var response = await forgotPasswordBack.sendCode(email!);
-      statusRequest = hadelingData(response);
-      if (StatusRequest.success == statusRequest) {
-        if (response['status'] == "success") {
-          Get.back();
-        }
+    statusRequest = StatusRequest.loading;
+    animationedAlert(AppAnimations.loadings, "sendingcodetoemail".tr);
+    update();
+    var response = await forgotPasswordBack.sendCode(email!);
+    statusRequest = hadelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        Get.back();
       }
-    
+    }
   }
 }
