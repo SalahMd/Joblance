@@ -6,12 +6,21 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 
-abstract class ProfileController extends GetxController {}
+abstract class CompanyProfileController extends GetxController {}
 
-class ProfileControllerImpl extends ProfileController {
+class CompanyProfileControllerImpl extends CompanyProfileController {
   StatusRequest? statusRequest;
+
   Myservices myServices = Get.find();
   List data = [];
+  List<Widget> tabs = [
+    Tab(
+      text: "jobs".tr,
+    ),
+    Tab(text: "about".tr),
+    Tab(text: "products".tr),
+    Tab(text: "contact".tr)
+  ];
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
   displayData() async {
     statusRequest = StatusRequest.loading;
@@ -30,8 +39,11 @@ class ProfileControllerImpl extends ProfileController {
 
   @override
   void onInit() {
-    displayData();
+    //  displayData();
   }
 
-  void dispose() {}
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }
