@@ -60,7 +60,9 @@ class EmailVerification extends StatelessWidget {
                   height: 30.h,
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.reSendCode();
+                    },
                     child: Text("resendthecode".tr,
                         style: TextStyle(
                             color: LightAppColors.primaryColor,

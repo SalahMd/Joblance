@@ -37,7 +37,7 @@ class Login extends StatelessWidget {
                 )),
                 SizedBox(
                     width: Dimensions.screenWidth(context),
-                    height: 250.h,
+                    height: 200.h,
                     child: Image.asset(AppImages.logo)),
                 Padding(
                   padding: EdgeInsetsDirectional.only(
@@ -50,27 +50,27 @@ class Login extends StatelessWidget {
                       )),
                 ),
                 Customtextformfiled(
-                  hinttext: "email1".tr,
+                  hintText: "email1".tr,
                   labelText: "email2".tr,
-                  icondata: Icons.mail_outlined,
+                  iconData: Icons.mail_outlined,
                   controller: controller.emailController,
                   min: 10,
                   max: 30,
-                  isnumber: false,
-                  ispassword: false,
+                  isNumber: false,
+                  isPassword: false,
                   isBorder: true,
                 ),
                 Customtextformfiled(
-                  hinttext: "password1".tr,
+                  hintText: "password1".tr,
                   labelText: "password2".tr,
-                  icondata: Icons.lock_outline,
+                  iconData: Icons.remove_red_eye_outlined,
                   controller: controller.passwordController,
                   min: 8,
                   max: 18,
-                  isnumber: false,
-                  ispassword: controller.isshown,
+                  isNumber: false,
+                  isPassword: controller.isshown,
                   isBorder: true,
-                  ontapicon: controller.showPassword(),
+                  ontapicon: controller.showPassword,
                 ),
                 Align(
                   alignment: AlignmentDirectional.centerEnd,
@@ -84,7 +84,7 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 50.h,
+                  height: 30.h,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -104,7 +104,7 @@ class Login extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
+                      EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
                   child: Row(
                     children: [
                       const Expanded(

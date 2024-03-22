@@ -127,14 +127,14 @@ class TextingPage extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 10.h),
                     child: Customtextformfiled(
-                      hinttext: "message".tr,
+                      hintText: "message".tr,
                       labelText: "",
-                      icondata: null,
+                      iconData: null,
                       controller: controller.message,
                       min: 0,
                       max: 100,
-                      isnumber: false,
-                      ispassword: false,
+                      isNumber: false,
+                      isPassword: false,
                       isBorder: true,
                       isLabel: false,
                       padding: 2,

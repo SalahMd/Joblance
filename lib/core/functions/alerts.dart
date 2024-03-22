@@ -62,6 +62,7 @@ Future<bool> animationedAlertWithActions(
 
 Future<bool> animationedAlert(var animation, String title) {
   Get.defaultDialog(
+
     title: title,
     titleStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
     //middleText: title,
@@ -69,9 +70,9 @@ Future<bool> animationedAlert(var animation, String title) {
     titlePadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
     content: animation != null
         ? Container(
-            alignment: Alignment.center, height: 120.h, child: animation)
+            alignment: Alignment.center, height: 100.h, child: animation)
         : null,
-    barrierDismissible: true,
+    barrierDismissible: false,
   );
   return Future.value(true);
 }

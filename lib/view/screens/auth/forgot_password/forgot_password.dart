@@ -17,7 +17,7 @@ class ForgotPassword extends StatelessWidget {
       body: SingleChildScrollView(
         child: GetBuilder<ForgotPasswordControllerImpl>(
           builder: (controller) => Form(
-            key:  controller.formState,
+            key: controller.formState,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -35,7 +35,8 @@ class ForgotPassword extends StatelessWidget {
                 Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Padding(
-                      padding: EdgeInsetsDirectional.only(start: 15.w, end: 5.w),
+                      padding:
+                          EdgeInsetsDirectional.only(start: 15.w, end: 5.w),
                       child: Text(
                         "enteremail".tr,
                         maxLines: 3,
@@ -43,14 +44,14 @@ class ForgotPassword extends StatelessWidget {
                       )),
                 ),
                 Customtextformfiled(
-                  hinttext: "email1".tr,
+                  hintText: "email1".tr,
                   labelText: "email2".tr,
-                  icondata: Icons.mail_outlined,
+                  iconData: Icons.mail_outlined,
                   controller: controller.email,
                   min: 10,
                   max: 30,
-                  isnumber: false,
-                  ispassword: false,
+                  isNumber: false,
+                  isPassword: false,
                   isBorder: true,
                   isLabel: false,
                 ),

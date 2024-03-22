@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:joblance/core/constants/colors.dart';
 import '../functions/valid_input.dart';
 
 class Customtextformfiled extends StatelessWidget {
-  final String hinttext;
+  final String hintText;
   final String labelText;
-  final IconData? icondata;
+  final IconData? iconData;
   final TextEditingController? controller;
   final int min;
   final int max;
-  final bool isnumber;
-  final bool ispassword;
+  final bool isNumber;
+  final bool isPassword;
   final bool? isBorder;
   final int maxLines;
   final int? letters;
@@ -21,14 +22,14 @@ class Customtextformfiled extends StatelessWidget {
   final bool isValidation;
   Customtextformfiled({
     super.key,
-    required this.hinttext,
+    required this.hintText,
     required this.labelText,
-    required this.icondata,
+    required this.iconData,
     required this.controller,
     required this.min,
     required this.max,
-    required this.isnumber,
-    required this.ispassword,
+    required this.isNumber,
+    required this.isPassword,
     this.ontapicon,
     this.isBorder,
     TextStyle? style,
@@ -36,7 +37,8 @@ class Customtextformfiled extends StatelessWidget {
     this.letters,
     this.isLabel = true,
     this.padding = 20,
-    this.isFilled = false,  this.isValidation = true,
+    this.isFilled = false,
+    this.isValidation = true,
   });
 
   @override
@@ -50,20 +52,22 @@ class Customtextformfiled extends StatelessWidget {
             )
           : null,
       child: TextFormField(
-        obscureText: ispassword,
+        obscureText: isPassword,
         style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
-        keyboardType: isnumber
+        keyboardType: isNumber
             ? const TextInputType.numberWithOptions(decimal: true)
             : TextInputType.text,
-        validator:isValidation? (val) {
-          return validInput(val!, min, max);
-        }:null,
+        validator: isValidation
+            ? (val) {
+                return validInput(val!, min, max);
+              }
+            : null,
         maxLength: letters,
         controller: controller,
         maxLines: maxLines,
         decoration: InputDecoration(
           enabled: true,
-          hintText: hinttext,
+          hintText: hintText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -90,7 +94,10 @@ class Customtextformfiled extends StatelessWidget {
             onTap: ontapicon,
             child: Container(
               child: Icon(
-                icondata,
+                iconData,
+                color: !isPassword && ontapicon != null
+                    ? Colors.red
+                    : Theme.of(context).colorScheme.onSecondary,
               ),
             ),
           ),
