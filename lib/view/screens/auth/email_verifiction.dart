@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -35,7 +37,7 @@ class EmailVerification extends StatelessWidget {
                       padding: EdgeInsetsDirectional.only(
                           start: 10.w, bottom: 30.h, end: 10.w),
                       child: Text(
-                        "receivedcode".tr + "salahaldeenmdaghmesh@gmail.com",
+                        "receivedcode".tr + controller.email!,
                         maxLines: 3,
                         style: TextStyles.w50015grey(context),
                       )),
@@ -48,9 +50,7 @@ class EmailVerification extends StatelessWidget {
                   fieldWidth: 40.w,
                   textStyle: TextStyle(
                       color: LightAppColors.primaryColor, fontSize: 20),
-                  //set to true to show as box or false to show as dash
                   showFieldAsBox: true,
-
                   onSubmit: (String verificationCode) {
                     controller.codeController = verificationCode;
                     controller.checkCode();
@@ -59,14 +59,30 @@ class EmailVerification extends StatelessWidget {
                 SizedBox(
                   height: 30.h,
                 ),
-                TextButton(
-                    onPressed: () {
-                      controller.reSendCode();
-                    },
-                    child: Text("resendthecode".tr,
-                        style: TextStyle(
-                            color: LightAppColors.primaryColor,
-                            fontSize: 13.sp))),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Visibility(
+                      visible: controller.timer != 0,
+                      child: Text(
+                        "resendthecode".tr + controller.timer.toString(),
+                        style: TextStyles.w50013(context),
+                      ),
+                    ),
+                    Visibility(
+                      visible: controller.timer == 0,
+                      child: TextButton(
+                          onPressed: () {
+                            controller.reSendCode();
+                            controller.startTimer();
+                          },
+                          child: Text("resend".tr,
+                              style: TextStyle(
+                                  color: LightAppColors.primaryColor,
+                                  fontSize: 13.sp))),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

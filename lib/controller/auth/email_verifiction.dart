@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
@@ -25,17 +27,26 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
   ForgotPasswordBack forgotPasswordBack =
       new ForgotPasswordBack(Get.put(Crud()));
   StatusRequest? statusRequest;
-
+  int timer = 60;
+  late Timer countdownTimer;
   @override
   checkCode() async {
     statusRequest = StatusRequest.loading;
+    animationedAlert(AppAnimations.loadings, "checkingcode".tr);
     update();
     var response = await forgotPasswordBack.checkCode(email!, codeController!);
     statusRequest = hadelingData(response);
+    Get.back();
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         Get.offAll(NewPassword(), arguments: {"email": email});
+      } else {
+        animationedAlert(AppAnimations.wrong, "wrongcode".tr);
+        update();
       }
+    } else {
+      animationedAlert(AppAnimations.wrong, "wrongcode".tr);
+      update();
     }
   }
 
@@ -75,6 +86,8 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
     confirmPassword = TextEditingController();
     Map<String, dynamic>? arguments = Get.arguments as Map<String, dynamic>?;
     email = arguments?['email'] as String?;
+
+    startTimer();
     super.onInit();
   }
 
@@ -87,6 +100,18 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
   @override
   bool isPasswordMatch() {
     return password.text == confirmPassword.text;
+  }
+
+  void startTimer() {
+    timer = 60;
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (this.timer == 0) {
+        timer.cancel();
+      } else {
+        this.timer--;
+        update();
+      }
+    });
   }
 
   reSendCode() async {
