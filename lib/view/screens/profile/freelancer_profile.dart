@@ -1,13 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:joblance/controller/profiles_controller/company_profile_controller.dart';
 import 'package:joblance/controller/profiles_controller/freelancer_profile_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/profile/tob_bar.dart';
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
 
@@ -21,201 +23,122 @@ class FreelancerProfile extends StatelessWidget {
       onWillPop: exitAlert,
       child: Scaffold(
         body: GetBuilder<FreelancerProfileControllerImpl>(
-          builder: (controller) => SingleChildScrollView(
-            child: Column(
+          builder: (controller) => DefaultTabController(
+            length: controller.tabs.length,
+            child: SingleChildScrollView(
+                child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Stack(
-                  children: [
-                    Container(
-                      width: Dimensions.screenWidth(context),
-                      height: 180.h,
-                      color: Colors.grey,
-                      child: Image.asset(
-                        AppImages.joblance,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    Container(
-                      width: 110,
-                      height: 110,
-                      alignment: Alignment.center,
-                      margin:
-                          EdgeInsets.only(left: 10.w, right: 10.w, top: 125.h),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(60),
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(60),
-                          child: Image.asset(
-                            AppImages.Linkedin,
-                            fit: BoxFit.fill,
-                          )),
-                    ),
-                  ],
+                Flexible(fit: FlexFit.loose, child: TobBar()),
+                SizedBox(
+                  height: 15.h,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 10.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                Divider(
+                  height: 1,
+                  thickness: 0.5,
+                ),
+                TabBarWidget(
+                  tabs: controller.tabs,
+                ),
+                SizedBox(
+                  height: 400.h,
+                  child: TabBarView(children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 20.h),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Salah Aldeen Mdaghmesh",
-                            style: TextStyles.w50017(context),
+                            "bio".tr,
+                            style: Theme.of(context).textTheme.headline1,
                           ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.work_outline,
-                                size: 18,
-                              ),
-                              SizedBox(width: 5.w),
-                              Text(
-                                "IT engineer",
-                                style: TextStyles.w40012grey(context),
-                              ),
-                            ],
+                          SizedBox(
+                            height: 10.h,
                           ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              Container(
-                                width: 13.w,
-                                height: 15.h,
-                                child: Image.asset(
-                                  AppImages.followers,
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                              SizedBox(width: 5.w),
-                              Text(
-                                "100 followers",
-                                style: TextStyles.w40012grey(context),
-                              ),
-                            ],
+                          Expanded(
+                            child: Text(
+                              "A junior flutter developer in the third year of Damascus university, with 2 years of expirence in developing apps."
+                                  .tr,
+                              style: TextStyles.w40014grey(context),
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    Divider(
-                      height: 1,
-                      thickness: 0.5,
-                    ),
-                    TabBarWidget(
-                      tabs: controller.tabs,
+                    Container(
+                      child: Column(
+                        children: [Text("")],
+                      ),
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 20.h),
-                      padding: EdgeInsets.symmetric(
-                          vertical: 20.w, horizontal: 10.w),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [Text("")],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 20.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Icon(Icons.person_outline),
-                              SizedBox(width: 10.w),
-                              Text(
-                                "Salah Aldeen Mdaghmesh",
-                                style: TextStyles.w40011(context),
-                              )
-                            ],
+                          Text(
+                            "contactinfo".tr,
+                            style: Theme.of(context).textTheme.headline1,
                           ),
-                          MyDivider(
-                            height: 12.h,
+                          SizedBox(
+                            height: 30.h,
                           ),
                           Row(
                             children: [
-                              Icon(Icons.mail_outline),
-                              SizedBox(width: 10.w),
-                              Text(
-                                "salahaldeenmdaghmesh@gmail.com",
-                                style: TextStyles.w40011(context),
-                              )
-                            ],
-                          ),
-                          MyDivider(
-                            height: 12.h,
-                          ),
-                          Row(
-                            children: [
-                              Icon(Icons.phone_outlined),
-                              SizedBox(width: 10.w),
+                              Icon(Icons.call_outlined),
+                              SizedBox(
+                                width: 10.w,
+                              ),
                               Text(
                                 "+963996541809",
-                                style: TextStyles.w40011(context),
+                                style: TextStyles.w50013(context),
                               )
                             ],
                           ),
                           MyDivider(
-                            height: 12.h,
+                            height: 10,
                           ),
-                          Row(
-                            children: [
-                              Icon(Icons.location_on_outlined),
-                              SizedBox(width: 10.w),
-                              Text(
-                                "Syria",
-                                style: TextStyles.w40011(context),
-                              )
-                            ],
-                          ),
-                          MyDivider(
-                            height: 12.h,
-                          ),
-                          Row(
-                            children: [
-                              Icon(Icons.work_outline),
-                              SizedBox(width: 10.w),
-                              Text(
-                                "IT engineer",
-                                style: TextStyles.w40011(context),
-                              )
-                            ],
-                          ),
-                          MyDivider(
-                            height: 12.h,
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                width: 20.w,
-                                height: 23.h,
-                                child: Image.asset(
-                                  AppImages.studyCase,
-                                  fit: BoxFit.fill,
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                ),
+                          Row(children: [
+                            Icon(Icons.mail_outlined),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: Text(
+                                "salahaldeenmdaghmesh@gmail.com",
+                                style: TextStyles.w50013(context),
                               ),
-                              SizedBox(width: 10.w),
-                              Text(
-                                "Ungraduated",
-                                style: TextStyles.w40011(context),
-                              )
-                            ],
+                            ),
+                          ]),
+                          MyDivider(
+                            height: 10,
                           ),
+                          Row(children: [
+                            Icon(Icons.link_outlined),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: Text(
+                                "www.google.com",
+                                style: TextStyles.w50013(context),
+                              ),
+                            )
+                          ])
                         ],
                       ),
                     )
-                  ],
+                  ]),
                 )
               ],
-            ),
+            )),
           ),
         ),
       ),

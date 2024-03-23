@@ -11,25 +11,23 @@ class TabBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: tabs.length,
-      child: Container(
-        height: 55.0,
-        child: TabBar(
-          labelColor: LightAppColors.primaryColor,
-          //isScrollable: true,
-          labelPadding: EdgeInsets.zero,
-          indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(
-                width: 3.w,
-                color: LightAppColors.primaryColor,
-              ),
-              borderRadius: BorderRadius.circular(15)),
-          labelStyle: TextStyles.w50014(context),
-          overlayColor: null,
-          tabs: tabs,
-        ),
+    return Container(
+      height: 55.0,
+      child: TabBar(
+        labelColor: LightAppColors.primaryColor,
+        //isScrollable: true,
+        labelPadding: EdgeInsets.zero,
+        indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(
+              width: 3.w,
+              color: LightAppColors.primaryColor,
+            ),
+            borderRadius: BorderRadius.circular(15)),
+        labelStyle: TextStyles.w50014(context),
+        overlayColor: null,
+        tabs: tabs,
       ),
+    
     );
   }
 }

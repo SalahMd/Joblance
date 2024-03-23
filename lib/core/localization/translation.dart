@@ -137,7 +137,13 @@ class Translation extends Translations {
           "reset":"أعادة تعيين",
           "sendingcodetoemail":"إرسال رمز التفعيل",
           "passworddoesntmatch":"كلمة المرور غير مطابقة",
-          "pleaseaddanimage":"الرجاء إضافة صورة"
+          "pleaseaddanimage":"الرجاء إضافة صورة",
+          "about":"حول",
+          "jobs":"فرص عمل",
+          "contact":"تواصل",
+          "interests":"اهتمامات",
+          "projects":"مشاريع",
+          "products":"منتجات",
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -275,7 +281,14 @@ class Translation extends Translations {
           "enternewpassword":"Enter your new password",
           "sendingcodetoemail":"Sending Code Verification",
           "passworddoesntmatch":"Password doesn't match",
-          "pleaseaddanimage":"Please add an image"
+          "pleaseaddanimage":"Please add an image",
+          "about":"About",
+          "jobs":"Jobs",
+          "contact":"Contact",
+          "interests":"Interests",
+          "projects":"Projects",
+          "products":"Products",
+
         }
       };
 }
