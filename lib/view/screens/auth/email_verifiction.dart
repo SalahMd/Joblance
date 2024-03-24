@@ -66,7 +66,7 @@ class EmailVerification extends StatelessWidget {
                       visible: controller.timer != 0,
                       child: Text(
                         "resendthecode".tr + controller.timer.toString(),
-                        style: TextStyles.w50013(context),
+                        style: TextStyles.w40014grey(context),
                       ),
                     ),
                     Visibility(

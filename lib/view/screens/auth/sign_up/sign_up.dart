@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/signup_controller.dart';
@@ -114,6 +115,34 @@ class SignUp extends StatelessWidget {
                       choices: controller.major,
                       elementValue: controller.majorValue,
                       controller: controller),
+                  Visibility(
+                    visible: controller.isFreelancer,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: LightAppColors.primaryColor.withOpacity(0.2)),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 12.w, vertical: 20.h),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 3.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "opentowork".tr,
+                            style: TextStyles.w50015(context),
+                          ),
+                          Checkbox(
+                              activeColor: LightAppColors.greenColor,
+                              checkColor: LightAppColors.primaryColor,
+                              value: controller.openToWork,
+                              onChanged: (val) {
+                                controller.changeOpenToWork();
+                              }),
+                        ],
+                      ),
+                    ),
+                  ),
                   GestureDetector(
                     onTap: () {
                       controller.goToSuccessfulSignUp();

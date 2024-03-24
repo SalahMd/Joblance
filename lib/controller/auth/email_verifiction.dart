@@ -19,6 +19,7 @@ abstract class EmailVerifictionController extends GetxController {
 
 class EmailVerifictionControllerImpl extends EmailVerifictionController {
   String? email;
+  String? verifyFor;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   String? codeController;
   late TextEditingController password;
@@ -34,12 +35,16 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
     statusRequest = StatusRequest.loading;
     animationedAlert(AppAnimations.loadings, "checkingcode".tr);
     update();
-    var response = await forgotPasswordBack.checkCode(email!, codeController!);
+    var response =
+        await forgotPasswordBack.checkCode(email!, codeController!, verifyFor!);
     statusRequest = hadelingData(response);
     Get.back();
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        Get.offAll(NewPassword(), arguments: {"email": email});
+        if (verifyFor == "forgot_password")
+          Get.offAll(NewPassword(), arguments: {"email": email});
+        else
+          Get.offAllNamed("Login");
       } else {
         animationedAlert(AppAnimations.wrong, "wrongcode".tr);
         update();
@@ -86,6 +91,7 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
     confirmPassword = TextEditingController();
     Map<String, dynamic>? arguments = Get.arguments as Map<String, dynamic>?;
     email = arguments?['email'] as String?;
+    verifyFor = arguments?['checkfor'] as String?;
 
     startTimer();
     super.onInit();
@@ -119,7 +125,7 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
     statusRequest = StatusRequest.loading;
     animationedAlert(AppAnimations.loadings, "sendingcodetoemail".tr);
     update();
-    var response = await forgotPasswordBack.sendCode(email!);
+    var response = await forgotPasswordBack.resendCode(email!, verifyFor!);
     statusRequest = hadelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

@@ -137,6 +137,11 @@ class SignUpControllerImpl extends SignUpController {
     update();
   }
 
+  changeOpenToWork() {
+    openToWork = !openToWork;
+    update();
+  }
+
   @override
   goToLogiIn() {
     Get.offNamed("Login");
@@ -164,8 +169,8 @@ class SignUpControllerImpl extends SignUpController {
             "password": passwordController.text,
             "is_company": isFreelancer ? "0" : "1",
             "major": majorValue,
-            "description": aboutCompanyController?.text,
-            "study_case": studyCase,
+            "description": aboutCompanyController.text,
+            "study_case": studyCaseValue,
             "num_of_employees": numOfEmployees,
             "open_to_work": openToWork ? "1" : "0",
             "location": country,
@@ -174,7 +179,8 @@ class SignUpControllerImpl extends SignUpController {
           statusRequest = hadelingData(response);
           if (StatusRequest.success == statusRequest) {
             if (response['status'] == "success") {
-              Get.offNamed("Login");
+              Get.offNamed("EmailVerification",
+                  arguments: {"email": email.text, "checkfor": "signup"});
             } else {
               Get.defaultDialog(title: "", middleText: "warningbody2".tr);
             }
@@ -229,10 +235,13 @@ class SignUpControllerImpl extends SignUpController {
   updateDropDownValue(String? newValue, String changingElement) {
     if (changingElement == "study") {
       studyCaseValue = newValue!;
+      print(studyCaseValue);
     } else if (changingElement == "major") {
       majorValue = newValue!;
+      print(majorValue);
     } else {
       numOfEmployees = newValue!;
+      print(numOfEmployees);
     }
     update();
   }

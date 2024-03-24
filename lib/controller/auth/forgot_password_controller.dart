@@ -43,7 +43,7 @@ class ForgotPasswordControllerImpl extends ForgotPasswordController {
       Get.back();
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          Get.offAll(EmailVerification(), arguments: {"email": email.text});
+          Get.offAll(EmailVerification(), arguments: {"email": email.text,"checkfor":"forgot_password"});
         }
       }
     }

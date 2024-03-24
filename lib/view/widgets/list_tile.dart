@@ -15,7 +15,7 @@ class ListTiles extends StatelessWidget {
       required this.listText});
   @override
   Widget build(BuildContext context) {
-    double circleSize = 35.h;
+    double circleSize = 30.sp;
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 5.h),
@@ -29,6 +29,7 @@ class ListTiles extends StatelessWidget {
                 color: LightAppColors.primaryColor),
             child: Icon(
               leadingIcon,
+              size: 19.sp,
               color: Colors.white,
             )),
         trailing: Container(

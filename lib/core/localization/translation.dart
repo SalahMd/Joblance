@@ -151,6 +151,8 @@ class Translation extends Translations {
           "less":"لايمكن أن يكون أقل من ",
           "more":"لا يمكن أن يكون أكثر من ",
           "letters":"أحرف",
+          "opentowork":"جاهز للعمل"
+        
 
         },
         "en": {
@@ -269,7 +271,7 @@ class Translation extends Translations {
           "message": "Message",
           "popularfreelancers": "Popular freelancers",
           "verifyingcode": "Email verification",
-          "receivedcode": "Please enter verification code send to ",
+          "receivedcode": "Please enter verification code sent to ",
           "youbirthdate": "Your birth date",
           "birthdate": "Birth date",
           "errorsendingyourrequest": "Your request has not been sent",
@@ -303,7 +305,7 @@ class Translation extends Translations {
           "less": "Can't be less than ",
           "more": "Can't be more than ",
           "letters": " letters",
-          "": "",
+          "opentowork": "Open to work",
         }
       };
 }
