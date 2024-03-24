@@ -164,6 +164,7 @@ class SignUpControllerImpl extends SignUpController {
           return;
         }
         statusRequest = StatusRequest.loading;
+        animationedAlert(AppAnimations.loadings, "checkingdata".tr);
         update();
         var response = await signUpBack.postData({
           "name": firstName.text,
@@ -182,6 +183,7 @@ class SignUpControllerImpl extends SignUpController {
         }, image);
         print(response);
         statusRequest = hadelingData(response);
+        Get.back();
         if (StatusRequest.success == statusRequest) {
           if (response['status'] == "success") {
             Get.offNamed("EmailVerification",

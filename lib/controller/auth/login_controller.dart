@@ -65,7 +65,7 @@ class LogInControllerImpl extends LogiInController {
           myServices.sharedPreferences
               .setString("token", response['data']["accessToken"]);
           myServices.sharedPreferences
-              .setString("role", response['data']["user"]["role"]);
+              .setString("role_id", response['data']["user"]["role_id"].toString());
           myServices.sharedPreferences.setString("step", "2");
           Get.offNamed("HomePage");
         } else {
@@ -100,18 +100,12 @@ class LogInControllerImpl extends LogiInController {
 
   @override
   googleSignin() async {
-    GoogleSignIn googleSignIn = GoogleSignIn(
-      scopes: ['email'],
-    );
-    try {
-      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      if (googleUser != null) {
-        GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-        String? googleToken = googleAuth.idToken;
-      }
-    } catch (error) {
-      print('Error signing in with Google: $error');
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    if (googleUser != null) {
+      GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      String? googleToken = googleAuth.idToken;
+      print(googleToken);
     }
-    
   }
+
 }
