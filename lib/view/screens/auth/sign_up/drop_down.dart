@@ -36,7 +36,9 @@ class DropDownWidget extends StatelessWidget {
           horizontal: 10,
         ),
         style: TextStyle(
-            fontSize: 14.sp, color: Theme.of(context).colorScheme.onSecondary),
+            fontSize: 12.sp,
+            color: Theme.of(context).colorScheme.onSecondary,
+            fontWeight: FontWeight.w500),
         underline: Container(),
         dropdownColor: Theme.of(context).colorScheme.primaryContainer,
         value: elementValue,

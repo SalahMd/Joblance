@@ -151,7 +151,8 @@ class Translation extends Translations {
           "less":"لايمكن أن يكون أقل من ",
           "more":"لا يمكن أن يكون أكثر من ",
           "letters":"أحرف",
-          "opentowork":"جاهز للعمل"
+          "opentowork":"جاهز للعمل",
+          "pickupyourcounntry":"أختر بلدك"
         
 
         },
@@ -305,7 +306,8 @@ class Translation extends Translations {
           "less": "Can't be less than ",
           "more": "Can't be more than ",
           "letters": " letters",
-          "opentowork": "Open to work",
+          "pickupyourcounntry":"Pick up your country",
+          "opentowork":"Open to work",
         }
       };
 }

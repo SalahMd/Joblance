@@ -60,9 +60,19 @@ Future<bool> animationedAlertWithActions(
   return Future.value(true);
 }
 
+normalAlert(String text) {
+  Get.defaultDialog(
+    title: text,
+    middleText: "",
+    titleStyle: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),
+    titlePadding: EdgeInsets.only(top: 60),
+    barrierDismissible: true,
+  );
+  return Future.value(true);
+}
+
 Future<bool> animationedAlert(var animation, String title) {
   Get.defaultDialog(
-
     title: title,
     titleStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
     //middleText: title,

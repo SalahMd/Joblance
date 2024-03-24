@@ -15,6 +15,9 @@ class BirthDate extends StatelessWidget {
       visible: controller.isFreelancer,
       child: Column(
         children: [
+          SizedBox(
+            height: 15.h,
+          ),
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Container(
@@ -37,7 +40,7 @@ class BirthDate extends StatelessWidget {
                 height: 55.h,
                 alignment: AlignmentDirectional.centerStart,
                 margin: EdgeInsets.only(top: 15.h, left: 10.w, right: 10.w),
-                padding: EdgeInsetsDirectional.symmetric(horizontal: 15.w),
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 17.w),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
@@ -50,7 +53,8 @@ class BirthDate extends StatelessWidget {
                             ? controller.birthDate!
                             : "youbirthdate".tr,
                         style: TextStyle(
-                            fontSize: 17,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
                             color: Theme.of(context).colorScheme.onSecondary)),
                     Icon(Icons.calendar_month_outlined)
                   ],

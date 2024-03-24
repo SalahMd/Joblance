@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
@@ -15,6 +14,10 @@ abstract class EmailVerifictionController extends GetxController {
   checkCode();
   goToSuccessSignUp(String verificationCode);
   isPasswordMatch();
+  showPassword();
+  startTimer();
+  reSendCode();
+  resetPassword();
 }
 
 class EmailVerifictionControllerImpl extends EmailVerifictionController {
@@ -61,6 +64,7 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
     update();
   }
 
+  @override
   resetPassword() async {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
@@ -97,6 +101,7 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
     super.onInit();
   }
 
+  @override
   void dispose() {
     password.dispose();
     confirmPassword.dispose();
@@ -108,6 +113,7 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
     return password.text == confirmPassword.text;
   }
 
+  @override
   void startTimer() {
     timer = 60;
     countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
@@ -120,8 +126,8 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
     });
   }
 
+  @override
   reSendCode() async {
-    var formdata = formState.currentState;
     statusRequest = StatusRequest.loading;
     animationedAlert(AppAnimations.loadings, "sendingcodetoemail".tr);
     update();

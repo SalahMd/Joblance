@@ -105,13 +105,13 @@ class LogInControllerImpl extends LogiInController {
     );
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-     if (googleUser != null) {
-            GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-            String? googleToken = googleAuth.idToken;
-            // Now you can use googleToken to send to your backend for verification
-          } 
+      if (googleUser != null) {
+        GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+        String? googleToken = googleAuth.idToken;
+      }
     } catch (error) {
       print('Error signing in with Google: $error');
     }
+    
   }
 }

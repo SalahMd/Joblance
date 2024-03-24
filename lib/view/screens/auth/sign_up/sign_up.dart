@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/signup_controller.dart';
@@ -69,13 +68,13 @@ class SignUp extends StatelessWidget {
                     controller: controller,
                   ),
                   TextFileds(controller: controller),
-                  SizedBox(height: 15.h),
                   BirthDate(controller: controller),
-                  SizedBox(height: 15.h),
+                  //SizedBox(height: 15.h),
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Container(
                       margin: EdgeInsetsDirectional.only(
+                        top: 15.h,
                         start: 20.w,
                       ),
                       child: controller.isFreelancer
@@ -120,17 +119,19 @@ class SignUp extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          color: LightAppColors.primaryColor.withOpacity(0.2)),
+                          border: Border.all()
+                          ),
                       margin: EdgeInsets.symmetric(
-                          horizontal: 12.w, vertical: 20.h),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 3.h),
+                          horizontal: 10.w, vertical: 20.h),
+                      padding: EdgeInsetsDirectional.only(
+                          start: 20.w, top: 5.h, bottom: 5.h, end: 5.w),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "opentowork".tr,
-                            style: TextStyles.w50015(context),
+                            style: TextStyle(
+                                fontSize: 12.sp, fontWeight: FontWeight.w500),
                           ),
                           Checkbox(
                               activeColor: LightAppColors.greenColor,

@@ -22,7 +22,6 @@ class CompanyOrFreeLancer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Stack(
-            //index: controller.containerIndex,
             children: [
               if (controller.isFreelancer)
                 Padding(
@@ -42,7 +41,7 @@ class CompanyOrFreeLancer extends StatelessWidget {
                           border: Border.all(color: Colors.white)),
                       child: Text(
                         "company".tr,
-                        style: TextStyles.w50013White(context),
+                        style: TextStyles.w50013(context),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -71,7 +70,9 @@ class CompanyOrFreeLancer extends StatelessWidget {
                   ),
                   child: Text(
                     "freelancer".tr,
-                    style: TextStyles.w50013White(context),
+                    style: !controller.isFreelancer
+                        ? TextStyles.w50013(context)
+                        : TextStyles.w50013White(context),
                     textAlign: TextAlign.center,
                   ),
                 ),

@@ -5,11 +5,14 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/auth/logout_back.dart';
 
-abstract class SettingsController extends GetxController{}
-class SettingsControllerImpl extends SettingsController{
-    StatusRequest? statusRequest;
+abstract class SettingsController extends GetxController {
+  logOut();
+}
+
+class SettingsControllerImpl extends SettingsController {
+  StatusRequest? statusRequest;
   Myservices myServices = Get.find();
-  LogOutBack logout =  new LogOutBack(Get.put(Crud()));
+  LogOutBack logout = new LogOutBack(Get.put(Crud()));
   @override
   logOut() async {
     statusRequest = StatusRequest.loading;
@@ -23,7 +26,8 @@ class SettingsControllerImpl extends SettingsController{
       } else {
         print("error");
       }
-    } else {print("error");}
+    } else {
+      print("error");
+    }
   }
 }
-

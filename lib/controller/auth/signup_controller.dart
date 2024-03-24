@@ -19,6 +19,7 @@ abstract class SignUpController extends GetxController {
   pickImage();
   pickBirthDate(BuildContext context);
   changeState(bool isSale);
+  isPasswordMatch();
   updateDropDownValue(String? newValue, String changingElement);
 }
 
@@ -157,38 +158,41 @@ class SignUpControllerImpl extends SignUpController {
         return;
       }
       if (image != null) {
-        if (country != "") {
-          statusRequest = StatusRequest.loading;
+        if (country == "") {
+          normalAlert("pickupyourcounntry".tr);
           update();
-          var response = await signUpBack.postData({
-            "name": firstName.text,
-            "first_name": firstName.text,
-            "last_name": lastName.text,
-            "email": email.text,
-            "phone_number": phoneController.text,
-            "password": passwordController.text,
-            "is_company": isFreelancer ? "0" : "1",
-            "major": majorValue,
-            "description": aboutCompanyController.text,
-            "study_case": studyCaseValue,
-            "num_of_employees": numOfEmployees,
-            "open_to_work": openToWork ? "1" : "0",
-            "location": country,
-          }, image);
-          print(response);
-          statusRequest = hadelingData(response);
-          if (StatusRequest.success == statusRequest) {
-            if (response['status'] == "success") {
-              Get.offNamed("EmailVerification",
-                  arguments: {"email": email.text, "checkfor": "signup"});
-            } else {
-              Get.defaultDialog(title: "", middleText: "warningbody2".tr);
-            }
-          }
-          update();
+          return;
         }
+        statusRequest = StatusRequest.loading;
+        update();
+        var response = await signUpBack.postData({
+          "name": firstName.text,
+          "first_name": firstName.text,
+          "last_name": lastName.text,
+          "email": email.text,
+          "phone_number": phoneController.text,
+          "password": passwordController.text,
+          "is_company": isFreelancer ? "0" : "1",
+          "major": majorValue,
+          "description": aboutCompanyController.text,
+          "study_case": studyCaseValue,
+          "num_of_employees": numOfEmployees,
+          "open_to_work": openToWork ? "1" : "0",
+          "location": country,
+        }, image);
+        print(response);
+        statusRequest = hadelingData(response);
+        if (StatusRequest.success == statusRequest) {
+          if (response['status'] == "success") {
+            Get.offNamed("EmailVerification",
+                arguments: {"email": email.text, "checkfor": "signup"});
+          } else {
+            Get.defaultDialog(title: "", middleText: "warningbody2".tr);
+          }
+        }
+        update();
       } else {
-        animationedAlert(null, "pleaseaddanimage".tr);
+        normalAlert("pleaseaddanimage".tr);
       }
     }
   }
@@ -213,7 +217,7 @@ class SignUpControllerImpl extends SignUpController {
     passwordController.dispose();
     confirmPasswordController.dispose();
     email.dispose();
-    aboutCompanyController?.dispose();
+    aboutCompanyController.dispose();
     super.dispose();
   }
 
