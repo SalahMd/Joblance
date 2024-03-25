@@ -44,6 +44,9 @@ class ForgotPasswordControllerImpl extends ForgotPasswordController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           Get.offAll(EmailVerification(), arguments: {"email": email.text,"checkfor":"forgot_password"});
+        }else{
+           animationedAlert(AppAnimations.wrong, "emailisnotexisted".tr);
+           update();
         }
       }
     }

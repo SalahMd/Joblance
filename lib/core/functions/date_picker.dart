@@ -1,13 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
- selectDate(BuildContext context) async {
+selectDate(BuildContext context) async {
   Completer<String?> completer = Completer<String?>();
   DateTime? picked = await showDatePicker(
     context: context,
     firstDate: DateTime(1940),
-    //barrierColor: LightAppColors.primaryColor,
-    
     lastDate: DateTime(2010),
     initialDate: DateTime(2003),
   );

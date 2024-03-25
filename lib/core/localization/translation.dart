@@ -153,7 +153,8 @@ class Translation extends Translations {
           "more":"لا يمكن أن يكون أكثر من ",
           "letters":"أحرف",
           "opentowork":"جاهز للعمل",
-          "pickupyourcounntry":"أختر بلدك"
+          "pickupyourcounntry":"أختر بلدك",
+          "errorloggingin":"حصل خطأ أثناء التسجيل"
         
 
         },
@@ -310,6 +311,7 @@ class Translation extends Translations {
           "letters": " letters",
           "pickupyourcounntry":"Pick up your country",
           "opentowork":"Open to work",
+          "errorloggingin":"Error while logging in"
         }
       };
 }

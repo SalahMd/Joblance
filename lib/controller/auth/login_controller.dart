@@ -64,8 +64,8 @@ class LogInControllerImpl extends LogiInController {
               .setInt("id", response['data']["user"]["user_id"]);
           myServices.sharedPreferences
               .setString("token", response['data']["accessToken"]);
-          myServices.sharedPreferences
-              .setString("role_id", response['data']["user"]["role_id"].toString());
+          myServices.sharedPreferences.setString(
+              "role_id", response['data']["user"]["role_id"].toString());
           myServices.sharedPreferences.setString("step", "2");
           Get.offNamed("HomePage");
         } else {
@@ -103,9 +103,11 @@ class LogInControllerImpl extends LogiInController {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     if (googleUser != null) {
       GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-      String? googleToken = googleAuth.idToken;
-      print(googleToken);
+      String? googleToken = googleAuth.accessToken;
+      print(googleUser.email);
+      print(googleUser.displayName);
+      print(googleUser.photoUrl);
+      print("token is" + googleToken!);
     }
   }
-
 }

@@ -11,6 +11,7 @@ import 'package:joblance/view/screens/choose_language.dart';
 import 'package:joblance/view/screens/navigation_bar/nav_bar.dart';
 import 'package:joblance/view/screens/on_boarding.dart';
 import 'package:joblance/view/screens/search/search.dart';
+import 'package:joblance/view/screens/splash_sceen%20.dart';
 import 'controller/settings_controller/dark_mode.dart';
 import 'core/localization/translation.dart';
 import 'core/themes/app_theme.dart';
@@ -42,8 +43,8 @@ class MyApp extends StatelessWidget {
           getPages: [
             GetPage(
                 name: "/",
-                page: () => Login(),
-                //middlewares: [MiddleWare()]
+                page: () => SplashScreen(),
+               // middlewares: [MiddleWare()]
                 ),
             GetPage(name: "/Login", page: () => const Login()),
             GetPage(name: "/ChooseLanguage", page: () => ChooseLanguage()),

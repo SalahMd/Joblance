@@ -9,7 +9,7 @@ class AppTheme {
     onSecondary: Colors.white,
 //     //for numbers after picking in date picker
 //     //onPrimary: Colors.indigo,
-//     //surfaceTint: Colors.blue,
+     surfaceTint: Colors.black,
     primaryContainer: DarkAppColors.whiteColor,
 //     onPrimaryContainer: Color.fromARGB(255, 250, 248, 248),
 //     onErrorContainer: Color(0xFFF9DEDC),
