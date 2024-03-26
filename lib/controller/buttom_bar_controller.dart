@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/services/services.dart';
-import 'package:joblance/view/screens/add_job/add_job.dart';
 import 'package:joblance/view/screens/home_page/company_home_page/company_home_page.dart';
 import 'package:joblance/view/screens/messages.dart';
 import 'package:joblance/view/screens/profile/company_profile.dart';

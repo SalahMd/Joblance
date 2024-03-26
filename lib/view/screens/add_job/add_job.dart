@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/add_job_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_job/company_info.dart';
@@ -25,7 +26,7 @@ class AddJob extends StatelessWidget {
             children: [
               SafeArea(
                   child: Padding(
-                padding: EdgeInsetsDirectional.only(top: 10.h, bottom: 30.h),
+                padding: EdgeInsetsDirectional.only(top: 10.h, bottom: 20.h),
                 child: Row(
                   children: [
                     SizedBox(width: 10.w),
@@ -42,6 +43,34 @@ class AddJob extends StatelessWidget {
                   ],
                 ),
               )),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 15.w),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40.w,
+                      height: 45.h,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          AppImages.Linkedin,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    Text(
+                      "Linkedin",
+                      style: TextStyles.w50015(context),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 25.h,
+              ),
               JobTextFileds(controller: controller),
               JobSpecifications(controller: controller),
               CompanyInfo(controller: controller),

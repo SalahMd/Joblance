@@ -146,7 +146,6 @@ class TextFileds extends StatelessWidget {
             max: 150,
             isNumber: false,
             isPassword: false,
-            isBorder: false,
             letters: 150,
             maxLines: 3,
             isValidation: false,

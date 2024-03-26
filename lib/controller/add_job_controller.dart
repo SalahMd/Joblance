@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:joblance/view/screens/job_info/about_company.dart';
+import 'package:joblance/core/constants/images.dart';
 
 abstract class AddjobController extends GetxController {
   addJob();
@@ -74,23 +75,93 @@ class AddjobControllerImpl extends AddjobController {
   List<DropdownMenuItem<String>> major = [
     DropdownMenuItem<String>(
       value: '1',
-      child: Text("engineering".tr),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text("engineering".tr),
+          Container(
+            width: 25.w,
+            height: 25.h,
+            child: Image.asset(
+              AppImages.cat3,
+              width: 25.w,
+              height: 25.h,
+            ),
+          )
+        ],
+      ),
     ),
     DropdownMenuItem<String>(
       value: '2',
-      child: Text("technology".tr),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text("technology".tr),
+          Container(
+            width: 25.w,
+            height: 25.h,
+            child: Image.asset(
+              AppImages.cat5,
+              width: 25.w,
+              height: 25.h,
+            ),
+          )
+        ],
+      ),
     ),
     DropdownMenuItem<String>(
       value: '3',
-      child: Text("medical".tr),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text("medical".tr),
+          Container(
+            width: 25.w,
+            height: 25.h,
+            child: Image.asset(
+              AppImages.cat4,
+              width: 25.w,
+              height: 25.h,
+            ),
+          )
+        ],
+      ),
     ),
     DropdownMenuItem<String>(
       value: '4',
-      child: Text("designing".tr),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text("designing".tr),
+          Container(
+            width: 25.w,
+            height: 25.h,
+            child: Image.asset(
+              AppImages.cat2,
+              width: 25.w,
+              height: 25.h,
+            ),
+          )
+        ],
+      ),
     ),
     DropdownMenuItem<String>(
       value: '5',
-      child: Text("customer-service".tr),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text("customer-service".tr),
+          Container(
+            width: 25.w,
+            height: 25.h,
+            child: Image.asset(
+              AppImages.cat6,
+              width: 25.w,
+              height: 25.h,
+            ),
+          )
+        ],
+      ),
     ),
   ];
 

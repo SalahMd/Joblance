@@ -173,7 +173,8 @@ class Translation extends Translations {
           "fillyourjobinfo":"إملئ معلومات العمل",
           "post":"نشر",
           "additionalinfo2":"(اختياري)",
-          "jobadditionalinfo":"معلومات إضافية"
+          "jobadditionalinfo":"معلومات إضافية",
+          "aboutjob1":"وصف العمل"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -347,7 +348,8 @@ class Translation extends Translations {
           "showaboutcompany":"Show about the company",
           "fillyourjobinfo":"Fill your job info",
           "jobadditionalinfo":"Additional information",
-          "additionalinfo2":"(Optional)"
+          "additionalinfo2":"(Optional)",
+          "aboutjob1":"About job"
         }
       };
 }

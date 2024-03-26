@@ -5,7 +5,6 @@ class AppImages {
   static const onBoarding4 = "assets/images/onboarding4.png";
   static const language = "assets/images/language.png";
   static const logo = "assets/images/logo2.png";
-  static const cat1 = "assets/images/designing.png";
   static const cat2 = "assets/images/designing2.png";
   static const cat3 = "assets/images/engineering.png";
   static const cat4 = "assets/images/medical.png";

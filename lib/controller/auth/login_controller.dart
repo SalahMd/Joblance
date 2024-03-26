@@ -5,7 +5,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/animations.dart';
-import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';

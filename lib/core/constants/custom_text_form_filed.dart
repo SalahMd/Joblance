@@ -66,51 +66,47 @@ class Customtextformfiled extends StatelessWidget {
         controller: controller,
         maxLines: maxLines,
         decoration: InputDecoration(
-          enabled: true,
-          hintText: hintText,
-          border: isBorder
-              ? OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                )
-              : InputBorder.none, // Hide bottom line,
-          labelStyle: TextStyle(
-            color: Theme.of(context).colorScheme.onSecondary,
-          ),
-          hintStyle: const TextStyle(fontSize: 17, color: Colors.grey),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          label: isLabel
-              ? Container(
-                  margin: const EdgeInsets.only(left: 5, right: 5),
-                  child: Text(
-                    labelText,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Theme.of(context).colorScheme.onSecondary,
+            enabled: true,
+            hintText: hintText,
+            border: isBorder
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  )
+                : InputBorder.none, // Hide bottom line,
+            labelStyle: TextStyle(
+              color: Theme.of(context).colorScheme.onSecondary,
+            ),
+            hintStyle: const TextStyle(fontSize: 17, color: Colors.grey),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            label: isLabel
+                ? Container(
+                    margin: const EdgeInsets.only(left: 5, right: 5),
+                    child: Text(
+                      labelText,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context).colorScheme.onSecondary,
+                      ),
                     ),
-                  ),
-                )
-              : null,
-          suffixIcon: GestureDetector(
-            onTap: ontapicon,
-            child: Container(
-              child: Icon(
-                iconData,
-                color: !isPassword && ontapicon != null
-                    ? Colors.red
-                    : Theme.of(context).colorScheme.onSecondary,
+                  )
+                : null,
+            suffixIcon: GestureDetector(
+              onTap: ontapicon,
+              child: Container(
+                child: Icon(
+                  iconData,
+                  color: !isPassword && ontapicon != null
+                      ? Colors.red
+                      : Theme.of(context).colorScheme.onSecondary,
+                ),
               ),
             ),
-          ),
-          focusedBorder: isBorder == null
-              ? OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(
-                      color: Theme.of(context).colorScheme.onPrimaryContainer),
-                )
-              : null,
-        ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(color: LightAppColors.primaryColor),
+            )),
       ),
     );
   }

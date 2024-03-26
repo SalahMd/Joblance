@@ -26,7 +26,7 @@ class JobTextFileds extends StatelessWidget {
           hintText: "jobtitle2".tr,
           labelText: "".tr,
           iconData: null,
-          controller: controller.aboutJob,
+          controller: controller.jobTitle,
           min: 5,
           max: 10,
           isNumber: false,
@@ -38,7 +38,7 @@ class JobTextFileds extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
-            "aboutjob".tr,
+            "aboutjob1".tr,
             style: TextStyles.w50014(context),
           ),
         ),
