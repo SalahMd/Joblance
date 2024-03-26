@@ -21,7 +21,8 @@ class LoginBack {
     var response = await crud.requestData(
         AppLinks.googleSignin,
         {
-          "token": token,
+          "access_token": token,
+          
         },
         true,
         false,

@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/animations.dart';
+import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
@@ -22,11 +23,13 @@ class LogInControllerImpl extends LogiInController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController phoneController;
   LoginBack loginBata = LoginBack(Get.put(Crud()));
   StatusRequest? statusRequest;
   Myservices myServices = Get.find();
   bool isshown = true;
   double containerWidth = 300.w;
+
   hideButton() {
     containerWidth = 0;
     update();
@@ -104,10 +107,57 @@ class LogInControllerImpl extends LogiInController {
     if (googleUser != null) {
       GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       String? googleToken = googleAuth.accessToken;
-      print(googleUser.email);
-      print(googleUser.displayName);
-      print(googleUser.photoUrl);
       print("token is" + googleToken!);
+      statusRequest = StatusRequest.loading;
+      update();
+      var response = await loginBata.googleLogin(googleToken);
+      statusRequest = hadelingData(response);
+      print(statusRequest);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          String email = response['data']['user']['email'];
+          Get.offAllNamed("SignUp",arguments: {"email":email});
+        } else {
+          animationedAlert(AppAnimations.wrong, "errorloggingin".tr);
+          update();
+        }
+      }
     }
   }
+
+  // Future<bool> popUp() {
+  //   Get.defaultDialog(
+  //     title: 'addyourinfotocontinue',
+  //     titleStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
+  //     titlePadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
+  //     content: Column(
+  //       children: [
+  //         Customtextformfiled(
+  //           hintText: "phone1".tr,
+  //           labelText: "phone2".tr,
+  //           iconData: Icons.phone_outlined,
+  //           controller:phoneController,
+  //           min: 10,
+  //           max: 13,
+  //           isNumber: false,
+  //           isPassword: false,
+  //           isBorder: true,
+  //         ),
+  //         Customtextformfiled(
+  //           hintText: "phone1".tr,
+  //           labelText: "phone2".tr,
+  //           iconData: Icons.phone_outlined,
+  //           controller:phoneController,
+  //           min: 10,
+  //           max: 13,
+  //           isNumber: false,
+  //           isPassword: false,
+  //           isBorder: true,
+  //         )
+  //       ],
+  //     ),
+  //     barrierDismissible: false,
+  //   );
+  //   return Future.value(true);
+  // }
 }

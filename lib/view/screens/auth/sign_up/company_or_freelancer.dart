@@ -17,7 +17,11 @@ class CompanyOrFreeLancer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Dimensions.screenWidth(context),
-      margin: EdgeInsets.symmetric(horizontal: 20.w),
+      margin: controller.isGoogleSignin
+          ? EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h)
+          : EdgeInsets.symmetric(
+              horizontal: 20.w,
+            ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

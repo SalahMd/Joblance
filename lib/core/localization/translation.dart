@@ -147,16 +147,19 @@ class Translation extends Translations {
           "products": "منتجات",
           "checkingcode": "التحقق من الرمز",
           "wrongcode": "رمز خطأ",
-          "empty":"لا يمكن أن يكون فارغ",
-          "warningbody2":"البريد الالكتروني أو رقم الهاتف موجود بالفعل",
-          "less":"لايمكن أن يكون أقل من ",
-          "more":"لا يمكن أن يكون أكثر من ",
-          "letters":"أحرف",
-          "opentowork":"جاهز للعمل",
-          "pickupyourcounntry":"أختر بلدك",
-          "errorloggingin":"حصل خطأ أثناء التسجيل"
-        
-
+          "empty": "لا يمكن أن يكون فارغ",
+          "warningbody2": "البريد الالكتروني أو رقم الهاتف موجود بالفعل",
+          "less": "لايمكن أن يكون أقل من ",
+          "more": "لا يمكن أن يكون أكثر من ",
+          "letters": "أحرف",
+          "opentowork": "جاهز للعمل",
+          "pickupyourcounntry": "أختر بلدك",
+          "errorloggingin": "حصل خطأ أثناء التسجيل",
+          "wrongoldpassword": "كلمة المرور القديمة خاطئة",
+          "passwordchangedsucessfully": "تم تغيير كلمة المرور بنجاح",
+          "processingyourrequest": "جاري معالجة طلبك",
+          "completeyourinfo": "أكمل معلوماتك",
+          "existednumber":"رقم الهاتف موجود بالفعل"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -250,7 +253,7 @@ class Translation extends Translations {
           "helpcenter": "Help center",
           "appmode": "App mode",
           "applaiedjobs": "Applied jobs",
-          "warningbody2":"Email or phone number already existed",
+          "warningbody2": "Email or phone number already existed",
           "report": "Report",
           "abouttheapp": "About the app",
           "language": "Language",
@@ -309,9 +312,14 @@ class Translation extends Translations {
           "less": "Can't be less than ",
           "more": "Can't be more than ",
           "letters": " letters",
-          "pickupyourcounntry":"Pick up your country",
-          "opentowork":"Open to work",
-          "errorloggingin":"Error while logging in"
+          "pickupyourcounntry": "Pick up your country",
+          "opentowork": "Open to work",
+          "errorloggingin": "Error while logging in",
+          "processingyourrequest": "Processing request",
+          "passwordchangedsucessfully": "Password changed successfully",
+          "wrongoldpassword": "Wrong old password",
+          "completeyourinfo": "Complete your information",
+          "existednumber":"Phone number is already in use"
         }
       };
 }

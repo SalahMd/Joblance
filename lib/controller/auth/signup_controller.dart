@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,6 +9,7 @@ import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/date_picker.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/functions/show_countries.dart';
+import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/auth/signup_back.dart';
 
 abstract class SignUpController extends GetxController {
@@ -32,10 +32,14 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController confirmPasswordController;
   late TextEditingController aboutCompanyController;
   bool openToWork = false;
+  String? googleEmail;
+  bool isGoogleSignin = false;
   bool isFreelancer = true;
   String? birthDate;
   String studyCaseValue = '1';
   String majorValue = '1';
+  Myservices myServices = Get.find();
+
   SignUpBack signUpBack = new SignUpBack(Get.put(Crud()));
   String? country;
   String numOfEmployees = '1';
@@ -158,15 +162,15 @@ class SignUpControllerImpl extends SignUpController {
         return;
       }
       if (image != null) {
-        if (country == "") {
-          normalAlert("pickupyourcounntry".tr);
+        if (country == null) {
+          animationedAlert(AppAnimations.info, "pickupyourcounntry".tr);
           update();
           return;
         }
         statusRequest = StatusRequest.loading;
         animationedAlert(AppAnimations.loadings, "checkingdata".tr);
         update();
-        var response = await signUpBack.postData({
+        var response = await signUpBack.signUp({
           "name": firstName.text,
           "first_name": firstName.text,
           "last_name": lastName.text,
@@ -194,7 +198,7 @@ class SignUpControllerImpl extends SignUpController {
         }
         update();
       } else {
-        normalAlert("pleaseaddanimage".tr);
+        animationedAlert(AppAnimations.info,"pleaseaddanimage".tr);
       }
     }
   }
@@ -208,6 +212,13 @@ class SignUpControllerImpl extends SignUpController {
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
     aboutCompanyController = TextEditingController();
+    Map<String, dynamic>? arguments = Get.arguments as Map<String, dynamic>?;
+    googleEmail = arguments?['email'] as String?;
+    if (googleEmail != null) {
+      isGoogleSignin = true;
+      update();
+    }
+
     super.onInit();
   }
 
@@ -272,5 +283,49 @@ class SignUpControllerImpl extends SignUpController {
   @override
   bool isPasswordMatch() {
     return passwordController.text == confirmPasswordController.text;
+  }
+
+  googleSignUp() async {
+    var formdata = formState.currentState;
+    if (formdata!.validate()) {
+      if (country == null) {
+        animationedAlert(AppAnimations.info, "pickupyourcounntry".tr);
+        update();
+        return;
+      }
+      statusRequest = StatusRequest.loading;
+      animationedAlert(AppAnimations.loadings, "checkingdata".tr);
+      update();
+      var response = await signUpBack.googleSignUp(
+        {
+          "email": googleEmail,
+          "phone_number": phoneController.text,
+          "is_company": isFreelancer ? "0" : "1",
+          "major": majorValue,
+          "description": aboutCompanyController.text,
+          "study_case": studyCaseValue,
+          "num_of_employees": numOfEmployees,
+          "open_to_work": openToWork ? "1" : "0",
+          "location": country,
+        },
+      );
+      statusRequest = hadelingData(response);
+      Get.back();
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          myServices.sharedPreferences
+              .setInt("id", response['data']["user"]["user_id"]);
+          myServices.sharedPreferences
+              .setString("token", response['data']["accessToken"]);
+          myServices.sharedPreferences.setString(
+              "role_id", response['data']["user"]["role_id"].toString());
+          myServices.sharedPreferences.setString("step", "2");
+          Get.offNamed("HomePage");
+        } else {
+          animationedAlert(AppAnimations.wrong, "existednumber".tr);
+          update();
+        }
+      }
+    }
   }
 }

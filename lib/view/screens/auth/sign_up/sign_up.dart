@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/signup_controller.dart';
@@ -33,35 +35,39 @@ class SignUp extends StatelessWidget {
                   ),
                   SafeArea(
                     child: Text(
+                      controller.isGoogleSignin?"completeyourinfo".tr:
                       "addyourinfo".tr,
                       style: Theme.of(context).textTheme.headline1,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      controller.pickImage();
-                    },
-                    child: Container(
-                      width: 120.w,
-                      height: 140.h,
-                      margin: EdgeInsets.symmetric(vertical: 25.h),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        borderRadius: BorderRadius.circular(70),
+                  Visibility(
+                    visible: !controller.isGoogleSignin,
+                    child: GestureDetector(
+                      onTap: () {
+                        controller.pickImage();
+                      },
+                      child: Container(
+                        width: 120.w,
+                        height: 140.h,
+                        margin: EdgeInsets.symmetric(vertical: 25.h),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primaryContainer,
+                          borderRadius: BorderRadius.circular(70),
+                        ),
+                        child: controller.image == null
+                            ? const Icon(
+                                Icons.photo_camera_outlined,
+                                size: 50,
+                              )
+                            : ClipRRect(
+                                borderRadius: BorderRadius.circular(70),
+                                child: Image.file(File(controller.image.path),
+                                    fit: BoxFit.fill,
+                                    width: 120.w,
+                                    height: 140.h),
+                              ),
                       ),
-                      child: controller.image == null
-                          ? const Icon(
-                              Icons.photo_camera_outlined,
-                              size: 50,
-                            )
-                          : ClipRRect(
-                              borderRadius: BorderRadius.circular(70),
-                              child: Image.file(File(controller.image.path),
-                                  fit: BoxFit.fill,
-                                  width: 120.w,
-                                  height: 140.h),
-                            ),
                     ),
                   ),
                   CompanyOrFreeLancer(
@@ -147,7 +153,10 @@ class SignUp extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      controller.goToSuccessfulSignUp();
+                      if (!controller.isGoogleSignin)
+                        controller.goToSuccessfulSignUp();
+                      else
+                        controller.googleSignUp();
                     },
                     child: Container(
                       width: Dimensions.screenWidth(context),
@@ -162,27 +171,30 @@ class SignUp extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Wrap(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "alreadyhaveaccount".tr,
-                            style: TextStyles.w50013(context),
-                          ),
-                          TextButton(
-                              onPressed: () {
-                                controller.goToLogiIn();
-                              },
-                              child: Text(
-                                "login".tr,
-                                style: TextStyle(
-                                    color: LightAppColors.primaryColor),
-                              ))
-                        ],
-                      ),
-                    ],
+                  Visibility(
+                    visible: !controller.isGoogleSignin,
+                    child: Wrap(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "alreadyhaveaccount".tr,
+                              style: TextStyles.w50013(context),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  controller.goToLogiIn();
+                                },
+                                child: Text(
+                                  "login".tr,
+                                  style: TextStyle(
+                                      color: LightAppColors.primaryColor),
+                                ))
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 30.h,
