@@ -159,7 +159,21 @@ class Translation extends Translations {
           "passwordchangedsucessfully": "تم تغيير كلمة المرور بنجاح",
           "processingyourrequest": "جاري معالجة طلبك",
           "completeyourinfo": "أكمل معلوماتك",
-          "existednumber":"رقم الهاتف موجود بالفعل"
+          "existednumber":"رقم الهاتف موجود بالفعل",
+          "aboutjob2":"اشرح وظيفة العمل",
+          "jobtitle":"عنوان العمل",
+          "jobtitle2":"",
+          "requirements":"المتطلبات",
+          "requirements2":"أدخل متطلبات العمل",
+          "jobtype":"نوع العمل",
+          "jobexperince":"الخبرة المطلوبة",
+          "companyinfo":"معلومات الشركة",
+          "shownumofemployees":"إظهار عدد موظفي الشركة",
+          "showaboutcompany":"إظهار معلومات الشركة",
+          "fillyourjobinfo":"إملئ معلومات العمل",
+          "post":"نشر",
+          "additionalinfo2":"(اختياري)",
+          "jobadditionalinfo":"معلومات إضافية"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -318,8 +332,22 @@ class Translation extends Translations {
           "processingyourrequest": "Processing request",
           "passwordchangedsucessfully": "Password changed successfully",
           "wrongoldpassword": "Wrong old password",
+          "post":"Post",
           "completeyourinfo": "Complete your information",
-          "existednumber":"Phone number is already in use"
+          "existednumber":"Phone number is already in use",
+          "aboutjob2":"Explane your job",
+          "jobtitle":"Job title",
+          "jobtitle2":"Enter your job title",
+          "requirements":"Requirements",
+          "requirements2":"Add your job requirements",
+          "jobtype":"Job type",
+          "jobexperince":"Job experince",
+          "companyinfo":"Company information",
+          "shownumofemployees":"Show number of employees",
+          "showaboutcompany":"Show about the company",
+          "fillyourjobinfo":"Fill your job info",
+          "jobadditionalinfo":"Additional information",
+          "additionalinfo2":"(Optional)"
         }
       };
 }

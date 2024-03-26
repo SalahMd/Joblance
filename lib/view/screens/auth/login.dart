@@ -58,7 +58,9 @@ class Login extends StatelessWidget {
                   max: 30,
                   isNumber: false,
                   isPassword: false,
-                  isBorder: true,
+                  isBorder: false,
+                  isFilled: true,
+                  isLabel: false,
                 ),
                 Customtextformfiled(
                   hintText: "password1".tr,
@@ -69,7 +71,10 @@ class Login extends StatelessWidget {
                   max: 18,
                   isNumber: false,
                   isPassword: controller.isshown,
-                  isBorder: true,
+                  isBorder: false,
+                  isFilled: true,
+                  isLabel: false,
+                  
                   ontapicon: controller.showPassword,
                 ),
                 Align(
@@ -88,7 +93,8 @@ class Login extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    controller.logIn();
+                    //controller.logIn();
+                    Get.offAllNamed("HomePage");
                   },
                   child: Container(
                     width: Dimensions.screenWidth(context),

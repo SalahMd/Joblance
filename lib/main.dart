@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/localization/change_language.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/view/screens/add_job/add_job.dart';
 import 'package:joblance/view/screens/auth/login.dart';
 import 'package:joblance/view/screens/auth/email_verifiction.dart';
 import 'package:joblance/view/screens/auth/sign_up/sign_up.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
           getPages: [
             GetPage(
                 name: "/",
-                page: () => SplashScreen(),
+                page: () =>SplashScreen(),
                // middlewares: [MiddleWare()]
                 ),
             GetPage(name: "/Login", page: () => const Login()),

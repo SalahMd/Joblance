@@ -12,7 +12,7 @@ class Customtextformfiled extends StatelessWidget {
   final int max;
   final bool isNumber;
   final bool isPassword;
-  final bool? isBorder;
+  final bool isBorder;
   final int maxLines;
   final int? letters;
   final bool isFilled;
@@ -31,7 +31,7 @@ class Customtextformfiled extends StatelessWidget {
     required this.isNumber,
     required this.isPassword,
     this.ontapicon,
-    this.isBorder,
+    this.isBorder = true,
     TextStyle? style,
     this.maxLines = 1,
     this.letters,
@@ -68,9 +68,11 @@ class Customtextformfiled extends StatelessWidget {
         decoration: InputDecoration(
           enabled: true,
           hintText: hintText,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
+          border: isBorder
+              ? OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                )
+              : InputBorder.none, // Hide bottom line,
           labelStyle: TextStyle(
             color: Theme.of(context).colorScheme.onSecondary,
           ),

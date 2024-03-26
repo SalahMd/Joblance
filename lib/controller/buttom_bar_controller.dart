@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/view/screens/add_job/add_job.dart';
 import 'package:joblance/view/screens/home_page/company_home_page/company_home_page.dart';
 import 'package:joblance/view/screens/messages.dart';
 import 'package:joblance/view/screens/profile/company_profile.dart';
@@ -26,21 +27,20 @@ class ButtomBarControllerImp extends ButtomBarController {
   @override
   void onInit() {
     role = myServices.sharedPreferences.getString("role_id");
-    if(role=="2"){
-      listPage=[
-    const CompanyProfile(),
-    
-     CompanyHomePage(),
-    Messages(),
-    const Settings(),
-  ];
-    }else if (role == "3"){
-      listPage=[
-    const FreelancerProfile(),
-    FreelancerHomePage(),
-    Messages(),
-    const Settings(),
-  ];
+    if (role == "3") {
+      listPage = [
+        const FreelancerProfile(),
+        FreelancerHomePage(),
+        Messages(),
+        const Settings(),
+      ];
+    } else {
+      listPage = [
+        const CompanyProfile(),
+        CompanyHomePage(),
+        Messages(),
+        const Settings(),
+      ];
     }
     super.onInit();
   }
