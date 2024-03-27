@@ -62,6 +62,7 @@ class Report extends StatelessWidget {
                   isNumber: false,
                   isPassword: false,
                   isBorder: true,
+                  isFilled: true,
                   isLabel: false,
                 ),
                 SizedBox(
@@ -86,6 +87,7 @@ class Report extends StatelessWidget {
                   maxLines: 5,
                   isBorder: true,
                   isLabel: false,
+                  isFilled: true,
                 ),
                 Container(
                   width: Dimensions.screenWidth(context),

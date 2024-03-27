@@ -22,11 +22,10 @@ class TabBarWidget extends StatelessWidget {
               color: LightAppColors.primaryColor,
             ),
             borderRadius: BorderRadius.circular(15)),
-        labelStyle: TextStyles.w50014(context),
+        labelStyle: TextStyles.w50013(context),
         overlayColor: null,
         tabs: tabs,
       ),
-    
     );
   }
 }

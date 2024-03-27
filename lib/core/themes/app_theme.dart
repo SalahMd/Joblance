@@ -5,20 +5,21 @@ import 'package:joblance/core/constants/colors.dart';
 
 class AppTheme {
   static var darkTheme = ColorScheme.dark(
-    primary: DarkAppColors.primaryColor,
-    onSecondary: Colors.white,
+      primary: DarkAppColors.primaryColor,
+      onSecondary: Colors.white,
 //     //for numbers after picking in date picker
 //     //onPrimary: Colors.indigo,
-     surfaceTint: Colors.black,
-    primaryContainer: DarkAppColors.whiteColor,
+      surfaceTint: Colors.black,
+      primaryContainer: DarkAppColors.whiteColor,
 //     onPrimaryContainer: Color.fromARGB(255, 250, 248, 248),
 //     onErrorContainer: Color(0xFFF9DEDC),
 //     outline: Color(0xFF938F99),
-    background: Colors.grey[900]!,
+      background: Colors.grey[900]!,
 //     onBackground: Color.fromARGB(255, 2, 2, 2),
 //     surface: Color.fromARGB(255, 52, 50, 50),
-    surface: Colors.black.withOpacity(0.2),
-    onSurface: Color(0xFFF3F3F3),
+      surface: Colors.black.withOpacity(0.2),
+      onSurface: Color(0xFFF3F3F3),
+      onBackground: Colors.black.withOpacity(0.3)
 //     surfaceVariant: Color.fromARGB(255, 222, 52, 30),
 //     //for chips after picking
 //  //   inversePrimary: Colors.amber,
@@ -35,7 +36,7 @@ class AppTheme {
 //  //   secondaryContainer: Colors.amber,
 //     //for textfileds
 //     onSurfaceVariant: Color.fromARGB(255, 254, 254, 254),
-  );
+      );
 
   static ColorScheme lightTheme = ColorScheme.light(
     primary: LightAppColors.primaryColor,
@@ -46,6 +47,7 @@ class AppTheme {
     background: LightAppColors.backGround,
     // //onPrimary: Colors.indigo,
     // //onSecondary: Colors.indigo,
+    onBackground: LightAppColors.whiteColor,
     // //for date picker
     surface: LightAppColors.whiteColor,
     // surface: lightAppColors.whiteColor,

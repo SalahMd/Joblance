@@ -35,8 +35,9 @@ class SignUp extends StatelessWidget {
                   ),
                   SafeArea(
                     child: Text(
-                      controller.isGoogleSignin?"completeyourinfo".tr:
-                      "addyourinfo".tr,
+                      controller.isGoogleSignin
+                          ? "completeyourinfo".tr
+                          : "addyourinfo".tr,
                       style: Theme.of(context).textTheme.headline1,
                     ),
                   ),
@@ -107,8 +108,7 @@ class SignUp extends StatelessWidget {
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Container(
-                      margin:
-                          EdgeInsetsDirectional.only(start: 20.w, top: 10.h),
+                      margin: EdgeInsetsDirectional.only(start: 20.w, top: 5.h),
                       child: Text(
                         "major".tr,
                         style: TextStyles.w50012(context),

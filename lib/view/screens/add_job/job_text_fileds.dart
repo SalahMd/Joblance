@@ -38,6 +38,26 @@ class JobTextFileds extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
+            "joblocation".tr,
+            style: TextStyles.w50014(context),
+          ),
+        ),
+        Customtextformfiled(
+          hintText: "joblocation2".tr,
+          labelText: "".tr,
+          iconData: null,
+          controller: controller.jobLocation,
+          min: 5,
+          max: 25,
+          isNumber: false,
+          isPassword: false,
+          isBorder: false,
+          isLabel: false,
+          isFilled: true,
+        ),
+        Padding(
+          padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
+          child: Text(
             "aboutjob1".tr,
             style: TextStyles.w50014(context),
           ),
@@ -80,7 +100,7 @@ class JobTextFileds extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
-            "additionalinfo".tr,
+            "jobadditionalinfo".tr,
             style: TextStyles.w50014(context),
           ),
         ),

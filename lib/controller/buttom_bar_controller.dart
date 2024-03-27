@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/home_page/company_home_page/company_home_page.dart';
 import 'package:joblance/view/screens/messages.dart';
-import 'package:joblance/view/screens/profile/company_profile.dart';
-import 'package:joblance/view/screens/profile/freelancer_profile.dart';
+import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
+import 'package:joblance/view/screens/profile/freelancer_profile/freelancer_profile.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/freelancer_home_page.dart';
 import 'package:joblance/view/screens/settings/settings.dart';
 

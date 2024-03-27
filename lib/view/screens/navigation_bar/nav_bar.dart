@@ -83,8 +83,8 @@ class ButtomBar extends StatelessWidget {
                       child: Container(
                         width: 50,
                         height: 50,
-                        margin: EdgeInsets.only(
-                          left: 138.w,
+                        margin: EdgeInsetsDirectional.only(
+                          start: 138.w,
                         ),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(40),

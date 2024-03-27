@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/profile/freelancer_profile/freelancer_profile.dart';
 
 class FreeLancerDesign extends StatelessWidget {
   const FreeLancerDesign({super.key});
@@ -13,14 +15,15 @@ class FreeLancerDesign extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-         // Get.to(FreelancerProfile());
+          Get.to(FreelancerProfile());
         },
         child: Container(
             width: Dimensions.screenWidth(context),
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
-            margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+            margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey[400]!),
+              color: Theme.of(context).colorScheme.onBackground,
+              //   border: Border.all(color: Colors.grey[400]!),
               // color: Theme.of(context).colorScheme.primaryContainer,
               borderRadius: BorderRadius.circular(10),
             ),

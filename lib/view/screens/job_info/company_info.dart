@@ -6,7 +6,7 @@ import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/applay_job_page.dart';
-import 'package:joblance/view/screens/profile/company_profile.dart';
+import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class CompanyInfo extends StatelessWidget {
   final Image companyImage;

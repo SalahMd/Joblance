@@ -15,6 +15,7 @@ class AddjobControllerImpl extends AddjobController {
   late TextEditingController requirements;
   late TextEditingController salary;
   late TextEditingController jobTitle;
+  late TextEditingController jobLocation;
 
   bool showNumOfEmployees = false;
   bool showAboutCompany = false;
@@ -171,6 +172,7 @@ class AddjobControllerImpl extends AddjobController {
     additionalInfo = new TextEditingController();
     requirements = new TextEditingController();
     salary = new TextEditingController();
+    jobLocation = new TextEditingController();
     jobTitle = new TextEditingController();
     super.onInit();
   }
@@ -182,6 +184,7 @@ class AddjobControllerImpl extends AddjobController {
     requirements.dispose();
     salary.dispose();
     jobTitle.dispose();
+    jobLocation.dispose();
     super.dispose();
   }
 
