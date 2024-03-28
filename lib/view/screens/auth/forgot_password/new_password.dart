@@ -12,7 +12,7 @@ class NewPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(EmailVerifictionControllerImpl());
+    Get.put(EmailVerifictionControllerImpl(context: context));
     return Scaffold(
       body: SingleChildScrollView(
         child: GetBuilder<EmailVerifictionControllerImpl>(

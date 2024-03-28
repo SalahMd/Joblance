@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -73,8 +74,9 @@ class JobDesign extends StatelessWidget {
                     ),
                     SizedBox(height: 3.h),
                     Text(
-                      location + " - " + remote,
+                      remote + " - " + location,
                       style: TextStyles.w40011grey(context),
+                      overflow: TextOverflow.ellipsis,
                     ),
                     //SizedBox(height: 3.h),
                     Text(

@@ -24,7 +24,9 @@ class Crud {
           request.fields[key] = value.toString();
         });
         var myRequest = await request.send();
-        response = await http.Response.fromStream(myRequest,);
+        response = await http.Response.fromStream(
+          myRequest,
+        );
 
         print(response.body);
       }
@@ -79,6 +81,7 @@ class Crud {
       else if (isPost && !isFile) {
         response =
             await http.post(Uri.parse(linkurl), body: data, headers: headers);
+        print(response.body);
       } else if (!isPost && !isFile) {
         response = await http.get(Uri.parse(linkurl), headers: headers);
         print(response.body);

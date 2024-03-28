@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
@@ -21,6 +22,7 @@ abstract class EmailVerifictionController extends GetxController {
 }
 
 class EmailVerifictionControllerImpl extends EmailVerifictionController {
+  final BuildContext context;
   String? email;
   String? verifyFor;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
@@ -33,6 +35,8 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
   StatusRequest? statusRequest;
   int timer = 60;
   late Timer countdownTimer;
+
+  EmailVerifictionControllerImpl({required this.context});
   @override
   checkCode() async {
     statusRequest = StatusRequest.loading;
@@ -46,8 +50,10 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
       if (response['status'] == "success") {
         if (verifyFor == "forgot_password")
           Get.offAll(NewPassword(), arguments: {"email": email});
-        else
+        else {
           Get.offAllNamed("Login");
+          snackBar("", "youremailhasbeenverified".tr, context);
+        }
       } else {
         animationedAlert(AppAnimations.wrong, "wrongcode".tr);
         update();
@@ -81,13 +87,14 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           Get.offAll(Login());
+          snackBar("", "yourpasswordhasbeenchanged".tr, context);
         }
       }
     }
   }
 
-  @override
-  goToSuccessSignUp(String verificationCode) async {}
+  // @override
+  // goToSuccessSignUp(String verificationCode) async {}
 
   @override
   void onInit() {
@@ -139,4 +146,7 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
       }
     }
   }
+
+  @override
+  goToSuccessSignUp(String verificationCode) {}
 }

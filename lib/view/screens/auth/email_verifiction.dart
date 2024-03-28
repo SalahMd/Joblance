@@ -13,7 +13,7 @@ class EmailVerification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(EmailVerifictionControllerImpl());
+    Get.put(EmailVerifictionControllerImpl(context: context));
     return Scaffold(
       body: GetBuilder<EmailVerifictionControllerImpl>(
         builder: (controller) => SingleChildScrollView(

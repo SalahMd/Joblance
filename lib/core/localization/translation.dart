@@ -193,7 +193,10 @@ class Translation extends Translations {
           "addimage":"أضف صورة",
           "addyourproduct":"أضف منتجك",
           "addyourproject":"أضف مشروعك",
-          "skills":"المهارات"
+          "skills":"المهارات",
+          "yourpasswordhasbeenchanged":"تم تغيير كلمة المرور",
+          "wronglogin":"خطأ في البريد الإلكتروني أو كلمة المرور",
+          "youremailhasbeenverified":"تم تأكيد بريدك الإلكتروني","emailisnotexisted":"البريد الإلكتروني غير موجود"
 
         },
         "en": {
@@ -389,6 +392,9 @@ class Translation extends Translations {
           "addyourproduct":"Add your product",
           "addyourproject":"Add your project",
           "skills":"Skills",
+          "wronglogin":"Wrong email or password",
+          "yourpasswordhasbeenchanged":"Your password has been changed",
+          "youremailhasbeenverified":"Your email has been verified","emailisnotexisted":"The email is not existed"
         }
       };
 }

@@ -28,7 +28,6 @@ class DropDownWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primaryContainer,
-          //border: Border.all(color: Theme.of(context).colorScheme.onSecondary),
           borderRadius: BorderRadius.circular(20)),
       child: DropdownButton<String>(
         borderRadius: BorderRadius.circular(25),

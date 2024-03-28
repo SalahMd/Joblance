@@ -74,7 +74,6 @@ class Login extends StatelessWidget {
                   isBorder: false,
                   isFilled: true,
                   isLabel: false,
-                  
                   ontapicon: controller.showPassword,
                 ),
                 Align(
@@ -93,8 +92,8 @@ class Login extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    //controller.logIn();
-                    Get.offAllNamed("HomePage");
+                    controller.logIn();
+                    //Get.offAllNamed("HomePage");
                   },
                   child: Container(
                     width: Dimensions.screenWidth(context),

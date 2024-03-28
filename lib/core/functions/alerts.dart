@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:joblance/core/constants/text_styles.dart';
 
 Future<bool> exitAlert() {
   Get.defaultDialog(
@@ -87,6 +89,25 @@ Future<bool> animationedAlert(var animation, String title) {
   return Future.value(true);
 }
 
+snackBar(String title, String message, BuildContext context) {
+  Get.snackbar(
+    title,
+    message,
+    duration: const Duration(seconds: 5),
+    titleText: Text(
+      title,
+      style: TextStyles.w50012(context),
+    ),
+    padding: EdgeInsets.only(bottom: 15.h, left: 10.w, right: 10.w),
+    messageText: Text(
+      message,
+      style: TextStyles.w50013(context),
+    ),
+    backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+    snackPosition: SnackPosition.BOTTOM,
+    margin: EdgeInsets.only(bottom: 10.h)
+  );
+}
 // alert(String title) {
 //   Get.defaultDialog(
 //     title: title,

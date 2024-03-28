@@ -62,12 +62,11 @@ class LogInControllerImpl extends LogiInController {
       statusRequest = hadelingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
+          myServices.sharedPreferences.setInt("id", response['data']["id"]);
           myServices.sharedPreferences
-              .setInt("id", response['data']["user"]["user_id"]);
+              .setString("token", response['data']["accesstoken"]);
           myServices.sharedPreferences
-              .setString("token", response['data']["accessToken"]);
-          myServices.sharedPreferences.setString(
-              "role_id", response['data']["user"]["role_id"].toString());
+              .setString("role_id", response['data']["role_id"].toString());
           myServices.sharedPreferences.setString("step", "2");
           Get.offNamed("HomePage");
         } else {
@@ -114,8 +113,8 @@ class LogInControllerImpl extends LogiInController {
       print(statusRequest);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          String email = response['data']['user']['email'];
-          Get.offAllNamed("SignUp",arguments: {"email":email});
+          String email = response['data']['email'];
+          Get.offAllNamed("SignUp", arguments: {"email": email});
         } else {
           animationedAlert(AppAnimations.wrong, "errorloggingin".tr);
           update();
