@@ -19,9 +19,7 @@ class AddjobControllerImpl extends AddjobController {
 
   bool showNumOfEmployees = false;
   bool showAboutCompany = false;
-  // List jobType = [];
-  // List jobExperience = [];
-  // List remote = [];
+
   String jobTypeValue = '1';
   String remoteValue = '1';
   String jobExpirenceValue = '1';

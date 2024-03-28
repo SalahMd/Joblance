@@ -53,6 +53,7 @@ class ForgotPassword extends StatelessWidget {
                   isNumber: false,
                   isPassword: false,
                   isBorder: true,
+                  isFilled: true,
                   isLabel: false,
                 ),
                 SizedBox(

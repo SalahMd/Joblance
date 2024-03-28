@@ -43,8 +43,8 @@ class BirthDate extends StatelessWidget {
                 padding: EdgeInsetsDirectional.symmetric(horizontal: 17.w),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                        color: Theme.of(context).colorScheme.onSecondary)),
+                    //border: Border.all(
+                    color: Theme.of(context).colorScheme.primaryContainer),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

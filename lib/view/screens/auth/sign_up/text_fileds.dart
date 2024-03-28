@@ -31,6 +31,7 @@ class TextFileds extends StatelessWidget {
                   min: 3,
                   max: 10,
                   isNumber: false,
+                  isFilled: true,
                   isPassword: false,
                   isBorder: true,
                 ),
@@ -48,6 +49,7 @@ class TextFileds extends StatelessWidget {
                     isNumber: false,
                     isPassword: false,
                     isBorder: true,
+                    isFilled: true,
                   ),
                 ),
               )
@@ -66,6 +68,7 @@ class TextFileds extends StatelessWidget {
             isNumber: false,
             isPassword: false,
             isBorder: true,
+            isFilled: true,
           ),
         ),
         GestureDetector(
@@ -80,8 +83,7 @@ class TextFileds extends StatelessWidget {
               padding: EdgeInsetsDirectional.symmetric(horizontal: 15.w),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                      color: Theme.of(context).colorScheme.onSecondary)),
+                  color: Theme.of(context).colorScheme.primaryContainer),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -104,6 +106,7 @@ class TextFileds extends StatelessWidget {
           isNumber: true,
           isPassword: false,
           isBorder: true,
+          isFilled: true,
         ),
         Visibility(
           visible: !controller.isGoogleSignin,
@@ -117,6 +120,7 @@ class TextFileds extends StatelessWidget {
             isNumber: false,
             isPassword: controller.isshown,
             isBorder: true,
+            isFilled: true,
             ontapicon: controller.showPassword,
           ),
         ),
@@ -130,6 +134,7 @@ class TextFileds extends StatelessWidget {
             min: 8,
             max: 30,
             isNumber: false,
+            isFilled: true,
             isPassword: controller.isshown,
             isBorder: true,
             ontapicon: controller.showPassword,
@@ -143,11 +148,12 @@ class TextFileds extends StatelessWidget {
             iconData: Icons.lock_outline,
             controller: controller.aboutCompanyController,
             min: 10,
-            max: 150,
+            max: 200,
             isNumber: false,
+            isFilled: true,
             isPassword: false,
-            letters: 150,
-            maxLines: 3,
+            //letters: 150,
+            maxLines: 4,
             isValidation: false,
           ),
         ),

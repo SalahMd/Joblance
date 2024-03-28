@@ -39,7 +39,8 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
 
   @override
   void onInit() {
-    //  displayData();
+    super.onInit();
+  
   }
 
   @override

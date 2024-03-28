@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/applay_job_controller.dart';
@@ -59,6 +57,7 @@ class ApplayJobPage extends StatelessWidget {
                       isPassword: false,
                       isBorder: true,
                       isLabel: false,
+                      isFilled: true,
                     )),
                     Expanded(
                         child: Customtextformfiled(
@@ -72,6 +71,7 @@ class ApplayJobPage extends StatelessWidget {
                       isPassword: false,
                       isBorder: true,
                       isLabel: false,
+                      isFilled: true,
                     ))
                   ],
                 ),
@@ -85,6 +85,7 @@ class ApplayJobPage extends StatelessWidget {
                   isNumber: false,
                   isPassword: false,
                   isBorder: true,
+                  isFilled: true,
                   isLabel: false,
                 ),
                 Customtextformfiled(
@@ -96,6 +97,7 @@ class ApplayJobPage extends StatelessWidget {
                   max: 15,
                   isNumber: false,
                   isPassword: false,
+                  isFilled: true,
                   isBorder: true,
                   isLabel: false,
                 ),
@@ -110,6 +112,7 @@ class ApplayJobPage extends StatelessWidget {
                   isPassword: false,
                   isBorder: false,
                   isLabel: false,
+                  isFilled: true,
                   maxLines: 6,
                   letters: 250,
                 ),

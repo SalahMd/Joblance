@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/localization/change_language.dart';
 import 'package:joblance/core/services/services.dart';
-import 'package:joblance/view/screens/add_job/add_job.dart';
 import 'package:joblance/view/screens/add_project_or_product/add_project_or_product.dart';
 import 'package:joblance/view/screens/auth/login.dart';
 import 'package:joblance/view/screens/auth/email_verifiction.dart';
@@ -44,10 +43,10 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           getPages: [
             GetPage(
-                name: "/",
-                page: () =>AddProjectOrProduct(),
-               // middlewares: [MiddleWare()]
-                ),
+              name: "/",
+              page: () => SplashScreen(),
+              // middlewares: [MiddleWare()]
+            ),
             GetPage(name: "/Login", page: () => const Login()),
             GetPage(name: "/ChooseLanguage", page: () => ChooseLanguage()),
             GetPage(name: "/OnBoarding", page: () => OnBoarding()),

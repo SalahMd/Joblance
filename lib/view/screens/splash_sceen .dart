@@ -1,4 +1,3 @@
-import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,8 +21,7 @@ class SplashScreen extends StatelessWidget {
                     Image.asset(AppImages.joblance)
                         .animate()
                         .fade(duration: 1200.ms)
-                        .slideY(begin: -0.4),
-                        //.scaleY(begin: -0.5),
+                        .slideY(begin: -0.3),
                     Container(
                       width: 80.w,
                       height: 50.h,

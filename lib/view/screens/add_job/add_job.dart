@@ -3,14 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_job_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
-import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_job/company_info.dart';
 import 'package:joblance/view/screens/add_job/job_specifications.dart';
 import 'package:joblance/view/screens/add_job/job_text_fileds.dart';
-import 'package:joblance/view/screens/auth/sign_up/text_fileds.dart';
 
 class AddJob extends StatelessWidget {
   const AddJob({super.key});

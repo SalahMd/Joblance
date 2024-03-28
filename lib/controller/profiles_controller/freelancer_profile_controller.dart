@@ -41,7 +41,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   @override
   void onInit() {
     //displayData();
+    super.onInit();
   }
 
-  void dispose() {}
 }

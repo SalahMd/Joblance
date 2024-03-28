@@ -179,7 +179,22 @@ class Translation extends Translations {
           "companyproducts": "منتجات الشركة",
           "contactinfo": "معلومات التواصل",
           "joblocation2": "أدخل مكان العمل",
-          "bio":"معلومات شخصية"
+          "bio":"معلومات شخصية",
+          "producttitle":"اسم المنتج",
+          "projecttitle":"اسم المشروع",
+          "productdescription":"وصف المنتج",
+          "projectdescription":"وصف المشروع",
+          "projectdescription2":"أضف وصف لمشروعك",
+          "productdescription2":"أضف وصف لمنتجك",
+          "producttitle2":"أدخل اسم المنتج",
+          "projecttitle2":"أدخل اسم المشروع",
+          "link":"الرابط",
+          "addyourlink":"أضف رابط",
+          "addimage":"أضف صورة",
+          "addyourproduct":"أضف منتجك",
+          "addyourproject":"أضف مشروعك",
+          "skills":"المهارات"
+
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -359,7 +374,21 @@ class Translation extends Translations {
           "joblocation2": "Enter the location of the job",
           "companyproducts": "Company products",
           "contactinfo": "Contact information",
-          "bio":"Bio"
+          "bio":"Bio",
+          "producttitle":"Product name",
+          "projecttitle":"Project name",
+          "productdescription":"Product description",
+          "projectdescription":"Project description",
+          "projectdescription2":"Add description to your project",
+          "productdescription2":"Add description to your product",
+          "producttitle2":"Your product name",
+          "projecttitle2":"Your project name",
+          "link":"Link",
+          "addyourlink":"Add link",
+          "addimage":"Add image",
+          "addyourproduct":"Add your product",
+          "addyourproject":"Add your project",
+          "skills":"Skills",
         }
       };
 }

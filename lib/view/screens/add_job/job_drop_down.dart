@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:joblance/controller/add_job_controller.dart';
-import 'package:joblance/controller/auth/signup_controller.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
 // ignore: must_be_immutable
