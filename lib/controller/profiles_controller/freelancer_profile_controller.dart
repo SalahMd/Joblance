@@ -18,7 +18,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     ),
     Tab(text: "projects".tr),
     Tab(
-      text: "interests".tr,
+      text: "skills".tr,
     ),
     Tab(text: "contact".tr),
   ];

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:joblance/core/localization/change_language.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/add_job/add_job.dart';
+import 'package:joblance/view/screens/add_project_or_product/add_project_or_product.dart';
 import 'package:joblance/view/screens/auth/login.dart';
 import 'package:joblance/view/screens/auth/email_verifiction.dart';
 import 'package:joblance/view/screens/auth/sign_up/sign_up.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
           getPages: [
             GetPage(
                 name: "/",
-                page: () =>SplashScreen(),
+                page: () =>AddProjectOrProduct(),
                // middlewares: [MiddleWare()]
                 ),
             GetPage(name: "/Login", page: () => const Login()),

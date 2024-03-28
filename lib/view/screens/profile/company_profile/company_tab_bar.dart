@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,11 +17,17 @@ class CompanyTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dimensions.screenWidth(context),
       height: Dimensions.screenHeight(context),
+      //width: Dimensions.screenWidth(context),
       child: TabBarView(children: [
-        jobs(
-          context,
+        Column(
+          children: [
+            Expanded(
+              child: jobs(
+                context,
+              ),
+            ),
+          ],
         ),
         aboutCompany(context),
         products(context),
@@ -52,41 +61,28 @@ Widget aboutCompany(BuildContext context) {
 }
 
 Widget jobs(BuildContext context) {
-  return Container(
-      child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-        child: Text(
-          "postedjobs".tr,
-          style: Theme.of(context).textTheme.headline1,
-        ),
-      ),
-      ListView.builder(
-          padding: EdgeInsets.zero,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 5,
-          itemBuilder: (BuildContext context, int index) {
-            return JobDesign(
-                jobTitle: "React developer",
-                companyName: "Google",
-                location: "United states",
-                date: "9 days ago",
-                remote: "remote".tr,
-                image: AppImages.googleLogo,
-                isActive: false);
-          }),
-    ],
-  ));
+  return ListView.builder(
+      padding: EdgeInsets.zero,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 12,
+      itemBuilder: (BuildContext context, int index) {
+        return JobDesign(
+            jobTitle: "React developer",
+            companyName: "Google",
+            location: "United states",
+            date: "9 days ago",
+            remote: "remote".tr,
+            image: AppImages.googleLogo,
+            isActive: false);
+      });
 }
 
 Widget products(BuildContext context) {
   return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -101,6 +97,7 @@ Widget contactInfo(BuildContext context) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
     child: Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(

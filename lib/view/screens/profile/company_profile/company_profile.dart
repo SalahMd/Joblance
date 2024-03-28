@@ -3,12 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/profiles_controller/company_profile_controller.dart';
 import 'package:joblance/core/constants/images.dart';
-import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_tab_bar.dart';
 import 'package:joblance/view/screens/profile/tob_bar.dart';
-import 'package:joblance/view/widgets/divider.dart';
-import 'package:joblance/view/widgets/job_design.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
 
 class CompanyProfile extends StatelessWidget {
@@ -25,7 +21,11 @@ class CompanyProfile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TobBar(image: AppImages.googleLogo,name: "Google",description: "Softwere development company",),
+                TobBar(
+                  image: AppImages.googleLogo,
+                  name: "Google",
+                  description: "Softwere development company",
+                ),
                 SizedBox(
                   height: 15.h,
                 ),
@@ -36,7 +36,11 @@ class CompanyProfile extends StatelessWidget {
                 TabBarWidget(
                   tabs: controller.tabs,
                 ),
-               CompanyTabBar()
+                Column(
+                  children: [
+                    CompanyTabBar(),
+                  ],
+                )
               ],
             ),
           ),

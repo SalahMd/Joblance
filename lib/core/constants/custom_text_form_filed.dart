@@ -79,7 +79,7 @@ class Customtextformfiled extends StatelessWidget {
             hintStyle: const TextStyle(fontSize: 17, color: Colors.grey),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             contentPadding:
-                const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             label: isLabel
                 ? Container(
                     margin: const EdgeInsets.only(left: 5, right: 5),

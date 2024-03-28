@@ -66,7 +66,7 @@ class TobBar extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               SizedBox(
-                height: 10.h,
+                height: 5.h,
               ),
               Text(
                 name,
@@ -86,11 +86,7 @@ class TobBar extends StatelessWidget {
                 "10 M Followers",
                 style: TextStyles.w40012grey(context),
               ),
-              Text(
-                "10k" + "employees".tr,
-                style: TextStyles.w40012grey(context),
-              ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 10.h),
               Row(
                 children: [
                   Expanded(

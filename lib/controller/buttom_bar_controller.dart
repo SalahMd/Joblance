@@ -26,17 +26,17 @@ class ButtomBarControllerImp extends ButtomBarController {
   @override
   void onInit() {
     role = myServices.sharedPreferences.getString("role_id");
-    if (role == "3") {
-      listPage = [
-        const FreelancerProfile(),
-        FreelancerHomePage(),
-        Messages(),
-        const Settings(),
-      ];
-    } else {
+     if(role == "3")  {
       listPage = [
         const CompanyProfile(),
         CompanyHomePage(),
+        Messages(),
+        const Settings(),
+      ];
+    }else {
+      listPage = [
+        const FreelancerProfile(),
+        FreelancerHomePage(),
         Messages(),
         const Settings(),
       ];
