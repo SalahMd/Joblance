@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/text_styles.dart';
@@ -36,7 +35,7 @@ Future<bool> animationedAlertWithActions(
     var animation, String title, void Function() onYesTap) {
   Get.defaultDialog(
       title: title,
-      titleStyle: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500),
+      titleStyle: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),
       titlePadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       content: animation != null
           ? Container(
@@ -45,9 +44,7 @@ Future<bool> animationedAlertWithActions(
       barrierDismissible: false,
       actions: [
         TextButton(
-            onPressed: () {
-              onYesTap;
-            },
+            onPressed: onYesTap,
             child: Text(
               "yes".tr,
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
@@ -77,8 +74,6 @@ Future<bool> animationedAlert(var animation, String title) {
   Get.defaultDialog(
     title: title,
     titleStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
-    //middleText: title,
-    //middleTextStyle:TextStyle(fontSize: 17.sp,fontWeight: FontWeight.w500),
     titlePadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
     content: animation != null
         ? Container(
@@ -90,23 +85,20 @@ Future<bool> animationedAlert(var animation, String title) {
 }
 
 snackBar(String title, String message, BuildContext context) {
-  Get.snackbar(
-    title,
-    message,
-    duration: const Duration(seconds: 5),
-    titleText: Text(
-      title,
-      style: TextStyles.w50012(context),
-    ),
-    padding: EdgeInsets.only(bottom: 15.h, left: 10.w, right: 10.w),
-    messageText: Text(
-      message,
-      style: TextStyles.w50013(context),
-    ),
-    backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-    snackPosition: SnackPosition.BOTTOM,
-    margin: EdgeInsets.only(bottom: 10.h)
-  );
+  Get.snackbar(title, message,
+      duration: const Duration(seconds: 5),
+      titleText: Text(
+        title,
+        style: TextStyles.w50012(context),
+      ),
+      padding: EdgeInsets.only(bottom: 15.h, left: 10.w, right: 10.w),
+      messageText: Text(
+        message,
+        style: TextStyles.w50013(context),
+      ),
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      snackPosition: SnackPosition.BOTTOM,
+      margin: EdgeInsets.only(bottom: 10.h, left: 10.w, right: 10.w));
 }
 // alert(String title) {
 //   Get.defaultDialog(

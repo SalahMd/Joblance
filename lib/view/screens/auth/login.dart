@@ -80,7 +80,7 @@ class Login extends StatelessWidget {
                   alignment: AlignmentDirectional.centerEnd,
                   child: TextButton(
                     onPressed: () {
-                      Get.to(ForgotPassword());
+                      controller.goToForgotPassword();
                     },
                     child: Padding(
                         padding: EdgeInsetsDirectional.only(end: 10.w),

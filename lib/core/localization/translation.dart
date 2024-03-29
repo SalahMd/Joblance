@@ -394,7 +394,10 @@ class Translation extends Translations {
           "skills":"Skills",
           "wronglogin":"Wrong email or password",
           "yourpasswordhasbeenchanged":"Your password has been changed",
-          "youremailhasbeenverified":"Your email has been verified","emailisnotexisted":"The email is not existed"
+          "youremailhasbeenverified":"Your email has been verified",
+          "youremailisnotverified":"Your email isn't verified\nDo you want to verify it?",
+          "emailisnotexisted":"The email is not existed",
+
         }
       };
 }

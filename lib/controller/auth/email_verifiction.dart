@@ -103,6 +103,9 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
     Map<String, dynamic>? arguments = Get.arguments as Map<String, dynamic>?;
     email = arguments?['email'] as String?;
     verifyFor = arguments?['checkfor'] as String?;
+    if (verifyFor == "emailverify") {
+      reSendCode();
+    }
 
     startTimer();
     super.onInit();
@@ -136,7 +139,9 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
   @override
   reSendCode() async {
     statusRequest = StatusRequest.loading;
-    animationedAlert(AppAnimations.loadings, "sendingcodetoemail".tr);
+    //because it throw error if the resend is for email verification
+    if (verifyFor != "emailverify")
+      animationedAlert(AppAnimations.loadings, "sendingcodetoemail".tr);
     update();
     var response = await forgotPasswordBack.resendCode(email!, verifyFor!);
     statusRequest = hadelingData(response);

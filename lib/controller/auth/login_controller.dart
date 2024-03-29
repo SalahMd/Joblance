@@ -9,6 +9,7 @@ import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/auth/login_back.dart';
+import 'package:joblance/view/screens/auth/forgot_password/forgot_password.dart';
 
 abstract class LogiInController extends GetxController {
   logIn();
@@ -69,6 +70,10 @@ class LogInControllerImpl extends LogiInController {
               .setString("role_id", response['data']["role_id"].toString());
           myServices.sharedPreferences.setString("step", "2");
           Get.offNamed("HomePage");
+        } else if (response['status'] == "failure" &&
+            response['error_message']['error'] == "email is not verified") {
+          await animationedAlertWithActions(AppAnimations.info,
+              "youremailisnotverified".tr, goToEmailVerification);
         } else {
           animationedAlert(AppAnimations.wrong, "wronglogin".tr);
           update();
@@ -78,6 +83,16 @@ class LogInControllerImpl extends LogiInController {
         update();
       }
     }
+  }
+
+  goToForgotPassword() {
+    Get.to(ForgotPassword());
+  }
+
+  goToEmailVerification() {
+    Get.back();
+    Get.offNamed("EmailVerification",
+        arguments: {"email": emailController.text, "checkfor": "emailverify"});
   }
 
   @override
@@ -122,40 +137,4 @@ class LogInControllerImpl extends LogiInController {
       }
     }
   }
-
-  // Future<bool> popUp() {
-  //   Get.defaultDialog(
-  //     title: 'addyourinfotocontinue',
-  //     titleStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
-  //     titlePadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
-  //     content: Column(
-  //       children: [
-  //         Customtextformfiled(
-  //           hintText: "phone1".tr,
-  //           labelText: "phone2".tr,
-  //           iconData: Icons.phone_outlined,
-  //           controller:phoneController,
-  //           min: 10,
-  //           max: 13,
-  //           isNumber: false,
-  //           isPassword: false,
-  //           isBorder: true,
-  //         ),
-  //         Customtextformfiled(
-  //           hintText: "phone1".tr,
-  //           labelText: "phone2".tr,
-  //           iconData: Icons.phone_outlined,
-  //           controller:phoneController,
-  //           min: 10,
-  //           max: 13,
-  //           isNumber: false,
-  //           isPassword: false,
-  //           isBorder: true,
-  //         )
-  //       ],
-  //     ),
-  //     barrierDismissible: false,
-  //   );
-  //   return Future.value(true);
-  // }
 }
