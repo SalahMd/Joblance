@@ -181,6 +181,7 @@ class SignUpControllerImpl extends SignUpController {
           "major": majorValue,
           "description": aboutCompanyController.text,
           "study_case": studyCaseValue,
+          "birth_date":birthDate,
           "num_of_employees": numOfEmployees,
           "open_to_work": openToWork ? "1" : "0",
           "location": country,
@@ -198,7 +199,7 @@ class SignUpControllerImpl extends SignUpController {
         }
         update();
       } else {
-        animationedAlert(AppAnimations.info,"pleaseaddanimage".tr);
+        animationedAlert(AppAnimations.info, "pleaseaddanimage".tr);
       }
     }
   }

@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -67,7 +68,7 @@ class LogInControllerImpl extends LogiInController {
           myServices.sharedPreferences
               .setString("token", response['data']["accesstoken"]);
           myServices.sharedPreferences
-              .setString("role_id", response['data']["role_id"].toString());
+              .setString("role_id", response['data']["type"]);
           myServices.sharedPreferences.setString("step", "2");
           Get.offNamed("HomePage");
         } else if (response['status'] == "failure" &&
@@ -109,6 +110,10 @@ class LogInControllerImpl extends LogiInController {
 
   @override
   void onInit() {
+    FirebaseMessaging.instance.getToken().then((value) {
+      String? token = value;
+      print("token is"+token!);
+    });
     emailController = TextEditingController();
     passwordController = TextEditingController();
     super.onInit();

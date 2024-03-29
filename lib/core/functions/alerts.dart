@@ -91,7 +91,7 @@ snackBar(String title, String message, BuildContext context) {
         title,
         style: TextStyles.w50012(context),
       ),
-      padding: EdgeInsets.only(bottom: 15.h, left: 10.w, right: 10.w),
+      padding: EdgeInsets.only(bottom: 18.h, left: 10.w, right: 10.w, top: 0),
       messageText: Text(
         message,
         style: TextStyles.w50013(context),

@@ -35,9 +35,10 @@ class Login extends StatelessWidget {
                   "title1".tr,
                   style: Theme.of(context).textTheme.headline1,
                 )),
-                SizedBox(
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10.h,horizontal: 20.w),
                     width: Dimensions.screenWidth(context),
-                    height: 200.h,
+                    height: 180.h,
                     child: Image.asset(AppImages.logo)),
                 Padding(
                   padding: EdgeInsetsDirectional.only(

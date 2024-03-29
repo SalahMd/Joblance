@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'package:intl/intl.dart';
+
 import 'package:flutter/material.dart';
+
 selectDate(BuildContext context) async {
   Completer<String?> completer = Completer<String?>();
   DateTime? picked = await showDatePicker(
@@ -10,9 +13,8 @@ selectDate(BuildContext context) async {
   );
 
   if (picked != null) {
-    String formattedDate = "${picked.year}-${picked.month}-${picked.day}";
+    String formattedDate = DateFormat('yyyy-MM-dd').format(picked);
     completer.complete(formattedDate);
-    print(formattedDate);
     return completer.future;
   } else {
     return null;

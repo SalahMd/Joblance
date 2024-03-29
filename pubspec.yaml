@@ -7,34 +7,33 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
+  auto_animated: ^3.2.0
+  carousel_slider: ^4.2.1
+  chips_choice: ^3.0.1
+  country_picker: ^2.0.25
+  cupertino_icons: ^1.0.6
+  dartz: ^0.10.1
+  date_picker_plus: ^2.1.0
+  emoji_picker_flutter: ^1.6.3
+  file_picker: ^6.2.0
+  firebase_core: ^2.27.2
+  firebase_messaging: ^14.7.21
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.6
-  auto_animated: ^3.2.0
-  chips_choice: ^3.0.1
-  dartz: ^0.10.1
   flutter_animate: ^4.2.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_otp_text_field: ^1.1.1
   flutter_screenutil: ^5.9.0
   get: ^4.6.6
   google_nav_bar: ^5.0.6
+  google_sign_in: ^6.2.1
   http: ^1.1.0
   image_picker: ^1.0.4
-  google_sign_in: ^6.2.1
   lottie: ^2.6.0
   path: ^1.8.3
   shared_preferences: ^2.2.1
   shimmer: ^3.0.0
-  carousel_slider: ^4.2.1
   show_up_animation: ^2.0.0
-  country_picker: ^2.0.25
-  file_picker: ^6.2.0
-  flutter_launcher_icons: ^0.13.1
-  emoji_picker_flutter: ^1.6.3
-  flutter_otp_text_field: ^1.1.1
-  date_picker_plus: ^2.1.0
-
-
-
 
 dev_dependencies:
   flutter_test:
@@ -47,7 +46,6 @@ flutter_launcher_icons:
   min_sdk_android: 21
   flutter_lints: ^3.0.0
 
-
 flutter:
 
   uses-material-design: true
@@ -57,12 +55,12 @@ flutter:
     - assets/images/
     - assets/animations/
   fonts:
-      - family: Cairo
-        fonts:
-          - asset: assets/fonts/Cairo_Bold.ttf
-            weight: 700
-      - family: Trajan Pro
-        fonts:
-          - asset: assets/fonts/PlayfairDisplay-Bold.ttf
-          - asset: assets/fonts/PlayfairDisplay-Regular.ttf
-            weight: 700 
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo_Bold.ttf
+          weight: 700
+    - family: Trajan Pro
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay-Bold.ttf
+        - asset: assets/fonts/PlayfairDisplay-Regular.ttf
+          weight: 700
