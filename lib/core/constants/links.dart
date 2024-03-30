@@ -12,7 +12,7 @@ class AppLinks {
   static String resetPassword = "$IP" "/api/user/password/reset";
   static String category = "$IP" "/api/category";
   static String applayJob = "$IP" "/api/applayjob";
-  static String ChangePassword = "$IP" "/api/changepassword";
+  static String ChangePassword = "$IP" "/api/user/changepassword";
   static String profile = "$IP" "/api/profile/";
   static String jobs = "$IP" "/api/jobs";
   static String user = "$IP" "/api/user";

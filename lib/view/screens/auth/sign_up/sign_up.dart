@@ -159,7 +159,7 @@ class SignUp extends StatelessWidget {
                     },
                     child: Container(
                       width: Dimensions.screenWidth(context),
-                      height: 45.h,
+                      height: 40.h,
                       alignment: Alignment.center,
                       margin: EdgeInsets.symmetric(
                           horizontal: 40.w, vertical: 40.h),

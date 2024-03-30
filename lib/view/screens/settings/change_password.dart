@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -87,16 +88,19 @@ class CahngePassword extends StatelessWidget {
                 SizedBox(
                   height: 30.h,
                 ),
-                Container(
-                  width: Dimensions.screenWidth(context),
-                  height: 40.h,
-                  alignment: Alignment.center,
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 50.w, vertical: 40.h),
-                  decoration: AppButtons.buttonDecoration,
-                  child: Text(
-                    "confirm".tr,
-                    style: TextStyles.w50016White(context),
+                GestureDetector(
+                  onTap:() {controller.changePassword();},
+                  child: Container(
+                    width: Dimensions.screenWidth(context),
+                    height: 40.h,
+                    alignment: Alignment.center,
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 50.w, vertical: 40.h),
+                    decoration: AppButtons.buttonDecoration,
+                    child: Text(
+                      "confirm".tr,
+                      style: TextStyles.w50016White(context),
+                    ),
                   ),
                 )
               ],

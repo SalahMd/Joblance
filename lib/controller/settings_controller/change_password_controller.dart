@@ -40,11 +40,10 @@ class ChangePasswordControllerImpl extends ChangePasswordController {
   @override
   changePassword() async {
     var token = myServices.sharedPreferences.getString("token");
-
     var formdata = formState.currentState;
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
-      animationedAlert(AppAnimations.loadings, "processingyourrequest".tr);
+      animationedAlert(AppAnimations.loadings, "checkingdata".tr);
       update();
       var response = await changePasswordBack.changePassword(
           oldPassword.text, newPassword.text, token);
@@ -55,8 +54,8 @@ class ChangePasswordControllerImpl extends ChangePasswordController {
           Get.back();
           animationedAlert(AppAnimations.done, "passwordchangedsucessfully".tr);
           update();
-        }else{
-          animationedAlert(AppAnimations.done, "wrongoldpassword".tr);
+        } else {
+          animationedAlert(AppAnimations.wrong, "wrongoldpassword".tr);
           update();
         }
       }
