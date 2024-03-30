@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_job_controller.dart';
@@ -25,12 +26,15 @@ class JobSpecifications extends StatelessWidget {
             "jobtype".tr,
             style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 950.ms).slideY(begin: 0.3),
         JobDropDown(
-            title: "jobtype",
-            choices: controller.jobType,
-            elementValue: controller.jobTypeValue,
-            controller: controller),
+                title: "jobtype",
+                choices: controller.jobType,
+                elementValue: controller.jobTypeValue,
+                controller: controller)
+            .animate()
+            .fade(duration: 600.ms, delay: 1000.ms)
+            .slideY(begin: 0.3),
         SizedBox(
           height: 15.h,
         ),
@@ -40,12 +44,15 @@ class JobSpecifications extends StatelessWidget {
             "jobexperince".tr,
             style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 1050.ms).slideY(begin: 0.3),
         JobDropDown(
-            title: "jobexperince",
-            choices: controller.jobExperience,
-            elementValue: controller.jobExpirenceValue,
-            controller: controller),
+                title: "jobexperince",
+                choices: controller.jobExperience,
+                elementValue: controller.jobExpirenceValue,
+                controller: controller)
+            .animate()
+            .fade(duration: 600.ms, delay: 1100.ms)
+            .slideY(begin: 0.3),
         SizedBox(
           height: 15.h,
         ),
@@ -57,12 +64,15 @@ class JobSpecifications extends StatelessWidget {
             "remote".tr,
             style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 1150.ms).slideY(begin: 0.3),
         JobDropDown(
-            title: "remote",
-            choices: controller.remote,
-            elementValue: controller.remoteValue,
-            controller: controller),
+                title: "remote",
+                choices: controller.remote,
+                elementValue: controller.remoteValue,
+                controller: controller)
+            .animate()
+            .fade(duration: 600.ms, delay: 1200.ms)
+            .slideY(begin: 0.3),
         SizedBox(
           height: 15.h,
         ),
@@ -74,12 +84,15 @@ class JobSpecifications extends StatelessWidget {
             "major".tr,
             style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 1250.ms).slideY(begin: 0.3),
         JobDropDown(
-            title: "major",
-            choices: controller.major,
-            elementValue: controller.majorValue,
-            controller: controller),
+                title: "major",
+                choices: controller.major,
+                elementValue: controller.majorValue,
+                controller: controller)
+            .animate()
+            .fade(duration: 600.ms, delay: 1300.ms)
+            .slideY(begin: 0.3),
       ],
     );
   }

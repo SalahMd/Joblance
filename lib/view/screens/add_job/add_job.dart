@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_job_controller.dart';
@@ -65,7 +66,10 @@ class AddJob extends StatelessWidget {
                     )
                   ],
                 ),
-              ),
+              )
+                  .animate()
+                  .fade(duration: 600.ms, delay: 100.ms)
+                  .slideX(begin: 0.1),
               SizedBox(
                 height: 25.h,
               ),

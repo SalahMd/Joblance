@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_job_controller.dart';
@@ -20,7 +21,7 @@ class JobTextFileds extends StatelessWidget {
             "jobtitle".tr,
             style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 200.ms).slideY(begin: 0.4),
         Customtextformfiled(
           hintText: "jobtitle2".tr,
           labelText: "".tr,
@@ -33,14 +34,14 @@ class JobTextFileds extends StatelessWidget {
           isBorder: false,
           isLabel: false,
           isFilled: true,
-        ),
+        ).animate().fade(duration: 600.ms, delay: 300.ms).slideY(begin: 0.4),
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
             "joblocation".tr,
             style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 400.ms).slideY(begin: 0.4),
         Customtextformfiled(
           hintText: "joblocation2".tr,
           labelText: "".tr,
@@ -53,14 +54,14 @@ class JobTextFileds extends StatelessWidget {
           isBorder: false,
           isLabel: false,
           isFilled: true,
-        ),
+        ).animate().fade(duration: 600.ms, delay: 400.ms).slideY(begin: 0.4),
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
             "aboutjob1".tr,
             style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms).slideY(begin: 0.4),
         Customtextformfiled(
           hintText: "aboutjob2".tr,
           labelText: "",
@@ -74,14 +75,14 @@ class JobTextFileds extends StatelessWidget {
           maxLines: 4,
           isLabel: false,
           isFilled: true,
-        ),
+        ).animate().fade(duration: 600.ms, delay: 500.ms).slideY(begin: 0.4),
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
             "requirements".tr,
             style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 600.ms).slideY(begin: 0.4),
         Customtextformfiled(
           hintText: "requirements2".tr,
           labelText: "requirements2".tr,
@@ -95,14 +96,14 @@ class JobTextFileds extends StatelessWidget {
           maxLines: 4,
           isLabel: false,
           isFilled: true,
-        ),
+        ).animate().fade(duration: 600.ms, delay: 700.ms).slideY(begin: 0.4),
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
             "jobadditionalinfo".tr,
             style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 800.ms).slideY(begin: 0.4),
         Customtextformfiled(
           hintText: "additionalinfo2".tr,
           labelText: "".tr,
@@ -116,7 +117,7 @@ class JobTextFileds extends StatelessWidget {
           maxLines: 4,
           isLabel: false,
           isFilled: true,
-        ),
+        ).animate().fade(duration: 600.ms, delay: 900.ms).slideY(begin: 0.4),
       ],
     );
   }

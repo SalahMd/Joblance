@@ -49,8 +49,8 @@ class BirthDate extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                        controller.birthDate != null
-                            ? controller.birthDate!
+                        controller.birthDate !=""
+                            ? controller.birthDate
                             : "youbirthdate".tr,
                         style: TextStyle(
                             fontSize: 12.sp,

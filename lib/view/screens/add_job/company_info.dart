@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_job_controller.dart';
@@ -20,7 +21,7 @@ class CompanyInfo extends StatelessWidget {
             "companyinfo".tr,
             style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 1300.ms).slideY(begin: 0.3),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
@@ -45,7 +46,7 @@ class CompanyInfo extends StatelessWidget {
                   }),
             ],
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 1300.ms).slideY(begin: 0.3),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
@@ -70,7 +71,7 @@ class CompanyInfo extends StatelessWidget {
                   }),
             ],
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 1300.ms).slideY(begin: 0.3),
       ],
     );
   }
