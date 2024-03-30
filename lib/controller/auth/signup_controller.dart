@@ -32,10 +32,10 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController confirmPasswordController;
   late TextEditingController aboutCompanyController;
   bool openToWork = false;
-  String? googleEmail;
+  String? googleEmail, name, imageUrl;
   bool isGoogleSignin = false;
   bool isFreelancer = true;
-  String? birthDate;
+  String birthDate="";
   String studyCaseValue = '1';
   String majorValue = '1';
   Myservices myServices = Get.find();
@@ -170,6 +170,7 @@ class SignUpControllerImpl extends SignUpController {
         statusRequest = StatusRequest.loading;
         animationedAlert(AppAnimations.loadings, "checkingdata".tr);
         update();
+
         var response = await signUpBack.signUp({
           "name": firstName.text,
           "first_name": firstName.text,
@@ -181,12 +182,11 @@ class SignUpControllerImpl extends SignUpController {
           "major": majorValue,
           "description": aboutCompanyController.text,
           "study_case": studyCaseValue,
-          "birth_date":birthDate,
+          "birth_date": birthDate,
           "num_of_employees": numOfEmployees,
           "open_to_work": openToWork ? "1" : "0",
           "location": country,
         }, image);
-        print(response);
         statusRequest = hadelingData(response);
         Get.back();
         if (StatusRequest.success == statusRequest) {
@@ -213,8 +213,10 @@ class SignUpControllerImpl extends SignUpController {
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
     aboutCompanyController = TextEditingController();
-    Map<String, dynamic>? arguments = Get.arguments as Map<String, dynamic>?;
-    googleEmail = arguments?['email'] as String?;
+    Map<String, dynamic>? arguments = Get.arguments;
+    googleEmail = arguments?['email'];
+    name = arguments?['name'];
+    imageUrl = arguments?['image'];
     if (googleEmail != null) {
       isGoogleSignin = true;
       update();
@@ -294,20 +296,27 @@ class SignUpControllerImpl extends SignUpController {
         update();
         return;
       }
+      if (googleEmail == null || name == null || imageUrl == null) {
+        animationedAlert(AppAnimations.wrong, "errorlwhileloggingin".tr);
+        return;
+      }
       statusRequest = StatusRequest.loading;
       animationedAlert(AppAnimations.loadings, "checkingdata".tr);
-      update();
       var response = await signUpBack.googleSignUp(
         {
+          "name": name,
+          "image": imageUrl,
           "email": googleEmail,
           "phone_number": phoneController.text,
           "is_company": isFreelancer ? "0" : "1",
           "major": majorValue,
+          "birth_date": birthDate,
           "description": aboutCompanyController.text,
           "study_case": studyCaseValue,
           "num_of_employees": numOfEmployees,
           "open_to_work": openToWork ? "1" : "0",
           "location": country,
+          "bio": "bio"
         },
       );
       statusRequest = hadelingData(response);

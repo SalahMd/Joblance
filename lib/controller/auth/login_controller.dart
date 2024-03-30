@@ -66,7 +66,7 @@ class LogInControllerImpl extends LogiInController {
         if (response['status'] == "success") {
           myServices.sharedPreferences.setInt("id", response['data']["id"]);
           myServices.sharedPreferences
-              .setString("token", response['data']["accesstoken"]);
+              .setString("token", response['data']["accessToken"]);
           myServices.sharedPreferences
               .setString("role_id", response['data']["type"]);
           myServices.sharedPreferences.setString("step", "2");
@@ -112,7 +112,7 @@ class LogInControllerImpl extends LogiInController {
   void onInit() {
     FirebaseMessaging.instance.getToken().then((value) {
       String? token = value;
-      print("token is"+token!);
+      print("token is" + token!);
     });
     emailController = TextEditingController();
     passwordController = TextEditingController();
@@ -133,8 +133,22 @@ class LogInControllerImpl extends LogiInController {
       print(statusRequest);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          String email = response['data']['email'];
-          Get.offAllNamed("SignUp", arguments: {"email": email});
+          //check if the user have an account or not
+          if (response['data']['authorized'] == 1) {
+            myServices.sharedPreferences.setInt("id", response['data']["id"]);
+            myServices.sharedPreferences
+                .setString("token", response['data']["accessToken"]);
+            myServices.sharedPreferences
+                .setString("role_id", response['data']["role_id"].toString());
+            myServices.sharedPreferences.setString("step", "2");
+            Get.offNamed("HomePage");
+          } else {
+            Get.offAllNamed("SignUp", arguments: {
+              "email":  response['data']['email'],
+              "image": response['data']['image'],
+              "name": response['data']['name'],
+            });
+          }
         } else {
           animationedAlert(AppAnimations.wrong, "errorloggingin".tr);
           update();

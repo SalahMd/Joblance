@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/login_controller.dart';
@@ -10,7 +9,6 @@ import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
-import 'package:joblance/view/screens/auth/forgot_password/forgot_password.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
