@@ -31,15 +31,15 @@ class LogInControllerImpl extends LogiInController {
   bool isshown = true;
   double containerWidth = 300.w;
 
-  hideButton() {
-    containerWidth = 0;
-    update();
-    Future.delayed(const Duration(seconds: 2), () {
-      logIn();
-    });
+  // hideButton() {
+  //   containerWidth = 0;
+  //   update();
+  //   Future.delayed(const Duration(seconds: 2), () {
+  //     logIn();
+  //   });
 
-    update();
-  }
+  //   update();
+  // }
 
   @override
   goToHomePage() {
@@ -139,14 +139,16 @@ class LogInControllerImpl extends LogiInController {
             myServices.sharedPreferences
                 .setString("token", response['data']["accessToken"]);
             myServices.sharedPreferences
-                .setString("role_id", response['data']["role_id"].toString());
+                .setString("role_id", response['data']["type"].toString());
             myServices.sharedPreferences.setString("step", "2");
             Get.offNamed("HomePage");
           } else {
             Get.offAllNamed("SignUp", arguments: {
-              "email":  response['data']['email'],
+              "email": response['data']['email'],
               "image": response['data']['image'],
               "name": response['data']['name'],
+              "first_name": response['data']['given_name'],
+              "last_name": response['data']['family_name']
             });
           }
         } else {

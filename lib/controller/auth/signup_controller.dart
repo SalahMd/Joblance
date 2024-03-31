@@ -32,17 +32,14 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController confirmPasswordController;
   late TextEditingController aboutCompanyController;
   bool openToWork = false;
-  String? googleEmail, name, imageUrl;
+  String? googleEmail, name, imageUrl,googleFirstName,googleLastName;
   bool isGoogleSignin = false;
   bool isFreelancer = true;
   String birthDate="";
-  String studyCaseValue = '1';
-  String majorValue = '1';
+  String studyCaseValue = '1',majorValue = '1',numOfEmployees = '1';
   Myservices myServices = Get.find();
-
   SignUpBack signUpBack = new SignUpBack(Get.put(Crud()));
   String? country;
-  String numOfEmployees = '1';
 
   List<DropdownMenuItem<String>> studyCase = [
     DropdownMenuItem<String>(
@@ -217,6 +214,8 @@ class SignUpControllerImpl extends SignUpController {
     googleEmail = arguments?['email'];
     name = arguments?['name'];
     imageUrl = arguments?['image'];
+    googleFirstName = arguments?['first_name'];
+    googleLastName = arguments?['last_name'];
     if (googleEmail != null) {
       isGoogleSignin = true;
       update();
@@ -305,6 +304,8 @@ class SignUpControllerImpl extends SignUpController {
       var response = await signUpBack.googleSignUp(
         {
           "name": name,
+          "first_name":googleFirstName,
+          "last_name":googleLastName,
           "image": imageUrl,
           "email": googleEmail,
           "phone_number": phoneController.text,
@@ -316,7 +317,6 @@ class SignUpControllerImpl extends SignUpController {
           "num_of_employees": numOfEmployees,
           "open_to_work": openToWork ? "1" : "0",
           "location": country,
-          "bio": "bio"
         },
       );
       statusRequest = hadelingData(response);
@@ -324,11 +324,11 @@ class SignUpControllerImpl extends SignUpController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           myServices.sharedPreferences
-              .setInt("id", response['data']["user"]["user_id"]);
+              .setInt("id", response['data']["id"]);
           myServices.sharedPreferences
               .setString("token", response['data']["accessToken"]);
           myServices.sharedPreferences.setString(
-              "role_id", response['data']["user"]["role_id"].toString());
+              "role_id", response['data']["type"].toString());
           myServices.sharedPreferences.setString("step", "2");
           Get.offNamed("HomePage");
         } else {
