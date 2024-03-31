@@ -21,9 +21,8 @@ class Search extends StatelessWidget {
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
                 focusedBorder: UnderlineInputBorder(),
-                suffixIcon: InkWell(
+                suffixIcon: GestureDetector(
                   onTap: () {
-                    // controller.displayData();
                   },
                   child: const Icon(
                     Icons.search,

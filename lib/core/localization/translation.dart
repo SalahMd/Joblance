@@ -199,7 +199,11 @@ class Translation extends Translations {
           "youremailhasbeenverified": "تم تأكيد بريدك الإلكتروني",
           "emailisnotexisted": "البريد الإلكتروني غير موجود",
           "youremailisnotverified":"البريد الإلكتروني غير مؤكد\nهل تريد تأكيده؟",
-          "checkingdata":"تتم معالجة طلبك"
+          "checkingdata":"تتم معالجة طلبك",
+          "lastweek":"الأسبوع الماضي",
+          "lastmonth":"الشهر الماضي",
+          "dateposted":"وقت النشر",
+
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -367,7 +371,7 @@ class Translation extends Translations {
           "requirements": "Requirements",
           "requirements2": "Add your job requirements",
           "jobtype": "Job type",
-          "jobexperince": "Job experince",
+          "jobexperince": "Job experience",
           "companyinfo": "Company information",
           "shownumofemployees": "Show number of employees",
           "showaboutcompany": "Show about the company",
@@ -400,7 +404,10 @@ class Translation extends Translations {
           "youremailisnotverified":
               "Your email isn't verified\nDo you want to verify it?",
           "emailisnotexisted": "The email is not existed",
-          "checkingdata":"Checking data"
+          "checkingdata":"Checking data",
+          "dateposted":"Date posted",
+          "lastweek":"Last week",
+          "lastmonth":"Last month"
         }
       };
 }

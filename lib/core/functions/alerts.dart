@@ -2,7 +2,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:joblance/core/constants/buttons.dart';
+import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/widgets/chips_choice.dart';
 
 Future<bool> exitAlert() {
   Get.defaultDialog(
@@ -133,111 +137,125 @@ snackBar(String title, String message, BuildContext context) {
 //   return Future.value(false);
 // }
 
-// Future<bool> popUp(
-//   BuildContext context,
-// ) {
-//   Get.bottomSheet(Container(
-//     width: Dimensions.screenwidth(context),
-//     height: 600.h,
-//     decoration: BoxDecoration(
-//         borderRadius: const BorderRadius.only(
-//           topLeft: Radius.circular(25),
-//           topRight: Radius.circular(25),
-//         ),
-//         color: Theme.of(context).colorScheme.primaryContainer),
-//     child: SingleChildScrollView(
-//       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-//         GestureDetector(
-//             onTap: () {
-//               Get.back();
-//             },
-//             child: Align(
-//               alignment: Alignment.center,
-//               child: Container(
-//                 width: 60.w,
-//                 height: 8.h,
-//                 margin: const EdgeInsets.symmetric(vertical: 20),
-//                 decoration: BoxDecoration(
-//                     color: lightAppColors.greyColor,
-//                     borderRadius: BorderRadius.circular(50)),
-//               ),
-//             )),
-//         Padding(
-//           padding: EdgeInsetsDirectional.symmetric(horizontal: 12.w),
-//           child: Text(
-//             "filter".tr,
-//             style: TextStyles.bold17,
-//           ),
-//         ),
-//         SizedBox(height: 20.h),
-//         Padding(
-//           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
-//           child: Text(
-//             "categories".tr,
-//             style: TextStyles.w50018,
-//           ),
-//         ),
-//         ChipsChoices(options: [
-//           "apartments".tr,
-//           "offices".tr,
-//           "clinics".tr,
-//           "properties".tr
-//         ]),
-//         //SizedBox(height:10.h),
-//         Padding(
-//           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
-//           child: Text(
-//             "rentorsale".tr,
-//             style: TextStyles.w50018,
-//           ),
-//         ),
-//         ChipsChoices(options: [
-//           "rent".tr,
-//           "sale".tr,
-//         ]),
-//         Padding(
-//           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
-//           child: Text(
-//             "price".tr,
-//             style: TextStyles.w50018,
-//           ),
-//         ),
-//         ChipsChoices(options: [
-//           "expensive".tr,
-//           "medium".tr,
-//           "cheap".tr,
-//         ]),
-//         Padding(
-//           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
-//           child: Text(
-//             "space".tr,
-//             style: TextStyles.w50018,
-//           ),
-//         ),
-//         ChipsChoices(options: [
-//           "more100m".tr,
-//           "less100m".tr,
-//           "more200m".tr,
-//         ]),
-//         InkWell(
-//           onTap: () {
-//             //controller.logIn();
-//             Get.back();
-//           },
-//           child: Container(
-//             width: Dimensions.screenwidth(context),
-//             height: 40.h,
-//             margin: const EdgeInsets.symmetric(horizontal: 80, vertical: 20),
-//             alignment: Alignment.center,
-//             decoration: AppButtons.decorationButton,
-//             child: Text(
-//               "confirm".tr,
-//               style: TextStyles.w50015White,
-//             ),
-//           ),
-//         ),
-//       ]),
-//     ),
-//   ));
-//   return Future.value(true);
-// }
+Future<bool> popUp(
+  BuildContext context,
+) {
+  Get.bottomSheet(Container(
+    width: Dimensions.screenWidth(context),
+    decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
+        ),
+        color: Theme.of(context).colorScheme.primaryContainer),
+    child: SingleChildScrollView(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                width: 60.w,
+                height: 8.h,
+                margin: const EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
+                    color: LightAppColors.greyColor,
+                    borderRadius: BorderRadius.circular(50)),
+              ),
+            )),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 12.w),
+          child: Text(
+            "filter".tr,
+            style: TextStyles.bold17(context),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+          child: Text(
+            "categories".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "medical".tr,
+          "engineering".tr,
+          "Technology".tr,
+          "designing".tr,
+          "servicing".tr,
+        ]),
+        //SizedBox(height:10.h),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+          child: Text(
+            "jobtype".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "fulltime".tr,
+          "parttime".tr,
+          "temporary".tr,
+        ]),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(
+            horizontal: 10.w,
+          ),
+          child: Text(
+            "jobexperince".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "internship".tr,
+          "junior".tr,
+          "senior".tr,
+          "director".tr
+        ]),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+          child: Text(
+            "remote".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "onsite".tr,
+          "remote".tr,
+          "hybrid".tr,
+        ]),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+          child: Text(
+            "dateposted".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "lastweek".tr,
+          "lastmonth".tr,
+        ]),
+        InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Container(
+            width: Dimensions.screenWidth(context),
+            height: 40.h,
+            margin: const EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+            alignment: Alignment.center,
+            decoration: AppButtons.buttonDecoration,
+            child: Text(
+              "confirm".tr,
+              style: TextStyles.w50016White(context),
+            ),
+          ),
+        ),
+      ]),
+    ),
+  ));
+  return Future.value(true);
+}
