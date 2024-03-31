@@ -74,13 +74,15 @@ class TextingPage extends StatelessWidget {
             ),
             Expanded(
               child: SingleChildScrollView(
+                controller: controller.scrollController,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
                       child: ListView.builder(
                         shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
+                        //controller: controller.scrollController,
+                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: controller.messages.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Align(
@@ -138,6 +140,7 @@ class TextingPage extends StatelessWidget {
                       isBorder: true,
                       isLabel: false,
                       padding: 2,
+                      focusNode: controller.focusNode,
                       isFilled: true,
                     ),
                   ),

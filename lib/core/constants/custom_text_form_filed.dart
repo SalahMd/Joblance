@@ -20,6 +20,7 @@ class Customtextformfiled extends StatelessWidget {
   final void Function()? ontapicon;
   final double? padding;
   final bool isValidation;
+  final FocusNode? focusNode;
   Customtextformfiled({
     super.key,
     required this.hintText,
@@ -38,7 +39,7 @@ class Customtextformfiled extends StatelessWidget {
     this.isLabel = true,
     this.padding = 20,
     this.isFilled = false,
-    this.isValidation = true,
+    this.isValidation = true, this.focusNode,
   });
 
   @override
@@ -57,6 +58,7 @@ class Customtextformfiled extends StatelessWidget {
         keyboardType: isNumber
             ? const TextInputType.numberWithOptions(decimal: true)
             : TextInputType.text,
+            focusNode: focusNode,
         validator: isValidation
             ? (val) {
                 return validInput(val!, min, max);
