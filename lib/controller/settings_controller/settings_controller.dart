@@ -26,6 +26,6 @@ class SettingsControllerImpl extends SettingsController {
       } else {
         print("error");
       }
-    } 
+    }
   }
 }

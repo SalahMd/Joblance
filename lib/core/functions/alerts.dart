@@ -104,39 +104,6 @@ snackBar(String title, String message, BuildContext context) {
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.only(bottom: 10.h, left: 10.w, right: 10.w));
 }
-// alert(String title) {
-//   Get.defaultDialog(
-//     title: title,
-//     titleStyle: TextStyles.bold16,
-//     titlePadding: const EdgeInsets.symmetric(vertical: 40, horizontal: 10),
-//   );
-// }
-
-// Future<bool> alertWithActions(String title,void Function ()onYesTap) {
-//   Get.defaultDialog(
-//       title: "",
-//       middleText: title,
-//       middleTextStyle: TextStyles.bold16,
-//       actions: [
-//         TextButton(
-//           onPressed:onYesTap,
-//           child: Text(
-//             "yes".tr,
-//             style: const TextStyle(color: Colors.blue),
-//           ),
-//         ),
-//         TextButton(
-//             onPressed: () {
-//               Get.back();
-//             },
-//             child: Text(
-//               "no".tr,
-//               style: const TextStyle(color: Colors.blue),
-//             ))
-//       ]);
-//   return Future.value(false);
-// }
-
 Future<bool> popUp(
   BuildContext context,
 ) {
