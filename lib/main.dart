@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           getPages: [
             GetPage(
               name: "/",
-              page: () => CompanyHomePage(),
+              page: () => SplashScreen(),
               // middlewares: [MiddleWare()]
             ),
             GetPage(name: "/Login", page: () => const Login()),

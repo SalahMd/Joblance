@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/widgets/shimmer_freelancer_design.dart';
 import 'package:joblance/view/widgets/shimmer_item.dart';
-import 'package:joblance/view/widgets/shimmer_job_design.dart';
 
 class ShimmerCompanyHomePage extends StatelessWidget {
   const ShimmerCompanyHomePage({super.key});

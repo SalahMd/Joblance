@@ -59,8 +59,11 @@ class LogInControllerImpl extends LogiInController {
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
-      var response =
-          await loginBata.login(emailController.text, passwordController.text);
+      var response = await loginBata.login({
+        "email": emailController.text,
+        "password": passwordController.text,
+        "fcm_token": getFCMToken()
+      });
       statusRequest = hadelingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
@@ -108,12 +111,20 @@ class LogInControllerImpl extends LogiInController {
     super.dispose();
   }
 
+  String getFCMToken() {
+    String? FCMToken;
+    FirebaseMessaging.instance.getToken().then((value) {
+      FCMToken = value;
+      print("token is" + FCMToken!);
+    });
+    if (FCMToken != null)
+      return FCMToken!;
+    else
+      return "";
+  }
+
   @override
   void onInit() {
-    FirebaseMessaging.instance.getToken().then((value) {
-      String? token = value;
-      print("token is" + token!);
-    });
     emailController = TextEditingController();
     passwordController = TextEditingController();
     super.onInit();
@@ -128,7 +139,10 @@ class LogInControllerImpl extends LogiInController {
       print("token is" + googleToken!);
       statusRequest = StatusRequest.loading;
       update();
-      var response = await loginBata.googleLogin(googleToken);
+      var response = await loginBata.googleLogin({
+        "access_token":googleToken,
+        "fcm_token":getFCMToken()
+      });
       statusRequest = hadelingData(response);
       print(statusRequest);
       if (StatusRequest.success == statusRequest) {
