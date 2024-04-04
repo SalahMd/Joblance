@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/profiles_controller/freelancer_profile_controller.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/view/screens/profile/tob_bar.dart';
 import 'package:joblance/view/widgets/divider.dart';
+import 'package:joblance/view/widgets/profile_tob_bar.dart';
 import 'package:joblance/view/widgets/project_design.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
 

@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:joblance/controller/profiles_controller/company_profile_controller.dart';
+import 'package:joblance/controller/my_account_controller/my_account_free_lancer_controller.dart';
 import 'package:joblance/core/constants/images.dart';
-import 'package:joblance/view/screens/profile/company_profile/company_tab_bar.dart';
+import 'package:joblance/view/screens/my_account/freelancer/tab_bar_view_widgets.dart';
 import 'package:joblance/view/widgets/profile_tob_bar.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
 
-class CompanyProfile extends StatelessWidget {
-  const CompanyProfile({Key? key}) : super(key: key);
+class MyAccountFreeLancer extends StatelessWidget {
+  const MyAccountFreeLancer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CompanyProfileControllerImpl());
+    Get.put(MyAccountFreelancerControllerImpl());
     return Scaffold(
-      body: GetBuilder<CompanyProfileControllerImpl>(
+      body: GetBuilder<MyAccountFreelancerControllerImpl>(
         builder: (controller) => DefaultTabController(
           length: controller.tabs.length,
           child: SingleChildScrollView(
             child: Column(
+              //mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TobBar(
-                  image: AppImages.googleLogo,
-                  name: "Google",
-                  description: "Softwere development company",
+                  isMyAccount: true,
+                  image: AppImages.salah,
+                  name: "Salah Mdaghmesh",
+                  description: "IT developer",
                 ),
                 SizedBox(
                   height: 15.h,
@@ -36,11 +38,7 @@ class CompanyProfile extends StatelessWidget {
                 TabBarWidget(
                   tabs: controller.tabs,
                 ),
-                Column(
-                  children: [
-                    CompanyTabBar(),
-                  ],
-                )
+                TabBarViewWidgets(controller: controller,)
               ],
             ),
           ),

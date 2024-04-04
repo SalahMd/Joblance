@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_project_or_product_controller.dart';
@@ -24,10 +25,16 @@ class AddProjectOrProduct extends StatelessWidget {
                 padding: EdgeInsetsDirectional.only(start: 10.w),
                 child: Row(
                   children: [
-                    Icon(Icons.arrow_back),
+                    GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(Icons.arrow_back)),
                     SizedBox(width: 5.w),
                     Text(
-                      !controller.isProduct ? "addyourproject".tr : "addyourproduct".tr,
+                      !controller.isProduct
+                          ? "addyourproject".tr
+                          : "addyourproduct".tr,
                       style: Theme.of(context).textTheme.headline1,
                     ),
                   ],

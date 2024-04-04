@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
@@ -82,7 +81,7 @@ class TextingPage extends StatelessWidget {
                       child: ListView.builder(
                         shrinkWrap: true,
                         //controller: controller.scrollController,
-                         physics: const NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: controller.messages.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Align(
@@ -125,7 +124,7 @@ class TextingPage extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  flex: 4,
+                  flex: 5,
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 10.h),
                     child: Customtextformfiled(
@@ -137,9 +136,12 @@ class TextingPage extends StatelessWidget {
                       max: 100,
                       isNumber: false,
                       isPassword: false,
+                      isValidation: false,
                       isBorder: true,
                       isLabel: false,
                       padding: 2,
+                      minLines: 1,
+                      maxLines: 3,
                       focusNode: controller.focusNode,
                       isFilled: true,
                     ),
@@ -152,8 +154,8 @@ class TextingPage extends StatelessWidget {
                         },
                         child: Container(
                             margin: EdgeInsetsDirectional.only(
-                                end: 20, bottom: 5.h),
-                            height: 50.h,
+                                end: 15, bottom: 5.h),
+                            height: 45.h,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 color: LightAppColors.greenColor),

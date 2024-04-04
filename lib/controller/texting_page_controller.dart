@@ -8,6 +8,7 @@ abstract class TextingPageController extends GetxController {
 
 class TextingPageControllerImpl extends TextingPageController {
   List messages = [];
+  int line = 1;
   late TextEditingController message;
   bool showEmojes = false;
   FocusNode focusNode = new FocusNode();
@@ -47,6 +48,9 @@ class TextingPageControllerImpl extends TextingPageController {
     showEmojes = !showEmojes;
     update();
   }
+
+
+ 
 
   pickEmojo() {
     update();

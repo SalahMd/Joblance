@@ -12,7 +12,7 @@ class ButtomBar extends StatelessWidget {
     Get.put(ButtomBarControllerImp());
     return GetBuilder<ButtomBarControllerImp>(
       builder: (controllerImp) => Scaffold(
-        bottomNavigationBar: controllerImp.role != "3"
+        bottomNavigationBar: controllerImp.role == "1"
             ? Stack(
                 children: [
                   Container(

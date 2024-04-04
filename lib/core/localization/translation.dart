@@ -203,7 +203,7 @@ class Translation extends Translations {
           "lastweek":"الأسبوع الماضي",
           "lastmonth":"الشهر الماضي",
           "dateposted":"وقت النشر",
-
+"addproject":"أضف مشروع","addyourskill":"أضف مهارتك","addskill":"أضف مهارة"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -407,7 +407,8 @@ class Translation extends Translations {
           "checkingdata":"Checking data",
           "dateposted":"Date posted",
           "lastweek":"Last week",
-          "lastmonth":"Last month"
+          "lastmonth":"Last month",
+          "addproject":"Add project","addyourskill":"Add your skill","addskill":"Add skill"
         }
       };
 }

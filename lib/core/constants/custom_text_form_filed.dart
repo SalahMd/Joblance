@@ -14,11 +14,14 @@ class Customtextformfiled extends StatelessWidget {
   final bool isPassword;
   final bool isBorder;
   final int maxLines;
+  final int? minLines;
   final int? letters;
   final bool isFilled;
   final bool isLabel;
   final void Function()? ontapicon;
+  final void Function(String val)? onChange;
   final double? padding;
+
   final bool isValidation;
   final FocusNode? focusNode;
   Customtextformfiled({
@@ -39,7 +42,9 @@ class Customtextformfiled extends StatelessWidget {
     this.isLabel = true,
     this.padding = 20,
     this.isFilled = false,
-    this.isValidation = true, this.focusNode,
+    this.isValidation = true,
+    this.focusNode,
+    this.onChange,  this.minLines,
   });
 
   @override
@@ -58,15 +63,17 @@ class Customtextformfiled extends StatelessWidget {
         keyboardType: isNumber
             ? const TextInputType.numberWithOptions(decimal: true)
             : TextInputType.text,
-            focusNode: focusNode,
+        focusNode: focusNode,
         validator: isValidation
             ? (val) {
                 return validInput(val!, min, max);
               }
             : null,
         maxLength: letters,
+        minLines: minLines,
         controller: controller,
         maxLines: maxLines,
+        onChanged: onChange,
         decoration: InputDecoration(
             enabled: true,
             hintText: hintText,

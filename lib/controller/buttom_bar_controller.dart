@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/home_page/company_home_page/company_home_page.dart';
 import 'package:joblance/view/screens/messages.dart';
+import 'package:joblance/view/screens/my_account/freelancer/my_aacount_freelancer.dart';
+import 'package:joblance/view/screens/my_account/company/my_account_company.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 import 'package:joblance/view/screens/profile/freelancer_profile/freelancer_profile.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/freelancer_home_page.dart';
@@ -28,14 +30,14 @@ class ButtomBarControllerImp extends ButtomBarController {
     role = myServices.sharedPreferences.getString("role_id");
      if(role == "1")  {
       listPage = [
-        const CompanyProfile(),
+        const MyAccountCompany(),
         CompanyHomePage(),
         Messages(),
         const Settings(),
       ];
     }else {
       listPage = [
-        const FreelancerProfile(),
+        const MyAccountFreeLancer(),
         FreelancerHomePage(),
         Messages(),
         const Settings(),

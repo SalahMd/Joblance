@@ -25,7 +25,7 @@ class Settings extends StatelessWidget {
         builder: (controller) => Scaffold(
           body: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w),
+              padding: EdgeInsets.symmetric(horizontal: 5.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -39,8 +39,7 @@ class Settings extends StatelessWidget {
                   Container(
                       width: Dimensions.screenWidth(context),
                       //  height: 150.h,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color:
@@ -84,8 +83,7 @@ class Settings extends StatelessWidget {
                           style: TextStyles.w40014grey(context))),
                   Container(
                     width: Dimensions.screenWidth(context),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
+                    padding: EdgeInsets.symmetric(vertical: 10.h),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Theme.of(context).colorScheme.primaryContainer),
@@ -129,8 +127,7 @@ class Settings extends StatelessWidget {
                           style: TextStyles.w40014grey(context))),
                   Container(
                     width: Dimensions.screenWidth(context),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
+                    padding: EdgeInsets.symmetric(vertical: 10.h),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Theme.of(context).colorScheme.primaryContainer),
