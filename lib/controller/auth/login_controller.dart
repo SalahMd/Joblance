@@ -53,6 +53,13 @@ class LogInControllerImpl extends LogiInController {
     update();
   }
 
+  saveUserData(Map data) {
+    myServices.sharedPreferences.setInt("id", data["id"]);
+    myServices.sharedPreferences.setString("token", data["accessToken"]);
+    myServices.sharedPreferences.setString("role_id", data["type"]);
+    myServices.sharedPreferences.setString("step", "2");
+  }
+
   @override
   logIn() async {
     var formdata = formState.currentState;
@@ -67,12 +74,7 @@ class LogInControllerImpl extends LogiInController {
       statusRequest = hadelingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          myServices.sharedPreferences.setInt("id", response['data']["id"]);
-          myServices.sharedPreferences
-              .setString("token", response['data']["accessToken"]);
-          myServices.sharedPreferences
-              .setString("role_id", response['data']["type"]);
-          myServices.sharedPreferences.setString("step", "2");
+          saveUserData(response['data']);
           Get.offNamed("HomePage");
         } else if (response['status'] == "failure" &&
             response['error_message']['error'] == "email is not verified") {
@@ -139,22 +141,15 @@ class LogInControllerImpl extends LogiInController {
       print("token is" + googleToken!);
       statusRequest = StatusRequest.loading;
       update();
-      var response = await loginBata.googleLogin({
-        "access_token":googleToken,
-        "fcm_token":getFCMToken()
-      });
+      var response = await loginBata.googleLogin(
+          {"access_token": googleToken, "fcm_token": getFCMToken()});
       statusRequest = hadelingData(response);
       print(statusRequest);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           //check if the user have an account or not
           if (response['data']['authorized'] == 1) {
-            myServices.sharedPreferences.setInt("id", response['data']["id"]);
-            myServices.sharedPreferences
-                .setString("token", response['data']["accessToken"]);
-            myServices.sharedPreferences
-                .setString("role_id", response['data']["type"].toString());
-            myServices.sharedPreferences.setString("step", "2");
+            saveUserData(response['data']);
             Get.offNamed("HomePage");
           } else {
             Get.offAllNamed("SignUp", arguments: {

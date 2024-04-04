@@ -41,12 +41,12 @@ class ShimmerFreelancerDesign extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
-            ShimmerItem(width: 200.w, height: 13.h),
-            SizedBox(height: 5.h),
-            ShimmerItem(width: 200.w, height: 13.h),
+            ShimmerItem(width: 210.w, height: 13.h),
             SizedBox(height: 10.h),
+            ShimmerItem(width: 210.w, height: 13.h),
+            SizedBox(height: 12.h),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 15.w),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
