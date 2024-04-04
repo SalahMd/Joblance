@@ -35,16 +35,31 @@ dependencies:
   shimmer: ^3.0.0
   show_up_animation: ^2.0.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^2.3.9
+
+flutter_native_splash:
+  color: "#000000"
+  image: "assets/images/splash.png"
+  icon_background_color: "#363636"
+  android_12: 
+    image: "assets/images/splash.png"
+    color: "#000000"
+    icon_background_color: "#363636"
+    
 
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/logo2.png"
+  image_path: "assets/images/logo3.png"
+  adaptive_icon_background: "#363636"
   min_sdk_android: 21
   flutter_lints: ^3.0.0
+
+  
 
 flutter:
 
