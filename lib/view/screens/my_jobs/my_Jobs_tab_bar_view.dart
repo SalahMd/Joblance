@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:joblance/controller/my_account_controller/my_account_free_lancer_controller.dart';
 import 'package:joblance/controller/my_jobs_controller.dart';
 import 'package:joblance/core/constants/images.dart';
-import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/core/functions/dimenesions.dart';
-import 'package:joblance/view/screens/add_project_or_product/add_project_or_product.dart';
-import 'package:joblance/view/screens/my_account/freelancer/add_skill.dart';
-import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/job_design.dart';
-import 'package:joblance/view/widgets/project_design.dart';
 
 class MyJobsTabBarView extends StatelessWidget {
   final MyJobsControllerImpl controller;
