@@ -7,6 +7,7 @@ import 'package:joblance/controller/settings_controller/settings_controller.dart
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/my_jobs/my_jobs.dart';
 import 'package:joblance/view/screens/settings/change_language.dart';
 import 'package:joblance/view/screens/settings/change_password.dart';
 import 'package:joblance/view/screens/settings/dark_mode.dart';
@@ -67,14 +68,16 @@ class Settings extends StatelessWidget {
                                       Icons.arrow_forward_ios_outlined,
                                   listText: "changepassword".tr),
                             ),
-                            ListTiles(
-                                leadingIcon: Icons.work_outlined,
-                                trailingIcon: Icons.arrow_forward_ios_outlined,
-                                listText: "applaiedjobs".tr),
-                            ListTiles(
-                                leadingIcon: Icons.save_outlined,
-                                trailingIcon: Icons.arrow_forward_ios_outlined,
-                                listText: "savedjobs".tr),
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(MyJobs());
+                              },
+                              child: ListTiles(
+                                  leadingIcon: Icons.work_outline,
+                                  trailingIcon:
+                                      Icons.arrow_forward_ios_outlined,
+                                  listText: "myjobs".tr),
+                            ),
                           ])),
                   Padding(
                       padding:

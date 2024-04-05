@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/project_screen.dart';
 
 class ProjectDesign extends StatelessWidget {
   final String projectTitle;
@@ -21,73 +22,66 @@ class ProjectDesign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: Dimensions.screenWidth(context),
-      height: 160.h,
-      margin: EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.h),
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Theme.of(context).colorScheme.primaryContainer,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Visibility(
-          //     child: Container(
-          //         width: 50.w,
-          //         height: 50.h,
-          //         child: ClipRRect(
-          //           borderRadius: BorderRadius.circular(15),
-          //           child: Image.asset(
-          //             projectMedia,
-          //             fit: BoxFit.fill,
-          //           ),
-          //         ))),
-
-          Text(
-            projectTitle,
-            style: TextStyles.w50015(context),
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          Text(
-            projectDescription,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyles.w40012grey(context),
-          ),
-          SizedBox(height: 5.h),
-          GestureDetector(
-            child: Row(
-              children: [
-                Text(
-                  projectLink,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.blue, fontSize: 12.sp),
-                ),
-              ],
+    return GestureDetector(
+      onTap: () {
+        Get.to(ProjectScreen());
+      },
+      child: Container(
+        width: Dimensions.screenWidth(context),
+        height: 160.h,
+        margin: EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Theme.of(context).colorScheme.primaryContainer,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              projectTitle,
+              style: TextStyles.w50015(context),
             ),
-          ),
-          SizedBox(height: 5.h),
-          GestureDetector(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "showmore".tr,
-                  style: TextStyles.w40010grey(context),
-                ),
-                Icon(
-                  Icons.arrow_circle_right_outlined,
-                  size: 22.sp,
-                  color: LightAppColors.primaryColor,
-                )
-              ],
+            SizedBox(
+              height: 5.h,
             ),
-          ),
-        ],
+            Text(
+              projectDescription,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyles.w40012grey(context),
+            ),
+            SizedBox(height: 5.h),
+            GestureDetector(
+              child: Row(
+                children: [
+                  Text(
+                    projectLink,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: Colors.blue, fontSize: 12.sp),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 5.h),
+            GestureDetector(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "showmore".tr,
+                    style: TextStyles.w40010grey(context),
+                  ),
+                  Icon(
+                    Icons.arrow_circle_right_outlined,
+                    size: 22.sp,
+                    color: LightAppColors.primaryColor,
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -198,12 +198,16 @@ class Translation extends Translations {
           "wronglogin": "خطأ في البريد الإلكتروني أو كلمة المرور",
           "youremailhasbeenverified": "تم تأكيد بريدك الإلكتروني",
           "emailisnotexisted": "البريد الإلكتروني غير موجود",
-          "youremailisnotverified":"البريد الإلكتروني غير مؤكد\nهل تريد تأكيده؟",
-          "checkingdata":"تتم معالجة طلبك",
-          "lastweek":"الأسبوع الماضي",
-          "lastmonth":"الشهر الماضي",
-          "dateposted":"وقت النشر",
-"addproject":"أضف مشروع","addyourskill":"أضف مهارتك","addskill":"أضف مهارة"
+          "youremailisnotverified":
+              "البريد الإلكتروني غير مؤكد\nهل تريد تأكيده؟",
+          "checkingdata": "تتم معالجة طلبك",
+          "lastweek": "الأسبوع الماضي",
+          "lastmonth": "الشهر الماضي",
+          "dateposted": "وقت النشر",
+          "addproject": "أضف مشروع",
+          "addyourskill": "أضف مهارتك",
+          "addskill": "أضف مهارة",
+          "myjobs": "وظائفي"
         },
         "en": {
           "title1": "Welcome to Joblance",
@@ -404,11 +408,14 @@ class Translation extends Translations {
           "youremailisnotverified":
               "Your email isn't verified\nDo you want to verify it?",
           "emailisnotexisted": "The email is not existed",
-          "checkingdata":"Checking data",
-          "dateposted":"Date posted",
-          "lastweek":"Last week",
-          "lastmonth":"Last month",
-          "addproject":"Add project","addyourskill":"Add your skill","addskill":"Add skill"
+          "checkingdata": "Checking data",
+          "dateposted": "Date posted",
+          "lastweek": "Last week",
+          "lastmonth": "Last month",
+          "addproject": "Add project",
+          "addyourskill": "Add your skill",
+          "addskill": "Add skill",
+          "myjobs": "My jobs"
         }
       };
 }
