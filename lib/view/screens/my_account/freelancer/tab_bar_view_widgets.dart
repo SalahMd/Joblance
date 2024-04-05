@@ -129,11 +129,14 @@ Widget projects(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           child: Text(
             "projects".tr,
             style: TextStyles.w50017(context),
           ),
+        ),
+        SizedBox(
+          height: 10.h,
         ),
         GestureDetector(
           onTap: () {
@@ -159,13 +162,13 @@ Widget projects(BuildContext context) {
         ProjectDesign(
             projectTitle: "Joblance",
             projectDescription:
-                "Job and freelancing app made with flutter and laravel",
+                "Jobs and freelancing app made with flutter and laravel",
             projectMedia: AppImages.Linkedin,
             projectLink: "https//www.google.com"),
         ProjectDesign(
             projectTitle: "Joblance",
             projectDescription:
-                "Job and freelancing app made with flutter and laravel",
+                "Jobs and freelancing app made with flutter and laravel",
             projectMedia: AppImages.Linkedin,
             projectLink: "https//www.google.com")
       ],
@@ -188,35 +191,34 @@ Widget skills(BuildContext context, var controller) {
         SizedBox(height: 10.h),
         Container(
           width: Dimensions.screenWidth(context),
-          //height: 45.h,
-          margin: EdgeInsets.symmetric(horizontal: 5.w),
-          padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 15.w),
+          height: 55.h,
+          margin: EdgeInsets.symmetric(horizontal: 10.w),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(10)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+              borderRadius: BorderRadius.circular(15)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "addskill".tr,
-                    style: TextStyles.w50017(context),
-                  ),
-                  GestureDetector(
-                      onTap: () {
-                        Get.to(AddSkill(
-                          controller: controller,
-                        ));
-                      },
-                      child: Icon(Icons.add))
-                ],
+              Text(
+                "addskill".tr,
+                style: TextStyles.w50015(context),
               ),
-              MyDivider(
-                height: 8,
-              ),
-              SizedBox(height: 10.h),
+              GestureDetector(
+                  onTap: () {
+                    Get.to(AddSkill(
+                      controller: controller,
+                    ));
+                  },
+                  child: Icon(Icons.add))
+            ],
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
+          child: Column(
+            children: [
+              SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [Text("Flutter"), Icon(Icons.delete_outline)],
@@ -285,6 +287,21 @@ Widget contactInfo(BuildContext context) {
           Expanded(
             child: Text(
               "salahaldeenmdaghmesh@gmail.com",
+              style: TextStyles.w50013(context),
+            ),
+          ),
+        ]),
+        MyDivider(
+          height: 10,
+        ),
+        Row(children: [
+          Icon(Icons.location_on_outlined),
+          SizedBox(
+            width: 10.w,
+          ),
+          Expanded(
+            child: Text(
+              "Syria",
               style: TextStyles.w50013(context),
             ),
           ),

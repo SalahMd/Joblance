@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,8 +66,12 @@ class ApplayJobControllerImpl extends ApplayJobController {
     var token = myServices.sharedPreferences.getString("token");
     var formdata = formState.currentState;
     if (formdata!.validate()) {
+      if (CV == null) {
+        animationedAlert(AppAnimations.wrong, "pleaseuploadyourcv".tr);
+        return;
+      }
       statusRequest = StatusRequest.loading;
-      update();
+      animationedAlert(AppAnimations.loadings, "checkingdata".tr);
       var response = applayJobBack.postData({
         "first_name": firstName.text,
         "last_name": lastName.text,
@@ -87,6 +90,5 @@ class ApplayJobControllerImpl extends ApplayJobController {
         update();
       }
     }
-    statusRequest = StatusRequest.loading;
   }
 }

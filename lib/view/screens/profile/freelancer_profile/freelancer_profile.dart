@@ -215,6 +215,21 @@ class FreelancerProfile extends StatelessWidget {
                           height: 10,
                         ),
                         Row(children: [
+                          Icon(Icons.location_on_outlined),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Expanded(
+                            child: Text(
+                              "Syria",
+                              style: TextStyles.w50013(context),
+                            ),
+                          ),
+                        ]),
+                        MyDivider(
+                          height: 10,
+                        ),
+                        Row(children: [
                           Icon(Icons.link_outlined),
                           SizedBox(
                             width: 10.w,

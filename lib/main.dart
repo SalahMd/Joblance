@@ -8,7 +8,6 @@ import 'package:joblance/view/screens/auth/login.dart';
 import 'package:joblance/view/screens/auth/email_verifiction.dart';
 import 'package:joblance/view/screens/auth/sign_up/sign_up.dart';
 import 'package:joblance/view/screens/choose_language.dart';
-import 'package:joblance/view/screens/home_page/company_home_page/company_home_page.dart';
 import 'package:joblance/view/screens/navigation_bar/nav_bar.dart';
 import 'package:joblance/view/screens/on_boarding.dart';
 import 'package:joblance/view/screens/search/search.dart';
