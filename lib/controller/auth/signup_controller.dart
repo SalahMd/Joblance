@@ -32,11 +32,11 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController confirmPasswordController;
   late TextEditingController aboutCompanyController;
   bool openToWork = false;
-  String? googleEmail, name, imageUrl,googleFirstName,googleLastName;
+  String? googleEmail, name, imageUrl, googleFirstName, googleLastName;
   bool isGoogleSignin = false;
   bool isFreelancer = true;
-  String birthDate="";
-  String studyCaseValue = '1',majorValue = '1',numOfEmployees = '1';
+  String birthDate = "";
+  String studyCaseValue = '1', majorValue = '1', numOfEmployees = '1';
   Myservices myServices = Get.find();
   SignUpBack signUpBack = new SignUpBack(Get.put(Crud()));
   String? country;
@@ -97,11 +97,11 @@ class SignUpControllerImpl extends SignUpController {
       child: Text("1001 - 5000"),
     ),
     DropdownMenuItem<String>(
-      value: '8',
+      value: '9',
       child: Text("5001 - 10000"),
     ),
     DropdownMenuItem<String>(
-      value: '8',
+      value: '10',
       child: Text("+ 10000"),
     ),
   ];
@@ -304,8 +304,8 @@ class SignUpControllerImpl extends SignUpController {
       var response = await signUpBack.googleSignUp(
         {
           "name": name,
-          "first_name":googleFirstName,
-          "last_name":googleLastName,
+          "first_name": googleFirstName,
+          "last_name": googleLastName,
           "image": imageUrl,
           "email": googleEmail,
           "phone_number": phoneController.text,
@@ -323,12 +323,11 @@ class SignUpControllerImpl extends SignUpController {
       Get.back();
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          myServices.sharedPreferences
-              .setInt("id", response['data']["id"]);
+          myServices.sharedPreferences.setInt("id", response['data']["id"]);
           myServices.sharedPreferences
               .setString("token", response['data']["accessToken"]);
-          myServices.sharedPreferences.setString(
-              "role_id", response['data']["type"].toString());
+          myServices.sharedPreferences
+              .setString("role_id", response['data']["type"].toString());
           myServices.sharedPreferences.setString("step", "2");
           Get.offNamed("HomePage");
         } else {

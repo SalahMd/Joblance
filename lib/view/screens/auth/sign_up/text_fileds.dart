@@ -29,7 +29,7 @@ class TextFileds extends StatelessWidget {
                   iconData: Icons.person_outline,
                   controller: controller.firstName,
                   min: 3,
-                  max: 10,
+                  max: 15,
                   isNumber: false,
                   isFilled: true,
                   isPassword: false,
