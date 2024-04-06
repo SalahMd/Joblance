@@ -44,7 +44,8 @@ class Customtextformfiled extends StatelessWidget {
     this.isFilled = false,
     this.isValidation = true,
     this.focusNode,
-    this.onChange,  this.minLines,
+    this.onChange,
+    this.minLines,
   });
 
   @override
@@ -101,17 +102,19 @@ class Customtextformfiled extends StatelessWidget {
                     ),
                   )
                 : null,
-            suffixIcon: GestureDetector(
-              onTap: ontapicon,
-              child: Container(
-                child: Icon(
-                  iconData,
-                  color: !isPassword && ontapicon != null
-                      ? Colors.red
-                      : Theme.of(context).colorScheme.onSecondary,
-                ),
-              ),
-            ),
+            suffixIcon: iconData != null
+                ? GestureDetector(
+                    onTap: ontapicon,
+                    child: Container(
+                      child: Icon(
+                        iconData,
+                        color: !isPassword && ontapicon != null
+                            ? Colors.red
+                            : Theme.of(context).colorScheme.onSecondary,
+                      ),
+                    ),
+                  )
+                : null,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: BorderSide(color: LightAppColors.primaryColor),

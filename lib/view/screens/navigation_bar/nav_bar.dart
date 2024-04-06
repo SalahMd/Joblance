@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:joblance/controller/buttom_bar_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/add_job/add_job.dart';
 
 class ButtomBar extends StatelessWidget {
@@ -12,133 +13,166 @@ class ButtomBar extends StatelessWidget {
     Get.put(ButtomBarControllerImp());
     return GetBuilder<ButtomBarControllerImp>(
       builder: (controllerImp) => Scaffold(
-        bottomNavigationBar: controllerImp.role == "1"
-            ? Stack(
-                children: [
-                  Container(
-                    height: 60.h,
-                    alignment: Alignment.bottomCenter,
-                    color: Theme.of(context).colorScheme.background,
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 55.h,
-                          color: Color.fromARGB(249, 28, 29, 48),
-                          padding:
-                              EdgeInsets.only(left: 7.w, right: 7.w, top: 8.h),
-                          child: GNav(
-                              selectedIndex: 1,
-                              gap: 2.w,
-                              color: Color.fromARGB(249, 28, 29, 48),
-                              activeColor: Colors.white,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5.w,
-                                  vertical: 10.h), // navigation bar padding
-                              onTabChange: (index) {
-                                controllerImp.changePage(index);
-                              },
-                              textSize: 1,
-                              haptic: true, // haptic feedback
-                              textStyle: TextStyle(
-                                  fontSize: 10.sp, color: Colors.white),
-                              tabs: [
-                                GButton(
-                                  icon: Icons.account_circle_outlined,
-                                  // text: 'profile'.tr,
-                                  iconColor: LightAppColors.primaryColor,
-                                  //    textSize: 5,
-                                ),
-                                GButton(
-                                  icon: Icons.home_outlined,
-                                  // text: 'homepage'.tr,
-                                  iconColor: LightAppColors.primaryColor,
-                                  padding:
-                                      EdgeInsetsDirectional.only(end: 30.w),
-                                ),
-                                GButton(
-                                  icon: Icons.message_outlined,
-                                  //text: 'messages'.tr,
-                                  iconColor: LightAppColors.primaryColor,
-                                  padding:
-                                      EdgeInsetsDirectional.only(start: 30.w),
-                                ),
-                                GButton(
-                                  icon: Icons.settings_outlined,
-                                  //text: 'settings'.tr,
-                                  iconColor: LightAppColors.primaryColor,
-                                ),
-                              ]),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Visibility(
-                    visible: controllerImp.role != "3",
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.to(AddJob());
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        margin: EdgeInsetsDirectional.only(
-                          start: 138.w,
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40),
-                            color: LightAppColors.primaryColor),
-                        child: Icon(Icons.add),
-                      ),
-                    ),
-                  )
-                ],
-              )
-            : Container(
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(249, 28, 29, 48),
-                    border: Border.all()),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 4.h),
-                  child: GNav(
-                      selectedIndex: 1,
-                      gap: 3.w,
-                      color: Color.fromARGB(249, 28, 29, 48),
-                      activeColor: Colors.white,
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 5.w,
-                          vertical: 10.h), // navigation bar padding
-                      onTabChange: (index) {
-                        controllerImp.changePage(index);
-                      },
-                      textSize: 1,
-                      haptic: true, // haptic feedback
-                      textStyle:
-                          TextStyle(fontSize: 12.sp, color: Colors.white),
-                      tabs: [
-                        GButton(
-                          icon: Icons.account_circle_outlined,
-                          text: 'profile'.tr,
-                          iconColor: LightAppColors.primaryColor,
-                          //    textSize: 5,
-                        ),
-                        GButton(
-                          icon: Icons.home_outlined,
-                          text: 'homepage'.tr,
-                          iconColor: LightAppColors.primaryColor,
-                        ),
-                        GButton(
-                          icon: Icons.message_outlined,
-                          text: 'messages'.tr,
-                          iconColor: LightAppColors.primaryColor,
-                        ),
-                        GButton(
-                          icon: Icons.settings_outlined,
-                          text: 'settings'.tr,
-                          iconColor: LightAppColors.primaryColor,
-                        ),
-                      ]),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: LightAppColors.primaryColor,
+          shape: CircleBorder(),
+          child: Icon(
+            Icons.add,
+            size: 25.sp,
+            color: LightAppColors.whiteColor,
+          ),
+          onPressed: () {
+            controllerImp.role == "1" ? Get.to(AddJob()) : null;
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          color: Color.fromARGB(249, 28, 29, 48),
+          shape: CircularNotchedRectangle(),
+          height: 65.h,
+          notchMargin: 5.w,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MaterialButton(
+                // color: LightAppColors.primaryColor,
+                splashColor: Color.fromARGB(
+                  249,
+                  28,
+                  29,
+                  48,
+                ),
+                hoverColor: Color.fromARGB(249, 28, 29, 48),
+                // focusColor: Color.fromARGB(249, 28, 29, 48),
+                highlightColor: Color.fromARGB(249, 28, 29, 48),
+                minWidth: 40.w,
+                onPressed: () {
+                  controllerImp.currentPage = 0;
+                  controllerImp.update();
+                },
+                child: Column(
+                  children: [
+                    Icon(Icons.person_outline,
+                        size: 18.sp,
+                        color: controllerImp.currentPage == 0
+                            ? LightAppColors.primaryColor
+                            : Colors.white),
+                    Text(
+                      "profile".tr,
+                      style: TextStyle(
+                          fontSize: 10.sp,
+                          color: controllerImp.currentPage == 0
+                              ? LightAppColors.primaryColor
+                              : Colors.white),
+                    )
+                  ],
                 ),
               ),
+              MaterialButton(
+                splashColor: Color.fromARGB(
+                  249,
+                  28,
+                  29,
+                  48,
+                ),
+                hoverColor: Color.fromARGB(249, 28, 29, 48),
+                // focusColor: Color.fromARGB(249, 28, 29, 48),
+                highlightColor: Color.fromARGB(249, 28, 29, 48),
+                minWidth: 40.w,
+                onPressed: () {
+                  controllerImp.currentPage = 1;
+                  controllerImp.update();
+                },
+                child: Column(
+                  children: [
+                    Icon(Icons.home_outlined,
+                        size: 18.sp,
+                        color: controllerImp.currentPage == 1
+                            ? LightAppColors.primaryColor
+                            : Colors.white),
+                    Text(
+                      "home".tr,
+                      style: TextStyle(
+                          fontSize: 10.sp,
+                          color: controllerImp.currentPage == 1
+                              ? LightAppColors.primaryColor
+                              : Colors.white),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: 20.w,
+              ),
+              MaterialButton(
+                splashColor: Color.fromARGB(
+                  249,
+                  28,
+                  29,
+                  48,
+                ),
+                hoverColor: Color.fromARGB(249, 28, 29, 48),
+                highlightColor: Color.fromARGB(249, 28, 29, 48),
+                minWidth: 40.w,
+                onPressed: () {
+                  controllerImp.currentPage = 2;
+                  controllerImp.update();
+                },
+                child: Column(
+                  children: [
+                    Icon(Icons.message_outlined,
+                        size: 18.sp,
+                        color: controllerImp.currentPage == 2
+                            ? LightAppColors.primaryColor
+                            : Colors.white),
+                    Text(
+                      "message".tr,
+                      style: TextStyle(
+                          fontSize: 10.sp,
+                          color: controllerImp.currentPage == 2
+                              ? LightAppColors.primaryColor
+                              : Colors.white),
+                    )
+                  ],
+                ),
+              ),
+              MaterialButton(
+                autofocus: false,
+                splashColor: Color.fromARGB(
+                  249,
+                  28,
+                  29,
+                  48,
+                ),
+                hoverColor: Color.fromARGB(249, 28, 29, 48),
+                // focusColor: Color.fromARGB(249, 28, 29, 48),
+                highlightColor: Color.fromARGB(249, 28, 29, 48),
+                minWidth: 40.w,
+                onPressed: () {
+                  controllerImp.currentPage = 3;
+                  controllerImp.update();
+                },
+                child: Column(
+                  children: [
+                    Icon(Icons.settings_outlined,
+                        size: 18.sp,
+                        color: controllerImp.currentPage == 3
+                            ? LightAppColors.primaryColor
+                            : Colors.white),
+                    Text(
+                      "settings".tr,
+                      style: TextStyle(
+                          fontSize: 10.sp,
+                          color: controllerImp.currentPage == 3
+                              ? LightAppColors.primaryColor
+                              : Colors.white),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
         body: controllerImp.listPage.elementAt(controllerImp.currentPage),
       ),
     );

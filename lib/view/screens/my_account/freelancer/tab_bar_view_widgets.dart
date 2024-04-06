@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/my_account_controller/my_account_free_lancer_controller.dart';
@@ -16,164 +18,163 @@ class TabBarViewWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: Dimensions.screenHeight(context),
-      child: TabBarView(children: [
-        about(context),
-        Column(
-          children: [
-            Expanded(
-              child: projects(
-                context,
-              ),
-            ),
-          ],
-        ),
-        skills(context, controller),
-        contactInfo(context)
-      ]),
-    );
+    return TabBarView(children: [
+      about(context),
+      projects(
+        context,
+      ),
+      skills(context, controller),
+      contactInfo(context)
+    ]);
   }
 }
 
 Widget about(BuildContext context) {
-  return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(
-          "about".tr,
-          style: TextStyles.w50017(context),
-        ),
-        SizedBox(height: 20.h),
-        Container(
-            padding: EdgeInsetsDirectional.only(bottom: 5.h, top: 10.h),
-            // decoration: BoxDecoration(
-            //     color: Theme.of(context).colorScheme.primaryContainer,
-            //     borderRadius: BorderRadius.circular(10)),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                "bio".tr,
-                style: TextStyles.w50015(context),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                "A junior flutter developer in the third year of amascus university, with 2 years of expirence in developing apps."
-                    .tr,
-                style: TextStyles.w40012grey(context),
-              ),
-            ])),
-        MyDivider(
-          height: 12,
-        ),
-        Container(
-          padding: EdgeInsetsDirectional.only(bottom: 15.h, top: 10.h),
-          // decoration: BoxDecoration(
-          //     color: Theme.of(context).colorScheme.primaryContainer,
-          //     borderRadius: BorderRadius.circular(10)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "studyinfo".tr,
-                style: TextStyles.w50015(context),
-              ),
-              SizedBox(height: 15.h),
-              Row(
+  return ListView(
+    padding: EdgeInsets.zero,
+    children: [
+      Container(
+          margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              "about".tr,
+              style: TextStyles.w50017(context),
+            ),
+            SizedBox(height: 20.h),
+            Container(
+                padding: EdgeInsetsDirectional.only(bottom: 5.h, top: 10.h),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "bio".tr,
+                        style: TextStyles.w50015(context),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        "A junior flutter developer in the third year of amascus university, with 2 years of expirence in developing apps."
+                            .tr,
+                        style: TextStyles.w40012grey(context),
+                      ),
+                    ])),
+            MyDivider(
+              height: 12,
+            ),
+            Container(
+              padding: EdgeInsetsDirectional.only(bottom: 15.h, top: 10.h),
+              // decoration: BoxDecoration(
+              //     color: Theme.of(context).colorScheme.primaryContainer,
+              //     borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.work_outline),
-                  SizedBox(width: 10.w),
                   Text(
-                    "Engineering",
-                    style: TextStyles.w50012(context),
+                    "studyinfo".tr,
+                    style: TextStyles.w50015(context),
+                  ),
+                  SizedBox(height: 15.h),
+                  Row(
+                    children: [
+                      Icon(Icons.work_outline),
+                      SizedBox(width: 10.w),
+                      Text(
+                        "Engineering",
+                        style: TextStyles.w50012(context),
+                      ),
+                    ],
+                  ),
+                  MyDivider(
+                    height: 8,
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.cases_outlined),
+                      SizedBox(width: 10.w),
+                      Text(
+                        "Graduate",
+                        style: TextStyles.w50012(context),
+                      ),
+                    ],
+                  ),
+                  MyDivider(
+                    height: 8,
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.work_outline),
+                      SizedBox(width: 10.w),
+                      Text(
+                        "Engineering",
+                        style: TextStyles.w50012(context),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              MyDivider(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Icon(Icons.cases_outlined),
-                  SizedBox(width: 10.w),
-                  Text(
-                    "Graduate",
-                    style: TextStyles.w50012(context),
-                  ),
-                ],
-              ),
-              MyDivider(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Icon(Icons.work_outline),
-                  SizedBox(width: 10.w),
-                  Text(
-                    "Engineering",
-                    style: TextStyles.w50012(context),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        )
-      ]));
+            )
+          ])),
+    ],
+  );
 }
 
 Widget projects(BuildContext context) {
-  return Container(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  return ListView(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-          child: Text(
-            "projects".tr,
-            style: TextStyles.w50017(context),
-          ),
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        GestureDetector(
-          onTap: () {
-            Get.to(AddProjectOrProduct());
-          },
-          child: Container(
-            width: Dimensions.screenWidth(context),
-            height: 55.h,
-            margin: EdgeInsets.symmetric(horizontal: 10.w),
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-            decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(15)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("addproject".tr, style: TextStyles.w50015(context)),
-                Icon(Icons.add)
-              ],
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              child: Text(
+                "projects".tr,
+                style: TextStyles.w50017(context),
+              ),
             ),
-          ),
+            SizedBox(
+              height: 10.h,
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.to(AddProjectOrProduct());
+              },
+              child: Container(
+                width: Dimensions.screenWidth(context),
+                height: 55.h,
+                margin: EdgeInsets.symmetric(horizontal: 10.w),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("addproject".tr, style: TextStyles.w50015(context)),
+                    Icon(Icons.add)
+                  ],
+                ),
+              ),
+            ),
+            ListView.builder(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 7,
+                itemBuilder: (BuildContext context, int index) {
+                  return ProjectDesign(
+                      projectTitle: "Joblance",
+                      projectDescription:
+                          "Jobs and freelancing app made with flutter and laravel",
+                      projectMedia: AppImages.Linkedin,
+                      projectLink: "https//www.google.com");
+                })
+          ],
         ),
-        ProjectDesign(
-            projectTitle: "Joblance",
-            projectDescription:
-                "Jobs and freelancing app made with flutter and laravel",
-            projectMedia: AppImages.Linkedin,
-            projectLink: "https//www.google.com"),
-        ProjectDesign(
-            projectTitle: "Joblance",
-            projectDescription:
-                "Jobs and freelancing app made with flutter and laravel",
-            projectMedia: AppImages.Linkedin,
-            projectLink: "https//www.google.com")
-      ],
-    ),
-  );
+      ]);
 }
 
 Widget skills(BuildContext context, var controller) {

@@ -202,5 +202,6 @@ Map<String, String> english = {
   "addproject": "Add project",
   "addyourskill": "Add your skill",
   "addskill": "Add skill",
-  "myjobs": "My jobs"
+  "myjobs": "My jobs",
+  "cantaddmorethan6images":"Cant add more than 6 images"
 };

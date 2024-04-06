@@ -19,7 +19,8 @@ class CompanyTabBar extends StatelessWidget {
     return Container(
       height: Dimensions.screenHeight(context),
       //width: Dimensions.screenWidth(context),
-      child: TabBarView(children: [
+      child: TabBarView(
+        children: [
         Column(
           children: [
             Expanded(
@@ -65,7 +66,7 @@ Widget jobs(BuildContext context) {
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 12,
+      itemCount: 15,
       itemBuilder: (BuildContext context, int index) {
         return JobDesign(
             jobTitle: "React developer",
@@ -137,21 +138,21 @@ Widget contactInfo(BuildContext context) {
         MyDivider(
           height: 10,
         ),
-          MyDivider(
-                          height: 10,
-                        ),
-                        Row(children: [
-                          Icon(Icons.location_on_outlined),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "Syria",
-                              style: TextStyles.w50013(context),
-                            ),
-                          ),
-                        ]),
+        MyDivider(
+          height: 10,
+        ),
+        Row(children: [
+          Icon(Icons.location_on_outlined),
+          SizedBox(
+            width: 10.w,
+          ),
+          Expanded(
+            child: Text(
+              "Syria",
+              style: TextStyles.w50013(context),
+            ),
+          ),
+        ]),
         Row(children: [
           Icon(Icons.link_outlined),
           SizedBox(

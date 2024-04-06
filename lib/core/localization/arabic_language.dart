@@ -201,5 +201,6 @@ Map<String, String> arabic = {
   "addproject": "أضف مشروع",
   "addyourskill": "أضف مهارتك",
   "addskill": "أضف مهارة",
-  "myjobs": "وظائفي"
+  "myjobs": "وظائفي",
+  "cantaddmorethan6images":"لا يمكن إضافة أكثر من 6 صور"
 };

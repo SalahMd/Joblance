@@ -43,7 +43,7 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
 
   @override
   Future<void> pickImage() async {
-    if (images.length > 6) {
+    if (images.length >= 6) {
       animationedAlert(AppAnimations.wrong, "cantaddmorethan6images".tr);
       return;
     }
@@ -53,7 +53,6 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
       print(pickedImage.path);
       images.add(File(pickedImage.path));
     } else {
-      print("Image picking canceled");
     }
 
     update();
