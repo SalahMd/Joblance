@@ -10,11 +10,13 @@ import 'package:joblance/view/screens/settings/settings.dart';
 
 abstract class ButtomBarController extends GetxController {
   changePage(int index);
+  changeButtonState();
 }
 
 class ButtomBarControllerImp extends ButtomBarController {
   Myservices myServices = Get.find();
   late var role;
+  bool isOpen = false;
   int currentPage = 1;
   List<Widget> listPage = [];
   @override
@@ -26,14 +28,14 @@ class ButtomBarControllerImp extends ButtomBarController {
   @override
   void onInit() {
     role = myServices.sharedPreferences.getString("role_id");
-     if(role == "1")  {
+    if (role == "1") {
       listPage = [
         const MyAccountCompany(),
         CompanyHomePage(),
         Messages(),
         const Settings(),
       ];
-    }else {
+    } else {
       listPage = [
         const MyAccountFreeLancer(),
         FreelancerHomePage(),
@@ -42,5 +44,10 @@ class ButtomBarControllerImp extends ButtomBarController {
       ];
     }
     super.onInit();
+  }
+
+  changeButtonState() {
+    isOpen = !isOpen;
+    update();
   }
 }

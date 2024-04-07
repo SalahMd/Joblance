@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/buttom_bar_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/view/screens/add_job/add_job.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class ButtomBar extends StatelessWidget {
   @override
@@ -11,29 +12,75 @@ class ButtomBar extends StatelessWidget {
     Get.put(ButtomBarControllerImp());
     return GetBuilder<ButtomBarControllerImp>(
       builder: (controllerImp) => Scaffold(
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: SpeedDial(
+          activeIcon: Icons.add,
+          icon: Icons.add,
           backgroundColor: LightAppColors.primaryColor,
-          shape: CircleBorder(),
-          child: Icon(
-            Icons.add,
-            size: 25.sp,
-            color: LightAppColors.whiteColor,
-          ),
-          onPressed: () {
-            controllerImp.role == "1" ? Get.to(AddJob()) : null;
-          },
+          foregroundColor: LightAppColors.whiteColor,
+          overlayColor: LightAppColors.blackColor,
+          overlayOpacity: 0.4,
+          direction: SpeedDialDirection.up,
+          buttonSize: Size(50.w, 50.h),
+          childPadding: EdgeInsets.symmetric(vertical: 10.h),
+          closeManually: false,
+          childrenButtonSize: Size(65.w, 65.h),
+          children: [
+            SpeedDialChild(
+                backgroundColor: LightAppColors.primaryColor,
+                labelWidget: Container(
+                  child: Text("post".tr),
+                ),
+                shape: CircleBorder(),
+                onTap: () {
+                  //   Get.to(AddPost());
+                },
+                child: Icon(
+                  Icons.post_add_outlined,
+                  size: 18.sp,
+                ),
+                label: "post".tr),
+            SpeedDialChild(
+                backgroundColor: LightAppColors.primaryColor,
+                labelWidget: Container(
+                  child: Text("task".tr),
+                ),
+                shape: CircleBorder(),
+                onTap: () {
+                  //   Get.to(AddJob());
+                },
+                child: Icon(
+                  Icons.task_outlined,
+                  size: 18.sp,
+                ),
+                label: "job".tr),
+            controllerImp.role == "1"
+                ? SpeedDialChild(
+                    backgroundColor: LightAppColors.primaryColor,
+                    labelWidget: Container(
+                      child: Text("job".tr),
+                    ),
+                    shape: CircleBorder(),
+                    onTap: () {
+                      Get.to(AddJob());
+                    },
+                    child: Icon(
+                      Icons.work_outline,
+                      size: 18.sp,
+                    ),
+                    label: "job".tr)
+                : SpeedDialChild()
+          ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
           color: Color.fromARGB(249, 28, 29, 48),
           shape: CircularNotchedRectangle(),
           height: 65.h,
-          notchMargin: 5.w,
+          notchMargin: 3.w,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MaterialButton(
-                // color: LightAppColors.primaryColor,
                 splashColor: Color.fromARGB(
                   249,
                   28,
@@ -41,12 +88,10 @@ class ButtomBar extends StatelessWidget {
                   48,
                 ),
                 hoverColor: Color.fromARGB(249, 28, 29, 48),
-                // focusColor: Color.fromARGB(249, 28, 29, 48),
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
                 onPressed: () {
                   controllerImp.changePage(0);
-                 
                 },
                 child: Column(
                   children: [
@@ -74,12 +119,10 @@ class ButtomBar extends StatelessWidget {
                   48,
                 ),
                 hoverColor: Color.fromARGB(249, 28, 29, 48),
-                // focusColor: Color.fromARGB(249, 28, 29, 48),
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
                 onPressed: () {
-                                   controllerImp.changePage(1);
-
+                  controllerImp.changePage(1);
                 },
                 child: Column(
                   children: [
@@ -113,8 +156,7 @@ class ButtomBar extends StatelessWidget {
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
                 onPressed: () {
-                                    controllerImp.changePage(2);
-
+                  controllerImp.changePage(2);
                 },
                 child: Column(
                   children: [
@@ -147,8 +189,7 @@ class ButtomBar extends StatelessWidget {
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
                 onPressed: () {
-                                   controllerImp.changePage(3);
-
+                  controllerImp.changePage(3);
                 },
                 child: Column(
                   children: [
