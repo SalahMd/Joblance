@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/buttom_bar_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/add_job/add_job.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
@@ -18,55 +19,59 @@ class ButtomBar extends StatelessWidget {
           backgroundColor: LightAppColors.primaryColor,
           foregroundColor: LightAppColors.whiteColor,
           overlayColor: LightAppColors.blackColor,
-          overlayOpacity: 0.4,
+          overlayOpacity: 0.5,
           direction: SpeedDialDirection.up,
           buttonSize: Size(50.w, 50.h),
           childPadding: EdgeInsets.symmetric(vertical: 10.h),
+          spacing: 20.h,
           closeManually: false,
           childrenButtonSize: Size(65.w, 65.h),
           children: [
             SpeedDialChild(
-                backgroundColor: LightAppColors.primaryColor,
-                labelWidget: Container(
-                  child: Text("post".tr),
+              backgroundColor: LightAppColors.primaryColor,
+              labelWidget: Container(
+                child: Text(
+                  "post".tr,
+                  style: TextStyles.w50013White(context),
                 ),
-                shape: CircleBorder(),
-                onTap: () {
-                  //   Get.to(AddPost());
-                },
-                child: Icon(
-                  Icons.post_add_outlined,
-                  size: 18.sp,
-                ),
-                label: "post".tr),
+              ),
+              shape: CircleBorder(),
+              onTap: () {
+                //   Get.to(AddPost());
+              },
+              child: Icon(Icons.post_add_outlined,
+                  size: 18.sp, color: LightAppColors.whiteColor),
+            ),
             SpeedDialChild(
-                backgroundColor: LightAppColors.primaryColor,
-                labelWidget: Container(
-                  child: Text("task".tr),
+              backgroundColor: LightAppColors.primaryColor,
+              labelWidget: Container(
+                child: Text(
+                  "task".tr,
+                  style: TextStyles.w50013White(context),
                 ),
-                shape: CircleBorder(),
-                onTap: () {
-                  //   Get.to(AddJob());
-                },
-                child: Icon(
-                  Icons.task_outlined,
-                  size: 18.sp,
-                ),
-                label: "job".tr),
+              ),
+              shape: CircleBorder(),
+              onTap: () {
+                //   Get.to(AddJob());
+              },
+              child: Icon(Icons.task_outlined,
+                  size: 18.sp, color: LightAppColors.whiteColor),
+            ),
             controllerImp.role == "1"
                 ? SpeedDialChild(
                     backgroundColor: LightAppColors.primaryColor,
                     labelWidget: Container(
-                      child: Text("job".tr),
+                      child: Text(
+                        "job".tr,
+                        style: TextStyles.w50013White(context),
+                      ),
                     ),
                     shape: CircleBorder(),
                     onTap: () {
                       Get.to(AddJob());
                     },
-                    child: Icon(
-                      Icons.work_outline,
-                      size: 18.sp,
-                    ),
+                    child: Icon(Icons.work_outline,
+                        size: 18.sp, color: LightAppColors.whiteColor),
                     label: "job".tr)
                 : SpeedDialChild()
           ],
@@ -87,6 +92,7 @@ class ButtomBar extends StatelessWidget {
                   29,
                   48,
                 ),
+                shape: CircleBorder(),
                 hoverColor: Color.fromARGB(249, 28, 29, 48),
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
@@ -118,6 +124,7 @@ class ButtomBar extends StatelessWidget {
                   29,
                   48,
                 ),
+                shape: CircleBorder(),
                 hoverColor: Color.fromARGB(249, 28, 29, 48),
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
@@ -152,6 +159,7 @@ class ButtomBar extends StatelessWidget {
                   29,
                   48,
                 ),
+                shape: CircleBorder(),
                 hoverColor: Color.fromARGB(249, 28, 29, 48),
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
@@ -184,8 +192,8 @@ class ButtomBar extends StatelessWidget {
                   29,
                   48,
                 ),
+                shape: CircleBorder(),
                 hoverColor: Color.fromARGB(249, 28, 29, 48),
-                // focusColor: Color.fromARGB(249, 28, 29, 48),
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
                 onPressed: () {

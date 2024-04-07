@@ -164,6 +164,7 @@ class TextingPage extends StatelessWidget {
                             child: Icon(
                               Icons.send_outlined,
                               size: 20.sp,
+                              color: LightAppColors.whiteColor,
                             ))))
               ],
             ),

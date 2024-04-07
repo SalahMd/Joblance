@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/buttons.dart';
+import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
@@ -58,6 +59,7 @@ class TobBar extends StatelessWidget {
               alignment: Alignment.center,
               margin: EdgeInsetsDirectional.only(start: 5.w, top: 125.h),
               decoration: BoxDecoration(
+                color: LightAppColors.greyColor,
                 borderRadius: BorderRadius.circular(60),
               ),
               child: ClipRRect(

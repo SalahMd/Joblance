@@ -1,29 +1,29 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:joblance/controller/my_account_controller/my_account_free_lancer_controller.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_project_or_product/add_project_or_product.dart';
-import 'package:joblance/view/screens/my_account/freelancer/add_skill.dart';
 import 'package:joblance/view/widgets/divider.dart';
+import 'package:joblance/view/widgets/job_design.dart';
 import 'package:joblance/view/widgets/project_design.dart';
 
-class TabBarViewWidgets extends StatelessWidget {
-  final MyAccountFreelancerControllerImpl controller;
-  const TabBarViewWidgets({super.key, required this.controller});
+class CompanyTabBarViewWidget extends StatelessWidget {
+  const CompanyTabBarViewWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TabBarView(children: [
-      about(context),
-      projects(
+      jobs(
         context,
       ),
-      skills(context, controller),
+      products(
+        context,
+      ),
+      about(context),
       contactInfo(context)
     ]);
   }
@@ -33,8 +33,7 @@ Widget about(BuildContext context) {
   return SingleChildScrollView(
     child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-        child:
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             "about".tr,
             style: TextStyles.w50017(context),
@@ -63,9 +62,6 @@ Widget about(BuildContext context) {
           ),
           Container(
             padding: EdgeInsetsDirectional.only(bottom: 15.h, top: 10.h),
-            // decoration: BoxDecoration(
-            //     color: Theme.of(context).colorScheme.primaryContainer,
-            //     borderRadius: BorderRadius.circular(10)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -117,7 +113,7 @@ Widget about(BuildContext context) {
   );
 }
 
-Widget projects(BuildContext context) {
+Widget products(BuildContext context) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,76 +167,33 @@ Widget projects(BuildContext context) {
   );
 }
 
-Widget skills(BuildContext context, var controller) {
-  return Container(
+Widget jobs(BuildContext context) {
+  return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
           child: Text(
-            "skills".tr,
-            style: TextStyles.w50018(context),
+            "myjobs".tr,
+            style: TextStyles.w50017(context),
           ),
         ),
-        SizedBox(height: 10.h),
-        Container(
-          width: Dimensions.screenWidth(context),
-          height: 55.h,
-          margin: EdgeInsets.symmetric(horizontal: 10.w),
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-          decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(15)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "addskill".tr,
-                style: TextStyles.w50015(context),
-              ),
-              GestureDetector(
-                  onTap: () {
-                    Get.to(AddSkill(
-                      controller: controller,
-                    ));
-                  },
-                  child: Icon(Icons.add))
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
-          child: Column(
-            children: [
-              SizedBox(height: 20.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text("Flutter"), Icon(Icons.delete_outline)],
-              ),
-              MyDivider(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text("Office"), Icon(Icons.delete_outline)],
-              ),
-              MyDivider(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Problem  Solving"),
-                  Icon(Icons.delete_outline)
-                ],
-              ),
-              MyDivider(
-                height: 8,
-              ),
-            ],
-          ),
-        )
+        ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 15,
+            itemBuilder: (BuildContext context, int index) {
+              return JobDesign(
+                  jobTitle: "React developer",
+                  companyName: "Google",
+                  location: "United states",
+                  date: "9 days ago",
+                  remote: "remote".tr,
+                  image: AppImages.googleLogo,
+                  isActive: false);
+            }),
       ],
     ),
   );

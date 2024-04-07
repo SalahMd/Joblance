@@ -43,48 +43,11 @@ class MyAccountFreeLancer extends StatelessWidget {
                                     ],
                                   ),
                                 )
-                                // SliverAppBar(
-                                //   pinned: true,
-                                //   floating: true,
-                                //   automaticallyImplyLeading: false,
-                                //   bottom:
-                                // ),
                               ],
                       body: TabBarViewWidgets(
                         controller: controller,
                       )),
                 ))
-
-        // body: GetBuilder<MyAccountFreelancerControllerImpl>(
-        //   builder: (controller) => DefaultTabController(
-        //     length: controller.tabs.length,
-        //     child: SingleChildScrollView(
-        //       child: Column(
-        //         //mainAxisSize: MainAxisSize.min,
-        //         crossAxisAlignment: CrossAxisAlignment.start,
-        //         children: [
-        //           TobBar(
-        //             isMyAccount: true,
-        //             image: AppImages.salah,
-        //             name: "Salah Mdaghmesh",
-        //             description: "IT developer",
-        //           ),
-        //           SizedBox(
-        //             height: 15.h,
-        //           ),
-        //           Divider(
-        //             height: 1,
-        //             thickness: 0.5,
-        //           ),
-        //           TabBarWidget(
-        //             tabs: controller.tabs,
-        //           ),
-        //           TabBarViewWidgets(controller: controller,)
-        //         ],
-        //       ),
-        //     ),
-        //   ),
-        // ),
         );
   }
 }
