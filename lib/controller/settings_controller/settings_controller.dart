@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
@@ -21,6 +23,9 @@ class SettingsControllerImpl extends SettingsController {
     statusRequest = hadelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
+       String id = myServices.sharedPreferences.getInt("id").toString();
+        FirebaseMessaging.instance.unsubscribeFromTopic("users");
+        FirebaseMessaging.instance.unsubscribeFromTopic("user"+id);
         myServices.sharedPreferences.clear();
         Get.offNamed("ChooseLanguage");
       } else {

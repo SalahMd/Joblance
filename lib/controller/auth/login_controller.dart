@@ -75,6 +75,9 @@ class LogInControllerImpl extends LogiInController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           saveUserData(response['data']);
+          FirebaseMessaging.instance.subscribeToTopic("users");
+          FirebaseMessaging.instance
+              .subscribeToTopic("user" + response['data']['id'].toString());
           Get.offNamed("HomePage");
         } else if (response['status'] == "failure" &&
             response['error_message']['error'] == "email is not verified") {

@@ -137,6 +137,8 @@ class TextingPage extends StatelessWidget {
                       isNumber: false,
                       isPassword: false,
                       isValidation: false,
+                      textInputType: TextInputType.multiline,
+                      textInputAction: TextInputAction.newline,
                       isBorder: true,
                       isLabel: false,
                       padding: 2,

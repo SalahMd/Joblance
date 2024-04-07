@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:joblance/core/constants/colors.dart';
 import '../functions/valid_input.dart';
@@ -18,9 +19,11 @@ class Customtextformfiled extends StatelessWidget {
   final int? letters;
   final bool isFilled;
   final bool isLabel;
+  final TextInputType? textInputType;
   final void Function()? ontapicon;
   final void Function(String val)? onChange;
   final double? padding;
+  final TextInputAction? textInputAction;
 
   final bool isValidation;
   final FocusNode? focusNode;
@@ -46,6 +49,8 @@ class Customtextformfiled extends StatelessWidget {
     this.focusNode,
     this.onChange,
     this.minLines,
+    this.textInputAction,
+    this.textInputType,
   });
 
   @override
@@ -59,12 +64,16 @@ class Customtextformfiled extends StatelessWidget {
             )
           : null,
       child: TextFormField(
+      
         obscureText: isPassword,
         style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
         keyboardType: isNumber
             ? const TextInputType.numberWithOptions(decimal: true)
-            : TextInputType.text,
+            : textInputAction == TextInputAction.newline
+                ? TextInputType.multiline
+                : TextInputType.text,
         focusNode: focusNode,
+        textInputAction: textInputAction,
         validator: isValidation
             ? (val) {
                 return validInput(val!, min, max);
