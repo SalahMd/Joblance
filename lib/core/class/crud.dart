@@ -31,14 +31,14 @@ class Crud {
         print(response.body);
       }
       // Handle other types of requests
-     if (isPost && !isFile) {
+      if (isPost && !isFile) {
         response = await http.post(
           Uri.parse(linkurl),
           body: data,
           headers: {'accept': 'application/json'},
         );
         print(response.body);
-      }  else if (!isPost && !isFile) {
+      } else if (!isPost && !isFile) {
         response = await http.get(Uri.parse(linkurl));
       }
 

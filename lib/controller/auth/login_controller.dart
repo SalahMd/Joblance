@@ -30,6 +30,7 @@ class LogInControllerImpl extends LogiInController {
   Myservices myServices = Get.find();
   bool isshown = true;
   double containerWidth = 300.w;
+  String deviceToken = "";
 
   // hideButton() {
   //   containerWidth = 0;
@@ -65,11 +66,10 @@ class LogInControllerImpl extends LogiInController {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
-      update();
       var response = await loginBata.login({
         "email": emailController.text,
         "password": passwordController.text,
-        "fcm_token": getFCMToken()
+        "device_token": deviceToken
       });
       statusRequest = hadelingData(response);
       if (StatusRequest.success == statusRequest) {
@@ -113,22 +113,20 @@ class LogInControllerImpl extends LogiInController {
     super.dispose();
   }
 
-  String getFCMToken() {
+  getFCMToken() async {
     String? FCMToken;
     FirebaseMessaging.instance.getToken().then((value) {
       FCMToken = value;
       print("token is" + FCMToken!);
+      deviceToken = FCMToken!;
     });
-    if (FCMToken != null)
-      return FCMToken!;
-    else
-      return "";
   }
 
   @override
   void onInit() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    getFCMToken();
     super.onInit();
   }
 
@@ -138,11 +136,10 @@ class LogInControllerImpl extends LogiInController {
     if (googleUser != null) {
       GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       String? googleToken = googleAuth.accessToken;
-      print("token is" + googleToken!);
+      print(googleToken);
       statusRequest = StatusRequest.loading;
-      update();
       var response = await loginBata.googleLogin(
-          {"access_token": googleToken, "fcm_token": getFCMToken()});
+          {"access_token": googleToken, "device_token": deviceToken});
       statusRequest = hadelingData(response);
       print(statusRequest);
       if (StatusRequest.success == statusRequest) {

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:joblance/controller/buttom_bar_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
-import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/add_job/add_job.dart';
 
 class ButtomBar extends StatelessWidget {
@@ -47,8 +45,8 @@ class ButtomBar extends StatelessWidget {
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
                 onPressed: () {
-                  controllerImp.currentPage = 0;
-                  controllerImp.update();
+                  controllerImp.changePage(0);
+                 
                 },
                 child: Column(
                   children: [
@@ -80,8 +78,8 @@ class ButtomBar extends StatelessWidget {
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
                 onPressed: () {
-                  controllerImp.currentPage = 1;
-                  controllerImp.update();
+                                   controllerImp.changePage(1);
+
                 },
                 child: Column(
                   children: [
@@ -115,8 +113,8 @@ class ButtomBar extends StatelessWidget {
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
                 onPressed: () {
-                  controllerImp.currentPage = 2;
-                  controllerImp.update();
+                                    controllerImp.changePage(2);
+
                 },
                 child: Column(
                   children: [
@@ -149,8 +147,8 @@ class ButtomBar extends StatelessWidget {
                 highlightColor: Color.fromARGB(249, 28, 29, 48),
                 minWidth: 40.w,
                 onPressed: () {
-                  controllerImp.currentPage = 3;
-                  controllerImp.update();
+                                   controllerImp.changePage(3);
+
                 },
                 child: Column(
                   children: [
