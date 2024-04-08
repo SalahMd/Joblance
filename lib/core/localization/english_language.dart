@@ -220,5 +220,8 @@ Map<String, String> english = {
   "budget":"Budget",
   "job":"Job",
   "task":"Task",
+  "pleasewait":"Please wait",
+  "studyinfo":"Study information",
+  "tasks":"Tasks","mytasks":"My tasks"
 
 };

@@ -219,5 +219,7 @@ Map<String, String> arabic = {
   "budget":"قيمة المهمة",
   "task":"مهمة",
   "job":"وظيفة",
-  "":"",
+  "pleasewait":"الرجاء الإنتظار",
+  "studyinfo":"معلومات الدراسة",
+  "mytasks":"مهامي","tasks":"المهمات"
 };

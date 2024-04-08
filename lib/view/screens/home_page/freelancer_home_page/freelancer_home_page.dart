@@ -7,9 +7,9 @@ import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
-import 'package:joblance/view/screens/home_page/categories.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/shimmer_freelancer_home_page.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/swiper.dart';
+import 'package:joblance/view/screens/home_page/freelancer_home_page/tasks.dart';
 import 'package:joblance/view/screens/home_page/top_bar.dart';
 import 'package:joblance/view/widgets/job_design.dart';
 
@@ -27,8 +27,11 @@ class FreelancerHomePage extends StatelessWidget {
                 ? ShimmerFreelancerHomePage()
                 : Column(
                     children: [
-                      TopBar(name:  "freelancer".tr,image: AppImages.Linkedin,),
-                          
+                      TopBar(
+                        name: "freelancer".tr,
+                        image: AppImages.Linkedin,
+                      ),
+
                       Align(
                         alignment: AlignmentDirectional.centerStart,
                         child: Padding(
@@ -49,12 +52,13 @@ class FreelancerHomePage extends StatelessWidget {
                             padding: EdgeInsetsDirectional.only(
                                 start: 15.w, top: 10.h, bottom: 10.h),
                             child: Text(
-                              "categories".tr,
+                              "tasks".tr,
                               style: TextStyles.bold20(context),
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                      Categories()
-                         ,
+                      Tasks(),
+                      // Categories()
+                      //  ,
                       Align(
                         alignment: AlignmentDirectional.centerStart,
                         child: Padding(

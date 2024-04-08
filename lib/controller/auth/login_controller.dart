@@ -66,12 +66,15 @@ class LogInControllerImpl extends LogiInController {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
+      animationedAlert(AppAnimations.loadings, "pleasewait".tr);
       var response = await loginBata.login({
         "email": emailController.text,
         "password": passwordController.text,
         "device_token": deviceToken
       });
       statusRequest = hadelingData(response);
+      Get.back();
+
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           saveUserData(response['data']);

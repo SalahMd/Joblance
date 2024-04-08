@@ -20,9 +20,13 @@ class CompanyTabBarViewWidget extends StatelessWidget {
       jobs(
         context,
       ),
+        tasks(
+        context,
+      ),
       products(
         context,
       ),
+
       about(context),
       contactInfo(context)
     ]);
@@ -176,6 +180,37 @@ Widget jobs(BuildContext context) {
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
           child: Text(
             "myjobs".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 15,
+            itemBuilder: (BuildContext context, int index) {
+              return JobDesign(
+                  jobTitle: "React developer",
+                  companyName: "Google",
+                  location: "United states",
+                  date: "9 days ago",
+                  remote: "remote".tr,
+                  image: AppImages.googleLogo,
+                  isActive: false);
+            }),
+      ],
+    ),
+  );
+}
+Widget tasks(BuildContext context) {
+  return SingleChildScrollView(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+          child: Text(
+            "mytasks".tr,
             style: TextStyles.w50015(context),
           ),
         ),
