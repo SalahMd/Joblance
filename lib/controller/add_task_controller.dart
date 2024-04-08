@@ -11,7 +11,8 @@ class AddTaskControllerImpl extends AddTaskController {
   late TextEditingController aboutTask;
   late TextEditingController additionalInfo;
   late TextEditingController requirements;
-  late TextEditingController budget;
+  late TextEditingController minBudget;
+  late TextEditingController maxBudget;
   late TextEditingController taskTitle;
   late TextEditingController taskLocation;
   late TextEditingController taskDuration;
@@ -117,7 +118,8 @@ class AddTaskControllerImpl extends AddTaskController {
     aboutTask = new TextEditingController();
     additionalInfo = new TextEditingController();
     requirements = new TextEditingController();
-    budget = new TextEditingController();
+    minBudget = new TextEditingController();
+    maxBudget = new TextEditingController();
     taskLocation = new TextEditingController();
     taskTitle = new TextEditingController();
     taskDuration = new TextEditingController();
@@ -129,7 +131,8 @@ class AddTaskControllerImpl extends AddTaskController {
     aboutTask.dispose();
     additionalInfo.dispose();
     requirements.dispose();
-    budget.dispose();
+    minBudget.dispose();
+    maxBudget.dispose();
     taskLocation.dispose();
     taskTitle.dispose();
     taskDuration.dispose();

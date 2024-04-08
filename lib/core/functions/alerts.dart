@@ -104,6 +104,7 @@ snackBar(String title, String message, BuildContext context) {
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.only(bottom: 10.h, left: 10.w, right: 10.w));
 }
+
 Future<bool> popUp(
   BuildContext context,
 ) {
@@ -153,6 +154,17 @@ Future<bool> popUp(
           "Technology".tr,
           "designing".tr,
           "servicing".tr,
+        ]),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+          child: Text(
+            "type".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "task".tr,
+          "job".tr,
         ]),
         //SizedBox(height:10.h),
         Padding(

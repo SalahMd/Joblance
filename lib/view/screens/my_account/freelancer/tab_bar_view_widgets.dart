@@ -33,11 +33,10 @@ Widget about(BuildContext context) {
   return SingleChildScrollView(
     child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-        child:
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             "about".tr,
-            style: TextStyles.w50017(context),
+            style: TextStyles.w50015(context),
           ),
           SizedBox(height: 20.h),
           Container(
@@ -47,7 +46,7 @@ Widget about(BuildContext context) {
                   children: [
                     Text(
                       "bio".tr,
-                      style: TextStyles.w50015(context),
+                      style: TextStyles.w50013(context),
                     ),
                     SizedBox(
                       height: 10.h,
@@ -63,15 +62,12 @@ Widget about(BuildContext context) {
           ),
           Container(
             padding: EdgeInsetsDirectional.only(bottom: 15.h, top: 10.h),
-            // decoration: BoxDecoration(
-            //     color: Theme.of(context).colorScheme.primaryContainer,
-            //     borderRadius: BorderRadius.circular(10)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "studyinfo".tr,
-                  style: TextStyles.w50015(context),
+                  style: TextStyles.w50013(context),
                 ),
                 SizedBox(height: 15.h),
                 Row(
@@ -126,7 +122,7 @@ Widget projects(BuildContext context) {
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           child: Text(
             "projects".tr,
-            style: TextStyles.w50017(context),
+            style: TextStyles.w50015(context),
           ),
         ),
         SizedBox(
@@ -180,7 +176,7 @@ Widget skills(BuildContext context, var controller) {
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           child: Text(
             "skills".tr,
-            style: TextStyles.w50018(context),
+            style: TextStyles.w50015(context),
           ),
         ),
         SizedBox(height: 10.h),
@@ -254,7 +250,7 @@ Widget contactInfo(BuildContext context) {
       children: [
         Text(
           "contactinfo".tr,
-          style: TextStyles.w50017(context),
+          style: TextStyles.w50015(context),
         ),
         SizedBox(
           height: 30.h,

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_task_controller.dart';
-import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/core/functions/dimenesions.dart';
 
 class TaskTextFields extends StatelessWidget {
   final AddTaskControllerImpl controller;
@@ -159,20 +156,54 @@ class TaskTextFields extends StatelessWidget {
             ),
           ],
         ).animate().fade(duration: 600.ms, delay: 900.ms).slideY(begin: 0.4),
-        GestureDetector(
-          onTap: () {},
-          child: Container(
-            width: Dimensions.screenWidth(context),
-            height: 40.h,
-            margin: EdgeInsets.symmetric(horizontal: 40.w, vertical: 30.h),
-            alignment: Alignment.center,
-            decoration: AppButtons.buttonDecoration,
-            child: Text(
-              "post".tr,
-              style: TextStyles.w50016White(context),
-            ),
+        Padding(
+          padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
+          child: Text(
+            "budget".tr,
+            style: TextStyles.w50014(context),
           ),
-        ),
+        ).animate().fade(duration: 600.ms, delay: 1000.ms).slideY(begin: 0.4),
+        Row(
+          children: [
+            Expanded(
+              child: Customtextformfiled(
+                hintText: "min".tr,
+                labelText: "".tr,
+                iconData: null,
+                controller: controller.minBudget,
+                min: 1,
+                max: 6,
+                isNumber: true,
+                isPassword: false,
+                isBorder: false,
+                isLabel: false,
+                isFilled: true,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.h),
+              child: Icon(
+                Icons.arrow_right_alt,
+                size: 25.sp,
+              ),
+            ),
+            Expanded(
+              child: Customtextformfiled(
+                hintText: "max".tr,
+                labelText: "".tr,
+                iconData: null,
+                controller: controller.maxBudget,
+                min: 1,
+                max: 6,
+                isNumber: true,
+                isPassword: false,
+                isBorder: false,
+                isLabel: false,
+                isFilled: true,
+              ),
+            )
+          ],
+        )
       ],
     );
   }

@@ -10,7 +10,6 @@ class ChipsChoices extends StatelessWidget {
   ChipsChoices({super.key, required this.options});
   @override
   Widget build(BuildContext context) {
-    
     Get.put(SearchControllerImpl());
     return GetBuilder<SearchControllerImpl>(
       builder: (controller) => ChipsChoice<String>.multiple(

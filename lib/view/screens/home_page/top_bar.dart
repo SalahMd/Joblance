@@ -56,7 +56,7 @@ class TopBar extends StatelessWidget {
                   height: 40.h,
                   child: Icon(
                     Icons.notifications_outlined,
-                    size: 25,
+                    size: 20.sp,
                     color: LightAppColors.primaryColor,
                     shadows: [
                       Shadow(
