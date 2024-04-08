@@ -6,15 +6,10 @@ abstract class SearchController extends GetxController {
 }
 
 class SearchControllerImpl extends SearchController {
+  bool isJob = false;
+  @override
+  dispDatat() {}
 
   @override
-  dispDatat() {
-    
-  }
-
-  @override
-  filterData() {
-    
-  }
-  
+  filterData() {}
 }

@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,31 +7,21 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/job_design.dart';
+import 'package:joblance/view/widgets/project_design.dart';
 
 class CompanyTabBar extends StatelessWidget {
   const CompanyTabBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: Dimensions.screenHeight(context),
-      //width: Dimensions.screenWidth(context),
-      child: TabBarView(
-        children: [
-        Column(
-          children: [
-            Expanded(
-              child: jobs(
-                context,
-              ),
-            ),
-          ],
-        ),
-        aboutCompany(context),
-        products(context),
-        contactInfo(context)
-      ]),
-    );
+    return TabBarView(children: [
+      jobs(
+        context,
+      ),
+      aboutCompany(context),
+      products(context),
+      contactInfo(context)
+    ]);
   }
 }
 
@@ -46,7 +33,7 @@ Widget aboutCompany(BuildContext context) {
       children: [
         Text(
           "aboutcompany".tr,
-          style: Theme.of(context).textTheme.headline1,
+          style: TextStyles.w50015(context),
         ).animate().fade(duration: 600.ms).slideY(begin: 0.9),
         SizedBox(
           height: 20.h,
@@ -54,7 +41,7 @@ Widget aboutCompany(BuildContext context) {
         Expanded(
             child: Text(
           "is an American multinational corporation and technology company focusing on online advertising, search engine technology, cloud computing, computer software, quantum computing, e-commerce, consumer electronics, and artificial intelligence It has been referred to as the most powerful company in the world",
-          style: TextStyles.w40014grey(context),
+          style: TextStyles.w40012grey(context),
         )).animate().fade(duration: 700.ms).slideY(begin: 0.1)
       ],
     ),
@@ -62,36 +49,66 @@ Widget aboutCompany(BuildContext context) {
 }
 
 Widget jobs(BuildContext context) {
-  return ListView.builder(
-      padding: EdgeInsets.zero,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: 15,
-      itemBuilder: (BuildContext context, int index) {
-        return JobDesign(
-            jobTitle: "React developer",
-            companyName: "Google",
-            location: "United states",
-            date: "9 days ago",
-            remote: "remote".tr,
-            image: AppImages.googleLogo,
-            isActive: false);
-      });
+  return SingleChildScrollView(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+          child: Text(
+            "myjobs".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              return JobDesign(
+                  jobTitle: "React developer",
+                  companyName: "Google",
+                  location: "United states",
+                  date: "9 days ago",
+                  remote: "remote".tr,
+                  image: AppImages.googleLogo,
+                  isActive: false);
+            }),
+      ],
+    ),
+  );
 }
 
 Widget products(BuildContext context) {
-  return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
+  return SingleChildScrollView(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+          child: Text(
             "companyproducts".tr,
-            style: Theme.of(context).textTheme.headline1,
+            style: TextStyles.w50015(context),
           ),
-        ],
-      )).animate().fade(duration: 600.ms).slideY(begin: 0.1);
+        ),
+        ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 7,
+            itemBuilder: (BuildContext context, int index) {
+              return ProjectDesign(
+                  projectTitle: "Joblance",
+                  projectDescription:
+                      "Jobs and freelancing app made with flutter and laravel",
+                  projectMedia: AppImages.Linkedin,
+                  projectLink: "https//www.google.com");
+            })
+      ],
+    ).animate().fade(duration: 600.ms).slideY(begin: 0.1),
+  );
 }
 
 Widget contactInfo(BuildContext context) {
@@ -103,7 +120,7 @@ Widget contactInfo(BuildContext context) {
       children: [
         Text(
           "contactinfo".tr,
-          style: Theme.of(context).textTheme.headline1,
+          style: TextStyles.w50015(context),
         ),
         SizedBox(
           height: 30.h,

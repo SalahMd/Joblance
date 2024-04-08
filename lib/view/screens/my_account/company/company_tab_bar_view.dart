@@ -36,7 +36,7 @@ Widget about(BuildContext context) {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             "about".tr,
-            style: TextStyles.w50017(context),
+            style: TextStyles.w50015(context),
           ),
           SizedBox(height: 20.h),
           Container(
@@ -46,7 +46,7 @@ Widget about(BuildContext context) {
                   children: [
                     Text(
                       "bio".tr,
-                      style: TextStyles.w50015(context),
+                      style: TextStyles.w50013(context),
                     ),
                     SizedBox(
                       height: 10.h,
@@ -121,8 +121,8 @@ Widget products(BuildContext context) {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           child: Text(
-            "projects".tr,
-            style: TextStyles.w50017(context),
+            "products".tr,
+            style: TextStyles.w50015(context),
           ),
         ),
         SizedBox(
@@ -143,7 +143,7 @@ Widget products(BuildContext context) {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("addproject".tr, style: TextStyles.w50015(context)),
+                Text("addproduct".tr, style: TextStyles.w50015(context)),
                 Icon(Icons.add)
               ],
             ),
@@ -176,7 +176,7 @@ Widget jobs(BuildContext context) {
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
           child: Text(
             "myjobs".tr,
-            style: TextStyles.w50017(context),
+            style: TextStyles.w50015(context),
           ),
         ),
         ListView.builder(

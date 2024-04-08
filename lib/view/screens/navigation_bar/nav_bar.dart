@@ -79,9 +79,10 @@ class ButtomBar extends StatelessWidget {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
+          padding: EdgeInsets.symmetric(vertical: 10.h),
           color: Color.fromARGB(249, 28, 29, 48),
           shape: CircularNotchedRectangle(),
-          height: 65.h,
+          height: 65,
           notchMargin: 3.w,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,7 +152,7 @@ class ButtomBar extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 20.w,
+                width: 10.w,
               ),
               MaterialButton(
                 splashColor: Color.fromARGB(
@@ -160,6 +161,7 @@ class ButtomBar extends StatelessWidget {
                   29,
                   48,
                 ),
+                padding: EdgeInsetsDirectional.only(start: 10),
                 shape: CircleBorder(),
                 hoverColor: Color.fromARGB(249, 28, 29, 48),
                 highlightColor: Color.fromARGB(249, 28, 29, 48),

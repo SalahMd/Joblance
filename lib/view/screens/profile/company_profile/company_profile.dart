@@ -14,38 +14,38 @@ class CompanyProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(CompanyProfileControllerImpl());
     return Scaffold(
-      body: GetBuilder<CompanyProfileControllerImpl>(
-        builder: (controller) => DefaultTabController(
-          length: controller.tabs.length,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TobBar(
-                  image: AppImages.googleLogo,
-                  name: "Google",
-                  description: "Softwere development company",
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                Divider(
-                  height: 1,
-                  thickness: 0.5,
-                ),
-                TabBarWidget(
-                  tabs: controller.tabs,
-                ),
-                Column(
-                  children: [
-                    CompanyTabBar(),
-                  ],
-                )
-              ],
+        body: GetBuilder<CompanyProfileControllerImpl>(
+      builder: (controller) => DefaultTabController(
+        length: controller.tabs.length,
+        child: NestedScrollView(
+          headerSliverBuilder:
+              (BuildContext context, bool innerBoxIsScrolled) => [
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TobBar(
+                    image: AppImages.googleLogo,
+                    name: "Google",
+                    description: "Softwere development company",
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Divider(
+                    height: 1,
+                    thickness: 0.5,
+                  ),
+                  TabBarWidget(
+                    tabs: controller.tabs,
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
+          body: CompanyTabBar(),
         ),
       ),
-    );
+    ));
   }
 }

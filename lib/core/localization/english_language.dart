@@ -203,5 +203,22 @@ Map<String, String> english = {
   "addyourskill": "Add your skill",
   "addskill": "Add skill",
   "myjobs": "My jobs",
-  "cantaddmorethan6images":"Cant add more than 6 images"
+  "cantaddmorethan6images":"Cant add more than 6 images",
+  "addtask":"Fill your task info",
+  "tasktitle":"Task title",
+  "tasklocation":"Task location",
+  "tasktitle2":"Enter your task title",
+  "tasklocation2":"Enter your task location",
+  "abouttask1":"About task",
+  "abouttask2":"Explane your task",
+  "taskadditionalinfo":"Additional information",
+  "taskduration":"Task duration",
+  "taskduration2":"Enter your task duration",
+  "days":"Days",
+  "add":"Add",
+  "offers":"Offers",
+  "budget":"Budget",
+  "job":"Job",
+  "task":"Task",
+
 };
