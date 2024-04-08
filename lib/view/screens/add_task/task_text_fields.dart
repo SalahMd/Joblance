@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:joblance/controller/add_job_controller.dart';
+import 'package:joblance/controller/add_task_controller.dart';
+import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/core/functions/dimenesions.dart';
 
-class JobTextFileds extends StatelessWidget {
-  final AddjobControllerImpl controller;
-  const JobTextFileds({super.key, required this.controller});
+class TaskTextFields extends StatelessWidget {
+  final AddTaskControllerImpl controller;
+  const TaskTextFields({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +21,15 @@ class JobTextFileds extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w),
           child: Text(
-            "jobtitle".tr,
+            "tasktitle".tr,
             style: TextStyles.w50014(context),
           ),
         ).animate().fade(duration: 600.ms, delay: 200.ms).slideY(begin: 0.4),
         Customtextformfiled(
-          hintText: "jobtitle2".tr,
+          hintText: "tasktitle2".tr,
           labelText: "".tr,
           iconData: null,
-          controller: controller.jobTitle,
+          controller: controller.taskTitle,
           min: 5,
           max: 20,
           isNumber: false,
@@ -38,15 +41,15 @@ class JobTextFileds extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
-            "joblocation".tr,
+            "tasklocation".tr,
             style: TextStyles.w50014(context),
           ),
         ).animate().fade(duration: 600.ms, delay: 400.ms).slideY(begin: 0.4),
         Customtextformfiled(
-          hintText: "joblocation2".tr,
+          hintText: "tasklocation2".tr,
           labelText: "".tr,
           iconData: null,
-          controller: controller.jobLocation,
+          controller: controller.taskLocation,
           min: 4,
           max: 25,
           isNumber: false,
@@ -58,23 +61,23 @@ class JobTextFileds extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
-            "aboutjob1".tr,
+            "abouttask1".tr,
             style: TextStyles.w50014(context),
           ),
         ).animate().fade(duration: 600.ms).slideY(begin: 0.4),
         Customtextformfiled(
-          hintText: "aboutjob2".tr,
+          hintText: "abouttask2".tr,
           labelText: "",
           iconData: null,
-          controller: controller.aboutJob,
+          controller: controller.aboutTask,
           min: 10,
           max: 300,
           isNumber: false,
+          textInputAction: TextInputAction.newline,
           isPassword: false,
           isBorder: false,
           maxLines: 4,
           isLabel: false,
-          textInputAction: TextInputAction.newline,
           isFilled: true,
         ).animate().fade(duration: 600.ms, delay: 500.ms).slideY(begin: 0.4),
         Padding(
@@ -102,7 +105,7 @@ class JobTextFileds extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
-            "jobadditionalinfo".tr,
+            "taskadditionalinfo".tr,
             style: TextStyles.w50014(context),
           ),
         ).animate().fade(duration: 600.ms, delay: 800.ms).slideY(begin: 0.4),
@@ -115,12 +118,61 @@ class JobTextFileds extends StatelessWidget {
           max: 300,
           isNumber: false,
           isPassword: false,
-          textInputAction: TextInputAction.newline,
           isBorder: false,
           maxLines: 4,
+          textInputAction: TextInputAction.newline,
           isLabel: false,
           isFilled: true,
         ).animate().fade(duration: 600.ms, delay: 900.ms).slideY(begin: 0.4),
+        Padding(
+          padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
+          child: Text(
+            "taskduration".tr,
+            style: TextStyles.w50014(context),
+          ),
+        ).animate().fade(duration: 600.ms, delay: 800.ms).slideY(begin: 0.4),
+        Row(
+          children: [
+            Expanded(
+                flex: 3,
+                child: Customtextformfiled(
+                  hintText: "taskduration2".tr,
+                  labelText: "".tr,
+                  iconData: null,
+                  controller: controller.taskDuration,
+                  min: 1,
+                  max: 3,
+                  isNumber: true,
+                  isPassword: false,
+                  isBorder: false,
+                  isLabel: false,
+                  isFilled: true,
+                )),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(top: 12.h, start: 10.w),
+                child: Text(
+                  "days".tr,
+                  style: TextStyles.w50014(context),
+                ),
+              ),
+            ),
+          ],
+        ).animate().fade(duration: 600.ms, delay: 900.ms).slideY(begin: 0.4),
+        GestureDetector(
+          onTap: () {},
+          child: Container(
+            width: Dimensions.screenWidth(context),
+            height: 40.h,
+            margin: EdgeInsets.symmetric(horizontal: 40.w, vertical: 30.h),
+            alignment: Alignment.center,
+            decoration: AppButtons.buttonDecoration,
+            child: Text(
+              "post".tr,
+              style: TextStyles.w50016White(context),
+            ),
+          ),
+        ),
       ],
     );
   }

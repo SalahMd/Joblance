@@ -6,6 +6,7 @@ import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/add_job/add_job.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:joblance/view/screens/add_task/add_task.dart';
 
 class ButtomBar extends StatelessWidget {
   @override
@@ -52,7 +53,7 @@ class ButtomBar extends StatelessWidget {
               ),
               shape: CircleBorder(),
               onTap: () {
-                //   Get.to(AddJob());
+                Get.to(AddTask());
               },
               child: Icon(Icons.task_outlined,
                   size: 18.sp, color: LightAppColors.whiteColor),
