@@ -180,29 +180,30 @@ Widget skills(BuildContext context, var controller) {
           ),
         ),
         SizedBox(height: 10.h),
-        Container(
-          width: Dimensions.screenWidth(context),
-          height: 55.h,
-          margin: EdgeInsets.symmetric(horizontal: 10.w),
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-          decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(15)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "addskill".tr,
-                style: TextStyles.w50015(context),
-              ),
-              GestureDetector(
-                  onTap: () {
-                    Get.to(AddSkill(
-                      controller: controller,
-                    ));
-                  },
-                  child: Icon(Icons.add))
-            ],
+        GestureDetector(
+          onTap: () {
+            Get.to(AddSkill(
+              controller: controller,
+            ));
+          },
+          child: Container(
+            width: Dimensions.screenWidth(context),
+            height: 55.h,
+            margin: EdgeInsets.symmetric(horizontal: 10.w),
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+            decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(15)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "addskill".tr,
+                  style: TextStyles.w50015(context),
+                ),
+                Icon(Icons.add)
+              ],
+            ),
           ),
         ),
         Padding(

@@ -17,6 +17,9 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     Tab(
       text: "jobs".tr,
     ),
+    Tab(
+      text: "tasks".tr,
+    ),
     Tab(text: "about".tr),
     Tab(text: "products".tr),
     Tab(text: "contact".tr)
@@ -40,7 +43,6 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   @override
   void onInit() {
     super.onInit();
-  
   }
 
   @override
