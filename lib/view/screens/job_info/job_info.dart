@@ -34,8 +34,11 @@ class JobInfo extends StatelessWidget {
               height: 10.h,
             ),
             AboutCompany(),
+            MyDivider(),
             AboutJob(),
+            MyDivider(),
             Requirements(),
+            MyDivider(),
             AdditionalInfo()
           ],
         ),

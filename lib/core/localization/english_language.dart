@@ -225,5 +225,6 @@ Map<String, String> english = {
   "tasks":"Tasks","mytasks":"My tasks",
   "showall":"Show all",
   "addoffer":"Add offer",
+  "abouttask":"About task:",
 
 };

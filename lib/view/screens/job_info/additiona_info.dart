@@ -12,11 +12,13 @@ class AdditionalInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Dimensions.screenWidth(context),
-      margin: EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.w),
+      margin: EdgeInsets.symmetric(horizontal: 5.h, vertical: 10.w),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primaryContainer,
+          // border: Border.all(
+          //     color: Theme.of(context).colorScheme.onSecondary, width: 0.2),
+          // color: Theme.of(context).colorScheme.primaryContainer,
           borderRadius: BorderRadius.circular(10)),
-      padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
+      padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

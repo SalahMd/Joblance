@@ -223,5 +223,6 @@ Map<String, String> arabic = {
   "studyinfo":"معلومات الدراسة",
   "mytasks":"مهامي","tasks":"المهمات",
   "showall":"عرض الكل",
-  "addoffer":"إضافة عرض"
+  "addoffer":"إضافة عرض",
+  "abouttask":"معلومات المهمة"
 };

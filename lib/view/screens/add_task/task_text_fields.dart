@@ -35,26 +35,7 @@ class TaskTextFields extends StatelessWidget {
           isLabel: false,
           isFilled: true,
         ).animate().fade(duration: 600.ms, delay: 300.ms).slideY(begin: 0.4),
-        Padding(
-          padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
-          child: Text(
-            "tasklocation".tr,
-            style: TextStyles.w50014(context),
-          ),
-        ).animate().fade(duration: 600.ms, delay: 400.ms).slideY(begin: 0.4),
-        Customtextformfiled(
-          hintText: "tasklocation2".tr,
-          labelText: "".tr,
-          iconData: null,
-          controller: controller.taskLocation,
-          min: 4,
-          max: 25,
-          isNumber: false,
-          isPassword: false,
-          isBorder: false,
-          isLabel: false,
-          isFilled: true,
-        ).animate().fade(duration: 600.ms, delay: 400.ms).slideY(begin: 0.4),
+      
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
