@@ -221,5 +221,7 @@ Map<String, String> arabic = {
   "job":"وظيفة",
   "pleasewait":"الرجاء الإنتظار",
   "studyinfo":"معلومات الدراسة",
-  "mytasks":"مهامي","tasks":"المهمات"
+  "mytasks":"مهامي","tasks":"المهمات",
+  "showall":"عرض الكل",
+  "addoffer":"إضافة عرض"
 };

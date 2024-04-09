@@ -45,6 +45,7 @@ class TextStyles {
         fontSize: 10.sp,
         fontWeight: FontWeight.w400,
       );
+      
 
   static TextStyle w50012White(BuildContext context) => TextStyle(
         color: Colors.white,
