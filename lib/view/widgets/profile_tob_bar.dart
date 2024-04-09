@@ -59,6 +59,7 @@ class TobBar extends StatelessWidget {
               alignment: Alignment.center,
               margin: EdgeInsetsDirectional.only(start: 5.w, top: 125.h),
               decoration: BoxDecoration(
+                border:Border.all(color:LightAppColors.whiteColor),
                 color: LightAppColors.greyColor,
                 borderRadius: BorderRadius.circular(60),
               ),

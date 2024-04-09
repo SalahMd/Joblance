@@ -222,6 +222,8 @@ Map<String, String> english = {
   "task":"Task",
   "pleasewait":"Please wait",
   "studyinfo":"Study information",
-  "tasks":"Tasks","mytasks":"My tasks"
+  "tasks":"Tasks","mytasks":"My tasks",
+  "showall":"Show all",
+  "addoffer":"Add offer",
 
 };

@@ -18,7 +18,7 @@ class JobInfo extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TopBar(),
+            JobTobBar(),
             CompanyInfo(
               companyImage: Image.asset(AppImages.Linkedin),
               companyName: "Linkedin",

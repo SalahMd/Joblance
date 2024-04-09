@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/freelancer_home_page_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
@@ -36,10 +37,12 @@ class FreelancerHomePage extends StatelessWidget {
                         alignment: AlignmentDirectional.centerStart,
                         child: Padding(
                             padding: EdgeInsetsDirectional.only(
-                                start: 15.w, top: 10.h, bottom: 15.h),
+                              start: 15.w,
+                              top: 15.h,
+                            ),
                             child: Text(
                               "popularjobs".tr,
-                              style: TextStyles.bold20(context),
+                              style: TextStyles.bold17(context),
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
                       Swiper()
@@ -50,13 +53,27 @@ class FreelancerHomePage extends StatelessWidget {
                         alignment: AlignmentDirectional.centerStart,
                         child: Padding(
                             padding: EdgeInsetsDirectional.only(
-                                start: 15.w, top: 10.h, bottom: 10.h),
-                            child: Text(
-                              "tasks".tr,
-                              style: TextStyles.bold20(context),
+                                start: 15.w, top: 5.h, end: 15.w, bottom: 5.h),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "tasks".tr,
+                                  style: TextStyles.bold17(context),
+                                ),
+                                Text(
+                                  "showall".tr,
+                                  style: TextStyle(
+                                      color: LightAppColors.primaryColor,
+                                      fontSize: 12.sp),
+                                ),
+                              ],
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                      Tasks(),
+                      Tasks()
+                          .animate()
+                          .fade(duration: 600.ms)
+                          .slideX(begin: 0.4),
                       // Categories()
                       //  ,
                       Align(
@@ -66,7 +83,7 @@ class FreelancerHomePage extends StatelessWidget {
                                 start: 15.w, top: 10.h, bottom: 5.h),
                             child: Text(
                               "recentjobs".tr,
-                              style: TextStyles.bold20(context),
+                              style: TextStyles.bold17(context),
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
                       JobDesign(

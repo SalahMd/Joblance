@@ -29,7 +29,7 @@ class SliderWidget extends StatelessWidget {
           padding:
               EdgeInsetsDirectional.only(end: 10.w, top: 10.h, bottom: 6.h),
           margin: EdgeInsets.symmetric(
-            vertical: 10.h,
+            vertical: 20.h,
             horizontal: 15.w,
           ),
           decoration: BoxDecoration(
@@ -49,8 +49,8 @@ class SliderWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: 22.w,
-                height: 22.h,
+                width: 20.w,
+                height: 20.h,
                 margin: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Image.asset(
                   AppImages.save,
@@ -69,7 +69,7 @@ class SliderWidget extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.location_on_outlined,
-                    size: 20,
+                    size: 16.sp,
                     color: LightAppColors.primaryColor,
                   ),
                   Text("United states" + " - " + remote,
@@ -81,8 +81,8 @@ class SliderWidget extends StatelessWidget {
         ),
         Container(
           width: Dimensions.screenWidth(context) / 1.55,
-          margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-          padding: EdgeInsetsDirectional.only(start: 6.w, top: 10.h),
+          margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
+          padding: EdgeInsetsDirectional.only(start: 6.w, top: 5.h),
           decoration: BoxDecoration(
               color: LightAppColors.primaryColor.withOpacity(0.7),
               borderRadius: BorderRadiusDirectional.only(
@@ -95,12 +95,12 @@ class SliderWidget extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                      width: 35.w,
-                      height: 50.h,
+                      width: 30.w,
+                      height: 45.h,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10)),
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(5),
                           child: Image.asset(companyImage))),
                   SizedBox(
                     width: 10.w,
@@ -110,24 +110,24 @@ class SliderWidget extends StatelessWidget {
                     children: [
                       Text(
                         jobTitle,
-                        style: TextStyles.w50016White(context),
+                        style: TextStyles.w50013White(context),
                       ),
                       Text(
                         companyName,
-                        style: TextStyles.w50013White(context),
+                        style: TextStyles.w50011White(context),
                       ),
                     ],
                   ),
                 ],
               ),
               SizedBox(
-                height: 15.h,
+                height: 10.h,
               ),
               Row(
                 children: [
                   Icon(
                     Icons.person_outline,
-                    size: 20,
+                    size: 18.sp,
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
                   SizedBox(
@@ -135,16 +135,16 @@ class SliderWidget extends StatelessWidget {
                   ),
                   Text(
                     applicants + "applicants".tr,
-                    style: TextStyles.w50011White(context),
+                    style: TextStyles.w40010White(context),
                   ),
                 ],
               ),
-              SizedBox(height: 5.h),
+              SizedBox(height: 3.h),
               Row(
                 children: [
                   Icon(
                     Icons.calendar_month_outlined,
-                    size: 20,
+                    size: 18.sp,
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
                   SizedBox(
@@ -152,16 +152,16 @@ class SliderWidget extends StatelessWidget {
                   ),
                   Text(
                     "12" + " hours ago".tr,
-                    style: TextStyles.w50011White(context),
+                    style: TextStyles.w40010White(context),
                   ),
                 ],
               ),
-              SizedBox(height: 5.h),
+              SizedBox(height: 3.h),
               Row(
                 children: [
                   Icon(
                     Icons.attach_money_outlined,
-                    size: 20,
+                    size: 18.sp,
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
                   SizedBox(
@@ -169,7 +169,7 @@ class SliderWidget extends StatelessWidget {
                   ),
                   Text(
                     "45k - 60k".tr,
-                    style: TextStyles.w50011White(context),
+                    style: TextStyles.w40010White(context),
                   ),
                 ],
               )
