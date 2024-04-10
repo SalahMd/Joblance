@@ -102,8 +102,10 @@ class TaskTobBar extends StatelessWidget {
                         SizedBox(height: 20.h),
                         Row(
                           children: [
-                            Icon(Icons.access_time_filled_sharp,
-                                size: 15.sp, color: LightAppColors.whiteColor),
+                            Icon(
+                              Icons.access_time_outlined,
+                              size: 15.sp,
+                            ),
                             SizedBox(width: 8.w),
                             Text(
                               "excutingtime".tr + " : ",

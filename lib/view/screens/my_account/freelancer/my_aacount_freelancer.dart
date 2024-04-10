@@ -47,7 +47,6 @@ class MyAccountFreeLancer extends StatelessWidget {
                       body: TabBarViewWidgets(
                         controller: controller,
                       )),
-                ))
-        );
+                )));
   }
 }

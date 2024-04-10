@@ -228,5 +228,13 @@ Map<String, String> arabic = {
   "excutingtime":"وقت التنفيذ",
   "offerbudget":"قيمة العرض",
   "offerinfo":"معلومات العرض",
+  "mybudget":"محفظتي",
+  "min":"أقل قيمة",
+  "max":"أعلى قيمة",
+  "withdraw":"سحب:",
+  "deposit":"إيداع:",
+  "on":"في",
+  "value":"القيمة",
+  "lasttransmissions":"اخر التحويلات",
   
 };
