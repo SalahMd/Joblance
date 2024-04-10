@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/signup_controller.dart';
@@ -21,8 +19,8 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(SignUpControllerImpl());
-    return WillPopScope(
-      onWillPop: exitAlert,
+    return PopScope(
+      onPopInvoked: exitAlert,
       child: Scaffold(
         body: GetBuilder<SignUpControllerImpl>(
           builder: (controller) => SingleChildScrollView(

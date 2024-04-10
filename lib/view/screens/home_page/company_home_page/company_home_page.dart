@@ -10,7 +10,6 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/view/screens/home_page/categories.dart';
 import 'package:joblance/view/screens/home_page/company_home_page/shimmer_company_home_page.dart';
-import 'package:joblance/view/screens/home_page/freelancer_home_page/tasks.dart';
 import 'package:joblance/view/screens/home_page/top_bar.dart';
 import 'package:joblance/view/widgets/freelancer_design.dart';
 
@@ -20,8 +19,8 @@ class CompanyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(CompanyHomePageControllerImpl());
-    return WillPopScope(
-      onWillPop: exitAlert,
+    return PopScope(
+      onPopInvoked: exitAlert,
       child: Scaffold(
         body: GetBuilder<CompanyHomePageControllerImpl>(
           builder: (controller) => SingleChildScrollView(
@@ -45,14 +44,8 @@ class CompanyHomePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "tasks".tr,
+                                  "categories".tr,
                                   style: TextStyles.bold17(context),
-                                ),
-                                Text(
-                                  "showall".tr,
-                                  style: TextStyle(
-                                      color: LightAppColors.primaryColor,
-                                      fontSize: 12.sp),
                                 ),
                               ],
                             )),

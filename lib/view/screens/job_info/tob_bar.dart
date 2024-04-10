@@ -40,6 +40,7 @@ class JobTobBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20)),
                 child: Image.asset(
                   AppImages.save,
+                  color: Theme.of(context).colorScheme.onSecondary,
                   fit: BoxFit.fill,
                 ))
           ],

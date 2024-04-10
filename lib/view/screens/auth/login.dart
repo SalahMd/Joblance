@@ -16,8 +16,8 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(LogInControllerImpl());
-    return WillPopScope(
-      onWillPop: exitAlert,
+    return PopScope(
+      onPopInvoked: exitAlert,
       child: Scaffold(
           body: GetBuilder<LogInControllerImpl>(
         builder: (controller) => SingleChildScrollView(

@@ -3,9 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/add_offer/add_offer.dart';
 import 'package:joblance/view/screens/job_info/tob_bar.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
@@ -24,7 +23,9 @@ class TaskTobBar extends StatelessWidget {
       required this.userName,
       required this.taskTitle,
       required this.major,
-      required this.isActive, required this.budget, required this.duration});
+      required this.isActive,
+      required this.budget,
+      required this.duration});
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +47,8 @@ class TaskTobBar extends StatelessWidget {
                       Get.to(CompanyProfile());
                     },
                     child: Container(
-                      width: 50.w,
-                      height: 60.h,
+                      width: 45.w,
+                      height: 55.h,
                       decoration:
                           BoxDecoration(borderRadius: BorderRadius.circular(5)),
                       child: ClipRRect(
@@ -55,31 +56,41 @@ class TaskTobBar extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5)),
                     ),
                   ),
-                  SizedBox(
-                    width: 15.w,
-                  ),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        taskTitle,
-                        style: TextStyles.w50017(context),
-                      ),
-                      Text(
-                        userName,
-                        style: TextStyles.w50014(context),
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(start: 20.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              taskTitle,
+                              style: TextStyles.w50015(context),
+                            ),
+                            Text(
+                              userName,
+                              style: TextStyles.w50013(context),
+                            ),
+                          ],
+                        ),
                       ),
                       Row(
                         children: [
+                          Icon(
+                            Icons.attach_money,
+                            size: 15.sp,
+                            color: LightAppColors.greyColor,
+                          ),
+                          SizedBox(width: 2.w),
                           Text(
-                            duration,
+                            budget,
                             style: TextStyles.w40012grey(context),
                           ),
                         ],
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
               Row(
@@ -91,7 +102,22 @@ class TaskTobBar extends StatelessWidget {
                         SizedBox(height: 20.h),
                         Row(
                           children: [
-                            Icon(Icons.work_outline, size: 18),
+                            Icon(Icons.access_time_filled_sharp,
+                                size: 15.sp, color: LightAppColors.whiteColor),
+                            SizedBox(width: 8.w),
+                            Text(
+                              "excutingtime".tr + " : ",
+                              style: TextStyles.w40012grey(context),
+                            ),
+                            Text(
+                              duration,
+                              style: TextStyles.w40012grey(context),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.work_outline, size: 15.sp),
                             SizedBox(width: 8.w),
                             Text(
                               "major".tr + ": " + major,
@@ -101,17 +127,7 @@ class TaskTobBar extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(Icons.attach_money, size: 18),
-                            SizedBox(width: 8.w),
-                            Text(
-                              budget,
-                              style: TextStyles.w40012grey(context),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(Icons.calendar_month_outlined, size: 18),
+                            Icon(Icons.calendar_month_outlined, size: 15.sp),
                             SizedBox(width: 8.w),
                             Text(
                               "2 weeks ago".tr,
@@ -139,18 +155,18 @@ class TaskTobBar extends StatelessWidget {
                       ]),
                   GestureDetector(
                     onTap: () {
-                     // Get.to(ApplayJobPage());
+                      Get.to(AddOffer());
                     },
                     child: Padding(
                       padding: EdgeInsets.only(top: 65.h),
                       child: Container(
-                        width: 90.w,
+                        width: 100.w,
                         height: 30.h,
                         alignment: Alignment.center,
                         decoration: AppButtons.buttonDecoration,
                         child: Text(
                           "addoffer".tr,
-                          style: TextStyles.w50016White(context),
+                          style: TextStyles.w50013White(context),
                         ),
                       ),
                     ),

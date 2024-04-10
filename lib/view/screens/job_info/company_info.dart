@@ -146,7 +146,7 @@ class CompanyInfo extends StatelessWidget {
                     decoration: AppButtons.buttonDecoration,
                     child: Text(
                       "applay".tr,
-                      style: TextStyles.w50016White(context),
+                      style: TextStyles.w50013White(context),
                     ),
                   ),
                 ),
