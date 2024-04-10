@@ -25,14 +25,11 @@ class TaskPage extends StatelessWidget {
                 isActive: true,
                 budget: "200-500",
                 duration: "60 days"),
-            MyDivider(),
             SizedBox(
               height: 10.h,
             ),
             AbouTask(),
-            MyDivider(),
             Requirements(),
-            MyDivider(),
             AdditionalInfo()
           ],
         ),

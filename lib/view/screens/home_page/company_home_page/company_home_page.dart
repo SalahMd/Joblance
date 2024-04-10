@@ -44,14 +44,8 @@ class CompanyHomePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "tasks".tr,
+                                  "categories".tr,
                                   style: TextStyles.bold17(context),
-                                ),
-                                Text(
-                                  "showall".tr,
-                                  style: TextStyle(
-                                      color: LightAppColors.primaryColor,
-                                      fontSize: 12.sp),
                                 ),
                               ],
                             )),

@@ -7,7 +7,6 @@ import 'package:joblance/view/screens/job_info/additiona_info.dart';
 import 'package:joblance/view/screens/job_info/company_info.dart';
 import 'package:joblance/view/screens/job_info/requirments.dart';
 import 'package:joblance/view/screens/job_info/tob_bar.dart';
-import 'package:joblance/view/widgets/divider.dart';
 
 class JobInfo extends StatelessWidget {
   const JobInfo({super.key});
@@ -29,16 +28,13 @@ class JobInfo extends StatelessWidget {
               remote: "Remote",
               major: "Engineering",
             ),
-            MyDivider(),
             SizedBox(
-              height: 10.h,
+              height: 5.h,
             ),
+
             AboutCompany(),
-            MyDivider(),
             AboutJob(),
-            MyDivider(),
             Requirements(),
-            MyDivider(),
             AdditionalInfo()
           ],
         ),

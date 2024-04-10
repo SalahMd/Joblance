@@ -45,92 +45,90 @@ class FreelancerProfile extends StatelessWidget {
                 height: 500.h,
                 child: TabBarView(children: [
                   Container(
-                    margin:
-                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "about".tr,
-                          style: Theme.of(context).textTheme.headline1,
-                        ),
-                        SizedBox(height: 20.h),
-                        Container(
-                          padding: EdgeInsetsDirectional.only(
-                              start: 12.w, bottom: 10.h, top: 10.h),
-                          decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .primaryContainer,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "bio".tr,
-                                style: TextStyles.w50015(context),
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Text(
-                                "A junior flutter developer in the third year of amascus university, with 2 years of expirence in developing apps."
-                                    .tr,
-                                style: TextStyles.w40012grey(context),
-                              ),
-                            ],
-                          ),
-                        ),
-                        MyDivider(
-                          height: 12,
-                        ),
-                        Container(
-                          padding: EdgeInsetsDirectional.only(
-                              start: 12.w, bottom: 15.h, top: 10.h),
-                          decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .primaryContainer,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "studyinfo".tr,
-                                style: TextStyles.w50015(context),
-                              ),
-                              SizedBox(height: 15.h),
-                              Row(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 20.h),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "about".tr,
+                              style: TextStyles.w50015(context),
+                            ),
+                            SizedBox(height: 20.h),
+                            Container(
+                                padding: EdgeInsetsDirectional.only(
+                                    bottom: 5.h, top: 10.h),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "bio".tr,
+                                        style: TextStyles.w50013(context),
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      Text(
+                                        "A junior flutter developer in the third year of amascus university, with 2 years of expirence in developing apps."
+                                            .tr,
+                                        style: TextStyles.w40012grey(context),
+                                      ),
+                                    ])),
+                            MyDivider(
+                              height: 12,
+                            ),
+                            Container(
+                              padding: EdgeInsetsDirectional.only(
+                                  bottom: 15.h, top: 10.h),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Icon(Icons.work_outline),
-                                  SizedBox(width: 10.w),
-                                  Text("Engineering"),
-                                ],
-                              ),
-                              SizedBox(height: 10.h),
-                              Row(
-                                children: [
-                                  Icon(Icons.cases_outlined),
-                                  SizedBox(width: 10.w),
                                   Text(
-                                    "Graduate",
+                                    "studyinfo".tr,
+                                    style: TextStyles.w50013(context),
+                                  ),
+                                  SizedBox(height: 15.h),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.work_outline),
+                                      SizedBox(width: 10.w),
+                                      Text(
+                                        "Engineering",
+                                        style: TextStyles.w50012(context),
+                                      ),
+                                    ],
+                                  ),
+                                  MyDivider(
+                                    height: 8,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.cases_outlined),
+                                      SizedBox(width: 10.w),
+                                      Text(
+                                        "Graduate",
+                                        style: TextStyles.w50012(context),
+                                      ),
+                                    ],
+                                  ),
+                                  MyDivider(
+                                    height: 8,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.work_outline),
+                                      SizedBox(width: 10.w),
+                                      Text(
+                                        "Engineering",
+                                        style: TextStyles.w50012(context),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 15.h),
-                              Row(
-                                children: [
-                                  Icon(Icons.work_outline),
-                                  SizedBox(width: 10.w),
-                                  Text("Engineering"),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                            )
+                          ])),
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +138,7 @@ class FreelancerProfile extends StatelessWidget {
                               horizontal: 10.w, vertical: 20.h),
                           child: Text(
                             "projects".tr,
-                            style: Theme.of(context).textTheme.headline1,
+                            style: TextStyles.w50015(context),
                           ),
                         ),
                         ProjectDesign(
@@ -166,7 +164,7 @@ class FreelancerProfile extends StatelessWidget {
                       children: [
                         Text(
                           "skills".tr,
-                          style: Theme.of(context).textTheme.headline1,
+                           style: TextStyles.w50015(context),
                         )
                       ],
                     ),
@@ -179,7 +177,7 @@ class FreelancerProfile extends StatelessWidget {
                       children: [
                         Text(
                           "contactinfo".tr,
-                          style: Theme.of(context).textTheme.headline1,
+                          style: TextStyles.w50015(context),
                         ),
                         SizedBox(
                           height: 30.h,

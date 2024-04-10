@@ -35,7 +35,6 @@ class TaskTextFields extends StatelessWidget {
           isLabel: false,
           isFilled: true,
         ).animate().fade(duration: 600.ms, delay: 300.ms).slideY(begin: 0.4),
-      
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
@@ -91,7 +90,7 @@ class TaskTextFields extends StatelessWidget {
           hintText: "additionalinfo2".tr,
           labelText: "".tr,
           iconData: null,
-          controller: controller.requirements,
+          controller: controller.additionalInfo,
           min: 10,
           max: 300,
           isNumber: false,

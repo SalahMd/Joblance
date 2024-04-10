@@ -10,29 +10,42 @@ class AbouTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: Dimensions.screenWidth(context),
-      margin: EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.w),
-      decoration: BoxDecoration(
-          // color: Theme.of(context).colorScheme.primaryContainer,
-          borderRadius: BorderRadius.circular(10)),
-      padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
+    return Column(
+      children: [
+        Container(
+          width: Dimensions.screenWidth(context),
+          height: 40.h,
+          alignment: AlignmentDirectional.centerStart,
+          margin: EdgeInsets.symmetric(vertical: 10.h),
+          padding: EdgeInsetsDirectional.only(
+            start: 10.w,
+          ),
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+          child: Text(
             "abouttask".tr,
             style: TextStyles.w50015(context),
           ),
-          SizedBox(
-            height: 10.h,
+        ),
+        Container(
+          width: Dimensions.screenWidth(context),
+          margin: EdgeInsets.symmetric(
+            horizontal: 5.h,
           ),
-          Text(
-            "fsnesoifn oin eosienfo foishfesoih ieshf opesihf olfsn isen ieusfn esibf iuiun nosohi insef noeisfnheisnof nseoifn senfoi nsef noeisnfi nesoifnoi snief niesnfo isneofin esoifn iosenfoi nesoinf oiesnifonb njfn;odifnv ;iofdn io bsoi beoisb eoisbf oiesbf oibes",
-            style: TextStyles.w40012grey(context),
-          )
-        ],
-      ),
+          decoration: BoxDecoration(
+              // color: Theme.of(context).colorScheme.primaryContainer,
+              borderRadius: BorderRadius.circular(10)),
+          padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 5.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "fsnesoifn oin eosienfo foishfesoih ieshf opesihf olfsn isen ieusfn esibf iuiun nosohi insef noeisfnheisnof nseoifn senfoi nsef noeisnfi nesoifnoi snief niesnfo isneofin esoifn iosenfoi nesoinf oiesnifonb njfn;odifnv ;iofdn io bsoi beoisb eoisbf oiesbf oibes",
+                style: TextStyles.w40012grey(context),
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
