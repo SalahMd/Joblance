@@ -224,5 +224,9 @@ Map<String, String> arabic = {
   "mytasks":"مهامي","tasks":"المهمات",
   "showall":"عرض الكل",
   "addoffer":"إضافة عرض",
-  "abouttask":"معلومات المهمة"
+  "abouttask":"معلومات المهمة",
+  "excutingtime":"وقت التنفيذ",
+  "offerbudget":"قيمة العرض",
+  "offerinfo":"معلومات العرض",
+  
 };

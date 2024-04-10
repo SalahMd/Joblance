@@ -13,8 +13,8 @@ class Messages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: exitAlert,
+    return PopScope(
+      onPopInvoked: exitAlert,
         child: Scaffold(
           body: SingleChildScrollView(
             child: Column(

@@ -19,8 +19,8 @@ class CompanyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(CompanyHomePageControllerImpl());
-    return WillPopScope(
-      onWillPop: exitAlert,
+    return PopScope(
+      onPopInvoked: exitAlert,
       child: Scaffold(
         body: GetBuilder<CompanyHomePageControllerImpl>(
           builder: (controller) => SingleChildScrollView(

@@ -19,8 +19,8 @@ class FreelancerHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(FreelancerHomePageControllerImpl());
-    return WillPopScope(
-      onWillPop: exitAlert,
+    return PopScope(
+      onPopInvoked: exitAlert,
       child: Scaffold(
         body: GetBuilder<FreelancerHomePageControllerImpl>(
           builder: (controller) => SingleChildScrollView(

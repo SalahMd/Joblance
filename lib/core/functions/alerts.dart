@@ -8,7 +8,36 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/widgets/chips_choice.dart';
 
-Future<bool> exitAlert() {
+void exitAlert(bool val) {
+  Get.defaultDialog(
+      title: "",
+      middleText: "warningbody".tr,
+      middleTextStyle: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
+      actions: [
+        TextButton(
+          onPressed: () {
+            exit(0);
+          },
+          child: Text(
+            "yes".tr,
+            style: const TextStyle(color: Colors.blue),
+          ),
+        ),
+        TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: Text(
+              "no".tr,
+              style: const TextStyle(color: Colors.blue),
+            ))
+      ]);
+
+  // Show the dialog after building it
+  Get.dialog(const Text("Dialog content")); // Replace with your dialog content
+}
+
+exitAlertt() {
   Get.defaultDialog(
       title: "",
       middleText: "warningbody".tr,

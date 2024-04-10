@@ -20,8 +20,8 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(SettingsControllerImpl());
-    return WillPopScope(
-      onWillPop: exitAlert,
+    return PopScope(
+      onPopInvoked: exitAlert,
       child: GetBuilder<SettingsControllerImpl>(
         builder: (controller) => Scaffold(
           body: SingleChildScrollView(

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/view/screens/add_offer/add_offer.dart';
 import 'package:joblance/view/screens/job_info/tob_bar.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
@@ -105,7 +106,7 @@ class TaskTobBar extends StatelessWidget {
                                 size: 15.sp, color: LightAppColors.whiteColor),
                             SizedBox(width: 8.w),
                             Text(
-                              "Excuting time: ",
+                              "excutingtime".tr + " : ",
                               style: TextStyles.w40012grey(context),
                             ),
                             Text(
@@ -154,7 +155,7 @@ class TaskTobBar extends StatelessWidget {
                       ]),
                   GestureDetector(
                     onTap: () {
-                      // Get.to(ApplayJobPage());
+                      Get.to(AddOffer());
                     },
                     child: Padding(
                       padding: EdgeInsets.only(top: 65.h),
