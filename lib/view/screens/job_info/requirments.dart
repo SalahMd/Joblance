@@ -14,7 +14,7 @@ class Requirements extends StatelessWidget {
       children: [
         Container(
           width: Dimensions.screenWidth(context),
-          height: 40.h,
+          height: 50.h,
           alignment: AlignmentDirectional.centerStart,
           margin: EdgeInsets.symmetric(vertical: 10.h),
           padding: EdgeInsetsDirectional.only(
