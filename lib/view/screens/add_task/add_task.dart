@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -79,7 +78,10 @@ class AddTask extends StatelessWidget {
               TaskTextFields(controller: controller),
               GestureDetector(
                 onTap: () {
-                  payment(context);
+                  paymentAlert(
+                      "Note:",
+                      "To post your job you have to pay 10\$ using your preffered payment method",
+                      context);
                 },
                 child: Container(
                   width: Dimensions.screenWidth(context),

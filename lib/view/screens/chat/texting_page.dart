@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
-import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/view/screens/chat/chat_text_field.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class TextingPage extends StatelessWidget {
@@ -18,9 +18,6 @@ class TextingPage extends StatelessWidget {
       body: GetBuilder<TextingPageControllerImpl>(
         builder: (controller) => Column(
           children: [
-            // SizedBox(
-            //   height: 10.h,
-            // ),
             SafeArea(
               child: Container(
                 color: Theme.of(context).colorScheme.surface,
@@ -46,8 +43,7 @@ class TextingPage extends StatelessWidget {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),
-                            child: Image.asset(AppImages
-                                .Linkedin), // Replace with actual image path
+                            child: Image.asset(AppImages.Linkedin),
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -80,7 +76,6 @@ class TextingPage extends StatelessWidget {
                     Container(
                       child: ListView.builder(
                         shrinkWrap: true,
-                        //controller: controller.scrollController,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: controller.messages.length,
                         itemBuilder: (BuildContext context, int index) {
@@ -126,28 +121,11 @@ class TextingPage extends StatelessWidget {
                 Expanded(
                   flex: 5,
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 10.h),
-                    child: Customtextformfiled(
-                      hintText: "message".tr,
-                      labelText: "",
-                      iconData: null,
-                      controller: controller.message,
-                      min: 0,
-                      max: 100,
-                      isNumber: false,
-                      isPassword: false,
-                      isValidation: false,
-                      textInputType: TextInputType.multiline,
-                      textInputAction: TextInputAction.newline,
-                      isBorder: true,
-                      isLabel: false,
-                      padding: 2,
-                      minLines: 1,
-                      maxLines: 3,
-                      focusNode: controller.focusNode,
-                      isFilled: true,
-                    ),
-                  ),
+                      padding: EdgeInsets.only(bottom: 10.h),
+                      child: ChatTextField(
+                        controller: controller,
+                        key: key,
+                      )),
                 ),
                 Expanded(
                     child: GestureDetector(
