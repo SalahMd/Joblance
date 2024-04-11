@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 abstract class TextingPageController extends GetxController {
@@ -11,6 +12,7 @@ class TextingPageControllerImpl extends TextingPageController {
   int line = 1;
   late TextEditingController message;
   bool showEmojes = false;
+  TextDirection textDirection = TextDirection.ltr;
   FocusNode focusNode = new FocusNode();
   final ScrollController scrollController = new ScrollController();
   @override
@@ -20,6 +22,9 @@ class TextingPageControllerImpl extends TextingPageController {
       if (focusNode.hasFocus) {
         Future.delayed(Duration(milliseconds: 500), () => scrollDown());
       }
+    });
+    message.addListener(() {
+      updateTextDirection();
     });
     super.onInit();
   }
@@ -49,10 +54,20 @@ class TextingPageControllerImpl extends TextingPageController {
     update();
   }
 
-
- 
-
   pickEmojo() {
+    update();
+  }
+
+  void updateTextDirection() {
+    final text = message.text;
+    if (text.length > 1) return;
+    if (text.isNotEmpty &&
+        text.codeUnitAt(0) > 0x600 &&
+        text.codeUnitAt(0) < 0x6FF) {
+      textDirection = TextDirection.rtl;
+    } else {
+      textDirection = TextDirection.ltr;
+    }
     update();
   }
 }

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
-import 'package:joblance/view/screens/texting_page.dart';
+import 'package:joblance/view/screens/chat/texting_page.dart';
 
 class MessageDesign extends StatelessWidget {
   const MessageDesign(

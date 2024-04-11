@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:joblance/core/constants/colors.dart';
 import '../functions/valid_input.dart';
@@ -64,7 +63,6 @@ class Customtextformfiled extends StatelessWidget {
             )
           : null,
       child: TextFormField(
-      
         obscureText: isPassword,
         style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
         keyboardType: isNumber
@@ -91,11 +89,11 @@ class Customtextformfiled extends StatelessWidget {
                 ? OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   )
-                : InputBorder.none, // Hide bottom line,
+                : InputBorder.none,
             labelStyle: TextStyle(
               color: Theme.of(context).colorScheme.onSecondary,
             ),
-            hintStyle: const TextStyle(fontSize: 17, color: Colors.grey),
+            hintStyle: TextStyle(fontSize: 14.sp, color: Colors.grey),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
