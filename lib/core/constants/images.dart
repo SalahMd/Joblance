@@ -19,6 +19,7 @@ class AppImages {
   static const sun = "assets/images/sun.png";
   static const save = "assets/images/save.png";
   static const followers = "assets/images/followers.png";
+  static const paypalLogo = "assets/images/Paypal.png";
   static const salah = "assets/images/salah.jpg";
   static const studyCase = "assets/images/studycase.png";
   static String englishimage = "assets/images/english.png";

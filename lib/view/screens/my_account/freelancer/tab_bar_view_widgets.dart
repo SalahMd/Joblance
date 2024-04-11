@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/my_account_controller/my_account_free_lancer_controller.dart';
+import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
@@ -104,6 +105,190 @@ Widget about(BuildContext context) {
                     ),
                   ],
                 ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Text(
+            "mybudget".tr,
+            style: TextStyles.w50015(context),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Container(
+            //margin: EdgeInsets.symmetric(horizontal: 60.w),
+            padding: EdgeInsets.all(10),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Theme.of(context).colorScheme.primaryContainer),
+            child: Column(
+              children: [
+                Text(
+                  "200 \$",
+                  style: TextStyle(
+                      color: LightAppColors.greenColor,
+                      fontSize: 30.sp,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10.h),
+                Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text("lasttransmissions".tr)),
+                SizedBox(height: 20.h),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.background,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "deposit".tr,
+                          style: TextStyles.w50014(context),
+                        ),
+                        SizedBox(height: 10.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "on".tr,
+                              style: TextStyles.w50012(context),
+                            ),
+                            Text(
+                              "2024-2-2",
+                              style: TextStyles.w40011grey(context),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 5.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "value".tr,
+                              style: TextStyles.w50012(context),
+                            ),
+                            Text(
+                              "50 \$",
+                              style: TextStyle(
+                                color: LightAppColors.greenColor,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                MyDivider(),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.background,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "deposit".tr,
+                          style: TextStyles.w50014(context),
+                        ),
+                        SizedBox(height: 10.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "on".tr,
+                              style: TextStyles.w50012(context),
+                            ),
+                            Text(
+                              "2024-2-2",
+                              style: TextStyles.w40011grey(context),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 5.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "value".tr,
+                              style: TextStyles.w50012(context),
+                            ),
+                            Text(
+                              "80 \$",
+                              style: TextStyle(
+                                color: LightAppColors.greenColor,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                MyDivider(),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.background,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "withdrow".tr,
+                          style: TextStyles.w50014(context),
+                        ),
+                        SizedBox(height: 10.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "on".tr,
+                              style: TextStyles.w50012(context),
+                            ),
+                            Text(
+                              "2024-2-2",
+                              style: TextStyles.w40011grey(context),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 5.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "value".tr,
+                              style: TextStyles.w50012(context),
+                            ),
+                            Text(
+                              "-50 \$",
+                              style: TextStyle(
+                                color: Colors.red[800],
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                MyDivider()
               ],
             ),
           )

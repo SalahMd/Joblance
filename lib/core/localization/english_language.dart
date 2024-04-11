@@ -230,5 +230,13 @@ Map<String, String> english = {
   "offerbudget":"Offer budget",
   "offerinfo":"Offer information",
   "excutingtime":"Excuting time",
+  "value":"Value",
+  "withdraw":"Withdraw:",
+  "deposit":"Deposit:",
+  "mybudget":"My budget",
+  "min":"Min",
+  "max":"Max",
+  "lasttransmissions":"Last transmissions:",
+  "on":"On"
 
 };

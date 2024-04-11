@@ -5,7 +5,6 @@ import 'package:joblance/view/screens/job_info/additiona_info.dart';
 import 'package:joblance/view/screens/job_info/requirments.dart';
 import 'package:joblance/view/screens/task_info/about_task.dart';
 import 'package:joblance/view/screens/task_info/top_bar.dart';
-import 'package:joblance/view/widgets/divider.dart';
 
 class TaskPage extends StatelessWidget {
   const TaskPage({super.key});

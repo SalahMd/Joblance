@@ -7,6 +7,7 @@ import 'package:joblance/controller/add_task_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_task/task_text_fields.dart';
 
@@ -76,20 +77,23 @@ class AddTask extends StatelessWidget {
                 height: 25.h,
               ),
               TaskTextFields(controller: controller),
-               GestureDetector(
-          onTap: () {},
-          child: Container(
-            width: Dimensions.screenWidth(context),
-            height: 40.h,
-            margin: EdgeInsets.symmetric(horizontal: 40.w, vertical: 30.h),
-            alignment: Alignment.center,
-            decoration: AppButtons.buttonDecoration,
-            child: Text(
-              "post".tr,
-              style: TextStyles.w50016White(context),
-            ),
-          ),
-        ),
+              GestureDetector(
+                onTap: () {
+                  payment(context);
+                },
+                child: Container(
+                  width: Dimensions.screenWidth(context),
+                  height: 40.h,
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 40.w, vertical: 30.h),
+                  alignment: Alignment.center,
+                  decoration: AppButtons.buttonDecoration,
+                  child: Text(
+                    "post".tr,
+                    style: TextStyles.w50016White(context),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

@@ -6,6 +6,7 @@ import 'package:joblance/controller/add_job_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_job/company_info.dart';
 import 'package:joblance/view/screens/add_job/job_specifications.dart';
@@ -77,7 +78,9 @@ class AddJob extends StatelessWidget {
               JobSpecifications(controller: controller),
               CompanyInfo(controller: controller),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  payment(context);
+                },
                 child: Container(
                   width: Dimensions.screenWidth(context),
                   height: 40.h,
