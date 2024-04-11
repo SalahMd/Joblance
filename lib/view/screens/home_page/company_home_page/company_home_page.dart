@@ -44,7 +44,7 @@ class CompanyHomePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "categories".tr,
+                                  "categoriesf".tr,
                                   style: TextStyles.bold17(context),
                                 ),
                               ],

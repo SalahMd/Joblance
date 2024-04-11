@@ -31,7 +31,6 @@ class JobInfo extends StatelessWidget {
             SizedBox(
               height: 5.h,
             ),
-
             AboutCompany(),
             AboutJob(),
             Requirements(),
