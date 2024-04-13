@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
+import 'package:joblance/core/constants/colors.dart';
 
 class ChatTextField extends StatelessWidget {
   final TextingPageControllerImpl controller;
@@ -24,6 +25,19 @@ class ChatTextField extends StatelessWidget {
           controller: controller.message,
           maxLines: 3,
           decoration: InputDecoration(
+            suffixIcon: GestureDetector(
+              onTap: () {
+                controller.pickImage();
+              },
+              child: Container(
+                padding: EdgeInsetsDirectional.only(end: 10.w),
+                child: Icon(
+                  Icons.camera_alt_outlined,
+                  color: LightAppColors.greyColor,
+                  size: 22.sp,
+                ),
+              ),
+            ),
             enabled: true,
             hintText: "message".tr,
             hintStyle: TextStyle(fontSize: 14.sp, color: Colors.grey),

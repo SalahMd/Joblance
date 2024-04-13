@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/company_home_page_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
-import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
@@ -51,10 +50,6 @@ class CompanyHomePage extends StatelessWidget {
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
                       Categories(),
-                      // Tasks()
-                      //     .animate()
-                      //     .fade(duration: 600.ms)
-                      //     .slideX(begin: 0.4),
                       Align(
                         alignment: AlignmentDirectional.centerStart,
                         child: Padding(
