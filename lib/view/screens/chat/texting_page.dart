@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,6 +8,7 @@ import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/chat/chat_text_field.dart';
+import 'package:joblance/view/screens/image_view.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class TextingPage extends StatelessWidget {
@@ -82,32 +85,51 @@ class TextingPage extends StatelessWidget {
                           return Align(
                             alignment: AlignmentDirectional.topEnd,
                             child: Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 20.w,
-                                vertical: 10.h,
-                              ),
-                              margin: EdgeInsets.symmetric(
-                                vertical: 5.h,
-                                horizontal: 15.w,
-                              ),
-                              constraints: BoxConstraints(
-                                maxWidth:
-                                    MediaQuery.of(context).size.width * 0.7,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .primaryContainer,
-                                borderRadius: BorderRadiusDirectional.only(
-                                    topEnd: Radius.circular(22),
-                                    topStart: Radius.circular(20),
-                                    bottomStart: Radius.circular(20)),
-                              ),
-                              child: Text(
-                                controller.messages[index],
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 10.w,
+                                  vertical: 10.h,
+                                ),
+                                margin: EdgeInsets.symmetric(
+                                  vertical: 5.h,
+                                  horizontal: 15.w,
+                                ),
+                                constraints: BoxConstraints(
+                                  maxWidth:
+                                      MediaQuery.of(context).size.width * 0.7,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primaryContainer,
+                                  borderRadius: BorderRadiusDirectional.only(
+                                      topEnd: Radius.circular(22),
+                                      topStart: Radius.circular(20),
+                                      bottomStart: Radius.circular(20)),
+                                ),
+                                child: controller.messages[index].keys.last
+                                            .toString() ==
+                                        "message"
+                                    ? Text(
+                                        controller.messages[index].values.last,
+                                        style: TextStyle(fontSize: 16),
+                                      )
+                                    : GestureDetector(
+                                        onTap: () {
+                                          Get.to(ImageView(
+                                              image: controller.messages[index]
+                                                  ['image']));
+                                        },
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          child: Image.file(
+                                              height: 300.h,
+                                              width: 200.w,
+                                              File(controller.messages[index]
+                                                  ['image']),
+                                              fit: BoxFit.cover),
+                                        ),
+                                      )),
                           );
                         },
                       ),

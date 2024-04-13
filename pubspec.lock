@@ -592,6 +592,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
+  laravel_echo:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: "80c5b94e5de575220b038de21387d6bcb47feb3c"
+      url: "https://github.com/kakajansh/echo"
+    source: git
+    version: "1.0.0-beta.1"
   leak_tracker:
     dependency: transitive
     description:
@@ -720,6 +729,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.7.4"
+  pusher_client:
+    dependency: "direct main"
+    description:
+      name: pusher_client
+      sha256: "0dce30a1b4b0dca2a9af2f680eec495b9cdc2b0281491426f3af9718776dc14a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   shared_preferences:
     dependency: "direct main"
     description:

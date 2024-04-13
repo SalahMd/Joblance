@@ -36,6 +36,13 @@ dependencies:
   shimmer: ^3.0.0
   show_up_animation: ^2.0.0
   flutter_paypal_checkout: ^1.0.1
+  pusher_client: ^2.0.0
+  laravel_echo:
+    git:
+      url: https://github.com/kakajansh/echo
+      ref: master
+
+
 
 
 dev_dependencies:

@@ -7,14 +7,12 @@ import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
-import 'package:joblance/core/functions/payment.dart';
 import 'package:joblance/view/screens/add_job/company_info.dart';
 import 'package:joblance/view/screens/add_job/job_specifications.dart';
 import 'package:joblance/view/screens/add_job/job_text_fileds.dart';
 
 class AddJob extends StatelessWidget {
   const AddJob({super.key});
-
   @override
   Widget build(BuildContext context) {
     Get.put(AddjobControllerImpl());
@@ -78,6 +76,7 @@ class AddJob extends StatelessWidget {
               JobSpecifications(controller: controller),
               CompanyInfo(controller: controller),
               GestureDetector(
+                
                 onTap: () {
                   
                 },
