@@ -1,22 +1,30 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/chat/chat_text_field.dart';
 import 'package:joblance/view/screens/image_view.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class TextingPage extends StatelessWidget {
-  TextingPage({Key? key}) : super(key: key);
+  final String id;
+  final String image;
+  final String userName;
+  final String userId;
+  TextingPage(
+      {Key? key,
+      required this.id,
+      required this.userId,
+      required this.image,
+      required this.userName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(TextingPageControllerImpl());
+    Get.put(TextingPageControllerImpl(id: id, userId: userId));
     return Scaffold(
       body: GetBuilder<TextingPageControllerImpl>(
         builder: (controller) => Column(
@@ -39,20 +47,24 @@ class TextingPage extends StatelessWidget {
                         ),
                         SizedBox(width: 8.w),
                         Container(
-                          width: 35,
-                          height: 35,
+                          width: 40,
+                          height: 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),
-                            child: Image.asset(AppImages.Linkedin),
+                            child: Image.network(
+                                'http://192.168.1.105:8000/$image',
+                                fit: BoxFit.cover,
+                                width: 40,
+                                height: 40),
                           ),
                         ),
                         SizedBox(width: 10.w),
                         Text(
-                          "Linkedin",
-                          style: TextStyles.w50014(context),
+                          userName,
+                          style: TextStyles.w50015(context),
                         ),
                       ],
                     ),
@@ -83,52 +95,90 @@ class TextingPage extends StatelessWidget {
                         itemCount: controller.messages.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Align(
-                            alignment: AlignmentDirectional.topEnd,
+                            alignment: controller.messages[index].senderId ==
+                                    controller.messages[index].reciverId
+                                ? AlignmentDirectional.topEnd
+                                : AlignmentDirectional.topStart,
                             child: Container(
+                                //constraints: BoxConstraints(maxHeight: 200.h),
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: 10.w,
-                                  vertical: 10.h,
+                                  horizontal: 15.w,
+                                  vertical: 8.h,
                                 ),
                                 margin: EdgeInsets.symmetric(
-                                  vertical: 5.h,
+                                  vertical: 3.h,
                                   horizontal: 15.w,
-                                ),
-                                constraints: BoxConstraints(
-                                  maxWidth:
-                                      MediaQuery.of(context).size.width * 0.7,
                                 ),
                                 decoration: BoxDecoration(
                                   color: Theme.of(context)
                                       .colorScheme
                                       .primaryContainer,
-                                  borderRadius: BorderRadiusDirectional.only(
-                                      topEnd: Radius.circular(22),
-                                      topStart: Radius.circular(20),
-                                      bottomStart: Radius.circular(20)),
+                                  borderRadius: controller
+                                              .messages[index].senderId ==
+                                          controller.messages[index].reciverId
+                                      ? BorderRadiusDirectional.only(
+                                          topEnd: Radius.circular(22),
+                                          topStart: Radius.circular(20),
+                                          bottomStart: Radius.circular(20))
+                                      : BorderRadiusDirectional.only(
+                                          topEnd: Radius.circular(22),
+                                          topStart: Radius.circular(20),
+                                          bottomEnd: Radius.circular(20)),
                                 ),
-                                child: controller.messages[index].keys.last
+                                child: controller.messages[index].type
                                             .toString() ==
-                                        "message"
-                                    ? Text(
-                                        controller.messages[index].values.last,
-                                        style: TextStyle(fontSize: 16),
+                                        "text"
+                                    ? Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            controller.messages[index].message!,
+                                            style: TextStyle(fontSize: 13.sp),
+                                          ),
+                                          SizedBox(
+                                            width: 10.w,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 10.h),
+                                            child: Text(
+                                              controller
+                                                  .messages[index].timeStamp!,
+                                              style:
+                                                  TextStyles.w4009grey(context),
+                                            ),
+                                          ),
+                                        ],
                                       )
-                                    : GestureDetector(
-                                        onTap: () {
-                                          Get.to(ImageView(
-                                              image: controller.messages[index]
-                                                  ['image']));
-                                        },
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          child: Image.file(
-                                              height: 300.h,
-                                              width: 200.w,
-                                              File(controller.messages[index]
-                                                  ['image']),
-                                              fit: BoxFit.cover),
-                                        ),
+                                    : Column(
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              Get.to(ImageView(
+                                                  image:
+                                                      'http://192.168.1.105:8000/${controller.messages[index].message!}'));
+                                            },
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child: Image.network(
+                                                  'http://192.168.1.105:8000/${controller.messages[index].message!}',
+                                                  fit: BoxFit.cover),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                                          Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              textAlign: TextAlign.end,
+                                              controller
+                                                  .messages[index].timeStamp!,
+                                              style:
+                                                  TextStyles.w4009grey(context),
+                                            ),
+                                          ),
+                                        ],
                                       )),
                           );
                         },
@@ -150,22 +200,24 @@ class TextingPage extends StatelessWidget {
                       )),
                 ),
                 Expanded(
-                    child: GestureDetector(
-                        onTap: () {
-                          controller.sendMessage();
-                        },
-                        child: Container(
-                            margin: EdgeInsetsDirectional.only(
-                                end: 15, bottom: 5.h),
-                            height: 45.h,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: LightAppColors.greenColor),
-                            child: Icon(
-                              Icons.send_outlined,
-                              size: 20.sp,
-                              color: LightAppColors.whiteColor,
-                            ))))
+                  child: GestureDetector(
+                    onTap: () {
+                      controller.sendMessage();
+                    },
+                    child: Container(
+                      margin: EdgeInsetsDirectional.only(end: 15, bottom: 5.h),
+                      height: 45.h,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: LightAppColors.greenColor),
+                      child: Icon(
+                        Icons.send_outlined,
+                        size: 20.sp,
+                        color: LightAppColors.whiteColor,
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ],

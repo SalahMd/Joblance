@@ -17,4 +17,8 @@ class AppLinks {
   static String jobs = "$IP" "/api/jobs";
   static String user = "$IP" "/api/user";
   static String googleSignup = "$IP" "/api/auth/google/userinfo";
+  static String getMessages = "$IP" "/api/conversations/";
+  static String sendMessage = "$IP" "/api/message/send";
+  static String getConversations = "$IP" "/api/conversations";
+  static String readMessages = "$IP" "/api/conversations";
 }

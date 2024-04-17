@@ -7,7 +7,7 @@ class SignUpBack {
   Crud crud;
   SignUpBack(this.crud);
 
-  signUp(Map data, File image) async {
+  signUp(Map <String ,String>data, File image) async {
     var response =
         await crud.requestData(AppLinks.signUp, data, true, true, image);
     return response.fold((l) => l, (r) => r);

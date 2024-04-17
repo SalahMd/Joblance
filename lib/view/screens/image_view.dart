@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,10 +12,8 @@ class ImageView extends StatelessWidget {
         toolbarHeight: 50.h,
       ),
       body: Center(
-        child: Image.file(
-          File(
-            image,
-          ),
+        child: Image.network(
+          image,
           fit: BoxFit.fill,
         ),
       ),
