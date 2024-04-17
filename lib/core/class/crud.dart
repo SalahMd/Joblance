@@ -101,4 +101,22 @@ class Crud {
       return left(StatusRequest.serverError);
     }
   }
+
+  Future<Either<StatusRequest, Map>> putData(String linkurl, Map data,
+      Map<String, String> headers,) async {
+    try {
+      var response;
+      response =
+          await http.put(Uri.parse(linkurl), body: data, headers: headers);
+      print(response.body);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Map responseBody = jsonDecode(response.body);
+        return right(responseBody);
+      } else {
+        return left(StatusRequest.serverError);
+      }
+    } catch (_) {
+      return left(StatusRequest.serverError);
+    }
+  }
 }

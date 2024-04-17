@@ -18,4 +18,7 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
     });
    
   }
+  getFreelancers(){
+    
+  }
 }

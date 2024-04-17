@@ -1,9 +1,10 @@
 class MessageModel {
   String? id;
-  String? message;
+  var message;
   String? timeStamp;
   String? senderId;
   String? reciverId;
+  String? type;
   String? senderName;
 
   MessageModel(
@@ -12,15 +13,17 @@ class MessageModel {
       this.timeStamp,
       this.senderId,
       this.reciverId,
+      this.type,
       this.senderName});
 
   MessageModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     message = json['message'];
-    timeStamp = json['time_stamp'];
+    timeStamp = json['created_at'];
     senderId = json['sender_id'];
     reciverId = json['reciver_id'];
     senderName = json['sender_name'];
+    type = json['type'];
   }
 
   Map<String, dynamic> toJson() {

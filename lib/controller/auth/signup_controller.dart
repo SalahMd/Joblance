@@ -167,7 +167,7 @@ class SignUpControllerImpl extends SignUpController {
         statusRequest = StatusRequest.loading;
         animationedAlert(AppAnimations.loadings, "checkingdata".tr);
         update();
-
+        
         var response = await signUpBack.signUp({
           "name": firstName.text,
           "first_name": firstName.text,
@@ -182,7 +182,7 @@ class SignUpControllerImpl extends SignUpController {
           "birth_date": birthDate,
           "num_of_employees": numOfEmployees,
           "open_to_work": openToWork ? "1" : "0",
-          "location": country,
+          "location": country!,
         }, image);
         statusRequest = hadelingData(response);
         Get.back();
