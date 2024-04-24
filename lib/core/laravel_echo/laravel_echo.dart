@@ -1,59 +1,88 @@
 import 'package:laravel_echo/laravel_echo.dart';
-import 'package:pusher_client/pusher_client.dart';
+import 'package:laravel_flutter_pusher/laravel_flutter_pusher.dart';
+
+class PusherConfig {
+  static const key = "b826e8128d6102a575a7";
+  static const cluster = "ap2";
+  static const port = 6001;
+  static const hostEndPoint = "192.168.1.105";
+  static const hostAuthEndPoint =
+      "https://$hostEndPoint:8000/api/broadcasting/auth";
+  static var options = PusherOptions(
+      auth: PusherAuth(
+        PusherConfig.hostAuthEndPoint,
+      ),
+      host: PusherConfig.hostEndPoint,
+      port: PusherConfig.port,
+      encrypted: true,
+      cluster: PusherConfig.cluster);
+}
+
+createEcho(String id, var pusher, var token, var options) {
+  Echo echo = Echo(
+    client: pusher,
+  );
+  echo.join("Messenger.$id");
+  echo.private("Messenger.${id}").listen("MessageSent", (e) {
+    print(
+        "Received message:///////////////////////////////////////////////////////////////////////// ${e.data.toString()}"); // Example usage
+    // You can perform actions based on the event data here
+  });
+  echo.connect();
+}
 
 class LaravelEcho {
-  static LaravelEcho? singleton;
-  static late Echo echo;
+  static LaravelEcho? _singleton;
+  static late Echo _echo;
   final String token;
 
-  LaravelEcho._({required this.token}) {
-    echo = createEcho(this.token);
+  LaravelEcho._({
+    required this.token,
+  }) {
+    _echo = createLaravelEcho(token);
   }
+
   factory LaravelEcho.init({
     required String token,
   }) {
-    if (singleton == null || token != singleton) {
-      singleton = LaravelEcho._(token: token);
+    if (_singleton == null || token != _singleton?.token) {
+      _singleton = LaravelEcho._(token: token);
     }
-    return singleton!;
-  }
-  static Echo get instance => echo;
-  static String get socketId => echo.socketId() ?? "11111.11111111";
-}
 
-class PusherConfig {
-  static const appId = "1472166";
-  static const key = "277ff24ebce4b36ad66e";
-  static const secret = "feff48ba621eefd47ce0";
-  static const cluster = "ap1";
-  static const port = 6001;
-  static const hostEndPoint = " https://e1c5-138-199-7-182.ngrok-free.app";
-  static const hostAuthEndPoint = "$hostEndPoint/broadcasting/auth";
+    return _singleton!;
+  }
+
+  static Echo get instance => _echo;
+
+  //static String get socketId => _echo!.socketId() ?? "11111.11111111";
 }
 
 PusherClient createPusherClient(String token) {
-  PusherOptions options = new PusherOptions(
-    wsPort: PusherConfig.port,
+  PusherOptions options = PusherOptions(
+    port: PusherConfig.port,
     encrypted: true,
-    host: PusherConfig.hostAuthEndPoint,
+    host: PusherConfig.hostEndPoint,
     cluster: PusherConfig.cluster,
-    auth: PusherAuth(PusherConfig.hostAuthEndPoint, headers: {
-      'Authorization': 'Bearer $token',
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }),
+    auth: PusherAuth(
+      PusherConfig.hostAuthEndPoint,
+      headers: {
+        'Authorization': "Bearer $token",
+  
+      },
+    ),
   );
-  PusherClient client = new PusherClient(
+
+  PusherClient pusherClient = PusherClient(
     PusherConfig.key,
     options,
-    autoConnect: false,
     enableLogging: true,
   );
-  return client;
+
+  return pusherClient;
 }
 
-Echo createEcho(String token) {
+Echo createLaravelEcho(String token) {
   return Echo(
-      client: createPusherClient(token),
-      broadcaster: EchoBroadcasterType.Pusher);
+    client: createPusherClient(token),
+  );
 }

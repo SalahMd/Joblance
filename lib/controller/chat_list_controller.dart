@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
-import 'package:joblance/core/laravel_echo/laravel_echo.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/chat/conversations_back.dart';
 
@@ -28,12 +27,10 @@ class ChatListControllerImpl extends ChatListController {
     }
     update();
 
-    // LaravelEcho.init(token: token);
     super.onInit();
   }
 
   void dispose() {
-    LaravelEcho.instance.disconnect();
     super.dispose();
   }
 }

@@ -11,7 +11,9 @@ class Messages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ChatListControllerImpl(), permanent: true);
+    Get.put(
+      ChatListControllerImpl(),
+    );
     return PopScope(
         onPopInvoked: exitAlert,
         child: Scaffold(
@@ -32,7 +34,7 @@ class Messages extends StatelessWidget {
                     ),
                   )),
                   SizedBox(
-                    height: 20.h,
+                    height: 5.h,
                   ),
                   ListView.builder(
                     shrinkWrap: true,
@@ -41,14 +43,17 @@ class Messages extends StatelessWidget {
                       return ConversationDesign(
                         image: controller.conversations[index]['participant']
                             ['image'],
-                        messengerName: controller.conversations[index]['participant']
-                            ['name'],
-                        message:controller.conversations[index]['last_message']
-                            ['type']=="text"? controller.conversations[index]['last_message']
-                            ['body']:"image".tr,
+                        messengerName: controller.conversations[index]
+                            ['participant']['name'],
+                        message: controller.conversations[index]['last_message']
+                                    ['type'] ==
+                                "text"
+                            ? controller.conversations[index]['last_message']
+                                ['body']
+                            : "image".tr,
                         date: Jiffy.parse(controller.conversations[index]
                                 ['last_message']['date'])
-                            .toNow(),
+                            .format(pattern: "h:mm a"),
                         id: controller.conversations[index]['id'].toString(),
                         senderId: controller.conversations[index]['participant']
                                 ['id']
@@ -56,8 +61,10 @@ class Messages extends StatelessWidget {
                         reciverId:
                             controller.conversations[index]['id'].toString(),
                         newMessages: controller.conversations[index]
-                            ['new_messages'].toString(), messageType: controller.conversations[index]['last_message']
-                            ['type'],
+                                ['new_messages']
+                            .toString(),
+                        messageType: controller.conversations[index]
+                            ['last_message']['type'],
                       );
                     },
                   )

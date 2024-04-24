@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,7 +13,7 @@ import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/chat_model.dart';
 import 'package:joblance/data/model/message_model.dart';
 import 'package:joblance/data/remote/chat/messages_back.dart';
-import 'package:pusher_client/pusher_client.dart';
+import 'package:laravel_flutter_pusher/laravel_flutter_pusher.dart';
 
 abstract class TextingPageController extends GetxController {
   sendMessage();
@@ -33,11 +33,13 @@ class TextingPageControllerImpl extends TextingPageController {
   late TextEditingController message;
   Myservices myServices = Get.find();
   StatusRequest? statusRequest;
+  late LaravelFlutterPusher pusher;
   MessagesBack sendMessageBack = new MessagesBack(Get.put(Crud()));
   bool showEmojes = false;
   TextDirection textDirection = TextDirection.ltr;
   FocusNode focusNode = new FocusNode();
   ScrollController scrollController = new ScrollController();
+  bool isMaxPosition = false;
   TextingPageControllerImpl({
     required this.id,
     required this.userId,
@@ -46,6 +48,10 @@ class TextingPageControllerImpl extends TextingPageController {
   void onInit() async {
     message = new TextEditingController();
     token = myServices.sharedPreferences.getString("token")!;
+
+    addListener(() {
+      listenChatChannel();
+    });
     statusRequest = StatusRequest.loading;
     reciverId = myServices.sharedPreferences.getInt('id').toString();
     var response = await sendMessageBack.getMessages(token, id);
@@ -62,7 +68,9 @@ class TextingPageControllerImpl extends TextingPageController {
             messages.add(MessageModel(
                 id: messageData['id'].toString(),
                 message: messageData['body'],
-                timeStamp: Jiffy.parse(messageData['date']).Hm.toString(),
+                timeStamp: Jiffy.parse(messageData['date'])
+                    .format(pattern: "h:mm a")
+                    .toString(),
                 type: messageData['type'],
                 senderId: messageData['user_id'].toString(),
                 reciverId: reciverId));
@@ -80,25 +88,62 @@ class TextingPageControllerImpl extends TextingPageController {
     message.addListener(() {
       updateTextDirection();
     });
-    scrollDown();
-
-    // listenChatChannel(ChatModel());
+    // scrollController.addListener(() {
+    //   checkScroll();
+    // });
     super.onInit();
+  }
+
+  checkScroll() {
+    if (scrollController.position.pixels <
+        scrollController.position.maxScrollExtent - 200) {
+      isMaxPosition = false;
+    } else {
+      isMaxPosition = true;
+    }
+
+    update();
+  }
+
+  void listenChatChannel() {
+    // var options = PusherOptions(
+    //   auth: PusherAuth(
+    //     PusherConfig.hostAuthEndPoint,
+    //     headers: {'Authorization': "Bearer $token"},
+    //   ),
+    //   host: PusherConfig.hostEndPoint,
+    //   port: PusherConfig.port,
+    //   encrypted: true,
+    //   cluster: PusherConfig.cluster,
+    // );
+    
+    LaravelEcho.init(token: token);
+    LaravelEcho.instance
+        .private("Messenger.$id")
+        .listen("MessageSent", (e) => print(e));
+
+    // pusher = LaravelFlutterPusher("21fe88719842ee7606a5", options,
+    //     onError: (ConnectionError) {
+    //   print("Error: $ConnectionError");
+    // }, enableLogging: false);
+    // // await pusher.subscribe('Messenger.$id').bind("App\\Events\\MessageSent",
+    // //     (event) => print("My event/////////////////////" + event.toString()));
+    // createEcho(id, pusher, token, options);
+    // pusher.connect();
   }
 
   readMessages() async {
     var response = await sendMessageBack.readMessages(token, id);
     statusRequest = hadelingData(response);
     if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
-        print("success");
-      }
+      if (response['status'] == "success") {}
     }
   }
 
   scrollDown() {
     scrollController.animateTo(scrollController.position.maxScrollExtent,
         duration: Duration(milliseconds: 300), curve: Curves.easeOutQuint);
+    isMaxPosition = true;
   }
 
   @override
@@ -131,7 +176,7 @@ class TextingPageControllerImpl extends TextingPageController {
         id: {messages.length + 1}.toString(),
         type: "image",
         message: image,
-        timeStamp: Jiffy.now().Hm.toString(),
+        timeStamp: Jiffy.now().format(pattern: "h:mm a").toString(),
       ));
       scrollDown();
       if (StatusRequest.success == statusRequest) {
@@ -149,43 +194,37 @@ class TextingPageControllerImpl extends TextingPageController {
   void dispose() {
     message.dispose();
     focusNode.dispose();
+    pusher.unsubscribe("Messenger.${id}");
+    pusher.disconnect();
     super.dispose();
   }
 
   @override
   sendMessage() async {
-    var response;
-    if (messages.length != 0) {
-      response = await sendMessageBack
-          .sendMessage(token, {"conversation_id": id, "text": message.text});
-    } else {
-      response = await sendMessageBack
-          .sendMessage(token, {"user_id": userId, "text": message.text});
-    }
-
-    statusRequest = hadelingData(response);
-    if (message.text != "")
+    if (message.text != "") {
       messages.add(MessageModel(
-        reciverId: reciverId,
-        senderId: reciverId,
-        id: {messages.length + 1}.toString(),
-        type: "text",
-        message: message.text,
-        timeStamp: Jiffy.now().Hm.toString(),
-      ));
-    message.clear();
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
-        print("success///////////////");
-      }
-    }
-    update();
-    Future.delayed(
-        Duration(
-          milliseconds: 500,
-        ), () {
+          reciverId: reciverId,
+          senderId: reciverId,
+          id: {messages.length + 1}.toString(),
+          type: "text",
+          message: message.text,
+          timeStamp: Jiffy.now().format(pattern: "h:mm a").toString()));
       scrollDown();
-    });
+      message.clear();
+      var response;
+      if (messages.length != 0) {
+        response = await sendMessageBack.sendMessage(
+            token, {"conversation_id": id, "text": messages.last.message});
+      } else {
+        response = await sendMessageBack.sendMessage(
+            token, {"user_id": userId, "text": messages.last.message});
+      }
+      statusRequest = hadelingData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {}
+      }
+      update();
+    }
   }
 
   showEmojie() {
@@ -210,23 +249,7 @@ class TextingPageControllerImpl extends TextingPageController {
     update();
   }
 
-  void listenChatChannel(ChatModel chat) {
-    LaravelEcho.instance.private('chat.${chat.id}').listen('.message.sent',
-        (e) {
-      if (e is PusherEvent) {
-        if (e.data != null) {
-          jsonDecode(e.data!);
-          handleNewMessage(jsonDecode(e.data!));
-        }
-      }
-    }).error((err) {});
-  }
-
-  void leaveChatChannel(ChatModel chat) {
-    try {
-      LaravelEcho.instance.leave('chat.${chat.id}');
-    } catch (e) {}
-  }
+  void leaveChatChannel(ChatModel chat) {}
 
   void handleNewMessage(
     Map<String, dynamic> data,
