@@ -51,8 +51,8 @@ class ConversationDesign extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                        width: 48,
-                        height: 48,
+                        width: 50,
+                        height: 50,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -106,13 +106,20 @@ class ConversationDesign extends StatelessWidget {
                     children: [
                       Text(
                         date,
-                        style: TextStyles.w40010grey(context),
+                        style: newMessages == "0"
+                            ? TextStyles.w40010grey(context)
+                            : TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: LightAppColors.greenColor,
+                                fontSize: 10.sp),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                       newMessages != "0"
                           ? Container(
-                              width: 17.w,
+                              width: 19.w,
                               margin: EdgeInsets.only(top: 10.h),
-                              height: 20.h,
+                              height: 22.h,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25),
