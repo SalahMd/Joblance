@@ -9,16 +9,18 @@ class MessagesBack {
         AppLinks.sendMessage,
         data,
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},
+        null,
         true,
         false,
         null);
     return response.fold((l) => l, (r) => r);
   }
-  sendImage(var token, Map data,var image) async {
+  sendFile(var token, Map data,var image,String fileName) async {
     var response = await crud.requestDataWithHeaders(
         AppLinks.sendMessage,
         data,
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},
+        fileName,
         true,
         true,
         image);
@@ -30,6 +32,8 @@ class MessagesBack {
         AppLinks.getMessages + id + "/messages",
         {},
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},
+                null,
+
         false,
         false,
         null);

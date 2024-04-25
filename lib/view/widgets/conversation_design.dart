@@ -77,12 +77,14 @@ class ConversationDesign extends StatelessWidget {
                           SizedBox(height: 3.h),
                           Row(
                             children: [
-                              messageType == "image"
+                              messageType != "text"
                                   ? Padding(
                                       padding:
                                           EdgeInsetsDirectional.only(end: 5.w),
                                       child: Icon(
-                                        Icons.image_outlined,
+                                        messageType == "image"
+                                            ? Icons.image_outlined
+                                            : Icons.file_copy_outlined,
                                         size: 14.sp,
                                         color: LightAppColors.greyColor,
                                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
@@ -26,7 +27,6 @@ class TextingPage extends StatelessWidget {
     Get.put(TextingPageControllerImpl(id: id, userId: userId));
     return Scaffold(
       body: GetBuilder<TextingPageControllerImpl>(
-        
         builder: (controller) => Stack(
           children: [
             Column(
@@ -93,6 +93,7 @@ class TextingPage extends StatelessWidget {
                       children: [
                         Container(
                           child: ListView.builder(
+                            padding: EdgeInsets.symmetric(vertical: 8.h),
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: controller.messages.length,
@@ -104,7 +105,6 @@ class TextingPage extends StatelessWidget {
                                         ? AlignmentDirectional.topEnd
                                         : AlignmentDirectional.topStart,
                                 child: Container(
-                                    //constraints: BoxConstraints(maxHeight: 200.h),
                                     padding: EdgeInsets.symmetric(
                                       horizontal: 15.w,
                                       vertical: 6.h,
@@ -159,38 +159,99 @@ class TextingPage extends StatelessWidget {
                                               ),
                                             ],
                                           )
-                                        : Column(
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Get.to(ImageView(
-                                                      image:
-                                                          'http://192.168.1.105:8000/${controller.messages[index].message!}'));
-                                                },
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  child: Image.network(
-                                                      'http://192.168.1.105:8000/${controller.messages[index].message!}',
-                                                      fit: BoxFit.cover),
+                                        : controller.messages[index].type
+                                                    .toString() ==
+                                                "image"
+                                            ? Column(
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      Get.to(ImageView(
+                                                          image:
+                                                              'http://192.168.1.105:8000/${controller.messages[index].message!}'));
+                                                    },
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                          'http://192.168.1.105:8000/${controller.messages[index].message!}',
+                                                          fit: BoxFit.cover),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5.h,
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.centerRight,
+                                                    child: Text(
+                                                      textAlign: TextAlign.end,
+                                                      controller.messages[index]
+                                                          .timeStamp!,
+                                                      style:
+                                                          TextStyles.w4009grey(
+                                                              context),
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                            : Container(
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        width: 0.4,
+                                                        color: LightAppColors
+                                                            .greyColor!),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 10.w,
+                                                    vertical: 5.h),
+                                                width: 140.w,
+                                                height: 60.h,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .file_copy_outlined,
+                                                          color:
+                                                              Colors.red[800],
+                                                          size: 20.sp,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 5.w,
+                                                        ),
+                                                        Text(
+                                                          "File".tr,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style:
+                                                              TextStyles.w50012(
+                                                                  context),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        controller.downloadFile(
+                                                            controller
+                                                                .messages[index]
+                                                                .message);
+                                                      },
+                                                      child: Icon(
+                                                        Icons.file_download,
+                                                        size: 15.sp,
+                                                      ),
+                                                    )
+                                                  ],
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                height: 5.h,
-                                              ),
-                                              Align(
-                                                alignment:
-                                                    Alignment.centerRight,
-                                                child: Text(
-                                                  textAlign: TextAlign.end,
-                                                  controller.messages[index]
-                                                      .timeStamp!,
-                                                  style: TextStyles.w4009grey(
-                                                      context),
-                                                ),
-                                              ),
-                                            ],
-                                          )),
+                                              )),
                               );
                             },
                           ),
@@ -218,7 +279,7 @@ class TextingPage extends StatelessWidget {
                         child: Container(
                           margin:
                               EdgeInsetsDirectional.only(end: 15, bottom: 5.h),
-                          height: 45.h,
+                          height: 45,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
                               color: LightAppColors.greenColor),
@@ -242,8 +303,8 @@ class TextingPage extends StatelessWidget {
                     width: 36,
                     child: GestureDetector(
                       onTap: () {
-                      controller.scrollDown();
-                    },
+                        controller.scrollDown();
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),

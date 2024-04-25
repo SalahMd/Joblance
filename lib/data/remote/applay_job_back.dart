@@ -11,6 +11,8 @@ class ApplayJobBack {
         AppLinks.applayJob,
         data,
         {'Authorization': 'Bearer $token'},
+                "CV",
+
         true,true,CV);
     return response.fold((l) => l, (r) => r);
   }

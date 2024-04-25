@@ -12,6 +12,8 @@ class ChangePasswordBack {
           "new_password": newPassword,
         },
         {'Authorization': 'Bearer $token'},
+                null,
+
         true,
         false,
         null);
