@@ -50,7 +50,11 @@ class Messages extends StatelessWidget {
                                 "text"
                             ? controller.conversations[index]['last_message']
                                 ['body']
-                            : "image".tr,
+                            : controller.conversations[index]['last_message']
+                                        ['type'] ==
+                                    "image"
+                                ? "image".tr
+                                : "file".tr,
                         date: Jiffy.parse(controller.conversations[index]
                                 ['last_message']['date'])
                             .format(pattern: "h:mm a"),

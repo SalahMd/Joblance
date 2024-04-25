@@ -1,18 +1,22 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/laravel_echo/laravel_echo.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/chat_model.dart';
 import 'package:joblance/data/model/message_model.dart';
 import 'package:joblance/data/remote/chat/messages_back.dart';
+import 'package:joblance/view/screens/chat/confirm_sending_file.dart';
 import 'package:laravel_flutter_pusher/laravel_flutter_pusher.dart';
 
 abstract class TextingPageController extends GetxController {
@@ -29,10 +33,13 @@ class TextingPageControllerImpl extends TextingPageController {
   late String reciverId;
   late String messageId;
   var image;
+  String? fileName;
   late String token;
   late TextEditingController message;
   Myservices myServices = Get.find();
   StatusRequest? statusRequest;
+  FilePickerResult? result;
+  var file;
   late LaravelFlutterPusher pusher;
   MessagesBack sendMessageBack = new MessagesBack(Get.put(Crud()));
   bool showEmojes = false;
@@ -116,7 +123,7 @@ class TextingPageControllerImpl extends TextingPageController {
     //   encrypted: true,
     //   cluster: PusherConfig.cluster,
     // );
-    
+
     LaravelEcho.init(token: token);
     LaravelEcho.instance
         .private("Messenger.$id")
@@ -146,6 +153,70 @@ class TextingPageControllerImpl extends TextingPageController {
     isMaxPosition = true;
   }
 
+  uploadFile() async {
+    result = await FilePicker.platform.pickFiles(
+        allowedExtensions: ["pdf", "txt", "docx", "doc"],
+        type: FileType.custom);
+    if (result != null) {
+      file = File(result!.files.single.path!);
+      fileName = result!.files.single.name;
+      Get.to(ConfirmSendingFile());
+    } else {}
+  }
+
+  sendFile() async {
+    var response;
+    if (file != null) {
+      if (messages.length != 0) {
+        response = await sendMessageBack.sendFile(
+            token,
+            {
+              "conversation_id": id,
+            },
+            file,
+            "file");
+      } else {
+        response = await sendMessageBack.sendFile(
+            token,
+            {
+              "user_id": userId,
+            },
+            file,
+            "file");
+      }
+      statusRequest = hadelingData(response);
+      messages.add(MessageModel(
+        reciverId: reciverId,
+        senderId: reciverId,
+        id: {messages.length + 1}.toString(),
+        type: "file",
+        message: image,
+        timeStamp: Jiffy.now().format(pattern: "h:mm a").toString(),
+      ));
+      scrollDown();
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          print("success///////////////");
+        }
+      }
+    }
+    update();
+
+    Get.back();
+  }
+
+  downloadFile(String url) {
+    FileDownloader.downloadFile(
+        url: AppLinks.IP + "/" + url,
+        name: "file",
+        onDownloadCompleted: (String path) {
+          print('FILE DOWNLOADED TO PATH: $path');
+        },
+        onDownloadError: (String error) {
+          print('DOWNLOAD ERROR: $error');
+        });
+  }
+
   @override
   Future<void> pickImage() async {
     var response;
@@ -153,21 +224,22 @@ class TextingPageControllerImpl extends TextingPageController {
     XFile? pickedImage = await picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       image = File(pickedImage.path);
-      print(image.path);
       if (messages.length != 0) {
-        response = await sendMessageBack.sendImage(
+        response = await sendMessageBack.sendFile(
             token,
             {
               "conversation_id": id,
             },
-            image);
+            image,
+            "image");
       } else {
-        response = await sendMessageBack.sendImage(
+        response = await sendMessageBack.sendFile(
             token,
             {
               "user_id": userId,
             },
-            image);
+            image,
+            "image");
       }
       statusRequest = hadelingData(response);
       messages.add(MessageModel(

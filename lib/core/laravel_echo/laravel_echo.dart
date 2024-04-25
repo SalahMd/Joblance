@@ -26,7 +26,6 @@ createEcho(String id, var pusher, var token, var options) {
   echo.private("Messenger.${id}").listen("MessageSent", (e) {
     print(
         "Received message:///////////////////////////////////////////////////////////////////////// ${e.data.toString()}"); // Example usage
-    // You can perform actions based on the event data here
   });
   echo.connect();
 }

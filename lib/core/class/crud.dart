@@ -58,6 +58,7 @@ class Crud {
       String linkurl,
       Map data,
       Map<String, String> headers,
+      String? fileName,
       bool isPost,
       bool isFile,
       File? file) async {
@@ -68,7 +69,7 @@ class Crud {
         var request = http.MultipartRequest('POST', Uri.parse(linkurl));
         var length = await file.length();
         var stream = http.ByteStream(file.openRead());
-        var multiPartFile = http.MultipartFile('image', stream, length,
+        var multiPartFile = http.MultipartFile(fileName==null?'image':fileName, stream, length,
             filename: basename(file.path));
         request.headers.addAll(headers);
         request.files.add(

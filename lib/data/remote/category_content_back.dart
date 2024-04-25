@@ -8,6 +8,8 @@ class CategoriesBack {
     var response = await crud.requestDataWithHeaders(
       '${AppLinks.jobs}?category=$category&lang=$language',{},
       {'Authorization': 'Bearer $token'},
+              null,
+
       false,
       false,
       null

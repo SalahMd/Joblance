@@ -25,18 +25,36 @@ class ChatTextField extends StatelessWidget {
           controller: controller.message,
           maxLines: 3,
           decoration: InputDecoration(
-            suffixIcon: GestureDetector(
-              onTap: () {
-                controller.pickImage();
-              },
-              child: Container(
-                padding: EdgeInsetsDirectional.only(end: 10.w),
-                child: Icon(
-                  Icons.camera_alt_outlined,
-                  color: LightAppColors.greyColor,
-                  size: 22.sp,
+            suffixIcon: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    controller.uploadFile();
+                  },
+                  child: Container(
+                    padding: EdgeInsetsDirectional.only(end: 10.w),
+                    child: Icon(
+                      Icons.attach_file_outlined,
+                      color: LightAppColors.greyColor,
+                      size: 21.sp,
+                    ),
+                  ),
                 ),
-              ),
+                GestureDetector(
+                  onTap: () {
+                    controller.pickImage();
+                  },
+                  child: Container(
+                    padding: EdgeInsetsDirectional.only(end: 10.w),
+                    child: Icon(
+                      Icons.camera_alt_outlined,
+                      color: LightAppColors.greyColor,
+                      size: 21.sp,
+                    ),
+                  ),
+                ),
+              ],
             ),
             enabled: true,
             hintText: "message".tr,
