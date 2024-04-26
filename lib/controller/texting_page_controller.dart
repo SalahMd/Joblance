@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/links.dart';
+import 'package:joblance/core/constants/sounds.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/laravel_echo/laravel_echo.dart';
 import 'package:joblance/core/services/services.dart';
@@ -18,6 +20,9 @@ import 'package:joblance/data/model/message_model.dart';
 import 'package:joblance/data/remote/chat/messages_back.dart';
 import 'package:joblance/view/screens/chat/confirm_sending_file.dart';
 import 'package:laravel_flutter_pusher/laravel_flutter_pusher.dart';
+import 'package:soundpool/soundpool.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:web_socket_client/web_socket_client.dart';
 
 abstract class TextingPageController extends GetxController {
   sendMessage();
@@ -26,27 +31,25 @@ abstract class TextingPageController extends GetxController {
 }
 
 class TextingPageControllerImpl extends TextingPageController {
-  final String id;
-  final String userId;
+  final String id, userId;
   List<MessageModel> messages = [];
+  List<bool> selectedMessage = [];
   int line = 1;
-  late String reciverId;
-  late String messageId;
-  var image;
+  late String reciverId, token;
+  var image, file;
   String? fileName;
-  late String token;
   late TextEditingController message;
   Myservices myServices = Get.find();
   StatusRequest? statusRequest;
   FilePickerResult? result;
-  var file;
   late LaravelFlutterPusher pusher;
   MessagesBack sendMessageBack = new MessagesBack(Get.put(Crud()));
-  bool showEmojes = false;
+  bool showEmojes = false, isMaxPosition = false;
   TextDirection textDirection = TextDirection.ltr;
   FocusNode focusNode = new FocusNode();
   ScrollController scrollController = new ScrollController();
-  bool isMaxPosition = false;
+  late int soundId;
+  Soundpool pool = Soundpool(streamType: StreamType.notification);
   TextingPageControllerImpl({
     required this.id,
     required this.userId,
@@ -55,8 +58,11 @@ class TextingPageControllerImpl extends TextingPageController {
   void onInit() async {
     message = new TextEditingController();
     token = myServices.sharedPreferences.getString("token")!;
-
-    addListener(() {
+    soundId =
+        await rootBundle.load(AppSounds.messageSent).then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    addListener(() async {
       listenChatChannel();
     });
     statusRequest = StatusRequest.loading;
@@ -92,6 +98,7 @@ class TextingPageControllerImpl extends TextingPageController {
         Future.delayed(Duration(milliseconds: 500), () => scrollDown());
       }
     });
+    selectedMessage = List.generate(messages.length, (index) => false);
     message.addListener(() {
       updateTextDirection();
     });
@@ -113,30 +120,31 @@ class TextingPageControllerImpl extends TextingPageController {
   }
 
   void listenChatChannel() {
-    // var options = PusherOptions(
-    //   auth: PusherAuth(
-    //     PusherConfig.hostAuthEndPoint,
-    //     headers: {'Authorization': "Bearer $token"},
-    //   ),
-    //   host: PusherConfig.hostEndPoint,
-    //   port: PusherConfig.port,
-    //   encrypted: true,
-    //   cluster: PusherConfig.cluster,
-    // );
+    var options = PusherOptions(
+      // auth: PusherAuth(
+      //   PusherConfig.hostAuthEndPoint,
+      //   headers: {'Authorization': "Bearer $token"},
+      // ),
+      host: PusherConfig.hostEndPoint,
+      port: PusherConfig.port,
+      encrypted: true,
+      cluster: PusherConfig.cluster,
+    );
+    // LaravelEcho.init(token: token);
+    // LaravelEcho.instance
+    //     .private("Messenger.$id")
+    //     .listen("MessageSent", (e) => print(e));
 
-    LaravelEcho.init(token: token);
-    LaravelEcho.instance
-        .private("Messenger.$id")
-        .listen("MessageSent", (e) => print(e));
+    pusher = LaravelFlutterPusher("21fe88719842ee7606a5", options,
+        onError: (ConnectionError) {
+      print("Error: $ConnectionError");
+    }, enableLogging: true);
+    pusher.connect();
 
-    // pusher = LaravelFlutterPusher("21fe88719842ee7606a5", options,
-    //     onError: (ConnectionError) {
-    //   print("Error: $ConnectionError");
-    // }, enableLogging: false);
-    // // await pusher.subscribe('Messenger.$id').bind("App\\Events\\MessageSent",
-    // //     (event) => print("My event/////////////////////" + event.toString()));
-    // createEcho(id, pusher, token, options);
-    // pusher.connect();
+    pusher.subscribe('Messenger.$id').bind("App\\Events\\MessageSent",
+        (event) => print("My event/////////////////////" + event.toString()));
+
+    //  createEcho(id, pusher, token, options);
   }
 
   readMessages() async {
@@ -148,7 +156,7 @@ class TextingPageControllerImpl extends TextingPageController {
   }
 
   scrollDown() {
-    scrollController.animateTo(scrollController.position.maxScrollExtent,
+    scrollController.animateTo(scrollController.position.maxScrollExtent + 50,
         duration: Duration(milliseconds: 300), curve: Curves.easeOutQuint);
     isMaxPosition = true;
   }
@@ -185,6 +193,8 @@ class TextingPageControllerImpl extends TextingPageController {
             "file");
       }
       statusRequest = hadelingData(response);
+      selectedMessage.add(false);
+
       messages.add(MessageModel(
         reciverId: reciverId,
         senderId: reciverId,
@@ -196,6 +206,7 @@ class TextingPageControllerImpl extends TextingPageController {
       scrollDown();
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
+          popSound();
           print("success///////////////");
         }
       }
@@ -242,6 +253,8 @@ class TextingPageControllerImpl extends TextingPageController {
             "image");
       }
       statusRequest = hadelingData(response);
+      selectedMessage.add(false);
+
       messages.add(MessageModel(
         reciverId: reciverId,
         senderId: reciverId,
@@ -253,6 +266,7 @@ class TextingPageControllerImpl extends TextingPageController {
       scrollDown();
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
+          popSound();
           print("success///////////////");
         }
       }
@@ -262,18 +276,27 @@ class TextingPageControllerImpl extends TextingPageController {
     update();
   }
 
+  popSound() async {
+    int streamId = await pool.play(soundId);
+  }
+
   @override
   void dispose() {
     message.dispose();
+    pusher.disconnect();
+    pusher.unsubscribe("Meesenger.$id");
     focusNode.dispose();
     pusher.unsubscribe("Messenger.${id}");
     pusher.disconnect();
+    pool.dispose();
     super.dispose();
   }
 
   @override
   sendMessage() async {
     if (message.text != "") {
+      selectedMessage.add(false);
+
       messages.add(MessageModel(
           reciverId: reciverId,
           senderId: reciverId,
@@ -293,7 +316,9 @@ class TextingPageControllerImpl extends TextingPageController {
       }
       statusRequest = hadelingData(response);
       if (StatusRequest.success == statusRequest) {
-        if (response['status'] == "success") {}
+        if (response['status'] == "success") {
+          popSound();
+        }
       }
       update();
     }

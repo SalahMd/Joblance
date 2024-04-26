@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/chat/chat_text_field.dart';
 import 'package:joblance/view/screens/image_view.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
@@ -14,13 +15,14 @@ class TextingPage extends StatelessWidget {
   final String image;
   final String userName;
   final String userId;
-  TextingPage(
-      {Key? key,
-      required this.id,
-      required this.userId,
-      required this.image,
-      required this.userName})
-      : super(key: key);
+
+  TextingPage({
+    Key? key,
+    required this.id,
+    required this.userId,
+    required this.image,
+    required this.userName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +36,16 @@ class TextingPage extends StatelessWidget {
                 SafeArea(
                   child: Container(
                     color: Theme.of(context).colorScheme.surface,
+                    width: Dimensions.screenWidth(context),
                     alignment: Alignment.center,
                     padding:
                         EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             GestureDetector(
                               onTap: () {
@@ -58,24 +63,33 @@ class TextingPage extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
                                 child: Image.network(
-                                    'http://192.168.1.105:8000/$image',
-                                    fit: BoxFit.cover,
-                                    width: 40,
-                                    height: 40),
+                                  image[0] == "h"
+                                      ? image
+                                      : 'http://192.168.1.105:8000/$image',
+                                  fit: BoxFit.cover,
+                                  width: 40,
+                                  height: 40,
+                                ),
                               ),
                             ),
                             SizedBox(width: 10.w),
-                            Text(
-                              userName,
-                              style: TextStyles.w50014(context),
+                            Container(
+                              width: 150.w,
+                              child: Text(
+                                userName,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: TextStyles.w50014(context),
+                              ),
                             ),
                           ],
                         ),
                         GestureDetector(
-                            onTap: () {
-                              Get.to(CompanyProfile());
-                            },
-                            child: Icon(Icons.info_outline)),
+                          onTap: () {
+                            Get.to(CompanyProfile());
+                          },
+                          child: Icon(Icons.info_outline),
+                        ),
                       ],
                     ),
                   ),
@@ -98,160 +112,189 @@ class TextingPage extends StatelessWidget {
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: controller.messages.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return Align(
-                                alignment:
-                                    controller.messages[index].senderId ==
-                                            controller.messages[index].reciverId
-                                        ? AlignmentDirectional.topEnd
-                                        : AlignmentDirectional.topStart,
-                                child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 15.w,
-                                      vertical: 6.h,
-                                    ),
-                                    margin: EdgeInsets.symmetric(
-                                      vertical: 3.h,
-                                      horizontal: 15.w,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primaryContainer,
-                                      borderRadius: controller
-                                                  .messages[index].senderId ==
-                                              controller
-                                                  .messages[index].reciverId
-                                          ? BorderRadiusDirectional.only(
-                                              topEnd: Radius.circular(15),
-                                              topStart: Radius.circular(10),
-                                              bottomStart: Radius.circular(10))
-                                          : BorderRadiusDirectional.only(
-                                              topEnd: Radius.circular(15),
-                                              bottomStart: Radius.circular(10),
-                                              bottomEnd: Radius.circular(10)),
-                                    ),
-                                    child: controller.messages[index].type
-                                                .toString() ==
-                                            "text"
-                                        ? Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Text(
+                              return GestureDetector(
+                                onLongPress: () {
+                                  controller.selectedMessage[index] =
+                                      !controller.selectedMessage[index];
+                                  controller.update();
+                                },
+                                onTap: () {
+                                  for (int i = 0;
+                                      i < controller.messages.length;
+                                      i++) {
+                                    if (controller.selectedMessage[i] == true) {
+                                      controller.selectedMessage[index] =
+                                          !controller.selectedMessage[index];
+                                      controller.update();
+                                      break;
+                                    }
+                                  }
+                                },
+                                child: Align(
+                                  alignment: controller
+                                              .messages[index].senderId ==
+                                          controller.messages[index].reciverId
+                                      ? AlignmentDirectional.topEnd
+                                      : AlignmentDirectional.topStart,
+                                  child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 15.w,
+                                        vertical: 6.h,
+                                      ),
+                                      margin: EdgeInsets.symmetric(
+                                        vertical: 3.h,
+                                        horizontal: 15.w,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color:
+                                            controller.selectedMessage[index] !=
+                                                    true
+                                                ? Theme.of(context)
+                                                    .colorScheme
+                                                    .primaryContainer
+                                                : Colors.blue,
+                                        borderRadius: controller
+                                                    .messages[index].senderId ==
                                                 controller
-                                                    .messages[index].message!,
-                                                style: TextStyle(
-                                                    fontSize: 13.sp,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                              SizedBox(
-                                                width: 10.w,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 10.h),
-                                                child: Text(
-                                                  controller.messages[index]
-                                                      .timeStamp!,
-                                                  style: TextStyles.w4009grey(
-                                                      context),
+                                                    .messages[index].reciverId
+                                            ? BorderRadiusDirectional.only(
+                                                topEnd: Radius.circular(15),
+                                                topStart: Radius.circular(10),
+                                                bottomStart:
+                                                    Radius.circular(10))
+                                            : BorderRadiusDirectional.only(
+                                                topEnd: Radius.circular(15),
+                                                bottomStart:
+                                                    Radius.circular(10),
+                                                bottomEnd: Radius.circular(10)),
+                                      ),
+                                      child: controller.messages[index].type
+                                                  .toString() ==
+                                              "text"
+                                          ? Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  controller
+                                                      .messages[index].message!,
+                                                  style: TextStyle(
+                                                      fontSize: 13.sp,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
-                                              ),
-                                            ],
-                                          )
-                                        : controller.messages[index].type
-                                                    .toString() ==
-                                                "image"
-                                            ? Column(
-                                                children: [
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      Get.to(ImageView(
-                                                          image:
-                                                              'http://192.168.1.105:8000/${controller.messages[index].message!}'));
-                                                    },
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: Image.network(
-                                                          'http://192.168.1.105:8000/${controller.messages[index].message!}',
-                                                          fit: BoxFit.cover),
-                                                    ),
+                                                SizedBox(
+                                                  width: 10.w,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 10.h),
+                                                  child: Text(
+                                                    controller.messages[index]
+                                                        .timeStamp!,
+                                                    style: TextStyles.w4009grey(
+                                                        context),
                                                   ),
-                                                  SizedBox(
-                                                    height: 5.h,
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.centerRight,
-                                                    child: Text(
-                                                      textAlign: TextAlign.end,
-                                                      controller.messages[index]
-                                                          .timeStamp!,
-                                                      style:
-                                                          TextStyles.w4009grey(
-                                                              context),
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
-                                            : Container(
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        width: 0.4,
-                                                        color: LightAppColors
-                                                            .greyColor!),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5)),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 10.w,
-                                                    vertical: 5.h),
-                                                width: 140.w,
-                                                height: 60.h,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                ),
+                                              ],
+                                            )
+                                          : controller.messages[index].type
+                                                      .toString() ==
+                                                  "image"
+                                              ? Column(
                                                   children: [
-                                                    Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons
-                                                              .file_copy_outlined,
-                                                          color:
-                                                              Colors.red[800],
-                                                          size: 20.sp,
-                                                        ),
-                                                        SizedBox(
-                                                          width: 5.w,
-                                                        ),
-                                                        Text(
-                                                          "File".tr,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          style:
-                                                              TextStyles.w50012(
-                                                                  context),
-                                                        ),
-                                                      ],
-                                                    ),
                                                     GestureDetector(
                                                       onTap: () {
-                                                        controller.downloadFile(
-                                                            controller
-                                                                .messages[index]
-                                                                .message);
+                                                        Get.to(ImageView(
+                                                            image:
+                                                                'http://192.168.1.105:8000/${controller.messages[index].message!}'));
                                                       },
-                                                      child: Icon(
-                                                        Icons.file_download,
-                                                        size: 15.sp,
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child: Image.network(
+                                                            'http://192.168.1.105:8000/${controller.messages[index].message!}',
+                                                            fit: BoxFit.cover),
                                                       ),
-                                                    )
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5.h,
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.centerRight,
+                                                      child: Text(
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        controller
+                                                            .messages[index]
+                                                            .timeStamp!,
+                                                        style: TextStyles
+                                                            .w4009grey(context),
+                                                      ),
+                                                    ),
                                                   ],
-                                                ),
-                                              )),
+                                                )
+                                              : Container(
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          width: 0.4,
+                                                          color: LightAppColors
+                                                              .greyColor!),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5)),
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10.w,
+                                                      vertical: 5.h),
+                                                  width: 140.w,
+                                                  height: 60.h,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons
+                                                                .file_copy_outlined,
+                                                            color:
+                                                                Colors.red[800],
+                                                            size: 20.sp,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 5.w,
+                                                          ),
+                                                          Text(
+                                                            "File".tr,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            style: TextStyles
+                                                                .w50012(
+                                                                    context),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          controller
+                                                              .downloadFile(
+                                                                  controller
+                                                                      .messages[
+                                                                          index]
+                                                                      .message);
+                                                        },
+                                                        child: Icon(
+                                                          Icons.file_download,
+                                                          size: 15.sp,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )),
+                                ),
                               );
                             },
                           ),

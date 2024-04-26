@@ -42,10 +42,16 @@ dependencies:
   jiffy: ^6.2.2
   pusher_channels_flutter: '^1.0.1'
   flutter_file_downloader: ^1.2.1
+  web_socket_channel: ^2.4.5
+  web_socket_client: ^0.1.0
+  flutter_sound: 9.2.13
+
+
   laravel_echo:
     git:
       url: https://github.com/kakajansh/echo
       ref: master
+  soundpool: ^2.3.0
 
 
 
@@ -83,6 +89,7 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+    - assets/sounds/
   fonts:
     - family: Cairo
       fonts:
