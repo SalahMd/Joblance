@@ -8,6 +8,7 @@ import 'package:joblance/view/screens/add_project_or_product/add_project_or_prod
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/job_design.dart';
 import 'package:joblance/view/widgets/project_design.dart';
+import 'package:joblance/view/widgets/task_design.dart';
 
 class CompanyTabBarViewWidget extends StatelessWidget {
   const CompanyTabBarViewWidget({
@@ -20,13 +21,12 @@ class CompanyTabBarViewWidget extends StatelessWidget {
       jobs(
         context,
       ),
-        tasks(
+      tasks(
         context,
       ),
       products(
         context,
       ),
-
       about(context),
       contactInfo(context)
     ]);
@@ -202,6 +202,7 @@ Widget jobs(BuildContext context) {
     ),
   );
 }
+
 Widget tasks(BuildContext context) {
   return SingleChildScrollView(
     child: Column(
@@ -218,16 +219,16 @@ Widget tasks(BuildContext context) {
             padding: EdgeInsets.zero,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 15,
+            itemCount: 8,
             itemBuilder: (BuildContext context, int index) {
-              return JobDesign(
-                  jobTitle: "React developer",
-                  companyName: "Google",
-                  location: "United states",
-                  date: "9 days ago",
-                  remote: "remote".tr,
-                  image: AppImages.googleLogo,
-                  isActive: false);
+              return TaskDesign(
+                  taskTitle: "Application developer",
+                  userName: "Google",
+                  major: "software developer",
+                  date: "12-5-2024",
+                  duration: "1 month",
+                  image: AppImages.google,
+                  isActive: true);
             }),
       ],
     ),

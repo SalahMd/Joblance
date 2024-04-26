@@ -2,12 +2,12 @@ import 'package:laravel_echo/laravel_echo.dart';
 import 'package:laravel_flutter_pusher/laravel_flutter_pusher.dart';
 
 class PusherConfig {
-  static const key = "b826e8128d6102a575a7";
+  static const key = "21fe88719842ee7606a5";
   static const cluster = "ap2";
   static const port = 6001;
   static const hostEndPoint = "192.168.1.105";
   static const hostAuthEndPoint =
-      "https://$hostEndPoint:8000/api/broadcasting/auth";
+      "http://$hostEndPoint:8000/api/broadcasting/auth";
   static var options = PusherOptions(
       auth: PusherAuth(
         PusherConfig.hostAuthEndPoint,
@@ -20,12 +20,13 @@ class PusherConfig {
 
 createEcho(String id, var pusher, var token, var options) {
   Echo echo = Echo(
+      //broadcaster: EchoBroadcasterType.SocketIO,
     client: pusher,
   );
   echo.join("Messenger.$id");
   echo.private("Messenger.${id}").listen("MessageSent", (e) {
     print(
-        "Received message:///////////////////////////////////////////////////////////////////////// ${e.data.toString()}"); // Example usage
+        "Received message:///////////////////////////////////////////////////////////////////////// ${e.toString()}"); // Example usage
   });
   echo.connect();
 }
@@ -66,7 +67,6 @@ PusherClient createPusherClient(String token) {
       PusherConfig.hostAuthEndPoint,
       headers: {
         'Authorization': "Bearer $token",
-  
       },
     ),
   );
@@ -81,6 +81,7 @@ PusherClient createPusherClient(String token) {
 }
 
 Echo createLaravelEcho(String token) {
+  print(PusherConfig.hostAuthEndPoint);
   return Echo(
     client: createPusherClient(token),
   );

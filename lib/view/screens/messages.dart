@@ -40,6 +40,8 @@ class Messages extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: controller.conversations.length,
                     itemBuilder: (context, index) {
+                      print( controller.conversations[index]['participant']
+                            ['image'][0]);
                       return ConversationDesign(
                         image: controller.conversations[index]['participant']
                             ['image'],
