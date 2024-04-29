@@ -69,7 +69,8 @@ class Crud {
         var request = http.MultipartRequest('POST', Uri.parse(linkurl));
         var length = await file.length();
         var stream = http.ByteStream(file.openRead());
-        var multiPartFile = http.MultipartFile(fileName==null?'image':fileName, stream, length,
+        var multiPartFile = http.MultipartFile(
+            fileName == null ? 'image' : fileName, stream, length,
             filename: basename(file.path));
         request.headers.addAll(headers);
         request.files.add(
@@ -87,6 +88,7 @@ class Crud {
             await http.post(Uri.parse(linkurl), body: data, headers: headers);
       } else if (!isPost && !isFile) {
         response = await http.get(Uri.parse(linkurl), headers: headers);
+        print(response.body);
       }
 
       // Check the code status
@@ -101,12 +103,36 @@ class Crud {
     }
   }
 
-  Future<Either<StatusRequest, Map>> putData(String linkurl, Map data,
-      Map<String, String> headers,) async {
+  Future<Either<StatusRequest, Map>> putData(
+    String linkurl,
+    Map data,
+    Map<String, String> headers,
+  ) async {
     try {
       var response;
       response =
           await http.put(Uri.parse(linkurl), body: data, headers: headers);
+      print(response.body);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Map responseBody = jsonDecode(response.body);
+        return right(responseBody);
+      } else {
+        return left(StatusRequest.serverError);
+      }
+    } catch (_) {
+      return left(StatusRequest.serverError);
+    }
+  }
+
+  Future<Either<StatusRequest, Map>> deleteData(
+    String linkurl,
+    Map data,
+    Map<String, String> headers,
+  ) async {
+    try {
+      var response;
+      response =
+          await http.delete(Uri.parse(linkurl), body: data, headers: headers);
       print(response.body);
       if (response.statusCode == 200 || response.statusCode == 201) {
         Map responseBody = jsonDecode(response.body);

@@ -14,6 +14,7 @@ class AppLinks {
   static String applayJob = "$IP" "/api/applayjob";
   static String ChangePassword = "$IP" "/api/user/changepassword";
   static String profile = "$IP" "/api/profile/";
+  static String freelancers = "$IP" "/api/freelancers/";
   static String jobs = "$IP" "/api/jobs";
   static String user = "$IP" "/api/user";
   static String googleSignup = "$IP" "/api/auth/google/userinfo";
@@ -21,4 +22,5 @@ class AppLinks {
   static String sendMessage = "$IP" "/api/message/send";
   static String getConversations = "$IP" "/api/conversations";
   static String readMessages = "$IP" "/api/conversations";
+  static String deleteMessage = "$IP" "/api/message/";
 }

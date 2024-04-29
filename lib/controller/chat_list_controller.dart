@@ -15,9 +15,11 @@ class ChatListControllerImpl extends ChatListController {
   Myservices myServices = Get.find();
   Conversations conversation = Conversations(Get.put(Crud()));
   void onInit() async {
+    statusRequest = StatusRequest.loading;
+    update();
     token = myServices.sharedPreferences.getString("token")!;
     var response = await conversation.getConversations(token);
-    statusRequest = hadelingData(response);
+    statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         conversations = (response['data'] as List<dynamic>)

@@ -10,7 +10,8 @@ import 'package:joblance/view/widgets/project_design.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
 
 class FreelancerProfile extends StatelessWidget {
-  const FreelancerProfile({super.key});
+  final int id;
+  const FreelancerProfile({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +165,7 @@ class FreelancerProfile extends StatelessWidget {
                       children: [
                         Text(
                           "skills".tr,
-                           style: TextStyles.w50015(context),
+                          style: TextStyles.w50015(context),
                         )
                       ],
                     ),

@@ -1,5 +1,5 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
@@ -84,12 +84,22 @@ class TextingPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(CompanyProfile());
-                          },
-                          child: Icon(Icons.info_outline),
-                        ),
+                        !controller.isDelete
+                            ? GestureDetector(
+                                onTap: () {
+                                  Get.to(CompanyProfile());
+                                },
+                                child: Icon(Icons.info_outline),
+                              )
+                            : GestureDetector(
+                                onTap: () {
+                                  controller.deleteMessage(context);
+                                },
+                                child: Icon(
+                                  Icons.delete_outline,
+                                  color: Colors.red[800],
+                                ),
+                              ),
                       ],
                     ),
                   ),
@@ -116,6 +126,7 @@ class TextingPage extends StatelessWidget {
                                 onLongPress: () {
                                   controller.selectedMessage[index] =
                                       !controller.selectedMessage[index];
+                                  controller.isDelete = true;
                                   controller.update();
                                 },
                                 onTap: () {
@@ -212,9 +223,18 @@ class TextingPage extends StatelessWidget {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(10),
-                                                        child: Image.network(
-                                                            'http://192.168.1.105:8000/${controller.messages[index].message!}',
-                                                            fit: BoxFit.cover),
+                                                        child: controller
+                                                                        .messages[
+                                                                            index]
+                                                                        .message![
+                                                                    0] !=
+                                                                "/"
+                                                            ? Image.network(
+                                                                'http://192.168.1.105:8000/${controller.messages[index].message!}',
+                                                                fit: BoxFit
+                                                                    .cover)
+                                                            : Image.file(File(
+                                                                "${controller.messages[index].message!}")),
                                                       ),
                                                     ),
                                                     SizedBox(
@@ -267,7 +287,9 @@ class TextingPage extends StatelessWidget {
                                                             width: 5.w,
                                                           ),
                                                           Text(
-                                                            "File".tr,
+                                                            controller
+                                                                .messages[index]
+                                                                .fileName!,
                                                             overflow:
                                                                 TextOverflow
                                                                     .ellipsis,

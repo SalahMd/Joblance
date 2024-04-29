@@ -47,7 +47,7 @@ class ChangePasswordControllerImpl extends ChangePasswordController {
       update();
       var response = await changePasswordBack.changePassword(
           oldPassword.text, newPassword.text, token);
-      statusRequest = hadelingData(response);
+      statusRequest = handelingData(response);
       Get.back();
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {

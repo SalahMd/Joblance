@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/buttons.dart';
@@ -93,6 +94,95 @@ Future<bool> animationedAlertWithActions(
   return Future.value(true);
 }
 
+deleteMessages(BuildContext context,void Function()func1,void Function()func2) {
+  TextStyle style = TextStyle(
+      fontSize: 12.sp,
+      color: LightAppColors.primaryColor,
+      fontWeight: FontWeight.w500);
+  Get.defaultDialog(
+      title: "",
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      buttonColor: LightAppColors.primaryColor,
+      titlePadding: EdgeInsets.zero,
+      confirmTextColor: LightAppColors.whiteColor,
+      content: Container(
+        margin: EdgeInsets.only(bottom: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+                onTap: func1,
+                child: Container(
+                  child: Text(
+                    "deleteforeveryone".tr,
+                    style: style,
+                  ),
+                )),
+            SizedBox(
+              height: 3.h,
+            ),
+            GestureDetector(
+                onTap: func2,
+                child: Container(
+                  child: Text(
+                    "deleteforme".tr,
+                    style: style,
+                  ),
+                )),
+            SizedBox(
+              height: 3.h,
+            ),
+            GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                  child: Text(
+                    "cancel".tr,
+                    style: style,
+                  ),
+                ))
+          ],
+        ),
+      ));
+}
+
+bool normalAlert(
+  String title,
+  String body,
+  BuildContext context,
+) {
+  bool action = false;
+  Get.defaultDialog(
+      title: "",
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      buttonColor: LightAppColors.primaryColor,
+      titlePadding: EdgeInsets.zero,
+      contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      confirmTextColor: LightAppColors.whiteColor,
+      content: Text(
+        body,
+        style: TextStyles.w40012grey(context),
+      ),
+      barrierDismissible: true,
+      actions: [
+        TextButton(
+            onPressed: () {
+              action = true;
+              Get.back();
+            },
+            child: Text("yes".tr)),
+        TextButton(
+            onPressed: () {
+              action = false;
+              Get.back();
+            },
+            child: Text("no".tr))
+      ]);
+  return action;
+}
+
 paymentAlert(String text, String body, BuildContext context) {
   Get.defaultDialog(
     title: "",
@@ -108,14 +198,14 @@ paymentAlert(String text, String body, BuildContext context) {
         children: [
           Text(
             text,
-            style: TextStyles.w50018(context),
+            style: TextStyles.w50015(context),
           ),
           SizedBox(
             height: 10.h,
           ),
           Text(
             body,
-            style: TextStyles.w50013(context),
+            style: TextStyles.w40012grey(context),
           ),
         ],
       ),
@@ -123,7 +213,7 @@ paymentAlert(String text, String body, BuildContext context) {
     barrierDismissible: true,
     onConfirm: () {
       Get.back();
-      payment(context,"10");
+      payment(context, "10");
     },
   );
   return Future.value(true);

@@ -44,7 +44,7 @@ class TextingPageControllerImpl extends TextingPageController {
   FilePickerResult? result;
   late LaravelFlutterPusher pusher;
   MessagesBack sendMessageBack = new MessagesBack(Get.put(Crud()));
-  bool showEmojes = false, isMaxPosition = false;
+  bool showEmojes = false, isMaxPosition = false, isDelete = false;
   TextDirection textDirection = TextDirection.ltr;
   FocusNode focusNode = new FocusNode();
   ScrollController scrollController = new ScrollController();
@@ -56,6 +56,7 @@ class TextingPageControllerImpl extends TextingPageController {
   });
   @override
   void onInit() async {
+    print(PusherConfig.hostEndPoint);
     message = new TextEditingController();
     token = myServices.sharedPreferences.getString("token")!;
     soundId =
@@ -65,10 +66,11 @@ class TextingPageControllerImpl extends TextingPageController {
     addListener(() async {
       listenChatChannel();
     });
+
     statusRequest = StatusRequest.loading;
     reciverId = myServices.sharedPreferences.getInt('id').toString();
     var response = await sendMessageBack.getMessages(token, id);
-    statusRequest = hadelingData(response);
+    statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         readMessages();
@@ -85,6 +87,9 @@ class TextingPageControllerImpl extends TextingPageController {
                     .format(pattern: "h:mm a")
                     .toString(),
                 type: messageData['type'],
+                fileName: messageData['type'] == "file"
+                    ? messageData['file_name']
+                    : null,
                 senderId: messageData['user_id'].toString(),
                 reciverId: reciverId));
           }
@@ -121,19 +126,19 @@ class TextingPageControllerImpl extends TextingPageController {
 
   void listenChatChannel() {
     var options = PusherOptions(
-      // auth: PusherAuth(
-      //   PusherConfig.hostAuthEndPoint,
-      //   headers: {'Authorization': "Bearer $token"},
-      // ),
+      auth: PusherAuth(
+        PusherConfig.hostAuthEndPoint,
+        headers: {'Authorization': "Bearer $token"},
+      ),
       host: PusherConfig.hostEndPoint,
       port: PusherConfig.port,
       encrypted: true,
       cluster: PusherConfig.cluster,
     );
-    // LaravelEcho.init(token: token);
-    // LaravelEcho.instance
-    //     .private("Messenger.$id")
-    //     .listen("MessageSent", (e) => print(e));
+    LaravelEcho.init(token: token);
+    LaravelEcho.instance
+        .private("Messenger.$id")
+        .listen("MessageSent", (e) => print(e));
 
     pusher = LaravelFlutterPusher("21fe88719842ee7606a5", options,
         onError: (ConnectionError) {
@@ -141,15 +146,15 @@ class TextingPageControllerImpl extends TextingPageController {
     }, enableLogging: true);
     pusher.connect();
 
-    pusher.subscribe('Messenger.$id').bind("App\\Events\\MessageSent",
-        (event) => print("My event/////////////////////" + event.toString()));
+    // pusher.subscribe('Messenger.$id').bind("App\\Events\\MessageSent",
+    //     (event) => print("My event/////////////////////" + event.toString()));
 
-    //  createEcho(id, pusher, token, options);
+    createEcho(id, pusher, token, options);
   }
 
   readMessages() async {
     var response = await sendMessageBack.readMessages(token, id);
-    statusRequest = hadelingData(response);
+    statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {}
     }
@@ -192,7 +197,7 @@ class TextingPageControllerImpl extends TextingPageController {
             file,
             "file");
       }
-      statusRequest = hadelingData(response);
+      statusRequest = handelingData(response);
       selectedMessage.add(false);
 
       messages.add(MessageModel(
@@ -200,7 +205,8 @@ class TextingPageControllerImpl extends TextingPageController {
         senderId: reciverId,
         id: {messages.length + 1}.toString(),
         type: "file",
-        message: image,
+        message: file,
+        fileName: fileName,
         timeStamp: Jiffy.now().format(pattern: "h:mm a").toString(),
       ));
       scrollDown();
@@ -214,6 +220,23 @@ class TextingPageControllerImpl extends TextingPageController {
     update();
 
     Get.back();
+  }
+
+  deleteMessage(BuildContext context) async {
+    late String messageId;
+    for (int i = 0; i < messages.length; i++) {
+      if (selectedMessage[i] == true) {
+        messageId = i.toString();
+        break;
+      }
+    }
+    var response = await sendMessageBack.deleteMessage(token, messageId, "me");
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        print("success///////////////");
+      }
+    }
   }
 
   downloadFile(String url) {
@@ -252,7 +275,7 @@ class TextingPageControllerImpl extends TextingPageController {
             image,
             "image");
       }
-      statusRequest = hadelingData(response);
+      statusRequest = handelingData(response);
       selectedMessage.add(false);
 
       messages.add(MessageModel(
@@ -260,7 +283,7 @@ class TextingPageControllerImpl extends TextingPageController {
         senderId: reciverId,
         id: {messages.length + 1}.toString(),
         type: "image",
-        message: image,
+        message: pickedImage.path,
         timeStamp: Jiffy.now().format(pattern: "h:mm a").toString(),
       ));
       scrollDown();
@@ -277,6 +300,7 @@ class TextingPageControllerImpl extends TextingPageController {
   }
 
   popSound() async {
+    // ignore: unused_local_variable
     int streamId = await pool.play(soundId);
   }
 
@@ -314,7 +338,7 @@ class TextingPageControllerImpl extends TextingPageController {
         response = await sendMessageBack.sendMessage(
             token, {"user_id": userId, "text": messages.last.message});
       }
-      statusRequest = hadelingData(response);
+      statusRequest = handelingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           popSound();

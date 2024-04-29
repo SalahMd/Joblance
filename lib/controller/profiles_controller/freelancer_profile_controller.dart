@@ -27,7 +27,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     statusRequest = StatusRequest.loading;
     var token = myServices.sharedPreferences.getString("token");
     var response = await profileBack.postData(token, 3.toString());
-    statusRequest = hadelingData(response);
+    statusRequest = handelingData(response);
     print(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -43,5 +43,4 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     //displayData();
     super.onInit();
   }
-
 }

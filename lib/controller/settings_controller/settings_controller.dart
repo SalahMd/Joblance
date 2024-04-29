@@ -19,12 +19,12 @@ class SettingsControllerImpl extends SettingsController {
     statusRequest = StatusRequest.loading;
     var token = myServices.sharedPreferences.getString("token");
     var response = await logout.postData(token);
-    statusRequest = hadelingData(response);
+    statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-       String id = myServices.sharedPreferences.getInt("id").toString();
+        String id = myServices.sharedPreferences.getInt("id").toString();
         FirebaseMessaging.instance.unsubscribeFromTopic("users");
-        FirebaseMessaging.instance.unsubscribeFromTopic("user"+id);
+        FirebaseMessaging.instance.unsubscribeFromTopic("user" + id);
         myServices.sharedPreferences.clear();
         Get.offNamed("ChooseLanguage");
       } else {

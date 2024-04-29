@@ -43,7 +43,7 @@ class CompanyHomePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "categoriesf".tr,
+                                  "categories".tr,
                                   style: TextStyles.bold17(context),
                                 ),
                               ],
@@ -60,10 +60,21 @@ class CompanyHomePage extends StatelessWidget {
                               style: TextStyles.bold17(context),
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                      FreeLancerDesign(),
-                      FreeLancerDesign(),
-                      FreeLancerDesign(),
-                      FreeLancerDesign()
+                      ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        itemCount: controller.freelancers.length,
+                        itemBuilder: (context, index) {
+                          return FreeLancerDesign(
+                              name: controller.freelancers[index]['name'],
+                              bio: controller.freelancers[index]['bio'],
+                              location: controller.freelancers[index]
+                                  ['location'],
+                              image: controller.freelancers[index]['image'],
+                              major: controller.freelancers[index]['major'],
+                              id: controller.freelancers[index]['id']);
+                        },
+                      )
                     ],
                   ),
           ),

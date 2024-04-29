@@ -7,7 +7,7 @@ class PusherConfig {
   static const port = 6001;
   static const hostEndPoint = "192.168.1.105";
   static const hostAuthEndPoint =
-      "http://$hostEndPoint:8000/api/broadcasting/auth";
+      "http://192.168.1.105:8000/api/broadcasting/auth";
   static var options = PusherOptions(
       auth: PusherAuth(
         PusherConfig.hostAuthEndPoint,
@@ -20,14 +20,15 @@ class PusherConfig {
 
 createEcho(String id, var pusher, var token, var options) {
   Echo echo = Echo(
-      //broadcaster: EchoBroadcasterType.SocketIO,
+    //broadcaster: EchoBroadcasterType.SocketIO,
     client: pusher,
   );
-  echo.join("Messenger.$id");
-  echo.private("Messenger.${id}").listen("MessageSent", (e) {
-    print(
-        "Received message:///////////////////////////////////////////////////////////////////////// ${e.toString()}"); // Example usage
-  });
+  //echo.join("Messenger.$id");
+  echo.private("Messenger.${id}");
+  // echo.private("Messenger.${id}").listen("MessageSent", (e) {
+  //   print(
+  //       "Received message:///////////////////////////////////////////////////////////////////////// ${e.toString()}"); // Example usage
+  // });
   echo.connect();
 }
 

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/chat/texting_page.dart';
 
 class ConversationDesign extends StatelessWidget {
@@ -45,11 +43,11 @@ class ConversationDesign extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: double.infinity, // Use full width
+            width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
             child: Row(
               crossAxisAlignment:
-                  CrossAxisAlignment.center, // Align children vertically
+                  CrossAxisAlignment.center,
               children: [
                 Container(
                   width: 50,

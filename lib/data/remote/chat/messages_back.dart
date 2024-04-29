@@ -47,4 +47,12 @@ class MessagesBack {
         {'Authorization': 'Bearer $token', 'accept': 'application/json'});
     return response.fold((l) => l, (r) => r);
   }
+  deleteMessage(var token, String id,String target)async{
+      var response = await crud.deleteData(
+        AppLinks.deleteMessage + id + "/delete",
+        {"target" :target},
+        {'Authorization': 'Bearer $token', 'accept': 'application/json'},
+          );
+    return response.fold((l) => l, (r) => r);
+  }
 }

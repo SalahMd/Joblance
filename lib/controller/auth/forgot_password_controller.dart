@@ -39,14 +39,15 @@ class ForgotPasswordControllerImpl extends ForgotPasswordController {
       animationedAlert(AppAnimations.loadings, "sendingcodetoemail".tr);
       update();
       var response = await forgotPasswordBack.sendCode(email.text);
-      statusRequest = hadelingData(response);
+      statusRequest = handelingData(response);
       Get.back();
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          Get.offAll(EmailVerification(), arguments: {"email": email.text,"checkfor":"forgot_password"});
-        }else{
-           animationedAlert(AppAnimations.wrong, "emailisnotexisted".tr);
-           update();
+          Get.offAll(EmailVerification(),
+              arguments: {"email": email.text, "checkfor": "forgot_password"});
+        } else {
+          animationedAlert(AppAnimations.wrong, "emailisnotexisted".tr);
+          update();
         }
       }
     }

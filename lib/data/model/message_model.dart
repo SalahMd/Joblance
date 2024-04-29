@@ -6,6 +6,7 @@ class MessageModel {
   String? reciverId;
   String? type;
   String? senderName;
+  String? fileName;
 
   MessageModel(
       {this.id,
@@ -14,7 +15,8 @@ class MessageModel {
       this.senderId,
       this.reciverId,
       this.type,
-      this.senderName});
+      this.senderName,
+      this.fileName});
 
   MessageModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -24,6 +26,7 @@ class MessageModel {
     reciverId = json['reciver_id'];
     senderName = json['sender_name'];
     type = json['type'];
+    fileName = json['file_name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -34,6 +37,7 @@ class MessageModel {
     data['sender_id'] = this.senderId;
     data['reciver_id'] = this.reciverId;
     data['sender_name'] = this.senderName;
+    data['file_name'] = this.fileName;
     return data;
   }
 }
