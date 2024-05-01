@@ -28,7 +28,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   displayData() async {
     statusRequest = StatusRequest.loading;
     var token = myServices.sharedPreferences.getString("token");
-    var response = await profileBack.postData(token, 3.toString());
+    var response = await profileBack.getData(token, 3.toString());
     statusRequest = handelingData(response);
     print(response);
     if (StatusRequest.success == statusRequest) {

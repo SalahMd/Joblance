@@ -70,7 +70,7 @@ Widget jobs(BuildContext context) {
                   companyName: "Google",
                   location: "United states",
                   date: "9 days ago",
-                  remote: "remote".tr,
+                  remote: "remote".tr,jobId: index,
                   image: AppImages.googleLogo,
                   isActive: false);
             }),

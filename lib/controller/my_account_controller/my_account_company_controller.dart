@@ -15,7 +15,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     Tab(
       text: "jobs".tr,
     ),
-     Tab(
+    Tab(
       text: "tasks".tr,
     ),
     Tab(text: "products".tr),

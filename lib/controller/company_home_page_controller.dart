@@ -26,7 +26,7 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
     statusRequest = StatusRequest.loading;
     update();
     token = myServices.sharedPreferences.getString("token")!;
-    language = myServices.sharedPreferences.getString("lang")!;
+    language = myServices.sharedPreferences.getString("lang")==null?"en":myServices.sharedPreferences.getString("lang")!;
     var response = await companyHomePageBack.getFreeLancers(token, language);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {

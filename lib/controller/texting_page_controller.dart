@@ -21,8 +21,6 @@ import 'package:joblance/data/remote/chat/messages_back.dart';
 import 'package:joblance/view/screens/chat/confirm_sending_file.dart';
 import 'package:laravel_flutter_pusher/laravel_flutter_pusher.dart';
 import 'package:soundpool/soundpool.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:web_socket_client/web_socket_client.dart';
 
 abstract class TextingPageController extends GetxController {
   sendMessage();
@@ -31,7 +29,7 @@ abstract class TextingPageController extends GetxController {
 }
 
 class TextingPageControllerImpl extends TextingPageController {
-  final String id, userId;
+  String? id, userId;
   List<MessageModel> messages = [];
   List<bool> selectedMessage = [];
   int line = 1;
@@ -41,8 +39,8 @@ class TextingPageControllerImpl extends TextingPageController {
   late TextEditingController message;
   Myservices myServices = Get.find();
   StatusRequest? statusRequest;
+   late LaravelFlutterPusher pusher;
   FilePickerResult? result;
-  late LaravelFlutterPusher pusher;
   MessagesBack sendMessageBack = new MessagesBack(Get.put(Crud()));
   bool showEmojes = false, isMaxPosition = false, isDelete = false;
   TextDirection textDirection = TextDirection.ltr;
@@ -51,8 +49,8 @@ class TextingPageControllerImpl extends TextingPageController {
   late int soundId;
   Soundpool pool = Soundpool(streamType: StreamType.notification);
   TextingPageControllerImpl({
-    required this.id,
-    required this.userId,
+    this.id,
+    this.userId,
   });
   @override
   void onInit() async {
@@ -65,11 +63,12 @@ class TextingPageControllerImpl extends TextingPageController {
     });
     addListener(() async {
       listenChatChannel();
+     
     });
 
     statusRequest = StatusRequest.loading;
     reciverId = myServices.sharedPreferences.getInt('id').toString();
-    var response = await sendMessageBack.getMessages(token, id);
+    var response = await sendMessageBack.getMessages(token, id!);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -146,14 +145,14 @@ class TextingPageControllerImpl extends TextingPageController {
     }, enableLogging: true);
     pusher.connect();
 
-    // pusher.subscribe('Messenger.$id').bind("App\\Events\\MessageSent",
-    //     (event) => print("My event/////////////////////" + event.toString()));
+    pusher.subscribe('Messenger.$id').bind("App\\Events\\MessageSent",
+        (event) => print("My event/////////////////////" + event.toString()));
 
-    createEcho(id, pusher, token, options);
+    createEcho(id!, token, pusher, options);
   }
 
   readMessages() async {
-    var response = await sendMessageBack.readMessages(token, id);
+    var response = await sendMessageBack.readMessages(token, id!);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {}
@@ -305,13 +304,14 @@ class TextingPageControllerImpl extends TextingPageController {
   }
 
   @override
-  void dispose() {
+  void dispose() async {
     message.dispose();
-    pusher.disconnect();
-    pusher.unsubscribe("Meesenger.$id");
+    // pusher.disconnect();
+    // pusher.unsubscribe("Meesenger.$id");
+    await pusher.disconnect();
     focusNode.dispose();
-    pusher.unsubscribe("Messenger.${id}");
-    pusher.disconnect();
+    // pusher.unsubscribe("Messenger.${id}");
+    // pusher.disconnect();
     pool.dispose();
     super.dispose();
   }

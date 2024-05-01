@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,6 +13,7 @@ class JobDesign extends StatelessWidget {
   final String companyName;
   final String location;
   final String date;
+  final int jobId;
   final String remote;
   final String image;
   final bool isActive;
@@ -25,13 +25,13 @@ class JobDesign extends StatelessWidget {
       required this.date,
       required this.remote,
       required this.image,
-      required this.isActive});
+      required this.isActive, required this.jobId});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(JobInfo());
+        Get.to(JobInfo(id:jobId));
       },
       child: Container(
         width: Dimensions.screenWidth(context),

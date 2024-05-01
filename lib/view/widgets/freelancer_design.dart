@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
@@ -51,8 +50,7 @@ class FreeLancerDesign extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(
-                        image[0]=="h"?image:
-                        AppLinks.IP+"/"+image,
+                        image[0] == "h" ? image : AppLinks.IP + "/" + image,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -117,14 +115,6 @@ class FreeLancerDesign extends StatelessWidget {
                         child: Row(
                       children: [
                         SizedBox(width: 8.w),
-                        Icon(
-                          Icons.location_on_outlined,
-                          size: 20.sp,
-                          color: LightAppColors.primaryColor,
-                        ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
                         Text(
                           location,
                           style: TextStyles.w40012grey(context),

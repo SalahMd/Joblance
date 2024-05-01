@@ -68,8 +68,7 @@ class Conversations extends StatelessWidget {
                         senderId: controller.conversations[index]['participant']
                                 ['id']
                             .toString(),
-                        reciverId:
-                            controller.conversations[index]['id'].toString(),
+                       
                         newMessages: controller.conversations[index]
                                 ['new_messages']
                             .toString(),

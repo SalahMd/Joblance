@@ -16,6 +16,7 @@ class CompanyInfo extends StatelessWidget {
   final String remote;
   final String jobLocation;
   final String major;
+  final String roleId;
   const CompanyInfo(
       {super.key,
       required this.companyImage,
@@ -25,7 +26,7 @@ class CompanyInfo extends StatelessWidget {
       required this.jobTitle,
       required this.jobLocation,
       required this.remote,
-      required this.major});
+      required this.major, required this.roleId});
 
   @override
   Widget build(BuildContext context) {
@@ -132,20 +133,23 @@ class CompanyInfo extends StatelessWidget {
                   ],
                 ),
               ]),
-              GestureDetector(
-                onTap: () {
-                  Get.to(ApplayJobPage());
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(top: 65.h),
-                  child: Container(
-                    width: 90.w,
-                    height: 30.h,
-                    alignment: Alignment.center,
-                    decoration: AppButtons.buttonDecoration,
-                    child: Text(
-                      "applay".tr,
-                      style: TextStyles.w50013White(context),
+              Visibility(
+                visible: roleId=="2",
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(ApplayJobPage());
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 65.h),
+                    child: Container(
+                      width: 90.w,
+                      height: 30.h,
+                      alignment: Alignment.center,
+                      decoration: AppButtons.buttonDecoration,
+                      child: Text(
+                        "applay".tr,
+                        style: TextStyles.w50013White(context),
+                      ),
                     ),
                   ),
                 ),

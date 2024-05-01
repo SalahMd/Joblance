@@ -114,6 +114,7 @@ Map<String, String> arabic = {
   "verifyingcode": "التحقق من البريد الالكتروني",
   "receivedcode": "أدخل الكود الذي استلمته",
   "youbirthdate": "أدخل تاريخ ميلادك",
+  "bio2":"أدخل موجز عن نفسك",
   "birthdate": "تاريخ الميلاد",
   "errorsendingyourrequest": "لم يتم إرسال طلبك بنجاح",
   "changepassword": "تغيير كلمة المرور",

@@ -33,6 +33,7 @@ Widget savedJobs(BuildContext context) {
             location: "United states",
             date: "9 days ago",
             remote: "remote".tr,
+            jobId: index,
             image: AppImages.googleLogo,
             isActive: false);
       });
@@ -49,6 +50,7 @@ Widget applaiedJobs(BuildContext context) {
             companyName: "Google",
             location: "United states",
             date: "9 days ago",
+            jobId: index,
             remote: "remote".tr,
             image: AppImages.googleLogo,
             isActive: false);

@@ -55,7 +55,7 @@ class Login extends StatelessWidget {
                   iconData: Icons.mail_outlined,
                   controller: controller.emailController,
                   min: 10,
-                  max: 30,
+                  max: 50,
                   isNumber: false,
                   isPassword: false,
                   isBorder: false,
@@ -93,7 +93,6 @@ class Login extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     controller.logIn();
-                    //Get.offAllNamed("HomePage");
                   },
                   child: Container(
                     width: Dimensions.screenWidth(context),

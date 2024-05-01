@@ -74,7 +74,6 @@ class SignUp extends StatelessWidget {
                   ),
                   TextFileds(controller: controller),
                   BirthDate(controller: controller),
-                  //SizedBox(height: 15.h),
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Container(

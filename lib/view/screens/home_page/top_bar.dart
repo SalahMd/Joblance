@@ -74,7 +74,7 @@ class TopBar extends StatelessWidget {
           ),
         )),
         SizedBox(
-          height: 20.h,
+          height: 15.h,
         ),
         GestureDetector(
           onTap: () {
@@ -82,7 +82,7 @@ class TopBar extends StatelessWidget {
           },
           child: Container(
             width: Dimensions.screenWidth(context),
-            height: 50.h,
+            height: 45.h,
             margin: EdgeInsets.symmetric(horizontal: 15.w),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),

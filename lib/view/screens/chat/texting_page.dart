@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/chat/chat_text_field.dart';
@@ -11,15 +12,15 @@ import 'package:joblance/view/screens/image_view.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class TextingPage extends StatelessWidget {
-  final String id;
+  final String? id;
   final String image;
-  final String userName;
-  final String userId;
+ final String userName;
+  final String? userId;
 
   TextingPage({
     Key? key,
-    required this.id,
-    required this.userId,
+     this.id,
+     this.userId,
     required this.image,
     required this.userName,
   }) : super(key: key);
@@ -65,7 +66,7 @@ class TextingPage extends StatelessWidget {
                                 child: Image.network(
                                   image[0] == "h"
                                       ? image
-                                      : 'http://192.168.1.105:8000/$image',
+                                      : AppLinks.IP+'/$image',
                                   fit: BoxFit.cover,
                                   width: 40,
                                   height: 40,

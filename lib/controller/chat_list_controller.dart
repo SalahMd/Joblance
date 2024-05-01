@@ -10,7 +10,6 @@ abstract class ChatListController extends GetxController {}
 class ChatListControllerImpl extends ChatListController {
   StatusRequest? statusRequest;
   late String token;
-
   List<Map<dynamic, dynamic>> conversations = [];
   Myservices myServices = Get.find();
   Conversations conversation = Conversations(Get.put(Crud()));
