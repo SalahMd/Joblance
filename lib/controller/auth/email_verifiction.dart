@@ -44,7 +44,7 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
     update();
     var response =
         await forgotPasswordBack.checkCode(email!, codeController!, verifyFor!);
-    statusRequest = hadelingData(response);
+    statusRequest = handelingData(response);
     Get.back();
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -83,7 +83,7 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
       update();
       var response =
           await forgotPasswordBack.resetPassword(password.text, email!);
-      statusRequest = hadelingData(response);
+      statusRequest = handelingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           Get.offAll(Login());
@@ -144,7 +144,7 @@ class EmailVerifictionControllerImpl extends EmailVerifictionController {
       animationedAlert(AppAnimations.loadings, "sendingcodetoemail".tr);
     update();
     var response = await forgotPasswordBack.resendCode(email!, verifyFor!);
-    statusRequest = hadelingData(response);
+    statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         Get.back();

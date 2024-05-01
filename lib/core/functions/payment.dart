@@ -8,7 +8,7 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/widgets/divider.dart';
 
-Future<bool> payment(
+ payment(
   BuildContext context,
   String amount
 ) {
@@ -68,10 +68,10 @@ Future<bool> payment(
                     }
                   },
                   "description": "The payment transaction description.",
-                  // "payment_options": {
-                  //   "allowed_payment_method":
-                  //       "INSTANT_FUNDING_SOURCE"
-                  // },
+                  "payment_options": {
+                    "allowed_payment_method":
+                        "INSTANT_FUNDING_SOURCE"
+                  },
                   "item_list": {
                     "items": [
                       {
@@ -157,5 +157,4 @@ Future<bool> payment(
         ),
         SizedBox(height: 20.h),
       ]))));
-  return Future.value(true);
 }

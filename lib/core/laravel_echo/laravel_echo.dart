@@ -1,5 +1,5 @@
 import 'package:laravel_echo/laravel_echo.dart';
-import 'package:laravel_flutter_pusher/laravel_flutter_pusher.dart';
+import 'package:pusher_client_fixed/pusher_client_fixed.dart';
 
 class PusherConfig {
   static const key = "21fe88719842ee7606a5";
@@ -7,23 +7,27 @@ class PusherConfig {
   static const port = 6001;
   static const hostEndPoint = "192.168.1.105";
   static const hostAuthEndPoint =
-      "http://$hostEndPoint:8000/api/broadcasting/auth";
+      "http://192.168.1.105:8000/api/broadcasting/auth";
   static var options = PusherOptions(
       auth: PusherAuth(
         PusherConfig.hostAuthEndPoint,
       ),
       host: PusherConfig.hostEndPoint,
-      port: PusherConfig.port,
       encrypted: true,
       cluster: PusherConfig.cluster);
 }
 
-createEcho(String id, var pusher, var token, var options) {
+createEcho(String id, var token,var pusher, var options) {
+  // PusherClient pusherClient = PusherClient(
+  //   PusherConfig.key,
+  //   pusher,
+  //   enableLogging: true,
+  // );
   Echo echo = Echo(
-      //broadcaster: EchoBroadcasterType.SocketIO,
     client: pusher,
   );
-  echo.join("Messenger.$id");
+  //echo.join("Messenger.$id");
+  //echo.private("Messenger.${id}");
   echo.private("Messenger.${id}").listen("MessageSent", (e) {
     print(
         "Received message:///////////////////////////////////////////////////////////////////////// ${e.toString()}"); // Example usage
@@ -59,7 +63,6 @@ class LaravelEcho {
 
 PusherClient createPusherClient(String token) {
   PusherOptions options = PusherOptions(
-    port: PusherConfig.port,
     encrypted: true,
     host: PusherConfig.hostEndPoint,
     cluster: PusherConfig.cluster,

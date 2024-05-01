@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/profiles_controller/freelancer_profile_controller.dart';
+import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/view/screens/chat/texting_page.dart';
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/profile_tob_bar.dart';
 import 'package:joblance/view/widgets/project_design.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
 
 class FreelancerProfile extends StatelessWidget {
-  const FreelancerProfile({super.key});
+  final int id;
+  const FreelancerProfile({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(FreelancerProfileControllerImpl());
+    Get.put(FreelancerProfileControllerImpl(id: id));
     return Scaffold(
       body: GetBuilder<FreelancerProfileControllerImpl>(
         builder: (controller) => DefaultTabController(
@@ -31,6 +34,43 @@ class FreelancerProfile extends StatelessWidget {
                     name: "Salah Mdaghmesh",
                     description: "IT developer",
                   )),
+              SizedBox(height: 10.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Container(
+                      height: 40.h,
+                      alignment: Alignment.center,
+                      decoration: AppButtons.buttonDecoration,
+                      child: Text("follow".tr,
+                          style: TextStyles.w50013White(context)),
+                    )),
+                    SizedBox(width: 10.w),
+                    Expanded(
+                        child: GestureDetector(
+                      onTap: () {
+                        Get.to(TextingPage(
+                            userId: id.toString(),
+                            image: AppImages.Linkedin,
+                            userName: "salah"));
+                      },
+                      child: Container(
+                        height: 40.h,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary)),
+                        child: Text("message".tr,
+                            style: TextStyles.w50012(context)),
+                      ),
+                    )),
+                  ],
+                ),
+              ),
               SizedBox(
                 height: 15.h,
               ),
@@ -164,7 +204,7 @@ class FreelancerProfile extends StatelessWidget {
                       children: [
                         Text(
                           "skills".tr,
-                           style: TextStyles.w50015(context),
+                          style: TextStyles.w50015(context),
                         )
                       ],
                     ),

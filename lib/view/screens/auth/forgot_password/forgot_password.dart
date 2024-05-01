@@ -49,7 +49,7 @@ class ForgotPassword extends StatelessWidget {
                   iconData: Icons.mail_outlined,
                   controller: controller.email,
                   min: 10,
-                  max: 30,
+                  max: 50,
                   isNumber: false,
                   isPassword: false,
                   isBorder: true,

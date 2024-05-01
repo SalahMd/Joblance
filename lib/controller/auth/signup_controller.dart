@@ -31,6 +31,7 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
   late TextEditingController aboutCompanyController;
+  late TextEditingController bio;
   bool openToWork = false;
   String? googleEmail, name, imageUrl, googleFirstName, googleLastName;
   bool isGoogleSignin = false;
@@ -167,7 +168,7 @@ class SignUpControllerImpl extends SignUpController {
         statusRequest = StatusRequest.loading;
         animationedAlert(AppAnimations.loadings, "checkingdata".tr);
         update();
-        
+
         var response = await signUpBack.signUp({
           "name": firstName.text,
           "first_name": firstName.text,
@@ -178,13 +179,14 @@ class SignUpControllerImpl extends SignUpController {
           "is_company": isFreelancer ? "0" : "1",
           "major_id": majorValue,
           "description": aboutCompanyController.text,
+          "bio": bio.text,
           "study_case_id": studyCaseValue,
           "birth_date": birthDate,
           "num_of_employees": numOfEmployees,
           "open_to_work": openToWork ? "1" : "0",
           "location": country!,
         }, image);
-        statusRequest = hadelingData(response);
+        statusRequest = handelingData(response);
         Get.back();
         if (StatusRequest.success == statusRequest) {
           if (response['status'] == "success") {
@@ -209,6 +211,7 @@ class SignUpControllerImpl extends SignUpController {
     email = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
+    bio = TextEditingController();
     aboutCompanyController = TextEditingController();
     Map<String, dynamic>? arguments = Get.arguments;
     googleEmail = arguments?['email'];
@@ -231,6 +234,7 @@ class SignUpControllerImpl extends SignUpController {
     firstName.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
+    bio.dispose();
     email.dispose();
     aboutCompanyController.dispose();
     super.dispose();
@@ -312,6 +316,7 @@ class SignUpControllerImpl extends SignUpController {
           "is_company": isFreelancer ? "0" : "1",
           "major_id": majorValue,
           "birth_date": birthDate,
+          "bio":bio.text,
           "description": aboutCompanyController.text,
           "study_case_id": studyCaseValue,
           "num_of_employees": numOfEmployees,
@@ -319,7 +324,7 @@ class SignUpControllerImpl extends SignUpController {
           "location": country,
         },
       );
-      statusRequest = hadelingData(response);
+      statusRequest = handelingData(response);
       Get.back();
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {

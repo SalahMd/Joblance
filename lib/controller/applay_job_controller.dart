@@ -79,7 +79,7 @@ class ApplayJobControllerImpl extends ApplayJobController {
         "phone_number": phoneNumber.text,
         "cover_letter": coverLetter.text,
       }, token, CV);
-      statusRequest = hadelingData(response);
+      statusRequest = handelingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           Get.back();

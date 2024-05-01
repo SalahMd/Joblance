@@ -72,7 +72,7 @@ class LogInControllerImpl extends LogiInController {
         "password": passwordController.text,
         "device_token": deviceToken
       });
-      statusRequest = hadelingData(response);
+      statusRequest = handelingData(response);
       Get.back();
 
       if (StatusRequest.success == statusRequest) {
@@ -146,7 +146,7 @@ class LogInControllerImpl extends LogiInController {
       statusRequest = StatusRequest.loading;
       var response = await loginBata.googleLogin(
           {"access_token": googleToken, "device_token": deviceToken});
-      statusRequest = hadelingData(response);
+      statusRequest = handelingData(response);
       print(statusRequest);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {

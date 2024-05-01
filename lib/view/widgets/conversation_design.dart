@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/chat/texting_page.dart';
 
 class ConversationDesign extends StatelessWidget {
@@ -16,7 +15,6 @@ class ConversationDesign extends StatelessWidget {
     required this.date,
     required this.id,
     required this.senderId,
-    required this.reciverId,
     required this.newMessages,
     required this.messageType,
   }) : super(key: key);
@@ -24,7 +22,6 @@ class ConversationDesign extends StatelessWidget {
   final String image;
   final String id;
   final String newMessages;
-  final String reciverId;
   final String senderId;
   final String messengerName;
   final String message;
@@ -37,7 +34,6 @@ class ConversationDesign extends StatelessWidget {
       onTap: () {
         Get.to(TextingPage(
           id: id,
-          userId: reciverId,
           image: image,
           userName: messengerName,
         ));
@@ -45,11 +41,11 @@ class ConversationDesign extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: double.infinity, // Use full width
+            width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
             child: Row(
               crossAxisAlignment:
-                  CrossAxisAlignment.center, // Align children vertically
+                  CrossAxisAlignment.center,
               children: [
                 Container(
                   width: 50,
@@ -62,7 +58,7 @@ class ConversationDesign extends StatelessWidget {
                     child: Image.network(
                       image[0] == "h"
                           ? image
-                          : 'http://192.168.1.105:8000/$image',
+                          : AppLinks.IP+'/$image',
                       fit: BoxFit.cover,
                     ),
                   ),

@@ -7,10 +7,9 @@ Future<String?> showCountries(BuildContext context) {
 
   showCountryPicker(
     context: context,
-    showPhoneCode: true, // optional. Shows phone code before the country name.
+    showPhoneCode: true,
     onSelect: (Country c) {
-      String selectedCountry = c.flagEmoji+"   "+c.name;
-      print('Select country: $selectedCountry');
+      String selectedCountry = c.flagEmoji+" "+c.name;
       completer.complete(selectedCountry);
     },
   );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
@@ -13,12 +12,13 @@ class TobBar extends StatelessWidget {
   final String description;
   final bool isMyAccount;
 
-  TobBar(
-      {super.key,
-      required this.image,
-      required this.name,
-      required this.description,
-      this.isMyAccount = false});
+  TobBar({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.description,
+    this.isMyAccount = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class TobBar extends StatelessWidget {
               alignment: Alignment.center,
               margin: EdgeInsetsDirectional.only(start: 5.w, top: 125.h),
               decoration: BoxDecoration(
-                border:Border.all(color:LightAppColors.whiteColor),
+                border: Border.all(color: LightAppColors.whiteColor),
                 color: LightAppColors.greyColor,
                 borderRadius: BorderRadius.circular(60),
               ),
@@ -98,37 +98,6 @@ class TobBar extends StatelessWidget {
                   Text(
                     "10 M Followers",
                     style: TextStyles.w40012grey(context),
-                  ),
-                  Visibility(
-                      visible: !isMyAccount, child: SizedBox(height: 10.h)),
-                  Visibility(
-                    visible: !isMyAccount,
-                    child: Row(
-                      children: [
-                        Expanded(
-                            child: Container(
-                          height: 40.h,
-                          alignment: Alignment.center,
-                          decoration: AppButtons.buttonDecoration,
-                          child: Text("follow".tr,
-                              style: TextStyles.w50013White(context)),
-                        )),
-                        SizedBox(width: 10.w),
-                        Expanded(
-                            child: Container(
-                          height: 40.h,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSecondary)),
-                          child: Text("message".tr,
-                              style: TextStyles.w50012(context)),
-                        )),
-                      ],
-                    ),
                   ),
                 ])),
       ],

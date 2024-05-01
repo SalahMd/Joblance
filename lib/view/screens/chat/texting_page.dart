@@ -1,9 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/texting_page_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/chat/chat_text_field.dart';
@@ -11,15 +12,15 @@ import 'package:joblance/view/screens/image_view.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class TextingPage extends StatelessWidget {
-  final String id;
+  final String? id;
   final String image;
-  final String userName;
-  final String userId;
+ final String userName;
+  final String? userId;
 
   TextingPage({
     Key? key,
-    required this.id,
-    required this.userId,
+     this.id,
+     this.userId,
     required this.image,
     required this.userName,
   }) : super(key: key);
@@ -65,7 +66,7 @@ class TextingPage extends StatelessWidget {
                                 child: Image.network(
                                   image[0] == "h"
                                       ? image
-                                      : 'http://192.168.1.105:8000/$image',
+                                      : AppLinks.IP+'/$image',
                                   fit: BoxFit.cover,
                                   width: 40,
                                   height: 40,
@@ -84,12 +85,22 @@ class TextingPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(CompanyProfile());
-                          },
-                          child: Icon(Icons.info_outline),
-                        ),
+                        !controller.isDelete
+                            ? GestureDetector(
+                                onTap: () {
+                                  Get.to(CompanyProfile());
+                                },
+                                child: Icon(Icons.info_outline),
+                              )
+                            : GestureDetector(
+                                onTap: () {
+                                  controller.deleteMessage(context);
+                                },
+                                child: Icon(
+                                  Icons.delete_outline,
+                                  color: Colors.red[800],
+                                ),
+                              ),
                       ],
                     ),
                   ),
@@ -116,6 +127,7 @@ class TextingPage extends StatelessWidget {
                                 onLongPress: () {
                                   controller.selectedMessage[index] =
                                       !controller.selectedMessage[index];
+                                  controller.isDelete = true;
                                   controller.update();
                                 },
                                 onTap: () {
@@ -212,9 +224,18 @@ class TextingPage extends StatelessWidget {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(10),
-                                                        child: Image.network(
-                                                            'http://192.168.1.105:8000/${controller.messages[index].message!}',
-                                                            fit: BoxFit.cover),
+                                                        child: controller
+                                                                        .messages[
+                                                                            index]
+                                                                        .message![
+                                                                    0] !=
+                                                                "/"
+                                                            ? Image.network(
+                                                                'http://192.168.1.105:8000/${controller.messages[index].message!}',
+                                                                fit: BoxFit
+                                                                    .cover)
+                                                            : Image.file(File(
+                                                                "${controller.messages[index].message!}")),
                                                       ),
                                                     ),
                                                     SizedBox(
@@ -267,7 +288,9 @@ class TextingPage extends StatelessWidget {
                                                             width: 5.w,
                                                           ),
                                                           Text(
-                                                            "File".tr,
+                                                            controller
+                                                                .messages[index]
+                                                                .fileName!,
                                                             overflow:
                                                                 TextOverflow
                                                                     .ellipsis,

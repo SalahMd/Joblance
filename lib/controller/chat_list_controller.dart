@@ -10,14 +10,15 @@ abstract class ChatListController extends GetxController {}
 class ChatListControllerImpl extends ChatListController {
   StatusRequest? statusRequest;
   late String token;
-
   List<Map<dynamic, dynamic>> conversations = [];
   Myservices myServices = Get.find();
   Conversations conversation = Conversations(Get.put(Crud()));
   void onInit() async {
+    statusRequest = StatusRequest.loading;
+    update();
     token = myServices.sharedPreferences.getString("token")!;
     var response = await conversation.getConversations(token);
-    statusRequest = hadelingData(response);
+    statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         conversations = (response['data'] as List<dynamic>)

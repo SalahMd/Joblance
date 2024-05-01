@@ -7,7 +7,7 @@ class CategoriesBack {
   postData(String category,var token,var language) async {
     var response = await crud.requestDataWithHeaders(
       '${AppLinks.jobs}?category=$category&lang=$language',{},
-      {'Authorization': 'Bearer $token'},
+      {'Custom-Param': 'param_value','Authorization': 'Bearer $token'},
               null,
 
       false,
