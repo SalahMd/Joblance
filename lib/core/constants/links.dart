@@ -10,12 +10,12 @@ class AppLinks {
   static const String checkCodeForPassword = "$IP" "/api/user/password/code/check";
   static const String checkCodeForSignUp = "$IP" "/api/user/email/code/check";
   static const String resetPassword = "$IP" "/api/user/password/reset";
-  static const String category = "$IP" "/api/category";
+  static const String major = "$IP" "/api/major";
   static const String applayJob = "$IP" "/api/applayjob";
   static const String jobInfo = "$IP" "/api/job";
   static const String ChangePassword = "$IP" "/api/user/changepassword";
   static const String profile = "$IP" "/api/user/profile/";
-  static const String freelancers = "$IP" "/api/freelancers/";
+  static const String freelancers = "$IP" "/api/freelancer";
   static const String jobs = "$IP" "/api/jobs";
   static const String user = "$IP" "/api/user";
   static const String googleSignup = "$IP" "/api/auth/google/userinfo";

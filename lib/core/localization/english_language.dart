@@ -183,6 +183,7 @@ Map<String, String> english = {
   "projectdescription2": "Add description to your project",
   "productdescription2": "Add description to your product",
   "producttitle2": "Your product name",
+  "savechanges":"Save changes",
   "projecttitle2": "Your project name",
   "link": "Link",
   "addyourlink": "Add link",

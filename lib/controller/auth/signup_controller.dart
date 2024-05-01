@@ -15,6 +15,7 @@ import 'package:joblance/data/remote/auth/signup_back.dart';
 abstract class SignUpController extends GetxController {
   goToLogiIn();
   goToSuccessfulSignUp();
+  updateCountry(BuildContext context);
   showPassword();
   pickImage();
   pickBirthDate(BuildContext context);
@@ -316,7 +317,7 @@ class SignUpControllerImpl extends SignUpController {
           "is_company": isFreelancer ? "0" : "1",
           "major_id": majorValue,
           "birth_date": birthDate,
-          "bio":bio.text,
+          "bio": bio.text,
           "description": aboutCompanyController.text,
           "study_case_id": studyCaseValue,
           "num_of_employees": numOfEmployees,

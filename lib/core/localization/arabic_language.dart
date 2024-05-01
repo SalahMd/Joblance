@@ -136,6 +136,7 @@ Map<String, String> arabic = {
   "passworddoesntmatch": "كلمة المرور غير مطابقة",
   "pleaseaddanimage": "الرجاء إضافة صورة",
   "about": "حول",
+  "savechanges":"حفظ التغييرات",
   "jobs": "فرص عمل",
   "contact": "تواصل",
   "interests": "اهتمامات",
