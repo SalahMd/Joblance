@@ -7,6 +7,7 @@ import 'package:joblance/controller/settings_controller/settings_controller.dart
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/edit_profile/edit_profile.dart';
 import 'package:joblance/view/screens/my_jobs/my_jobs.dart';
 import 'package:joblance/view/screens/settings/change_language.dart';
 import 'package:joblance/view/screens/settings/change_password.dart';
@@ -50,7 +51,7 @@ class Settings extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                //  Get.to(FreelancerProfile());
+                                Get.to(EditProfile());
                               },
                               child: ListTiles(
                                   leadingIcon: Icons.edit_outlined,

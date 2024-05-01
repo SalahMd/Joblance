@@ -49,7 +49,7 @@ class CompanyHomePage extends StatelessWidget {
                               ],
                             )),
                       ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                      Categories(),
+                      Categories(controller: controller,),
                       Align(
                         alignment: AlignmentDirectional.centerStart,
                         child: Padding(
