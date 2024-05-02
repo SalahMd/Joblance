@@ -7,7 +7,6 @@ import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
 class Login extends StatelessWidget {
@@ -16,179 +15,176 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(LogInControllerImpl());
-    return PopScope(
-      onPopInvoked: exitAlert,
-      child: Scaffold(
-          body: GetBuilder<LogInControllerImpl>(
-        builder: (controller) => SingleChildScrollView(
-          child: Form(
-            key: controller.formState,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 20.h,
-                ),
-                SafeArea(
+    return Scaffold(
+        body: GetBuilder<LogInControllerImpl>(
+      builder: (controller) => SingleChildScrollView(
+        child: Form(
+          key: controller.formState,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20.h,
+              ),
+              SafeArea(
+                  child: Text(
+                "title1".tr,
+                style: Theme.of(context).textTheme.headline1,
+              )),
+              Container(
+                  margin:
+                      EdgeInsets.symmetric(vertical: 20.h, horizontal: 5.w),
+                  width: Dimensions.screenWidth(context),
+                  height: 180.h,
+                  child: Image.asset(AppImages.joblance)),
+              Padding(
+                padding: EdgeInsetsDirectional.only(
+                    start: 15.w, top: 20.h, bottom: 10.h),
+                child: Align(
+                    alignment: AlignmentDirectional.centerStart,
                     child: Text(
-                  "title1".tr,
-                  style: Theme.of(context).textTheme.headline1,
-                )),
-                Container(
-                    margin:
-                        EdgeInsets.symmetric(vertical: 20.h, horizontal: 5.w),
-                    width: Dimensions.screenWidth(context),
-                    height: 180.h,
-                    child: Image.asset(AppImages.joblance)),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(
-                      start: 15.w, top: 20.h, bottom: 10.h),
-                  child: Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Text(
-                        "logintocontinue".tr,
-                        style: TextStyles.bold17(context),
-                      )),
-                ),
-                Customtextformfiled(
-                  hintText: "email1".tr,
-                  labelText: "email2".tr,
-                  iconData: Icons.mail_outlined,
-                  controller: controller.emailController,
-                  min: 10,
-                  max: 50,
-                  isNumber: false,
-                  isPassword: false,
-                  isBorder: false,
-                  isFilled: true,
-                  isLabel: false,
-                ),
-                Customtextformfiled(
-                  hintText: "password1".tr,
-                  labelText: "password2".tr,
-                  iconData: Icons.remove_red_eye_outlined,
-                  controller: controller.passwordController,
-                  min: 8,
-                  max: 18,
-                  isNumber: false,
-                  isPassword: controller.isshown,
-                  isBorder: false,
-                  isFilled: true,
-                  isLabel: false,
-                  ontapicon: controller.showPassword,
-                ),
-                Align(
-                  alignment: AlignmentDirectional.centerEnd,
-                  child: TextButton(
-                    onPressed: () {
-                      controller.goToForgotPassword();
-                    },
-                    child: Padding(
-                        padding: EdgeInsetsDirectional.only(end: 10.w),
-                        child: Text("forgotyourpassword".tr)),
-                  ),
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    controller.logIn();
+                      "logintocontinue".tr,
+                      style: TextStyles.bold17(context),
+                    )),
+              ),
+              Customtextformfiled(
+                hintText: "email1".tr,
+                labelText: "email2".tr,
+                iconData: Icons.mail_outlined,
+                controller: controller.emailController,
+                min: 10,
+                max: 50,
+                isNumber: false,
+                isPassword: false,
+                isBorder: false,
+                isFilled: true,
+                isLabel: false,
+              ),
+              Customtextformfiled(
+                hintText: "password1".tr,
+                labelText: "password2".tr,
+                iconData: Icons.remove_red_eye_outlined,
+                controller: controller.passwordController,
+                min: 8,
+                max: 18,
+                isNumber: false,
+                isPassword: controller.isshown,
+                isBorder: false,
+                isFilled: true,
+                isLabel: false,
+                ontapicon: controller.showPassword,
+              ),
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: TextButton(
+                  onPressed: () {
+                    controller.goToForgotPassword();
                   },
-                  child: Container(
-                    width: Dimensions.screenWidth(context),
-                    height: 40.h,
-                    margin: EdgeInsets.symmetric(horizontal: 30.w),
-                    alignment: Alignment.center,
-                    decoration: AppButtons.buttonDecoration,
-                    child: Text(
-                      "login".tr,
-                      style: TextStyles.w50016White(context),
-                    ),
+                  child: Padding(
+                      padding: EdgeInsetsDirectional.only(end: 10.w),
+                      child: Text("forgotyourpassword".tr)),
+                ),
+              ),
+              SizedBox(
+                height: 30.h,
+              ),
+              GestureDetector(
+                onTap: () {
+                  controller.logIn();
+                },
+                child: Container(
+                  width: Dimensions.screenWidth(context),
+                  height: 40.h,
+                  margin: EdgeInsets.symmetric(horizontal: 30.w),
+                  alignment: Alignment.center,
+                  decoration: AppButtons.buttonDecoration,
+                  child: Text(
+                    "login".tr,
+                    style: TextStyles.w50016White(context),
                   ),
                 ),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
-                  child: Row(
-                    children: [
-                      const Expanded(
-                          child: Divider(
-                        thickness: 0.3,
-                        color: Colors.grey,
-                      )),
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5.w),
-                          child: Text(
-                            "or".tr,
-                            style: TextStyles.w40014grey(context),
-                          )),
-                      const Expanded(
-                          child: Divider(
-                        thickness: 0.3,
-                        color: Colors.grey,
-                      )),
-                    ],
-                  ),
+              ),
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
+                child: Row(
+                  children: [
+                    const Expanded(
+                        child: Divider(
+                      thickness: 0.3,
+                      color: Colors.grey,
+                    )),
+                    Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        child: Text(
+                          "or".tr,
+                          style: TextStyles.w40014grey(context),
+                        )),
+                    const Expanded(
+                        child: Divider(
+                      thickness: 0.3,
+                      color: Colors.grey,
+                    )),
+                  ],
                 ),
-                GestureDetector(
-                  onTap: () {
-                    controller.googleSignin();
-                  },
-                  child: Container(
-                    width: Dimensions.screenWidth(context),
-                    height: 40.h,
-                    margin:
-                        EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        borderRadius: BorderRadius.circular(17)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 20.w,
-                          height: 20.h,
-                          child: Image.asset(AppImages.google),
-                        ),
-                        SizedBox(
-                          width: 8.w,
-                        ),
-                        Text(
-                          "continuewithgoogle".tr,
-                          style: TextStyles.w50014(context),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                //SizedBox(height: 30.h),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 30.h),
+              ),
+              GestureDetector(
+                onTap: () {
+                  controller.googleSignin();
+                },
+                child: Container(
+                  width: Dimensions.screenWidth(context),
+                  height: 40.h,
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(17)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "createaccount".tr,
-                        style: TextStyles.w50013(context),
+                      Container(
+                        width: 20.w,
+                        height: 20.h,
+                        child: Image.asset(AppImages.google),
                       ),
-                      TextButton(
-                        child: Text(
-                          "signup".tr,
-                          style: TextStyle(color: LightAppColors.primaryColor),
-                        ),
-                        onPressed: () {
-                          controller.goToSignup();
-                        },
-                      )
+                      SizedBox(
+                        width: 8.w,
+                      ),
+                      Text(
+                        "continuewithgoogle".tr,
+                        style: TextStyles.w50014(context),
+                      ),
                     ],
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+              //SizedBox(height: 30.h),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 30.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "createaccount".tr,
+                      style: TextStyles.w50013(context),
+                    ),
+                    TextButton(
+                      child: Text(
+                        "signup".tr,
+                        style: TextStyle(color: LightAppColors.primaryColor),
+                      ),
+                      onPressed: () {
+                        controller.goToSignup();
+                      },
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
         ),
-      )),
-    );
+      ),
+    ));
   }
 }

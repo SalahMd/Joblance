@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:joblance/core/class/crud.dart';
+import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/functions/show_countries.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/remote/edit_profile_back.dart';
 
 abstract class EditProfileController extends GetxController {
   getUserInfo();
@@ -17,12 +21,13 @@ class EditProfileControllerImpl extends EditProfileController {
   late TextEditingController phoneNumber;
   late TextEditingController description;
   late TextEditingController bio;
+  String? image;
+  EditProfileBack editProfileBack = new EditProfileBack(Get.put(Crud()));
+  StatusRequest? statusRequest;
   bool openToWork = false;
-  String? studyCase = "1",
-      major = "1",
-      country,
-      birthOfDate,
-      numOfEmployees = "1";
+  late String id, token;
+  String studyCase = "1", major = "1";
+  String? country, birthOfDate, numOfEmployees = "1";
   late bool isFreelancer;
   Myservices myservices = Get.find();
   List<DropdownMenuItem<String>> studyCases = [
@@ -69,6 +74,7 @@ class EditProfileControllerImpl extends EditProfileController {
       child: Text("customerservicing".tr),
     ),
   ];
+  Map data = {};
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   changeOpenToWork() {
     openToWork = !openToWork;
@@ -82,8 +88,11 @@ class EditProfileControllerImpl extends EditProfileController {
     } else {
       isFreelancer = true;
     }
+    token = myservices.sharedPreferences.getString("token")!;
+    id = myservices.sharedPreferences.getInt("id").toString();
 
     initializeControllers();
+    getUserInfo();
     super.onInit();
   }
 
@@ -97,7 +106,35 @@ class EditProfileControllerImpl extends EditProfileController {
     super.dispose();
   }
 
-  getUserInfo() {}
+  getUserInfo() async {
+    statusRequest = StatusRequest.loading;
+    var response = await editProfileBack.getData(token, id);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        data.addAll(response['data']);
+        saveUserInfo();
+      }
+    }
+  }
+
+  saveUserInfo() {
+    if (myservices.sharedPreferences.getString("role_id") == "2") {
+      firstName.text = data['first_name'];
+      lastName.text = data['last_name'];
+      bio.text = data['bio'];
+      openToWork = data['open_to_work'] == 1 ? true : false;
+      studyCase = data['study_case_id'].toString();
+    } else {
+      companyName.text = data['name'];
+      description.text = data['description'];
+    }
+    country = data['location'];
+    image = data['image'];
+    phoneNumber.text = data['phone_number'];
+    major = data['major_id'].toString();
+    update();
+  }
 
   @override
   updateDropDownValue(String? newValue, String changingElement) {
