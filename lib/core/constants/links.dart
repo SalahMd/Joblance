@@ -14,7 +14,7 @@ class AppLinks {
   static const String applayJob = "$IP" "/api/applayjob";
   static const String jobInfo = "$IP" "/api/job";
   static const String ChangePassword = "$IP" "/api/user/changepassword";
-  static const String profile = "$IP" "/api/user/profile/";
+  static const String profile = "$IP" "/api/user/";
   static const String freelancers = "$IP" "/api/freelancer";
   static const String jobs = "$IP" "/api/jobs";
   static const String user = "$IP" "/api/user";

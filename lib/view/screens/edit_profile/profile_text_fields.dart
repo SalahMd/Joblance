@@ -31,10 +31,12 @@ class ProfileTextField extends StatelessWidget {
                     ),
                   ),
                   Customtextformfiled(
-                    hintText: controller.firstName.text,
+                    hintText: "",
                     labelText: "".tr,
                     iconData: Icons.person_outline,
-                    controller: controller.firstName,
+                    controller: controller.isFreelancer
+                        ? controller.firstName
+                        : controller.companyName,
                     min: 3,
                     max: 15,
                     isNumber: false,
@@ -61,7 +63,7 @@ class ProfileTextField extends StatelessWidget {
                       ),
                     ),
                     Customtextformfiled(
-                      hintText: controller.lastName.text,
+                      hintText: "",
                       labelText: "".tr,
                       padding: 10,
                       iconData: Icons.person_outline,
@@ -88,7 +90,7 @@ class ProfileTextField extends StatelessWidget {
           ),
         ),
         Customtextformfiled(
-          hintText: controller.phoneNumber.text,
+          hintText: "",
           labelText: "".tr,
           iconData: Icons.phone_outlined,
           controller: controller.phoneNumber,
@@ -111,7 +113,7 @@ class ProfileTextField extends StatelessWidget {
         Visibility(
           visible: !controller.isFreelancer,
           child: Customtextformfiled(
-            hintText: controller.description.text,
+            hintText: "",
             padding: 10,
 
             labelText: "",
@@ -131,7 +133,7 @@ class ProfileTextField extends StatelessWidget {
         Visibility(
           visible: controller.isFreelancer,
           child: Customtextformfiled(
-            hintText: controller.bio.text,
+            hintText: "",
             labelText: "",
             iconData: Icons.info_outline,
             controller: controller.bio,

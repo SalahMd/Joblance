@@ -28,7 +28,6 @@ class SettingsControllerImpl extends SettingsController {
         FirebaseMessaging.instance.unsubscribeFromTopic("user" + id);
         myServices.sharedPreferences.clear();
         myServices.sharedPreferences.setString("lang", lang);
-        
         Get.offNamed("Login");
       } else {
         print("error");
