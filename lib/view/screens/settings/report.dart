@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -58,7 +59,7 @@ class Report extends StatelessWidget {
                   iconData: null,
                   controller: controller.reportTitle,
                   min: 2,
-                  max: 20,
+                  max: 30,
                   isNumber: false,
                   isPassword: false,
                   isBorder: true,
@@ -81,7 +82,7 @@ class Report extends StatelessWidget {
                   iconData: null,
                   controller: controller.reportbody,
                   min: 10,
-                  max: 100,
+                  max: 150,
                   isNumber: false,
                   isPassword: false,
                   maxLines: 5,
@@ -89,16 +90,21 @@ class Report extends StatelessWidget {
                   isLabel: false,
                   isFilled: true,
                 ),
-                Container(
-                  width: Dimensions.screenWidth(context),
-                  height: 40.h,
-                  alignment: Alignment.center,
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 50.w, vertical: 40.h),
-                  decoration: AppButtons.buttonDecoration,
-                  child: Text(
-                    "send".tr,
-                    style: TextStyles.w50016White(context),
+                GestureDetector(
+                  onTap: () {
+                    controller.sendReport();
+                  },
+                  child: Container(
+                    width: Dimensions.screenWidth(context),
+                    height: 40.h,
+                    alignment: Alignment.center,
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 50.w, vertical: 40.h),
+                    decoration: AppButtons.buttonDecoration,
+                    child: Text(
+                      "send".tr,
+                      style: TextStyles.w50016White(context),
+                    ),
                   ),
                 )
               ],

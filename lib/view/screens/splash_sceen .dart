@@ -13,24 +13,24 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(SplashScreenControllerImpl());
     return GetBuilder<SplashScreenControllerImpl>(
-        builder: (controller) => Scaffold(
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(AppImages.joblance)
-                        .animate()
-                        .fade(duration: 1200.ms)
-                        .slideY(begin: -0.3),
-                    Container(
-                      width: 80.w,
-                      height: 50.h,
-                      child: AppAnimations.loadingDots,
-                    ).animate().fade(delay: 1000.ms)
-                  ],
-                ),
-              ),
-            ));
+      builder: (controller) => Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(AppImages.joblance)
+                  .animate()
+                  .fade(duration: 1200.ms)
+                  .slideY(begin: -0.3),
+              Container(
+                width: 80.w,
+                height: 50.h,
+                child: AppAnimations.loadingDots,
+              ).animate().fade(delay: 1000.ms)
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
-
