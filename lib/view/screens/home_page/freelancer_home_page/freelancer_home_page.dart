@@ -26,8 +26,8 @@ class FreelancerHomePage extends StatelessWidget {
               : Column(
                   children: [
                     TopBar(
-                      name: "freelancer".tr,
-                      image: AppImages.Linkedin,
+                      name: controller.name,
+                      image: controller.image,
                     ),
     
                     Align(

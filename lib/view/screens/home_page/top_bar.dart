@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/notifications.dart';
@@ -36,9 +37,9 @@ class TopBar extends StatelessWidget {
                       BoxDecoration(borderRadius: BorderRadius.circular(20)),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child: Image.asset(
-                      image,
-                      fit: BoxFit.fill,
+                    child: Image.network(
+                         image[0] == "h" ? image : AppLinks.IP + "/" + image,
+                        fit: BoxFit.cover,
                     ),
                   ),
                 ),

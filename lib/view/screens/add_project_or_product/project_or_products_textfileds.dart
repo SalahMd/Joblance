@@ -17,12 +17,13 @@ class ProjectOrProductTextFileds extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w),
           child: Text(
-            controller.isProduct ? "producttitle".tr : "projecttitle",
+            controller.isProduct ? "producttitle".tr : "projecttitle".tr,
             style: TextStyles.w50014(context),
           ),
         ),
         Customtextformfiled(
-          hintText: controller.isProduct ? "producttitle2".tr : "projecttitle2",
+          hintText:
+              controller.isProduct ? "producttitle2".tr : "projecttitle2".tr,
           labelText: "".tr,
           iconData: null,
           controller: controller.title,
@@ -39,14 +40,14 @@ class ProjectOrProductTextFileds extends StatelessWidget {
           child: Text(
             controller.isProduct
                 ? "productdescription".tr
-                : "projectdescription",
+                : "projectdescription".tr,
             style: TextStyles.w50014(context),
           ),
         ),
         Customtextformfiled(
           hintText: controller.isProduct
               ? "productdescription2".tr
-              : "projectdescription2",
+              : "projectdescription2".tr,
           labelText: "".tr,
           iconData: null,
           controller: controller.description,

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/images.dart';
@@ -31,26 +29,26 @@ class ProjectScreen extends StatelessWidget {
                       },
                       child: Icon(Icons.arrow_back)),
                   SizedBox(width: 10.w),
-                  Text("Joblance", style: Theme.of(context).textTheme.headline1)
+                  Text("Joblance", style: TextStyles.w50018(context))
                 ],
               )),
               SizedBox(height: 30.h),
               Text(
                 "projectlink".tr,
-                style: TextStyles.w50017(context),
+                style: TextStyles.w50014(context),
               ),
               SizedBox(height: 10.h),
               Text(
                 "ww.github/SalahMd/Joblance.com".tr,
-                style: TextStyle(color: Colors.blue[700], fontSize: 12.sp),
+                style: TextStyle(color: Colors.blue[700], fontSize: 11.sp),
               ),
               SizedBox(height: 10.h),
               MyDivider(
-                height: 5,
+                height: 10,
               ),
               Text(
                 "projectdescription".tr,
-                style: TextStyles.w50017(context),
+                style: TextStyles.w50014(context),
               ),
               SizedBox(height: 10.h),
               Row(
@@ -58,18 +56,18 @@ class ProjectScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       "A flutter project for Jobs and freelaning it is really good project and i am so happy and glad and I feel good.",
-                      style: TextStyles.w40012grey(context),
+                      style: TextStyles.w40011grey(context),
                     ),
                   ),
                 ],
               ),
               SizedBox(height: 10.h),
               MyDivider(
-                height: 5,
+                height: 10,
               ),
               Text(
                 "projectimages".tr,
-                style: TextStyles.w50017(context),
+                style: TextStyles.w50014(context),
               ),
               SizedBox(height: 10.h),
               Container(

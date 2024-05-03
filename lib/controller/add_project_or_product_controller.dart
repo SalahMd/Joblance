@@ -17,7 +17,7 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
   late TextEditingController description;
   late TextEditingController link;
   bool isProduct = true;
-  String role = "2";
+  late String role ;
   List images = [];
   Myservices myServices = Get.find();
 
@@ -25,8 +25,8 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
     title = new TextEditingController();
     link = new TextEditingController();
     description = new TextEditingController();
-    //role = myServices.sharedPreferences.getString("role_id")!;
-    if (role == "2") {
+    role = myServices.sharedPreferences.getString("role_id")!;
+    if (role == "1") {
       isProduct = true;
     } else {
       isProduct = false;

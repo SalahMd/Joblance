@@ -195,6 +195,8 @@ Map<String, String> arabic = {
   "addyourproject": "أضف مشروعك",
   "skills": "المهارات",
   "yourpasswordhasbeenchanged": "تم تغيير كلمة المرور",
+  "projectlink":"رابط المشروع",
+  "projectimages":"صور عن المشروع",
   "wronglogin": "خطأ في البريد الإلكتروني أو كلمة المرور",
   "youremailhasbeenverified": "تم تأكيد بريدك الإلكتروني",
   "emailisnotexisted": "البريد الإلكتروني غير موجود",

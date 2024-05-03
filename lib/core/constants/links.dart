@@ -28,4 +28,5 @@ class AppLinks {
   static const String getConversations = "$IP" "/api/conversations";
   static const String readMessages = "$IP" "/api/conversations";
   static const String deleteMessage = "$IP" "/api/message/";
+  static const String skills = "$IP" "/api/skills";
 }

@@ -30,8 +30,8 @@ class JobApplicantDesign extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        width: 40,
-                        height: 40,
+                        width: 40.w,
+                        height: 40.h,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.asset(

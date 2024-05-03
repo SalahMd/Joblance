@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_project_or_product_controller.dart';
+import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_project_or_product/add_image.dart';
 import 'package:joblance/view/screens/add_project_or_product/project_or_products_textfileds.dart';
+
+import '../../../core/constants/buttons.dart';
 
 class AddProjectOrProduct extends StatelessWidget {
   AddProjectOrProduct({super.key});
@@ -44,7 +47,22 @@ class AddProjectOrProduct extends StatelessWidget {
               ProjectOrProductTextFileds(
                 controller: controller,
               ),
-              AddImage(controller: controller)
+              AddImage(controller: controller),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  width: Dimensions.screenWidth(context),
+                  height: 40.h,
+                  alignment: Alignment.center,
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 50.w, vertical: 40.h),
+                  decoration: AppButtons.buttonDecoration,
+                  child: Text(
+                    "confirm".tr,
+                    style: TextStyles.w50016White(context),
+                  ),
+                ),
+              )
             ],
           ),
         ),

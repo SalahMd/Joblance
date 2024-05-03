@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/choose_language.dart';
-import 'package:joblance/view/screens/job_applicants/job_applicants.dart';
 
 abstract class SplashScreenController extends GetxController {
   startTimer();
@@ -21,11 +20,9 @@ class SplashScreenControllerImpl extends SplashScreenController {
         timer.cancel();
         if (myservices.sharedPreferences.getString("step") == "2") {
           Get.offNamed("HomePage");
-        }
-        else if (myservices.sharedPreferences.getString("step") == "1") {
+        } else if (myservices.sharedPreferences.getString("step") == "1") {
           Get.offNamed("Login");
-        }
-         else {
+        } else {
           Get.off(ChooseLanguage());
         }
       } else {

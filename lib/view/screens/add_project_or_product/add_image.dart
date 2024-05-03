@@ -59,7 +59,7 @@ class AddImage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     child: Image.file(
                       File(controller.images[index].path),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
