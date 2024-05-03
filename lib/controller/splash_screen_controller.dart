@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/choose_language.dart';
+import 'package:joblance/view/screens/job_applicants/job_applicants.dart';
 
 abstract class SplashScreenController extends GetxController {
   startTimer();
@@ -14,7 +15,7 @@ class SplashScreenControllerImpl extends SplashScreenController {
 
   @override
   void startTimer() {
-    timer = 4;
+    timer = 3;
     countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (this.timer == 0) {
         timer.cancel();

@@ -36,7 +36,7 @@ class ShimmerFreelancerHomePage extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          ShimmerItem(width: Dimensions.screenWidth(context), height: 185.h),
+          ShimmerItem(width: Dimensions.screenWidth(context), height: 135.h),
           SizedBox(
             height: 20.h,
           ),
@@ -44,15 +44,14 @@ class ShimmerFreelancerHomePage extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                ShimmerItem(width: 95, height: 90.h),
-                ShimmerItem(width: 95, height: 90.h),
-                ShimmerItem(width: 95, height: 90.h),
-                ShimmerItem(width: 95, height: 90.h),
-              ],
+          Container(
+            height: 150.h,
+            width: Dimensions.screenWidth(context),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              children: [ShimmerItem(width:220.w, height: 130.h),ShimmerItem(width: 220.w, height: 130.h),ShimmerItem(width: 220.w, height: 130.h)],
             ),
           ),
           SizedBox(
