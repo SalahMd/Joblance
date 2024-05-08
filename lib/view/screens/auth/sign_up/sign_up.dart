@@ -71,6 +71,29 @@ class SignUp extends StatelessWidget {
                 ),
                 TextFileds(controller: controller),
                 BirthDate(controller: controller),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Container(
+                        margin: EdgeInsetsDirectional.only(
+                          top: 15.h,
+                          start: 20.w,
+                        ),
+                        child: Text(
+                          "gender".tr,
+                          style: TextStyles.w50012(context),
+                        ),
+                      ),
+                    ),
+                    DropDownWidget(
+                        title: "gender",
+                        choices: controller.genders,
+                        elementValue: controller.genderValue,
+                        controller: controller),
+                  ],
+                ),
                 Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Container(
@@ -119,10 +142,9 @@ class SignUp extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color:
-                            Theme.of(context).colorScheme.primaryContainer),
-                    margin: EdgeInsets.symmetric(
-                        horizontal: 10.w, vertical: 20.h),
+                        color: Theme.of(context).colorScheme.primaryContainer),
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
                     padding: EdgeInsetsDirectional.only(
                         start: 20.w, top: 5.h, bottom: 5.h, end: 5.w),
                     child: Row(
@@ -155,8 +177,8 @@ class SignUp extends StatelessWidget {
                     width: Dimensions.screenWidth(context),
                     height: 40.h,
                     alignment: Alignment.center,
-                    margin: EdgeInsets.symmetric(
-                        horizontal: 40.w, vertical: 40.h),
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 40.w, vertical: 40.h),
                     decoration: AppButtons.buttonDecoration,
                     child: Text(
                       "signup".tr,

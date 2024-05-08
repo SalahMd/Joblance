@@ -38,7 +38,10 @@ class SignUpControllerImpl extends SignUpController {
   bool isGoogleSignin = false;
   bool isFreelancer = true;
   String birthDate = "";
-  String studyCaseValue = '1', majorValue = '1', numOfEmployees = '1';
+  String studyCaseValue = '1',
+      majorValue = '1',
+      numOfEmployees = '1',
+      genderValue = "1";
   Myservices myServices = Get.find();
   SignUpBack signUpBack = new SignUpBack(Get.put(Crud()));
   String? country;
@@ -105,6 +108,16 @@ class SignUpControllerImpl extends SignUpController {
     DropdownMenuItem<String>(
       value: '10',
       child: Text("+ 10000"),
+    ),
+  ];
+  List<DropdownMenuItem<String>> genders = [
+    DropdownMenuItem<String>(
+      value: '1',
+      child: Text("male".tr),
+    ),
+    DropdownMenuItem<String>(
+      value: '2',
+      child: Text("female".tr),
     ),
   ];
   List<DropdownMenuItem<String>> major = [
@@ -179,6 +192,7 @@ class SignUpControllerImpl extends SignUpController {
           "password": passwordController.text,
           "is_company": isFreelancer ? "0" : "1",
           "major_id": majorValue,
+          "gender":genderValue,
           "description": aboutCompanyController.text,
           "bio": bio.text,
           "study_case_id": studyCaseValue,
@@ -259,13 +273,12 @@ class SignUpControllerImpl extends SignUpController {
   updateDropDownValue(String? newValue, String changingElement) {
     if (changingElement == "study") {
       studyCaseValue = newValue!;
-      print(studyCaseValue);
     } else if (changingElement == "major") {
       majorValue = newValue!;
-      print(majorValue);
+    } else if (changingElement == "gender") {
+      genderValue = newValue!;
     } else {
       numOfEmployees = newValue!;
-      print(numOfEmployees);
     }
     update();
   }
@@ -313,6 +326,7 @@ class SignUpControllerImpl extends SignUpController {
           "last_name": googleLastName,
           "image": imageUrl,
           "email": googleEmail,
+          "gender":genderValue,
           "phone_number": phoneController.text,
           "is_company": isFreelancer ? "0" : "1",
           "major_id": majorValue,
