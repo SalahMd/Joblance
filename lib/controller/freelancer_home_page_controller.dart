@@ -14,14 +14,15 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   StatusRequest? statusRequest;
   FreeLnacerHomePageBack freeLnacerHomePageBack =
       new FreeLnacerHomePageBack(Get.put(Crud()));
-  String? token, id, language;
+  String? token, id;
+  String language = 'en';
   Myservices myservices = Get.find();
   late String name, image;
   @override
   void onInit() {
     token = myservices.sharedPreferences.getString("token")!;
     id = myservices.sharedPreferences.getInt("id").toString();
-    language = myservices.sharedPreferences.getString("lang");
+   // language = myservices.sharedPreferences.getString("lang");
     super.onInit();
     getFreelancerInfo();
   }
@@ -29,7 +30,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   getFreelancerInfo() async {
     statusRequest = StatusRequest.loading;
     var response =
-        await freeLnacerHomePageBack.getFreelancerInfo(token, language!, id!);
+        await freeLnacerHomePageBack.getFreelancerInfo(token, language, id!);
     statusRequest = handelingData(response);
     update();
     if (StatusRequest.success == statusRequest) {

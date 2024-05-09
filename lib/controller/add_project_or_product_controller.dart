@@ -3,13 +3,18 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:joblance/core/class/crud.dart';
+import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/animations.dart';
 import 'package:joblance/core/functions/alerts.dart';
+import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/remote/add_project_or_product_back.dart';
 
 abstract class AddProjectOrProductController extends GetxController {
   pickImage();
   removeImage(int index);
+  sendData();
 }
 
 class AddProjectOrProductImpl extends AddProjectOrProductController {
@@ -17,8 +22,13 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
   late TextEditingController description;
   late TextEditingController link;
   bool isProduct = true;
-  late String role ;
+  StatusRequest? statusRequest;
+   late String role, token;
   List images = [];
+  AddProjectOrProductBack addProjectOrProductBack =
+      new AddProjectOrProductBack(Get.put(Crud()));
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
+
   Myservices myServices = Get.find();
 
   void onInit() {
@@ -26,6 +36,7 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
     link = new TextEditingController();
     description = new TextEditingController();
     role = myServices.sharedPreferences.getString("role_id")!;
+    token = myServices.sharedPreferences.getString("token")!;
     if (role == "1") {
       isProduct = true;
     } else {
@@ -52,10 +63,34 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
     if (pickedImage != null) {
       print(pickedImage.path);
       images.add(File(pickedImage.path));
-    } else {
-    }
+    } else {}
 
     update();
+  }
+
+  sendData() async {
+    var formdata = formState.currentState;
+    if (formdata!.validate()) {
+      statusRequest = StatusRequest.loading;
+      animationedAlert(AppAnimations.loadings, "pleasewait".tr);
+
+      var response = await addProjectOrProductBack.postData({
+        "project_name": title.text,
+        "project_description": description.text,
+        "link": link.text,
+      }, images, token);
+      statusRequest = handelingData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          Get.back();
+          Get.back();
+        } else {
+          animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);
+        }
+      } else {
+        animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);
+      }
+    }
   }
 
   @override

@@ -11,76 +11,79 @@ class ProjectOrProductTextFileds extends StatelessWidget {
   ProjectOrProductTextFileds({super.key, required this.controller});
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsetsDirectional.only(start: 15.w),
-          child: Text(
-            controller.isProduct ? "producttitle".tr : "projecttitle".tr,
-            style: TextStyles.w50014(context),
+    return Form(
+      key: controller.formState,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsetsDirectional.only(start: 15.w),
+            child: Text(
+              controller.isProduct ? "producttitle".tr : "projecttitle".tr,
+              style: TextStyles.w50014(context),
+            ),
           ),
-        ),
-        Customtextformfiled(
-          hintText:
-              controller.isProduct ? "producttitle2".tr : "projecttitle2".tr,
-          labelText: "".tr,
-          iconData: null,
-          controller: controller.title,
-          min: 2,
-          max: 20,
-          isNumber: false,
-          isPassword: false,
-          isBorder: false,
-          isLabel: false,
-          isFilled: true,
-        ),
-        Padding(
-          padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
-          child: Text(
-            controller.isProduct
-                ? "productdescription".tr
-                : "projectdescription".tr,
-            style: TextStyles.w50014(context),
+          Customtextformfiled(
+            hintText:
+                controller.isProduct ? "producttitle2".tr : "projecttitle2".tr,
+            labelText: "".tr,
+            iconData: null,
+            controller: controller.title,
+            min: 2,
+            max: 20,
+            isNumber: false,
+            isPassword: false,
+            isBorder: false,
+            isLabel: false,
+            isFilled: true,
           ),
-        ),
-        Customtextformfiled(
-          hintText: controller.isProduct
-              ? "productdescription2".tr
-              : "projectdescription2".tr,
-          labelText: "".tr,
-          iconData: null,
-          controller: controller.description,
-          min: 5,
-          max: 200,
-          maxLines: 4,
-          isNumber: false,
-          isPassword: false,
-          isBorder: false,
-          isLabel: false,
-          isFilled: true,
-        ),
-        Padding(
-          padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
-          child: Text(
-            "link".tr,
-            style: TextStyles.w50014(context),
+          Padding(
+            padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
+            child: Text(
+              controller.isProduct
+                  ? "productdescription".tr
+                  : "projectdescription".tr,
+              style: TextStyles.w50014(context),
+            ),
           ),
-        ),
-        Customtextformfiled(
-          hintText: "addyourlink".tr,
-          labelText: "".tr,
-          iconData: null,
-          controller: controller.link,
-          min: 10,
-          max: 100,
-          isNumber: false,
-          isPassword: false,
-          isBorder: false,
-          isLabel: false,
-          isFilled: true,
-        ),
-      ],
+          Customtextformfiled(
+            hintText: controller.isProduct
+                ? "productdescription2".tr
+                : "projectdescription2".tr,
+            labelText: "".tr,
+            iconData: null,
+            controller: controller.description,
+            min: 5,
+            max: 200,
+            maxLines: 4,
+            isNumber: false,
+            isPassword: false,
+            isBorder: false,
+            isLabel: false,
+            isFilled: true,
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
+            child: Text(
+              "link".tr,
+              style: TextStyles.w50014(context),
+            ),
+          ),
+          Customtextformfiled(
+            hintText: "addyourlink".tr,
+            labelText: "".tr,
+            iconData: null,
+            controller: controller.link,
+            min: 10,
+            max: 100,
+            isNumber: false,
+            isPassword: false,
+            isBorder: false,
+            isLabel: false,
+            isFilled: true,
+          ),
+        ],
+      ),
     );
   }
 }

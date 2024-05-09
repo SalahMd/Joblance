@@ -49,7 +49,9 @@ class AddProjectOrProduct extends StatelessWidget {
               ),
               AddImage(controller: controller),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  controller.sendData();
+                },
                 child: Container(
                   width: Dimensions.screenWidth(context),
                   height: 40.h,

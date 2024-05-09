@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_offer_controller.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
+import 'package:joblance/core/constants/text_styles.dart';
 
 class OfferTextFields extends StatelessWidget {
   final AddOfferControllerImpl controller;
   const OfferTextFields({super.key, required this.controller});
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -73,33 +74,59 @@ class OfferTextFields extends StatelessWidget {
         Row(
           children: [
             Expanded(
+                flex: 3,
                 child: Customtextformfiled(
-              hintText: "offerbudget".tr,
-              labelText: "",
-              iconData: null,
-              controller: controller.offerBudget,
-              min: 3,
-              max: 10,
-              isNumber: false,
-              isPassword: false,
-              isBorder: true,
-              isLabel: false,
-              isFilled: true,
-            )),
+                  hintText: "offerbudget".tr,
+                  labelText: "",
+                  iconData: null,
+                  controller: controller.offerBudget,
+                  min: 1,
+                  max: 6,
+                  isNumber: true,
+                  isPassword: false,
+                  isBorder: true,
+                  isLabel: false,
+                  isFilled: true,
+                )),
             Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.only(top: 12.h, end: 20.w),
+                  child: Center(
+                    child: Text(
+                      "\$",
+                      style: TextStyles.w50014(context),
+                    ),
+                  ),
+                ))
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+                flex: 3,
                 child: Customtextformfiled(
-              hintText: "excutingtime".tr,
-              labelText: "",
-              iconData: null,
-              controller: controller.duration,
-              min: 3,
-              max: 10,
-              isNumber: false,
-              isPassword: false,
-              isBorder: true,
-              isLabel: false,
-              isFilled: true,
-            ))
+                  hintText: "excutingtime".tr,
+                  labelText: "",
+                  iconData: null,
+                  controller: controller.duration,
+                  min: 1,
+                  max: 3,
+                  isNumber: true,
+                  isPassword: false,
+                  isBorder: true,
+                  isLabel: false,
+                  isFilled: true,
+                )),
+            Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.only(top: 12.h, start: 10.w),
+                  child: Text(
+                    "days".tr,
+                    style: TextStyles.w50014(context),
+                  ),
+                ))
           ],
         ),
         Customtextformfiled(
@@ -107,8 +134,8 @@ class OfferTextFields extends StatelessWidget {
           labelText: "",
           iconData: null,
           controller: controller.offerInformation,
-          min: 10,
-          max: 300,
+          min: 5,
+          max: 400,
           isNumber: false,
           isValidation: false,
           isPassword: false,

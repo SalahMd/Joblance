@@ -23,26 +23,26 @@ class ShimmerFreelancerHomePage extends StatelessWidget {
             child: Row(
               children: [
                 ShimmerItem(width: 40.w, height: 45.h),
-                ShimmerItem(width: 100.w, height: 20.h),
+                ShimmerItem(width: 100.w, height: 18.h),
               ],
             ),
           ),
           SizedBox(height: 20.h),
-          ShimmerItem(width: Dimensions.screenWidth(context), height: 50.h),
+          ShimmerItem(width: Dimensions.screenWidth(context), height: 40.h),
           SizedBox(
-            height: 20.h,
+            height: 15.h,
           ),
           ShimmerItem(width: 120, height: 25.h),
           SizedBox(
-            height: 20.h,
+            height: 15.h,
           ),
           ShimmerItem(width: Dimensions.screenWidth(context), height: 135.h),
           SizedBox(
-            height: 20.h,
+            height: 15.h,
           ),
           ShimmerItem(width: 80.w, height: 25.h),
           SizedBox(
-            height: 20.h,
+            height: 15.h,
           ),
           Container(
             height: 150.h,
@@ -51,15 +51,19 @@ class ShimmerFreelancerHomePage extends StatelessWidget {
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              children: [ShimmerItem(width:220.w, height: 130.h),ShimmerItem(width: 220.w, height: 130.h),ShimmerItem(width: 220.w, height: 130.h)],
+              children: [
+                ShimmerItem(width: 200.w, height: 130.h),
+                ShimmerItem(width: 200.w, height: 130.h),
+                ShimmerItem(width: 200.w, height: 130.h)
+              ],
             ),
           ),
           SizedBox(
-            height: 20.h,
+            height: 15.h,
           ),
           ShimmerItem(width: 110.w, height: 25.h),
           SizedBox(
-            height: 20.h,
+            height: 15.h,
           ),
           ShimmerJobDesign(),
           ShimmerJobDesign(),
