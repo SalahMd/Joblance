@@ -254,4 +254,6 @@ Map<String, String> arabic = {
   "doyoureallywanttodelete": "هل تريد حقا الحذف؟",
   "errorwhilesavingdata": "حدث خطأ أثناء الحفظ",
   "couldn'tloadinfo": "لم يتم تحميل المعلومات",
+  "doyoureallywanttodeletetheskill":"هل تريد حقا حذف المهارة؟",
+  "couldn'tdeleteyourskill":"لم يتم حذف المهارة"
 };

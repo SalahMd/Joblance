@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/buttons.dart';
@@ -65,8 +64,9 @@ Future<bool> exitAlertt() async {
       false;
 }
 
+
 Future<bool> animationedAlertWithActions(
-    var animation, String title, void Function() onYesTap) {
+    var animation, String title,  Function() onYesTap) {
   Get.defaultDialog(
       title: title,
       titleStyle: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/my_account_controller/my_account_free_lancer_controller.dart';
+import 'package:joblance/core/constants/animations.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_project_or_product/add_project_or_product.dart';
 import 'package:joblance/view/screens/my_account/freelancer/add_skill.dart';
@@ -17,8 +19,7 @@ class TabBarViewWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      physics: NeverScrollableScrollPhysics(), children: [
+    return PageView(children: [
       about(context),
       projects(
         context,
@@ -351,7 +352,8 @@ Widget projects(BuildContext context) {
   );
 }
 
-Widget skills(BuildContext context, var controller) {
+Widget skills(
+    BuildContext context, MyAccountFreelancerControllerImpl controller) {
   return Container(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -390,38 +392,33 @@ Widget skills(BuildContext context, var controller) {
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
-          child: Column(
-            children: [
-              SizedBox(height: 20.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text("Flutter"), Icon(Icons.delete_outline)],
-              ),
-              MyDivider(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text("Office"), Icon(Icons.delete_outline)],
-              ),
-              MyDivider(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        ListView.builder(
+            padding: EdgeInsets.only(
+                top: 20.h, left: 12.w, right: 12.w, bottom: 10.h),
+            shrinkWrap: true,
+            itemCount: 5,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Column(
                 children: [
-                  Text("Problem  Solving"),
-                  Icon(Icons.delete_outline)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Flutter"),
+                      GestureDetector(
+                          onTap: () {
+                            
+                            controller.deleteSkill(index);
+                          },
+                          child: Icon(Icons.delete_outline))
+                    ],
+                  ),
+                  MyDivider(
+                    height: 8,
+                  ),
                 ],
-              ),
-              MyDivider(
-                height: 8,
-              ),
-            ],
-          ),
-        )
+              );
+            })
       ],
     ),
   );

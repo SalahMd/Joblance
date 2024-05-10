@@ -256,4 +256,6 @@ Map<String, String> english = {
   "doyoureallywanttodelete": "Do you really want to delete?",
   "errorwhilesavingdata": "Error while saving data",
   "couldn'tloadinfo": "Couldn't load information",
+  "couldn'tdeleteyourskill":"Couldn't delete your skill",
+  "doyoureallywanttodeletetheskill":"Do you really want to delete your skill?"
 };
