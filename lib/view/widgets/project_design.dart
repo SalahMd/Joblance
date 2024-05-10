@@ -24,7 +24,7 @@ class ProjectDesign extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(ProjectScreen());
+        Get.to(ProjectScreen(userId: 1,projectId: 1,));
       },
       child: Container(
         width: Dimensions.screenWidth(context),

@@ -32,16 +32,6 @@ class LogInControllerImpl extends LogiInController {
   double containerWidth = 300.w;
   String deviceToken = "";
 
-  // hideButton() {
-  //   containerWidth = 0;
-  //   update();
-  //   Future.delayed(const Duration(seconds: 2), () {
-  //     logIn();
-  //   });
-
-  //   update();
-  // }
-
   @override
   goToHomePage() {
     update();

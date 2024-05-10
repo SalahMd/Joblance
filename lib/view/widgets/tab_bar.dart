@@ -6,7 +6,7 @@ import 'package:joblance/core/constants/text_styles.dart';
 class TabBarWidget extends StatelessWidget {
   final List<Widget> tabs;
 
-   TabBarWidget({Key? key, required this.tabs}) : super(key: key);
+   TabBarWidget({Key? key, required this.tabs}) ;
 
   @override
   Widget build(BuildContext context) {

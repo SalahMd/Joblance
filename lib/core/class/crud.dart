@@ -67,19 +67,24 @@ class Crud {
       // Check if the request is a POST with a file
       if (isFile && isPost && file != null) {
         var request = http.MultipartRequest('POST', Uri.parse(linkurl));
+
+        String
+          name = fileName == null ? "image" : fileName;
+        
         for (int i = 0; i < file.length; i++) {
           var length = await file[i].length();
           var stream = http.ByteStream(file[i].openRead());
+
           var multiPartFile = http.MultipartFile(
-              fileName == null ? 'image' : fileName, stream, length,
+             file.length>1? name+"[$i][image]":name, stream, length,
               filename: basename(file[i].path));
-              request.files.add(
-          multiPartFile,
-        );
+          request.files.add(
+            multiPartFile,
+          );
         }
 
         request.headers.addAll(headers);
-        
+
         data.forEach((key, value) {
           request.fields[key] = value.toString();
         });

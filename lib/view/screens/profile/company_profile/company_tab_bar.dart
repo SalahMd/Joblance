@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/view/screens/my_account/company/company_tab_bar_view.dart';
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/job_design.dart';
 import 'package:joblance/view/widgets/project_design.dart';
@@ -13,10 +14,12 @@ class CompanyTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TabBarView(children: [
+    return PageView(
+      children: [
       jobs(
         context,
       ),
+      tasks(context),
       aboutCompany(context),
       products(context),
       contactInfo(context)
@@ -70,7 +73,8 @@ Widget jobs(BuildContext context) {
                   companyName: "Google",
                   location: "United states",
                   date: "9 days ago",
-                  remote: "remote".tr,jobId: index,
+                  remote: "remote".tr,
+                  jobId: index,
                   image: AppImages.googleLogo,
                   isActive: false);
             }),

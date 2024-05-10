@@ -10,7 +10,7 @@ import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/core/functions/payment.dart';
 import 'package:joblance/view/widgets/chips_choice.dart';
 
-Future <bool> exitAlert() {
+Future<bool> exitAlert() {
   Get.defaultDialog(
       title: "",
       middleText: "warningbody".tr,
@@ -70,7 +70,7 @@ Future<bool> animationedAlertWithActions(
   Get.defaultDialog(
       title: title,
       titleStyle: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),
-      titlePadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      titlePadding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
       content: animation != null
           ? Container(
               alignment: Alignment.topCenter, height: 100.h, child: animation)

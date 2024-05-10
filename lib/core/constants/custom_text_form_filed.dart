@@ -55,7 +55,8 @@ class Customtextformfiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: padding!.h, left: 10.w, right: 10.w),
+      margin: EdgeInsets.only(
+          top: padding!.h, left: padding! / 2.w, right: padding! / 2.w),
       decoration: isFilled
           ? BoxDecoration(
               borderRadius: BorderRadius.circular(20),

@@ -17,7 +17,8 @@ class TabBarViewWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TabBarView(children: [
+    return PageView(
+      physics: NeverScrollableScrollPhysics(), children: [
       about(context),
       projects(
         context,

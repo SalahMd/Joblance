@@ -21,7 +21,7 @@ class SplashScreenControllerImpl extends SplashScreenController {
         if (myservices.sharedPreferences.getString("step") == "2") {
           Get.offNamed("HomePage");
         } else if (myservices.sharedPreferences.getString("step") == "1") {
-          Get.offNamed("Login");
+          Get.offAllNamed("Login");
         } else {
           Get.off(ChooseLanguage());
         }
