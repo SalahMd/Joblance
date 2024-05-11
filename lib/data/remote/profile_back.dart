@@ -8,7 +8,7 @@ class ProfileBack {
     var response = await crud.requestDataWithHeaders(
       AppLinks.profile+id,
       {
-        'Authorization': 'Bearer $token',},{},
+        },{'Authorization': 'Bearer $token',},
       null,
       false,
       false,

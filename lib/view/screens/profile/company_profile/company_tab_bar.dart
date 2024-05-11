@@ -106,8 +106,8 @@ Widget products(BuildContext context) {
                   projectTitle: "Joblance",
                   projectDescription:
                       "Jobs and freelancing app made with flutter and laravel",
-                  projectMedia: AppImages.Linkedin,
-                  projectLink: "https//www.google.com");
+               
+                  projectLink: "https//www.google.com", project_id: 5, user_id: 5,);
             })
       ],
     ).animate().fade(duration: 600.ms).slideY(begin: 0.1),

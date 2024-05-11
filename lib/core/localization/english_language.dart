@@ -257,5 +257,6 @@ Map<String, String> english = {
   "errorwhilesavingdata": "Error while saving data",
   "couldn'tloadinfo": "Couldn't load information",
   "couldn'tdeleteyourskill":"Couldn't delete your skill",
-  "doyoureallywanttodeletetheskill":"Do you really want to delete your skill?"
+  "doyoureallywanttodeletetheskill":"Do you really want to delete your skill?",
+  "couldn'topenlink":"The link is not valid"
 };

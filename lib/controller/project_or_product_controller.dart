@@ -46,14 +46,13 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
     token = myServices.sharedPreferences.getString("token")!;
     userId = myServices.sharedPreferences.getInt("id")!;
     if (userId == id) {
-      isOwner == true;
+      isOwner = true;
     }
     if (role == "1") {
       isProduct = true;
     } else {
       isProduct = false;
     }
-    statusRequest = StatusRequest.success;
     update();
     //getData();
     super.onInit();
@@ -65,6 +64,8 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
     link.dispose();
     super.dispose();
   }
+
+  
 
   @override
   Future<void> pickImage() async {

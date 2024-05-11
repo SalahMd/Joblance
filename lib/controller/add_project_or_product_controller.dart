@@ -23,7 +23,7 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
   late TextEditingController link;
   bool isProduct = true;
   StatusRequest? statusRequest;
-   late String role, token;
+  late String role, token;
   List images = [];
   AddProjectOrProductBack addProjectOrProductBack =
       new AddProjectOrProductBack(Get.put(Crud()));
@@ -85,9 +85,11 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
           Get.back();
           Get.back();
         } else {
+          Get.back();
           animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);
         }
       } else {
+        Get.back();
         animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);
       }
     }

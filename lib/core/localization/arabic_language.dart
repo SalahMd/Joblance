@@ -255,5 +255,6 @@ Map<String, String> arabic = {
   "errorwhilesavingdata": "حدث خطأ أثناء الحفظ",
   "couldn'tloadinfo": "لم يتم تحميل المعلومات",
   "doyoureallywanttodeletetheskill":"هل تريد حقا حذف المهارة؟",
-  "couldn'tdeleteyourskill":"لم يتم حذف المهارة"
+  "couldn'tdeleteyourskill":"لم يتم حذف المهارة",
+  "couldn'topenlink":"هناك خطأ في الرابط"
 };

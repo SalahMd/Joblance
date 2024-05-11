@@ -8,7 +8,6 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/chat/texting_page.dart';
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/profile_tob_bar.dart';
-import 'package:joblance/view/widgets/project_design.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
 
 class FreelancerProfile extends StatelessWidget {
@@ -181,18 +180,7 @@ class FreelancerProfile extends StatelessWidget {
                             style: TextStyles.w50015(context),
                           ),
                         ),
-                        ProjectDesign(
-                            projectTitle: "Joblance",
-                            projectDescription:
-                                "Job and freelancing app made with flutter and laravel",
-                            projectMedia: AppImages.Linkedin,
-                            projectLink: "https//www.google.com"),
-                        ProjectDesign(
-                            projectTitle: "Joblance",
-                            projectDescription:
-                                "Job and freelancing app made with flutter and laravel",
-                            projectMedia: AppImages.Linkedin,
-                            projectLink: "https//www.google.com")
+                       
                       ],
                     ),
                   ),

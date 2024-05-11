@@ -64,41 +64,45 @@ class ProjectScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Visibility(
-                                    //   visible: controller.isOwner,
+                                    visible: controller.isOwner,
                                     child: Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        controller.isEditing =
-                                            !controller.isEditing;
-                                        controller.update();
-                                      },
-                                      child: Icon(
-                                        Icons.edit,
-                                        color: LightAppColors.primaryColor,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 15.w,
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        animationedAlertWithActions(
-                                            AppAnimations.info,
-                                            "doyoureallywanttodelete".tr,
-                                            controller.deleteData);
-                                        controller.update();
-                                      },
-                                      child: Icon(
-                                        Icons.delete_outline,
-                                        color: Colors.red[800],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 5.w,
-                                    )
-                                  ],
-                                ))
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.isEditing =
+                                                !controller.isEditing;
+                                            controller.update();
+                                          },
+                                          child: Visibility(
+                                            visible: !controller.isEditing,
+                                            child: Icon(
+                                              Icons.edit,
+                                              color:
+                                                  LightAppColors.primaryColor,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 15.w,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            animationedAlertWithActions(
+                                                AppAnimations.info,
+                                                "doyoureallywanttodelete".tr,
+                                                controller.deleteData);
+                                            controller.update();
+                                          },
+                                          child: Icon(
+                                            Icons.delete_outline,
+                                            color: Colors.red[800],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        )
+                                      ],
+                                    ))
                               ],
                             )
                           ],
@@ -124,6 +128,7 @@ class ProjectScreen extends StatelessWidget {
                         minLines: 1,
                         isNumber: false,
                         isPassword: false,
+                        isEnabled: controller.isEditing,
                         padding: 1,
                         isBorder: false,
                         isLabel: false,
@@ -153,6 +158,7 @@ class ProjectScreen extends StatelessWidget {
                         maxLines: 8,
                         minLines: 1,
                         isNumber: false,
+                        isEnabled: controller.isEditing,
                         isPassword: false,
                         padding: 1,
                         isBorder: false,
@@ -184,6 +190,7 @@ class ProjectScreen extends StatelessWidget {
                             isNumber: false,
                             isPassword: false,
                             maxLines: 8,
+                            isEnabled: controller.isEditing,
                             minLines: 1,
                             isBorder: false,
                             isLabel: false,

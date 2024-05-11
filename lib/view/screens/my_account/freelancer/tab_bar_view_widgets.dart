@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/my_account_controller/my_account_free_lancer_controller.dart';
-import 'package:joblance/core/constants/animations.dart';
 import 'package:joblance/core/constants/colors.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_project_or_product/add_project_or_product.dart';
 import 'package:joblance/view/screens/my_account/freelancer/add_skill.dart';
@@ -20,17 +17,16 @@ class TabBarViewWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(children: [
-      about(context),
-      projects(
-        context,
-      ),
+      about(context, controller),
+      projects(context, controller),
       skills(context, controller),
-      contactInfo(context)
+      contactInfo(context, controller)
     ]);
   }
 }
 
-Widget about(BuildContext context) {
+Widget about(
+    BuildContext context, MyAccountFreelancerControllerImpl controller) {
   return SingleChildScrollView(
     child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
@@ -53,8 +49,7 @@ Widget about(BuildContext context) {
                       height: 10.h,
                     ),
                     Text(
-                      "A junior flutter developer in the third year of amascus university, with 2 years of expirence in developing apps."
-                          .tr,
+                      controller.data['bio'],
                       style: TextStyles.w40012grey(context),
                     ),
                   ])),
@@ -298,7 +293,8 @@ Widget about(BuildContext context) {
   );
 }
 
-Widget projects(BuildContext context) {
+Widget projects(
+    BuildContext context, MyAccountFreelancerControllerImpl controller) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -338,14 +334,16 @@ Widget projects(BuildContext context) {
             padding: EdgeInsets.zero,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 7,
+            itemCount: controller.projects.length,
             itemBuilder: (BuildContext context, int index) {
               return ProjectDesign(
-                  projectTitle: "Joblance",
-                  projectDescription:
-                      "Jobs and freelancing app made with flutter and laravel",
-                  projectMedia: AppImages.Linkedin,
-                  projectLink: "https//www.google.com");
+                projectTitle: controller.projects[index]['project_name'],
+                projectDescription: controller.projects[index]
+                    ['project_description'],
+                projectLink: controller.projects[index]['link'],
+                project_id: controller.projects[index]['id'],
+                user_id: controller.projects[index]['user_id'],
+              );
             })
       ],
     ),
@@ -354,77 +352,80 @@ Widget projects(BuildContext context) {
 
 Widget skills(
     BuildContext context, MyAccountFreelancerControllerImpl controller) {
-  return Container(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-          child: Text(
-            "skills".tr,
-            style: TextStyles.w50015(context),
-          ),
-        ),
-        SizedBox(height: 10.h),
-        GestureDetector(
-          onTap: () {
-            Get.to(AddSkill(
-              controller: controller,
-            ));
-          },
-          child: Container(
-            width: Dimensions.screenWidth(context),
-            height: 55.h,
-            margin: EdgeInsets.symmetric(horizontal: 10.w),
+  return SingleChildScrollView(
+    child: Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-            decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(15)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "addskill".tr,
-                  style: TextStyles.w50015(context),
-                ),
-                Icon(Icons.add)
-              ],
+            child: Text(
+              "skills".tr,
+              style: TextStyles.w50015(context),
             ),
           ),
-        ),
-        ListView.builder(
-            padding: EdgeInsets.only(
-                top: 20.h, left: 12.w, right: 12.w, bottom: 10.h),
-            shrinkWrap: true,
-            itemCount: 5,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Column(
+          SizedBox(height: 10.h),
+          GestureDetector(
+            onTap: () {
+              Get.to(AddSkill(
+                controller: controller,
+              ));
+            },
+            child: Container(
+              width: Dimensions.screenWidth(context),
+              height: 55.h,
+              margin: EdgeInsets.symmetric(horizontal: 10.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(15)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Flutter"),
-                      GestureDetector(
-                          onTap: () {
-                            
-                            controller.deleteSkill(index);
-                          },
-                          child: Icon(Icons.delete_outline))
-                    ],
+                  Text(
+                    "addskill".tr,
+                    style: TextStyles.w50015(context),
                   ),
-                  MyDivider(
-                    height: 8,
-                  ),
+                  Icon(Icons.add)
                 ],
-              );
-            })
-      ],
+              ),
+            ),
+          ),
+          ListView.builder(
+              padding: EdgeInsets.only(
+                  top: 20.h, left: 12.w, right: 12.w, bottom: 10.h),
+              shrinkWrap: true,
+              itemCount: controller.userSkills.length,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(controller.userSkills[index]['skill_id']
+                            .toString()),
+                        GestureDetector(
+                            onTap: () {
+                              controller.deleteSkill(index);
+                            },
+                            child: Icon(Icons.delete_outline))
+                      ],
+                    ),
+                    MyDivider(
+                      height: 8,
+                    ),
+                  ],
+                );
+              })
+        ],
+      ),
     ),
   );
 }
 
-Widget contactInfo(BuildContext context) {
+Widget contactInfo(
+    BuildContext context, MyAccountFreelancerControllerImpl controller) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
     child: Column(
@@ -444,7 +445,7 @@ Widget contactInfo(BuildContext context) {
               width: 10.w,
             ),
             Text(
-              "+963996541809",
+              controller.data['phone_number'],
               style: TextStyles.w50013(context),
             )
           ],
@@ -459,7 +460,7 @@ Widget contactInfo(BuildContext context) {
           ),
           Expanded(
             child: Text(
-              "salahaldeenmdaghmesh@gmail.com",
+              controller.data['email'],
               style: TextStyles.w50013(context),
             ),
           ),
@@ -474,7 +475,7 @@ Widget contactInfo(BuildContext context) {
           ),
           Expanded(
             child: Text(
-              "Syria",
+              controller.data['location'],
               style: TextStyles.w50013(context),
             ),
           ),

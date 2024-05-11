@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
@@ -65,9 +66,9 @@ class TobBar extends StatelessWidget {
               ),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(60),
-                  child: Image.asset(
-                    image,
-                    fit: BoxFit.fill,
+                  child: Image.network(
+                    image[0] == "h" ? image : AppLinks.IP + "/" + image,
+                    fit: BoxFit.cover,
                   )),
             ),
           ],

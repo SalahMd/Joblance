@@ -17,6 +17,7 @@ class Customtextformfiled extends StatelessWidget {
   final int? minLines;
   final int? letters;
   final bool isFilled;
+  final bool? isEnabled;
   final bool isLabel;
   final TextInputType? textInputType;
   final void Function()? ontapicon;
@@ -49,7 +50,7 @@ class Customtextformfiled extends StatelessWidget {
     this.onChange,
     this.minLines,
     this.textInputAction,
-    this.textInputType,
+    this.textInputType, this.isEnabled=true,
   });
 
   @override
@@ -78,6 +79,7 @@ class Customtextformfiled extends StatelessWidget {
                 return validInput(val!, min, max);
               }
             : null,
+            enabled: isEnabled,
         maxLength: letters,
         minLines: minLines,
         controller: controller,

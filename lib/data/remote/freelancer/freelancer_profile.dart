@@ -19,11 +19,13 @@ class FreelancerAccount {
     return response.fold((l) => l, (r) => r);
   }
 
-  getSkills(String link, var token) async {
+  getSkills(String link, var token,String id) async {
     var response = await crud.requestDataWithHeaders(
         //"${AppLinks.skills}?search=$skill",
         link,
-        {},
+        {
+          "user_id":id,
+        },
         {
           'Authorization': 'Bearer $token',
         },
@@ -50,8 +52,8 @@ class FreelancerAccount {
 
   deleteSkill(String token, String id) async {
     var response = await crud.deleteData(
-      AppLinks.skills,
-      {"id": id},
+      AppLinks.skills+"/"+id,
+      {},
       {'Authorization': 'Bearer $token', 'accept': 'application/json'},
     );
     return response.fold((l) => l, (r) => r);
