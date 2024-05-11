@@ -294,7 +294,7 @@ Widget about(
 }
 
 Widget projects(
-    BuildContext context, MyAccountFreelancerControllerImpl controller) {
+    BuildContext context, var controller) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
