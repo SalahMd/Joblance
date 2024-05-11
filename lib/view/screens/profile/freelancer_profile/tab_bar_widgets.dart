@@ -22,83 +22,85 @@ class TabBarWidgets extends StatelessWidget {
 }
 
 Widget about(context,FreelancerProfileControllerImpl controller) {
-  return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(
-          "about".tr,
-          style: TextStyles.w50015(context),
-        ),
-        SizedBox(height: 20.h),
-        Container(
-            padding: EdgeInsetsDirectional.only(bottom: 5.h, top: 10.h),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                "bio".tr,
-                style: TextStyles.w50013(context),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                controller.data['bio'],
-                style: TextStyles.w40012grey(context),
-              ),
-            ])),
-        MyDivider(
-          height: 12,
-        ),
-        Container(
-          padding: EdgeInsetsDirectional.only(bottom: 15.h, top: 10.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "studyinfo".tr,
-                style: TextStyles.w50013(context),
-              ),
-              SizedBox(height: 15.h),
-              Row(
-                children: [
-                  Icon(Icons.work_outline),
-                  SizedBox(width: 10.w),
-                  Text(
-                    "Engineering",
-                    style: TextStyles.w50012(context),
-                  ),
-                ],
-              ),
-              MyDivider(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Icon(Icons.cases_outlined),
-                  SizedBox(width: 10.w),
-                  Text(
-                    "Graduate",
-                    style: TextStyles.w50012(context),
-                  ),
-                ],
-              ),
-              MyDivider(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Icon(Icons.work_outline),
-                  SizedBox(width: 10.w),
-                  Text(
-                    "Engineering",
-                    style: TextStyles.w50012(context),
-                  ),
-                ],
-              ),
-            ],
+  return SingleChildScrollView(
+    child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            "about".tr,
+            style: TextStyles.w50015(context),
           ),
-        )
-      ]));
+          SizedBox(height: 20.h),
+          Container(
+              padding: EdgeInsetsDirectional.only(bottom: 5.h, top: 10.h),
+              child:
+                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(
+                  "bio".tr,
+                  style: TextStyles.w50013(context),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Text(
+                  controller.data['bio'],
+                  style: TextStyles.w40012grey(context),
+                ),
+              ])),
+          MyDivider(
+            height: 12,
+          ),
+          Container(
+            padding: EdgeInsetsDirectional.only(bottom: 15.h, top: 10.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "studyinfo".tr,
+                  style: TextStyles.w50013(context),
+                ),
+                SizedBox(height: 15.h),
+                Row(
+                  children: [
+                    Icon(Icons.work_outline),
+                    SizedBox(width: 10.w),
+                    Text(
+                      "Engineering",
+                      style: TextStyles.w50012(context),
+                    ),
+                  ],
+                ),
+                MyDivider(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.cases_outlined),
+                    SizedBox(width: 10.w),
+                    Text(
+                      "Graduate",
+                      style: TextStyles.w50012(context),
+                    ),
+                  ],
+                ),
+                MyDivider(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.work_outline),
+                    SizedBox(width: 10.w),
+                    Text(
+                      "Engineering",
+                      style: TextStyles.w50012(context),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
+        ])),
+  );
 }
 
 Widget skills(context,FreelancerProfileControllerImpl controller) {

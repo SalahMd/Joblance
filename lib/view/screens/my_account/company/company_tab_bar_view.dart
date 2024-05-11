@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:joblance/controller/my_account_controller/my_account_company_controller.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
@@ -11,8 +12,9 @@ import 'package:joblance/view/widgets/project_design.dart';
 import 'package:joblance/view/widgets/task_design.dart';
 
 class CompanyTabBarViewWidget extends StatelessWidget {
+  final MyAccountCompanyControllerImpl controller;
   const CompanyTabBarViewWidget({
-    super.key,
+    super.key, required this.controller,
   });
 
   @override
@@ -160,10 +162,13 @@ Widget products(BuildContext context) {
             itemCount: 7,
             itemBuilder: (BuildContext context, int index) {
               return ProjectDesign(
-                  projectTitle: "Joblance",
-                  projectDescription:
-                      "Jobs and freelancing app made with flutter and laravel",
-                  projectLink: "https//www.google.com", project_id: 5, user_id: 5,);
+                projectTitle: "Joblance",
+                projectDescription:
+                    "Jobs and freelancing app made with flutter and laravel",
+                projectLink: "https//www.google.com",
+                project_id: 5,
+                user_id: 5,
+              );
             })
       ],
     ),
@@ -193,7 +198,8 @@ Widget jobs(BuildContext context) {
                   companyName: "Google",
                   location: "United states",
                   date: "9 days ago",
-                  remote: "remote".tr,jobId: index,
+                  remote: "remote".tr,
+                  jobId: index,
                   image: AppImages.googleLogo,
                   isActive: false);
             }),

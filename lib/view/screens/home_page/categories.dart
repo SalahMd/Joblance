@@ -41,10 +41,13 @@ class Categories extends StatelessWidget {
                               child: Image.asset(
                                 categories[index].image!,
                                 color: LightAppColors.primaryColor,
+                                width: 30.w,
+                                height: 30.h,
                               ),
                             ),
                             Text(
-                             controller.majors[index].name!,
+                              controller.majors[index].name!,
+                              textAlign: TextAlign.center,
                               style: TextStyles.w50012(context),
                             )
                           ]),

@@ -6,14 +6,13 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_project_or_product/add_image.dart';
 import 'package:joblance/view/screens/add_project_or_product/project_or_products_textfileds.dart';
-
 import '../../../core/constants/buttons.dart';
 
 class AddProjectOrProduct extends StatelessWidget {
   AddProjectOrProduct({super.key});
   @override
   Widget build(BuildContext context) {
-    Get.put(AddProjectOrProductImpl());
+    Get.put(AddProjectOrProductImpl(context: context));
     return GetBuilder<AddProjectOrProductImpl>(
       builder: (controller) => Scaffold(
         body: SingleChildScrollView(

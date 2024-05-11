@@ -256,5 +256,6 @@ Map<String, String> arabic = {
   "couldn'tloadinfo": "لم يتم تحميل المعلومات",
   "doyoureallywanttodeletetheskill":"هل تريد حقا حذف المهارة؟",
   "couldn'tdeleteyourskill":"لم يتم حذف المهارة",
-  "couldn'topenlink":"هناك خطأ في الرابط"
+  "couldn'topenlink":"هناك خطأ في الرابط",
+  "yourproducthasbeenadded":"تم إضافة المنتج بنجاح","yourprojecthasbeenadded":"تم إضافة المشروع بنجاح"
 };

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/profiles_controller/freelancer_profile_controller.dart';
+import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
@@ -19,73 +20,79 @@ class FreelancerProfile extends StatelessWidget {
     Get.put(FreelancerProfileControllerImpl(id: id));
     return Scaffold(
       body: GetBuilder<FreelancerProfileControllerImpl>(
-        builder: (controller) => DefaultTabController(
-          length: controller.tabs.length,
-          child: NestedScrollView(
-              headerSliverBuilder:
-                  (BuildContext context, bool innerBoxIsScrolled) => [
-                        SliverToBoxAdapter(
-                            child: Column(children: [
-                          TobBar(
-                            image: controller.data['image'],
-                            name: controller.data['first_name'] +
-                                controller.data['last_name'],
-                            description: "IT developer",
-                          ),
-                          SizedBox(height: 10.h),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10.w),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    child: Container(
-                                  height: 40.h,
-                                  alignment: Alignment.center,
-                                  decoration: AppButtons.buttonDecoration,
-                                  child: Text("follow".tr,
-                                      style: TextStyles.w50013White(context)),
-                                )),
-                                SizedBox(width: 10.w),
-                                Expanded(
-                                    child: GestureDetector(
-                                  onTap: () {
-                                    Get.to(TextingPage(
-                                        userId: id.toString(),
-                                        image: AppImages.Linkedin,
-                                        userName: "salah"));
-                                  },
-                                  child: Container(
+        builder: (controller) => controller.statusRequest ==
+                StatusRequest.loading
+            ? Container()
+            : DefaultTabController(
+                length: controller.tabs.length,
+                child: NestedScrollView(
+                    headerSliverBuilder: (BuildContext context,
+                            bool innerBoxIsScrolled) =>
+                        [
+                          SliverToBoxAdapter(
+                              child: Column(children: [
+                            TobBar(
+                              image: controller.data['image'],
+                              name: controller.data['first_name'] +
+                                  " " +
+                                  controller.data['last_name'],
+                              description: "IT developer",
+                            ),
+                            SizedBox(height: 10.h),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      child: Container(
                                     height: 40.h,
                                     alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onSecondary)),
-                                    child: Text("message".tr,
-                                        style: TextStyles.w50012(context)),
-                                  ),
-                                )),
-                              ],
+                                    decoration: AppButtons.buttonDecoration,
+                                    child: Text("follow".tr,
+                                        style: TextStyles.w50013White(context)),
+                                  )),
+                                  SizedBox(width: 10.w),
+                                  Expanded(
+                                      child: GestureDetector(
+                                    onTap: () {
+                                      Get.to(TextingPage(
+                                          userId: id.toString(),
+                                          image: AppImages.Linkedin,
+                                          userName: "salah"));
+                                    },
+                                    child: Container(
+                                      height: 40.h,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          border: Border.all(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onSecondary)),
+                                      child: Text("message".tr,
+                                          style: TextStyles.w50012(context)),
+                                    ),
+                                  )),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
-                          Divider(
-                            height: 1,
-                            thickness: 0.5,
-                          ),
-                          TabBarWidget(
-                            tabs: controller.tabs,
-                          )
-                        ]))
-                      ],
-              body: TabBarWidgets(
-                controller: controller,
-              )),
-        ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Divider(
+                              height: 1,
+                              thickness: 0.5,
+                            ),
+                            TabBarWidget(
+                              tabs: controller.tabs,
+                            )
+                          ]))
+                        ],
+                    body: TabBarWidgets(
+                      controller: controller,
+                    )),
+              ),
       ),
     );
   }

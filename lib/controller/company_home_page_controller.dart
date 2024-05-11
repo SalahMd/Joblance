@@ -4,7 +4,7 @@ import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/categorie_model.dart';
-import 'package:joblance/data/remote/company_home_page_back.dart';
+import 'package:joblance/data/remote/company/company_home_page_back.dart';
 
 abstract class CompanyHomePageController extends GetxController {}
 

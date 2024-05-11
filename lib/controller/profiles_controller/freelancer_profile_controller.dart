@@ -87,6 +87,8 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   }
 
   getUserData() async {
+    statusRequest = StatusRequest.loading;
+    update();
     var response = await profileBack.getData(token, id.toString());
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {

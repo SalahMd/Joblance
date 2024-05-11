@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:joblance/core/class/crud.dart';
@@ -23,6 +24,7 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
   late TextEditingController link;
   bool isProduct = true;
   StatusRequest? statusRequest;
+  final BuildContext context;
   late String role, token;
   List images = [];
   AddProjectOrProductBack addProjectOrProductBack =
@@ -30,6 +32,8 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
   Myservices myServices = Get.find();
+
+  AddProjectOrProductImpl({required this.context});
 
   void onInit() {
     title = new TextEditingController();
@@ -84,6 +88,11 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
         if (response['status'] == "success") {
           Get.back();
           Get.back();
+          if (role == "1") {
+            snackBar("", "yourproducthasbeenadded".tr, context);
+          } else {
+            snackBar("", "yourprojecthasbeenadded".tr, context);
+          }
         } else {
           Get.back();
           animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);

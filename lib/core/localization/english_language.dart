@@ -258,5 +258,7 @@ Map<String, String> english = {
   "couldn'tloadinfo": "Couldn't load information",
   "couldn'tdeleteyourskill":"Couldn't delete your skill",
   "doyoureallywanttodeletetheskill":"Do you really want to delete your skill?",
-  "couldn'topenlink":"The link is not valid"
+  "couldn'topenlink":"The link is not valid",
+  "yourproducthasbeenadded":"Your product has been added",
+  "yourprojecthasbeenadded":"You project has been added",
 };

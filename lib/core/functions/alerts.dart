@@ -235,7 +235,7 @@ Future<bool> animationedAlert(var animation, String title) {
 
 snackBar(String title, String message, BuildContext context) {
   Get.snackbar(title, message,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 4),
       titleText: Text(
         title,
         style: TextStyles.w50012(context),
