@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/profiles_controller/freelancer_profile_controller.dart';
+import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
@@ -22,15 +23,15 @@ class FreelancerProfile extends StatelessWidget {
         builder: (controller) => DefaultTabController(
           length: controller.tabs.length,
           child: SingleChildScrollView(
-              child: Column(
+              child:controller.statusRequest==StatusRequest.loading?Container(): Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(
                   fit: FlexFit.loose,
                   child: TobBar(
-                    image: AppImages.salah,
-                    name: "Salah Mdaghmesh",
+                    image: controller.data['image'],
+                    name:controller.data['first_name']+controller.data['last_name'],
                     description: "IT developer",
                   )),
               SizedBox(height: 10.h),
@@ -109,8 +110,8 @@ class FreelancerProfile extends StatelessWidget {
                                         height: 10.h,
                                       ),
                                       Text(
-                                        "A junior flutter developer in the third year of amascus university, with 2 years of expirence in developing apps."
-                                            .tr,
+                                        controller.data['bio']
+                                            ,
                                         style: TextStyles.w40012grey(context),
                                       ),
                                     ])),
@@ -217,7 +218,7 @@ class FreelancerProfile extends StatelessWidget {
                               width: 10.w,
                             ),
                             Text(
-                              "+963996541809",
+                              controller.data['phone_number'],
                               style: TextStyles.w50013(context),
                             )
                           ],
@@ -232,7 +233,7 @@ class FreelancerProfile extends StatelessWidget {
                           ),
                           Expanded(
                             child: Text(
-                              "salahaldeenmdaghmesh@gmail.com",
+                              controller.data['email'],
                               style: TextStyles.w50013(context),
                             ),
                           ),
@@ -247,7 +248,7 @@ class FreelancerProfile extends StatelessWidget {
                           ),
                           Expanded(
                             child: Text(
-                              "Syria",
+                               controller.data['location'],
                               style: TextStyles.w50013(context),
                             ),
                           ),

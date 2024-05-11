@@ -69,6 +69,8 @@ class TobBar extends StatelessWidget {
                   child: Image.network(
                     image[0] == "h" ? image : AppLinks.IP + "/" + image,
                     fit: BoxFit.cover,
+                    width: 110,
+                    height: 110,
                   )),
             ),
           ],

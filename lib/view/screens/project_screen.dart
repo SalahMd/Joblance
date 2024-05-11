@@ -8,6 +8,7 @@ import 'package:joblance/core/constants/animations.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
@@ -126,6 +127,10 @@ class ProjectScreen extends StatelessWidget {
                         max: 25,
                         maxLines: 3,
                         minLines: 1,
+                        styleText: TextStyle(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.sp),
                         isNumber: false,
                         isPassword: false,
                         isEnabled: controller.isEditing,
@@ -158,6 +163,10 @@ class ProjectScreen extends StatelessWidget {
                         maxLines: 8,
                         minLines: 1,
                         isNumber: false,
+                        styleText: TextStyle(
+                          color: Colors.blue[700],
+                          fontSize: 12.sp,
+                        ),
                         isEnabled: controller.isEditing,
                         isPassword: false,
                         padding: 1,
@@ -191,6 +200,10 @@ class ProjectScreen extends StatelessWidget {
                             isPassword: false,
                             maxLines: 8,
                             isEnabled: controller.isEditing,
+                            styleText: TextStyle(
+                                color: LightAppColors.greyColor,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13.sp),
                             minLines: 1,
                             isBorder: false,
                             isLabel: false,
@@ -260,8 +273,10 @@ class ProjectScreen extends StatelessWidget {
                                                   fit: BoxFit.cover,
                                                 )
                                               : Image.network(
-                                                  controller.images[index]
-                                                      .values.last,
+                                                  AppLinks.IP +
+                                                      "/" +
+                                                      controller.images[index]
+                                                          .values.last,
                                                   fit: BoxFit.cover,
                                                 ),
                                         ),
@@ -295,7 +310,10 @@ class ProjectScreen extends StatelessWidget {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
                                       child: Image.network(
-                                        controller.images[index].values.last,
+                                        AppLinks.IP +
+                                            "/" +
+                                            controller
+                                                .images[index].values.last,
                                         fit: BoxFit.cover,
                                       ),
                                     ),

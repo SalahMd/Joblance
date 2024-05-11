@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/auth/signup_controller.dart';
@@ -71,28 +72,31 @@ class SignUp extends StatelessWidget {
                 ),
                 TextFileds(controller: controller),
                 BirthDate(controller: controller),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Container(
-                        margin: EdgeInsetsDirectional.only(
-                          top: 15.h,
-                          start: 20.w,
-                        ),
-                        child: Text(
-                          "gender".tr,
-                          style: TextStyles.w50012(context),
+                Visibility(
+                  visible: controller.isFreelancer,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Container(
+                          margin: EdgeInsetsDirectional.only(
+                            top: 15.h,
+                            start: 20.w,
+                          ),
+                          child: Text(
+                            "gender".tr,
+                            style: TextStyles.w50012(context),
+                          ),
                         ),
                       ),
-                    ),
-                    DropDownWidget(
-                        title: "gender",
-                        choices: controller.genders,
-                        elementValue: controller.genderValue,
-                        controller: controller),
-                  ],
+                      DropDownWidget(
+                          title: "gender",
+                          choices: controller.genders,
+                          elementValue: controller.genderValue,
+                          controller: controller),
+                    ],
+                  ),
                 ),
                 Align(
                   alignment: AlignmentDirectional.centerStart,

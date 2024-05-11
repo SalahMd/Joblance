@@ -11,8 +11,9 @@ abstract class CompanyHomePageController extends GetxController {}
 class CompanyHomePageControllerImpl extends CompanyHomePageController {
   StatusRequest? statusRequest;
   Myservices myServices = Get.find();
-  late String token;
+  late String token, id;
   late String language;
+  String name="", image="";
   List<CategoryModel> majors = [];
   List freelancers = [];
   CompanyHomePageBack companyHomePageBack =
@@ -21,12 +22,30 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
   @override
   void onInit() {
     token = myServices.sharedPreferences.getString("token")!;
+    id = myServices.sharedPreferences.getInt("id")!.toString();
     language = myServices.sharedPreferences.getString("lang") == null
         ? "en"
         : myServices.sharedPreferences.getString("lang")!;
+            getCompanyInfo();
+
     getFreelancers();
     getMajors();
     super.onInit();
+  }
+
+  getCompanyInfo() async {
+    statusRequest = StatusRequest.loading;
+    var response =
+        await companyHomePageBack.getCompanyInfo(token, language, id);
+    statusRequest = handelingData(response);
+    update();
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        name = response['data']['name'];
+        image = response['data']['image'];
+      }
+    }
+    update();
   }
 
   getMajors() async {

@@ -53,8 +53,7 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
     } else {
       isProduct = false;
     }
-    update();
-    //getData();
+    getData();
     super.onInit();
   }
 
@@ -64,8 +63,6 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
     link.dispose();
     super.dispose();
   }
-
-  
 
   @override
   Future<void> pickImage() async {
@@ -85,16 +82,16 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
 
   getData() async {
     statusRequest = StatusRequest.loading;
-    var response =
-        await addProjectOrProductBack.getData({}, AppLinks.project, token);
+    var response = await addProjectOrProductBack
+        .getData({}, AppLinks.project + "/" + projectId.toString(), token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        title.text = response['project_name'];
-        description.text = response['project_description'];
-        link.text = response['link'];
+        title.text = response['data']['project']['project_name'];
+        description.text = response['data']['project']['project_description'];
+        link.text = response['data']['project']['link'];
         for (int i = 0; i < response['data']['images'].length; i++) {
-          images.add({"network": response['data']['images'][i]});
+          images.add({"network": response['data']['images'][i]['image']});
         }
       }
     } else {

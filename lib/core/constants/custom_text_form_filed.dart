@@ -24,6 +24,7 @@ class Customtextformfiled extends StatelessWidget {
   final void Function(String val)? onChange;
   final double? padding;
   final TextInputAction? textInputAction;
+  final TextStyle? styleText;
 
   final bool isValidation;
   final FocusNode? focusNode;
@@ -39,7 +40,6 @@ class Customtextformfiled extends StatelessWidget {
     required this.isPassword,
     this.ontapicon,
     this.isBorder = true,
-    TextStyle? style,
     this.maxLines = 1,
     this.letters,
     this.isLabel = true,
@@ -50,7 +50,9 @@ class Customtextformfiled extends StatelessWidget {
     this.onChange,
     this.minLines,
     this.textInputAction,
-    this.textInputType, this.isEnabled=true,
+    this.textInputType,
+    this.isEnabled = true,
+    this.styleText,
   });
 
   @override
@@ -66,7 +68,11 @@ class Customtextformfiled extends StatelessWidget {
           : null,
       child: TextFormField(
         obscureText: isPassword,
-        style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+        style: styleText != null
+            ? styleText
+            : TextStyle(
+                color: Theme.of(context).colorScheme.onSecondary,
+                fontSize: 15.sp),
         keyboardType: isNumber
             ? const TextInputType.numberWithOptions(decimal: true)
             : textInputAction == TextInputAction.newline
@@ -79,7 +85,7 @@ class Customtextformfiled extends StatelessWidget {
                 return validInput(val!, min, max);
               }
             : null,
-            enabled: isEnabled,
+        enabled: isEnabled,
         maxLength: letters,
         minLines: minLines,
         controller: controller,

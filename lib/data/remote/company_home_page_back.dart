@@ -31,4 +31,18 @@ class CompanyHomePageBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
+  getCompanyInfo(var token, String language,String id)async{
+    var response = await crud.requestDataWithHeaders(
+        AppLinks.profile +id,
+        {},
+        {
+          'Authorization': 'Bearer $token',
+          'accept':'application/json'
+        },
+        null,
+        false,
+        false,
+        null);
+    return response.fold((l) => l, (r) => r);
+  }
 }
