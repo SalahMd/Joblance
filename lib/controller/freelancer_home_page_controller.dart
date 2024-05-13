@@ -17,7 +17,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   String? token, id;
   String language = 'en';
   Myservices myservices = Get.find();
-  late String name, image;
+  late String name, image="";
   @override
   void onInit() {
     token = myservices.sharedPreferences.getString("token")!;

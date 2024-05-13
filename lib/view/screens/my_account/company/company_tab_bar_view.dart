@@ -14,24 +14,25 @@ import 'package:joblance/view/widgets/task_design.dart';
 class CompanyTabBarViewWidget extends StatelessWidget {
   final MyAccountCompanyControllerImpl controller;
   const CompanyTabBarViewWidget({
-    super.key, required this.controller,
+    super.key,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TabBarView(children: [
-      jobs(
-        context,
-      ),
-      tasks(
-        context,
-      ),
-      products(
-        context,
-      ),
-      about(context),
-      contactInfo(context)
-    ]);
+    return RefreshIndicator(
+      onRefresh: () async {
+        await Future.delayed(Duration(seconds: 2));
+        controller.refreshPage();
+      },
+      child: TabBarView(children: [
+        jobs(context, controller),
+        tasks(context, controller),
+        products(context, controller),
+        about(context),
+        contactInfo(context)
+      ]),
+    );
   }
 }
 
@@ -119,123 +120,142 @@ Widget about(BuildContext context) {
   );
 }
 
-Widget products(BuildContext context) {
-  return SingleChildScrollView(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-          child: Text(
-            "products".tr,
-            style: TextStyles.w50015(context),
-          ),
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        GestureDetector(
-          onTap: () {
-            Get.to(AddProjectOrProduct());
-          },
-          child: Container(
-            width: Dimensions.screenWidth(context),
-            height: 55.h,
-            margin: EdgeInsets.symmetric(horizontal: 10.w),
+Widget products(
+    BuildContext context, MyAccountCompanyControllerImpl controller) {
+  return RefreshIndicator(
+    onRefresh: () async {
+      await Future.delayed(Duration(seconds: 2));
+      controller.refreshPage();
+    },
+    child: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-            decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(15)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("addproduct".tr, style: TextStyles.w50015(context)),
-                Icon(Icons.add)
-              ],
+            child: Text(
+              "products".tr,
+              style: TextStyles.w50015(context),
             ),
           ),
-        ),
-        ListView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: 7,
-            itemBuilder: (BuildContext context, int index) {
-              return ProjectDesign(
-                projectTitle: "Joblance",
-                projectDescription:
-                    "Jobs and freelancing app made with flutter and laravel",
-                projectLink: "https//www.google.com",
-                project_id: 5,
-                user_id: 5,
-              );
-            })
-      ],
+          SizedBox(
+            height: 10.h,
+          ),
+          GestureDetector(
+            onTap: () {
+              Get.to(AddProjectOrProduct());
+            },
+            child: Container(
+              width: Dimensions.screenWidth(context),
+              height: 55.h,
+              margin: EdgeInsets.symmetric(horizontal: 10.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(15)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("addproduct".tr, style: TextStyles.w50015(context)),
+                  Icon(Icons.add)
+                ],
+              ),
+            ),
+          ),
+          ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.products.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ProjectDesign(
+                  projectTitle: controller.products[index]['project_name'],
+                  projectDescription: controller.products[index]
+                      ['project_description'],
+                  projectLink: controller.products[index]['link'],
+                  project_id: controller.products[index]['id'],
+                  user_id: controller.products[index]['user_id'],
+                );
+              })
+        ],
+      ),
     ),
   );
 }
 
-Widget jobs(BuildContext context) {
-  return SingleChildScrollView(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-          child: Text(
-            "myjobs".tr,
-            style: TextStyles.w50015(context),
+Widget jobs(BuildContext context, MyAccountCompanyControllerImpl controller) {
+  return RefreshIndicator(
+    onRefresh: () async {
+      await Future.delayed(Duration(seconds: 2));
+      controller.refreshPage();
+    },
+    child: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
+            child: Text(
+              "myjobs".tr,
+              style: TextStyles.w50015(context),
+            ),
           ),
-        ),
-        ListView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: 15,
-            itemBuilder: (BuildContext context, int index) {
-              return JobDesign(
-                  jobTitle: "React developer",
-                  companyName: "Google",
-                  location: "United states",
-                  date: "9 days ago",
-                  remote: "remote".tr,
-                  jobId: index,
-                  image: AppImages.googleLogo,
-                  isActive: false);
-            }),
-      ],
+          ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 8,
+              itemBuilder: (BuildContext context, int index) {
+                return JobDesign(
+                    jobTitle: "React developer",
+                    companyName: "Google",
+                    location: "United states",
+                    date: "9 days ago",
+                    remote: "remote".tr,
+                    jobId: index,
+                    image: AppImages.googleLogo,
+                    isActive: false);
+              }),
+        ],
+      ),
     ),
   );
 }
 
-Widget tasks(BuildContext context) {
-  return SingleChildScrollView(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-          child: Text(
-            "mytasks".tr,
-            style: TextStyles.w50015(context),
+Widget tasks(BuildContext context, MyAccountCompanyControllerImpl controller) {
+  return RefreshIndicator(
+    onRefresh: () async {
+      await Future.delayed(Duration(seconds: 2));
+      controller.refreshPage();
+    },
+    child: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
+            child: Text(
+              "mytasks".tr,
+              style: TextStyles.w50015(context),
+            ),
           ),
-        ),
-        ListView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: 8,
-            itemBuilder: (BuildContext context, int index) {
-              return TaskDesign(
-                  taskTitle: "Application developer",
-                  userName: "Google",
-                  major: "software developer",
-                  date: "12-5-2024",
-                  duration: "1 month",
-                  image: AppImages.google,
-                  isActive: true);
-            }),
-      ],
+          ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 8,
+              itemBuilder: (BuildContext context, int index) {
+                return TaskDesign(
+                    taskTitle: "Application developer",
+                    userName: "Google",
+                    major: "software developer",
+                    date: "12-5-2024",
+                    duration: "1 month",
+                    image: AppImages.google,
+                    isActive: true);
+              }),
+        ],
+      ),
     ),
   );
 }

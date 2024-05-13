@@ -65,7 +65,7 @@ Widget about(context,FreelancerProfileControllerImpl controller) {
                     Icon(Icons.work_outline),
                     SizedBox(width: 10.w),
                     Text(
-                      "Engineering",
+                      controller.data['major'],
                       style: TextStyles.w50012(context),
                     ),
                   ],
@@ -78,7 +78,7 @@ Widget about(context,FreelancerProfileControllerImpl controller) {
                     Icon(Icons.cases_outlined),
                     SizedBox(width: 10.w),
                     Text(
-                      "Graduate",
+                      controller.data['study_case'],
                       style: TextStyles.w50012(context),
                     ),
                   ],

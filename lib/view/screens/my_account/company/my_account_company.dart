@@ -13,43 +13,48 @@ class MyAccountCompany extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MyAccountCompanyControllerImpl());
-    return Scaffold(
-        body: GetBuilder<MyAccountCompanyControllerImpl>(
-            builder: (controller) =>
-                controller.statusRequest == StatusRequest.loading
-                    ? Container()
-                    : DefaultTabController(
-                        length: controller.tabs.length,
-                        child: NestedScrollView(
-                          headerSliverBuilder:
-                              (BuildContext context, bool innerBoxIsScrolled) =>
-                                  [
-                            SliverToBoxAdapter(
-                              child: Column(children: [
-                                TobBar(
-                                  isMyAccount: true,
-                                  image: controller.data['image'],
-                                  name: controller.data['name'],
-                                  description: "Engineering",
-                                ),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                Divider(
-                                  height: 1,
-                                  thickness: 0.5,
-                                ),
-                                TabBarWidget(
-                                  tabs: controller.tabs,
-                                ),
-                              ]),
-                            ),
-                          ],
-                          body: CompanyTabBarViewWidget(
-                            controller: controller,
+    final controller = Get.put(MyAccountCompanyControllerImpl());
+    return RefreshIndicator(
+      onRefresh: () async {
+        await Future.delayed(Duration(seconds: 2));
+        controller.refreshPage();
+      },
+      child: Scaffold(
+          body: GetBuilder<MyAccountCompanyControllerImpl>(
+              builder: (controller) => controller.statusRequest ==
+                      StatusRequest.loading
+                  ? Container()
+                  : DefaultTabController(
+                      length: controller.tabs.length,
+                      child: NestedScrollView(
+                        headerSliverBuilder:
+                            (BuildContext context, bool innerBoxIsScrolled) => [
+                          SliverToBoxAdapter(
+                            child: Column(children: [
+                              TobBar(
+                                isMyAccount: true,
+                                image: controller.data['image']!=null?controller.data['image']:null,
+                                name: controller.data['name'],
+                                description: "Engineering",
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              Divider(
+                                height: 1,
+                                thickness: 0.5,
+                              ),
+                              TabBarWidget(
+                                tabs: controller.tabs,
+                              ),
+                            ]),
                           ),
+                        ],
+                        body: CompanyTabBarViewWidget(
+                          controller: controller,
                         ),
-                      )));
+                      ),
+                    ))),
+    );
   }
 }

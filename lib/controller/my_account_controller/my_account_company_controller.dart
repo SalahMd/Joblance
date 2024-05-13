@@ -15,7 +15,8 @@ abstract class MyAccountCompanyController extends GetxController {
 
 class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   StatusRequest? statusRequest;
-  AddProjectOrProductBack addProjectOrProductBack = AddProjectOrProductBack(Get.put(Crud()));
+  AddProjectOrProductBack addProjectOrProductBack =
+      AddProjectOrProductBack(Get.put(Crud()));
   CompanyAccount companyAccount = new CompanyAccount(Get.put(Crud()));
   Myservices myServices = Get.find();
   Map data = {};
@@ -43,6 +44,16 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     super.onInit();
   }
 
+  Future<void> refreshPage() async {
+    statusRequest = StatusRequest.loading;
+    update();
+    products.clear();
+    data.clear();
+    update();
+    getUserData();
+    getProduts();
+  }
+
   getUserData() async {
     statusRequest = StatusRequest.loading;
     update();
@@ -51,7 +62,6 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         data.addAll(response['data']);
-        print(response['data']);
       }
     }
     update();

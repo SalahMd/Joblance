@@ -257,5 +257,6 @@ Map<String, String> arabic = {
   "doyoureallywanttodeletetheskill":"هل تريد حقا حذف المهارة؟",
   "couldn'tdeleteyourskill":"لم يتم حذف المهارة",
   "couldn'topenlink":"هناك خطأ في الرابط",
+  "addproduct":"إضافة منتج",
   "yourproducthasbeenadded":"تم إضافة المنتج بنجاح","yourprojecthasbeenadded":"تم إضافة المشروع بنجاح"
 };

@@ -37,10 +37,10 @@ class TopBar extends StatelessWidget {
                       BoxDecoration(borderRadius: BorderRadius.circular(20)),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child: Image.network(
+                    child:image ==""? Image.network(
                          image[0] == "h" ? image : AppLinks.IP + "/" + image,
                         fit: BoxFit.cover,
-                    ),
+                    ):Container(),
                   ),
                 ),
                 Text(

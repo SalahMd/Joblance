@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/view/screens/my_account/company/company_tab_bar_view.dart';
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/job_design.dart';
 import 'package:joblance/view/widgets/project_design.dart';
@@ -14,12 +13,11 @@ class CompanyTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      children: [
+    return PageView(children: [
       jobs(
         context,
       ),
-      tasks(context),
+      //tasks(context,),
       aboutCompany(context),
       products(context),
       contactInfo(context)
@@ -103,11 +101,13 @@ Widget products(BuildContext context) {
             itemCount: 7,
             itemBuilder: (BuildContext context, int index) {
               return ProjectDesign(
-                  projectTitle: "Joblance",
-                  projectDescription:
-                      "Jobs and freelancing app made with flutter and laravel",
-               
-                  projectLink: "https//www.google.com", project_id: 5, user_id: 5,);
+                projectTitle: "Joblance",
+                projectDescription:
+                    "Jobs and freelancing app made with flutter and laravel",
+                projectLink: "https//www.google.com",
+                project_id: 5,
+                user_id: 5,
+              );
             })
       ],
     ).animate().fade(duration: 600.ms).slideY(begin: 0.1),

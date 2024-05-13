@@ -11,8 +11,7 @@ class Conversations {
         AppLinks.getConversations,
         {},
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},
-                null,
-
+        null,
         false,
         false,
         null);
