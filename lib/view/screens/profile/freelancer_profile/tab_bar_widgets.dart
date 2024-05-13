@@ -83,19 +83,6 @@ Widget about(context,FreelancerProfileControllerImpl controller) {
                     ),
                   ],
                 ),
-                MyDivider(
-                  height: 8,
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.work_outline),
-                    SizedBox(width: 10.w),
-                    Text(
-                      "Engineering",
-                      style: TextStyles.w50012(context),
-                    ),
-                  ],
-                ),
               ],
             ),
           )

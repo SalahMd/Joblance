@@ -25,7 +25,7 @@ class EditProfileControllerImpl extends EditProfileController {
   EditProfileBack editProfileBack = new EditProfileBack(Get.put(Crud()));
   StatusRequest? statusRequest;
   bool openToWork = false;
-  late String id, token;
+  late String id, token, lang;
   String studyCase = "1", major = "1";
   String? country, birthOfDate, numOfEmployees = "1";
   late bool isFreelancer;
@@ -90,6 +90,7 @@ class EditProfileControllerImpl extends EditProfileController {
     }
     token = myservices.sharedPreferences.getString("token")!;
     id = myservices.sharedPreferences.getInt("id").toString();
+    lang = myservices.sharedPreferences.getString("lang")!;
 
     initializeControllers();
     getUserInfo();
@@ -108,7 +109,7 @@ class EditProfileControllerImpl extends EditProfileController {
 
   getUserInfo() async {
     statusRequest = StatusRequest.loading;
-    var response = await editProfileBack.getData(token, id);
+    var response = await editProfileBack.getData(token, id, lang);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -124,7 +125,7 @@ class EditProfileControllerImpl extends EditProfileController {
       lastName.text = data['last_name'];
       bio.text = data['bio'];
       openToWork = data['open_to_work'] == 1 ? true : false;
-      studyCase = data['study_case_id'].toString();
+    //  studyCase = data['study_case_id'].toString();
     } else {
       companyName.text = data['name'];
       description.text = data['description'];
@@ -132,7 +133,7 @@ class EditProfileControllerImpl extends EditProfileController {
     country = data['location'];
     image = data['image'];
     phoneNumber.text = data['phone_number'];
-    major = data['major_id'].toString();
+  //  major = data['major_id'].toString();
     update();
   }
 

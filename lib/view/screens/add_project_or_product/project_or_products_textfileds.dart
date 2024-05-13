@@ -56,6 +56,7 @@ class ProjectOrProductTextFileds extends StatelessWidget {
             min: 5,
             max: 250,
             maxLines: 4,
+            textInputAction: TextInputAction.newline,
             isNumber: false,
             isPassword: false,
             isBorder: false,

@@ -5,9 +5,9 @@ class EditProfileBack {
   Crud crud;
   EditProfileBack(this.crud);
 
-  getData(var token, String id) async {
+  getData(var token, String id,String language) async {
     var response = await crud.requestDataWithHeaders(
-        AppLinks.profile + id,
+        AppLinks.profile + id+"?lang="+language,
         
         {},
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},

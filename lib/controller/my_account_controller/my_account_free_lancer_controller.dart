@@ -48,13 +48,13 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
 
   @override
-  void onInit() {
+  void onInit() async{
     statusRequest = StatusRequest.loading;
     update();
     token = myServices.sharedPreferences.getString("token")!;
     id = myServices.sharedPreferences.getInt("id")!.toString();
     language = myServices.sharedPreferences.getString("lang")!;
-    getUserData();
+    await getUserData();
     getSkills();
     getProjects();
 

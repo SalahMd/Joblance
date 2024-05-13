@@ -29,7 +29,7 @@ class MyAccountFreeLancer extends StatelessWidget {
                                         TobBar(
                                           isMyAccount: true,
                                           image: controller.data['image']!=null?controller.data['image']:"",
-                                          name: controller.data['name'],
+                                          name: controller.data['first_name'],
                                           description: "IT developer",
                                         ),
                                         SizedBox(

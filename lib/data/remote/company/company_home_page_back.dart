@@ -33,7 +33,7 @@ class CompanyHomePageBack {
   }
   getCompanyInfo(var token, String language,String id)async{
     var response = await crud.requestDataWithHeaders(
-        AppLinks.profile +id,
+        AppLinks.profile +id+"?lang="+language,
         {},
         {
           'Authorization': 'Bearer $token',

@@ -68,7 +68,7 @@ class CompanyHomePage extends StatelessWidget {
                         physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           return FreeLancerDesign(
-                              name: controller.freelancers[index]['name'],
+                              name: controller.freelancers[index]['first_name']+controller.freelancers[index]['last_name'],
                               bio: controller.freelancers[index]['bio'],
                               location: controller.freelancers[index]
                                   ['location'],

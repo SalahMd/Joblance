@@ -221,7 +221,7 @@ Widget contactInfo(
               width: 10.w,
             ),
             Text(
-              "controller.data['phone']",
+              controller.data['phone_number'],
               style: TextStyles.w50013(context),
             )
           ],
@@ -236,7 +236,7 @@ Widget contactInfo(
           ),
           Expanded(
             child: Text(
-              "salahaldeenmdaghmesh@gmail.com",
+              controller.data['email'],
               style: TextStyles.w50013(context),
             ),
           ),

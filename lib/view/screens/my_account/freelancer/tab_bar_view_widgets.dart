@@ -28,14 +28,15 @@ class TabBarViewWidgets extends StatelessWidget {
 Widget about(
     BuildContext context, MyAccountFreelancerControllerImpl controller) {
   return RefreshIndicator(
-      onRefresh: () async {
-        await Future.delayed(Duration(seconds: 2));
-        controller.refreshPage();
-      },
+    onRefresh: () async {
+      await Future.delayed(Duration(seconds: 2));
+      controller.refreshPage();
+    },
     child: SingleChildScrollView(
       child: Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               "about".tr,
               style: TextStyles.w50015(context),
@@ -76,7 +77,7 @@ Widget about(
                       Icon(Icons.work_outline),
                       SizedBox(width: 10.w),
                       Text(
-                        "Engineering",
+                        controller.data['major'],
                         style: TextStyles.w50012(context),
                       ),
                     ],
@@ -89,20 +90,7 @@ Widget about(
                       Icon(Icons.cases_outlined),
                       SizedBox(width: 10.w),
                       Text(
-                        "Graduate",
-                        style: TextStyles.w50012(context),
-                      ),
-                    ],
-                  ),
-                  MyDivider(
-                    height: 8,
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.work_outline),
-                      SizedBox(width: 10.w),
-                      Text(
-                        "Engineering",
+                        controller.data['study_case'],
                         style: TextStyles.w50012(context),
                       ),
                     ],
@@ -301,10 +289,10 @@ Widget about(
 
 Widget projects(BuildContext context, var controller) {
   return RefreshIndicator(
-      onRefresh: () async {
-        await Future.delayed(Duration(seconds: 2));
-        controller.refreshPage();
-      },
+    onRefresh: () async {
+      await Future.delayed(Duration(seconds: 2));
+      controller.refreshPage();
+    },
     child: SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -364,10 +352,10 @@ Widget projects(BuildContext context, var controller) {
 Widget skills(
     BuildContext context, MyAccountFreelancerControllerImpl controller) {
   return RefreshIndicator(
-      onRefresh: () async {
-        await Future.delayed(Duration(seconds: 2));
-        controller.refreshPage();
-      },
+    onRefresh: () async {
+      await Future.delayed(Duration(seconds: 2));
+      controller.refreshPage();
+    },
     child: SingleChildScrollView(
       child: Container(
         child: Column(
@@ -444,10 +432,10 @@ Widget skills(
 Widget contactInfo(
     BuildContext context, MyAccountFreelancerControllerImpl controller) {
   return RefreshIndicator(
-      onRefresh: () async {
-        await Future.delayed(Duration(seconds: 2));
-        controller.refreshPage();
-      },
+    onRefresh: () async {
+      await Future.delayed(Duration(seconds: 2));
+      controller.refreshPage();
+    },
     child: Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
       child: Column(
@@ -467,7 +455,7 @@ Widget contactInfo(
                 width: 10.w,
               ),
               Text(
-                "controller.data['phone_number']",
+                controller.data['phone_number'],
                 style: TextStyles.w50013(context),
               )
             ],
@@ -482,7 +470,7 @@ Widget contactInfo(
             ),
             Expanded(
               child: Text(
-                "controller.data['email']",
+                controller.data['email'],
                 style: TextStyles.w50013(context),
               ),
             ),

@@ -37,11 +37,11 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     Tab(text: "contact".tr),
   ];
   @override
-  void onInit() {
+  void onInit()async {
     lang = myServices.sharedPreferences.getString("lang")!;
     token = myServices.sharedPreferences.getString("token")!;
     id = myServices.sharedPreferences.getInt("id")!.toString();
-    getUserData();
+  await  getUserData();
     getProduts();
     super.onInit();
   }

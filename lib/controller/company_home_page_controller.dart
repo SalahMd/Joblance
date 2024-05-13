@@ -13,7 +13,7 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
   Myservices myServices = Get.find();
   late String token, id;
   late String language;
-  String name="", image="";
+  String name = "", image = "";
   List<CategoryModel> majors = [];
   List freelancers = [];
   CompanyHomePageBack companyHomePageBack =
@@ -26,7 +26,7 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
     language = myServices.sharedPreferences.getString("lang") == null
         ? "en"
         : myServices.sharedPreferences.getString("lang")!;
-            getCompanyInfo();
+    getCompanyInfo();
 
     getFreelancers();
     getMajors();

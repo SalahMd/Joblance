@@ -35,7 +35,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
     update();
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        name = response['data']['name'];
+        name = response['data']['first_name'];
         image = response['data']['image'];
       }
     }

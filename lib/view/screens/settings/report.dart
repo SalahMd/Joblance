@@ -83,6 +83,7 @@ class Report extends StatelessWidget {
                   controller: controller.reportbody,
                   min: 10,
                   max: 150,
+                  textInputAction: TextInputAction.newline,
                   isNumber: false,
                   isPassword: false,
                   maxLines: 5,

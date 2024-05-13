@@ -25,18 +25,19 @@ class JobDesign extends StatelessWidget {
       required this.date,
       required this.remote,
       required this.image,
-      required this.isActive, required this.jobId});
+      required this.isActive,
+      required this.jobId});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(JobInfo(id:jobId));
+        Get.to(JobInfo(id: jobId));
       },
       child: Container(
         width: Dimensions.screenWidth(context),
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
-        margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+        margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
             borderRadius: BorderRadius.circular(10)),
