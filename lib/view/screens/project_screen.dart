@@ -25,7 +25,7 @@ class ProjectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProjectScreenControllerImpl(id: userId, projectId: projectId));
+    Get.put(ProjectScreenControllerImpl(id: userId, projectId: projectId,context));
     return Scaffold(
       body: GetBuilder<ProjectScreenControllerImpl>(
         builder: (controller) => SingleChildScrollView(

@@ -15,16 +15,18 @@ abstract class ProjectScreenController extends GetxController {
   pickImage();
   removeImage(int index);
   getData();
+  updateProject();
   sendData();
 }
 
 class ProjectScreenControllerImpl extends ProjectScreenController {
   final int id, projectId;
+  final BuildContext context;
   late TextEditingController title;
   late TextEditingController description;
   late TextEditingController link;
   bool isProduct = true;
-  StatusRequest? statusRequest;
+  StatusRequest? statusRequest, updateStatus;
   late String role, token;
   List<Map> images = [];
   AddProjectOrProductBack addProjectOrProductBack =
@@ -34,7 +36,8 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
   bool isEditing = false, isOwner = false;
   Myservices myServices = Get.find();
 
-  ProjectScreenControllerImpl({required this.projectId, required this.id});
+  ProjectScreenControllerImpl(this.context,
+      {required this.projectId, required this.id});
 
   void onInit() {
     statusRequest = StatusRequest.loading;
@@ -56,6 +59,37 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
     }
     getData();
     super.onInit();
+  }
+
+  updateProject() async {
+    var formdata = formState.currentState;
+    if (formdata!.validate()) {
+      updateStatus = StatusRequest.loading;
+      animationedAlert(AppAnimations.loadings, "pleasewait".tr);
+      var response = await addProjectOrProductBack.updateData({
+        "project_name": title.text,
+        "project_description": description.text,
+        "link": link.text,
+      }, token, projectId.toString(),images);
+      updateStatus = handelingData(response);
+      if (StatusRequest.success == updateStatus) {
+        if (response['status'] == "success") {
+          Get.back();
+          Get.back();
+          if (role == "1") {
+            snackBar("", "yourproducthasbeensaved".tr, context);
+          } else {
+            snackBar("", "yourprojecthasbeensaved".tr, context);
+          }
+        } else {
+          Get.back();
+          animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);
+        }
+      } else {
+        Get.back();
+        animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);
+      }
+    }
   }
 
   void dispose() {

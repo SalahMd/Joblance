@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:joblance/core/constants/links.dart';
 
 class ImageView extends StatelessWidget {
   final String image;
@@ -13,7 +14,7 @@ class ImageView extends StatelessWidget {
       ),
       body: Center(
         child: Image.network(
-          image,
+          image[0] == "h" ? image : AppLinks.IP + "/" + image,
           fit: BoxFit.fill,
         ),
       ),

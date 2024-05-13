@@ -18,12 +18,13 @@ abstract class MyAccountFreelancerController extends GetxController {
   deleteSkill(int id);
   getSkills();
   getUserData();
+  refreshPage();
 }
 
 class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   StatusRequest? statusRequest, skillStatus;
   Myservices myServices = Get.find();
-  FreelancerAccount freelancerAccount = new FreelancerAccount(Get.put(Crud()));
+  FreelancerAccount freelancerAccount = FreelancerAccount(Get.put(Crud()));
   late TextEditingController skill;
   late String token, id, language;
   AddProjectOrProductBack addProjectOrProductBack =
@@ -56,7 +57,6 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     getUserData();
     getSkills();
     getProjects();
-    //displayData();
 
     skill = new TextEditingController();
     super.onInit();
@@ -73,6 +73,8 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     getProjects();
     getSkills();
   }
+
+ 
 
   getProjects() async {
     var response =

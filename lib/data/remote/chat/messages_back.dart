@@ -44,7 +44,7 @@ class MessagesBack {
     var response = await crud.putData(
         AppLinks.readMessages + "/" + id + "/read",
         {},
-        {'Authorization': 'Bearer $token', 'accept': 'application/json'});
+        {'Authorization': 'Bearer $token', 'accept': 'application/json'},null,false,null);
     return response.fold((l) => l, (r) => r);
   }
   deleteMessage(var token, String id,String target)async{

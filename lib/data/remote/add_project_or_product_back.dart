@@ -9,17 +9,8 @@ class AddProjectOrProductBack {
     List files,
     var token,
   ) async {
-    var response = await crud.requestDataWithHeaders(
-        AppLinks.project,
-        data,
-        {
-          'Authorization':
-              'Bearer $token'
-        },
-        "images",
-        true,
-        true,
-        files);
+    var response = await crud.requestDataWithHeaders(AppLinks.project, data,
+        {'Authorization': 'Bearer $token'}, "images", true, true, files);
     return response.fold((l) => l, (r) => r);
   }
 
@@ -28,13 +19,16 @@ class AddProjectOrProductBack {
     var token,
   ) async {
     var response = await crud.deleteData(
-        AppLinks.project,
-        data,
-        {
-          'Authorization':
-              'Bearer $token'
-        },
-        );
+      AppLinks.project,
+      data,
+      {'Authorization': 'Bearer $token'},
+    );
+    return response.fold((l) => l, (r) => r);
+  }
+
+  updateData(Map data, var token, String id, var images) async {
+    var response = await crud.putData(AppLinks.project, data,
+        {'Authorization': 'Bearer $token', 'accept': 'application/json'},"images",true,images);
     return response.fold((l) => l, (r) => r);
   }
 
@@ -43,17 +37,8 @@ class AddProjectOrProductBack {
     String link,
     var token,
   ) async {
-    var response = await crud.requestDataWithHeaders(
-        link,
-        data,
-        {
-          'Authorization':
-              'Bearer $token'
-        },
-        null,
-        false,
-        false,
-        null);
+    var response = await crud.requestDataWithHeaders(link, data,
+        {'Authorization': 'Bearer $token'}, null, false, false, null);
     return response.fold((l) => l, (r) => r);
   }
 }

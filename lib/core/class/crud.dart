@@ -68,15 +68,14 @@ class Crud {
       if (isFile && isPost && file != null) {
         var request = http.MultipartRequest('POST', Uri.parse(linkurl));
 
-        String
-          name = fileName == null ? "image" : fileName;
-        
+        String name = fileName == null ? "image" : fileName;
+
         for (int i = 0; i < file.length; i++) {
           var length = await file[i].length();
           var stream = http.ByteStream(file[i].openRead());
 
           var multiPartFile = http.MultipartFile(
-             file.length>1? name+"[$i][image]":name, stream, length,
+              name == "images" ? name + "[$i][image]" : name, stream, length,
               filename: basename(file[i].path));
           request.files.add(
             multiPartFile,
@@ -114,15 +113,41 @@ class Crud {
   }
 
   Future<Either<StatusRequest, Map>> putData(
-    String linkurl,
-    Map data,
-    Map<String, String> headers,
-  ) async {
+      String linkurl,
+      Map data,
+      Map<String, String> headers,
+      String? fileName,
+      bool isFile,
+      var file) async {
     try {
       var response;
-      response =
-          await http.put(Uri.parse(linkurl), body: data, headers: headers);
-      print(response.body);
+      if (isFile && fileName != null) {
+        String name = fileName;
+        var request = http.MultipartRequest('PUT', Uri.parse(linkurl));
+
+        for (int i = 0; i < file.length; i++) {
+          var length = await file[i].length();
+          var stream = http.ByteStream(file[i].openRead());
+
+          var multiPartFile = http.MultipartFile(
+              name == "images" ? name + "[$i][image]" : name, stream, length,
+              filename: basename(file[i].path));
+          request.files.add(
+            multiPartFile,
+          );
+        }
+        request.headers.addAll(headers);
+        data.forEach((key, value) {
+          request.fields[key] = value.toString();
+        });
+        var myRequest = await request.send();
+        response = await http.Response.fromStream(myRequest);
+        print(response.body);
+      } else {
+        response =
+            await http.put(Uri.parse(linkurl), body: data, headers: headers);
+        print(response.body);
+      }
       if (response.statusCode == 200 || response.statusCode == 201) {
         Map responseBody = jsonDecode(response.body);
         return right(responseBody);

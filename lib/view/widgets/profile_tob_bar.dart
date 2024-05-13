@@ -6,6 +6,7 @@ import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/image_view.dart';
 
 class TobBar extends StatelessWidget {
   final String image;
@@ -54,24 +55,31 @@ class TobBar extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              width: 110,
-              height: 110,
-              alignment: Alignment.center,
-              margin: EdgeInsetsDirectional.only(start: 5.w, top: 125.h),
-              decoration: BoxDecoration(
-                border: Border.all(color: LightAppColors.whiteColor),
-                color: LightAppColors.greyColor,
-                borderRadius: BorderRadius.circular(60),
-              ),
-              child: ClipRRect(
+            GestureDetector(
+              onTap: () {
+                Get.to(ImageView(image: image));
+              },
+              child: Container(
+                width: 120,
+                height: 120,
+                alignment: Alignment.center,
+                margin: EdgeInsetsDirectional.only(start: 5.w, top: 125.h),
+                decoration: BoxDecoration(
+                  border: Border.all(color: LightAppColors.whiteColor),
+                  color: LightAppColors.greyColor,
                   borderRadius: BorderRadius.circular(60),
-                  child:image!=""? Image.network(
-                    image[0] == "h" ? image : AppLinks.IP + "/" + image,
-                    fit: BoxFit.cover,
-                    width: 110,
-                    height: 110,
-                  ):Container()),
+                ),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(60),
+                    child: image != ""
+                        ? Image.network(
+                            image[0] == "h" ? image : AppLinks.IP + "/" + image,
+                            fit: BoxFit.cover,
+                            width: 120,
+                            height: 120,
+                          )
+                        : Container()),
+              ),
             ),
           ],
         ),
