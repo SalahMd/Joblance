@@ -28,10 +28,8 @@ class MyAccountFreeLancer extends StatelessWidget {
                                       children: [
                                         TobBar(
                                           isMyAccount: true,
-                                          image: controller.data['image'],
-                                          name: controller.data['first_name'] +
-                                              " " +
-                                              controller.data['last_name'],
+                                          image: controller.data['image']!=null?controller.data['image']:"",
+                                          name: controller.data['name'],
                                           description: "IT developer",
                                         ),
                                         SizedBox(

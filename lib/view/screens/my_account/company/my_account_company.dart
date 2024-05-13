@@ -33,9 +33,9 @@ class MyAccountCompany extends StatelessWidget {
                             child: Column(children: [
                               TobBar(
                                 isMyAccount: true,
-                                image: controller.data['image']!=null?controller.data['image']:null,
+                                image: controller.data['image']!=null?controller.data['image']:"",
                                 name: controller.data['name'],
-                                description: "Engineering",
+                                description: controller.data['major'],
                               ),
                               SizedBox(
                                 height: 15.h,

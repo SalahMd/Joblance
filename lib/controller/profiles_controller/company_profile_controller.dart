@@ -10,7 +10,7 @@ abstract class CompanyProfileController extends GetxController {}
 
 class CompanyProfileControllerImpl extends CompanyProfileController {
   StatusRequest? statusRequest;
-
+  late String language;
   Myservices myServices = Get.find();
   List data = [];
   List<Widget> tabs = [
@@ -28,7 +28,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   displayData() async {
     statusRequest = StatusRequest.loading;
     var token = myServices.sharedPreferences.getString("token");
-    var response = await profileBack.getData(token, 3.toString());
+    var response = await profileBack.getData(token, 3.toString(), language);
     statusRequest = handelingData(response);
     print(response);
     if (StatusRequest.success == statusRequest) {
@@ -42,6 +42,8 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
 
   @override
   void onInit() {
+        language = myServices.sharedPreferences.getString("lang")!;
+
     super.onInit();
   }
 

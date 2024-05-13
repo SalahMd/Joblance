@@ -6,6 +6,7 @@ import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/freelancer_info_model.dart';
+import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 
@@ -17,8 +18,9 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   final int id;
   Myservices myServices = Get.find();
   Map data = {};
+  late String language;
   late String token;
-  List projects = [];
+  List<ProjectOrProductModel> projects = [];
   List<Widget> tabs = [
     Tab(
       text: "about".tr,
@@ -37,6 +39,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   @override
   void onInit() {
     token = myServices.sharedPreferences.getString("token")!;
+    language = myServices.sharedPreferences.getString("lang")!;
 
     //displayData();
     getUserData();
@@ -51,7 +54,14 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        projects.addAll(response['data']);
+        for (int i = 0; i < response['data'].length; i++) {
+          projects.add(ProjectOrProductModel(
+              id: response['data'][i]['id'],
+              projectName: response['data'][i]['project_name'],
+              projectDescription: response['data'][i]['project_description'],
+              link: response['data'][i]['link'],
+              userId: response['data'][i]['user_id']));
+        }
         print(projects.length);
       }
     }
@@ -60,7 +70,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
 
   displayData() async {
     statusRequest = StatusRequest.loading;
-    var response = await profileBack.getData(token, id.toString());
+    var response = await profileBack.getData(token, id.toString(),language);
     statusRequest = handelingData(response);
     print(response);
     if (StatusRequest.success == statusRequest) {
@@ -89,7 +99,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   getUserData() async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await profileBack.getData(token, id.toString());
+    var response = await profileBack.getData(token, id.toString(), language);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

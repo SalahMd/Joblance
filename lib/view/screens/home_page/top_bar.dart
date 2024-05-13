@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -28,26 +30,38 @@ class TopBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  margin: EdgeInsetsDirectional.only(end: 10.w),
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child:image ==""? Image.network(
-                         image[0] == "h" ? image : AppLinks.IP + "/" + image,
-                        fit: BoxFit.cover,
-                    ):Container(),
+              Expanded(
+                child: Row(children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    margin: EdgeInsetsDirectional.only(end: 10.w),
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: image != ""
+                          ? Image.network(
+                              image[0] == "h"
+                                  ? image
+                                  : AppLinks.IP + "/" + image,
+                              fit: BoxFit.cover,
+                            )
+                          : Container(),
+                    ),
                   ),
-                ),
-                Text(
-                  "hello".tr + ", " + name,
-                  style: TextStyles.w50015(context),
-                ),
-              ]),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.only(end: 10.w),
+                      child: Text(
+                        "hello".tr + ", " + name,
+                        style: TextStyles.w50014(context),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
+                ]),
+              ),
               GestureDetector(
                 onTap: () {
                   Get.to(Notifications());

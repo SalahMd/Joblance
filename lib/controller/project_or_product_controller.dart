@@ -14,6 +14,7 @@ import 'package:joblance/data/remote/add_project_or_product_back.dart';
 abstract class ProjectScreenController extends GetxController {
   pickImage();
   removeImage(int index);
+  getData();
   sendData();
 }
 
@@ -38,9 +39,9 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
   void onInit() {
     statusRequest = StatusRequest.loading;
     update();
-    title = new TextEditingController();
-    link = new TextEditingController();
-    description = new TextEditingController();
+    title = TextEditingController();
+    link = TextEditingController();
+    description = TextEditingController();
 
     role = myServices.sharedPreferences.getString("role_id")!;
     token = myServices.sharedPreferences.getString("token")!;
@@ -101,7 +102,6 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
   }
 
   deleteData() async {
-    // statusRequest = StatusRequest.loading;
     Get.back();
     var response = await addProjectOrProductBack.deleteData({}, token);
     statusRequest = handelingData(response);

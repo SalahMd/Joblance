@@ -5,6 +5,7 @@ import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/company/company_profile.dart';
 
@@ -20,8 +21,8 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   CompanyAccount companyAccount = new CompanyAccount(Get.put(Crud()));
   Myservices myServices = Get.find();
   Map data = {};
-  List products = [];
-  late String token, id;
+  List<ProjectOrProductModel> products = [];
+  late String token, id, lang;
   List<Widget> tabs = [
     Tab(
       text: "jobs".tr,
@@ -37,6 +38,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   ];
   @override
   void onInit() {
+    lang = myServices.sharedPreferences.getString("lang")!;
     token = myServices.sharedPreferences.getString("token")!;
     id = myServices.sharedPreferences.getInt("id")!.toString();
     getUserData();
@@ -57,7 +59,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   getUserData() async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await companyAccount.getData(token, id);
+    var response = await companyAccount.getData(token, id, lang);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -73,7 +75,14 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        products.addAll(response['data']);
+        for (int i = 0; i < response['data'].length; i++) {
+          products.add(ProjectOrProductModel(
+              id: response['data'][i]['id'],
+              projectName: response['data'][i]['project_name'],
+              projectDescription: response['data'][i]['project_description'],
+              link: response['data'][i]['link'],
+              userId: response['data'][i]['user_id']));
+        }
       }
     }
     update();

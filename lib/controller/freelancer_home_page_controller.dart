@@ -17,7 +17,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   String? token, id;
   String language = 'en';
   Myservices myservices = Get.find();
-  late String name, image="";
+  late String name="", image="";
   @override
   void onInit() {
     token = myservices.sharedPreferences.getString("token")!;
@@ -35,7 +35,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
     update();
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        name = response['data']['first_name'];
+        name = response['data']['name'];
         image = response['data']['image'];
       }
     }

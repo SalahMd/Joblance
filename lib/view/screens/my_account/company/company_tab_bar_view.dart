@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/my_account_controller/my_account_company_controller.dart';
@@ -29,94 +30,33 @@ class CompanyTabBarViewWidget extends StatelessWidget {
         jobs(context, controller),
         tasks(context, controller),
         products(context, controller),
-        about(context),
-        contactInfo(context)
+        about(context, controller),
+        contactInfo(context, controller)
       ]),
     );
   }
 }
 
-Widget about(BuildContext context) {
-  return SingleChildScrollView(
-    child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            "about".tr,
-            style: TextStyles.w50015(context),
-          ),
-          SizedBox(height: 20.h),
-          Container(
-              padding: EdgeInsetsDirectional.only(bottom: 5.h, top: 10.h),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "bio".tr,
-                      style: TextStyles.w50013(context),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Text(
-                      "A junior flutter developer in the third year of amascus university, with 2 years of expirence in developing apps."
-                          .tr,
-                      style: TextStyles.w40012grey(context),
-                    ),
-                  ])),
-          MyDivider(
-            height: 12,
-          ),
-          Container(
-            padding: EdgeInsetsDirectional.only(bottom: 15.h, top: 10.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "studyinfo".tr,
-                  style: TextStyles.w50015(context),
-                ),
-                SizedBox(height: 15.h),
-                Row(
-                  children: [
-                    Icon(Icons.work_outline),
-                    SizedBox(width: 10.w),
-                    Text(
-                      "Engineering",
-                      style: TextStyles.w50012(context),
-                    ),
-                  ],
-                ),
-                MyDivider(
-                  height: 8,
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.cases_outlined),
-                    SizedBox(width: 10.w),
-                    Text(
-                      "Graduate",
-                      style: TextStyles.w50012(context),
-                    ),
-                  ],
-                ),
-                MyDivider(
-                  height: 8,
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.work_outline),
-                    SizedBox(width: 10.w),
-                    Text(
-                      "Engineering",
-                      style: TextStyles.w50012(context),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          )
-        ])),
+Widget about(BuildContext context, MyAccountCompanyControllerImpl controller) {
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "aboutcompany".tr,
+          style: TextStyles.w50015(context),
+        ).animate().fade(duration: 600.ms).slideY(begin: 0.9),
+        SizedBox(
+          height: 20.h,
+        ),
+        Expanded(
+            child: Text(
+          controller.data['description'],
+          style: TextStyles.w40012grey(context),
+        )).animate().fade(duration: 700.ms).slideY(begin: 0.1)
+      ],
+    ),
   );
 }
 
@@ -169,12 +109,12 @@ Widget products(
               itemCount: controller.products.length,
               itemBuilder: (BuildContext context, int index) {
                 return ProjectDesign(
-                  projectTitle: controller.products[index]['project_name'],
-                  projectDescription: controller.products[index]
-                      ['project_description'],
-                  projectLink: controller.products[index]['link'],
-                  project_id: controller.products[index]['id'],
-                  user_id: controller.products[index]['user_id'],
+                  projectTitle: controller.products[index].projectName!,
+                  projectDescription:
+                      controller.products[index].projectDescription!,
+                  projectLink: controller.products[index].link!,
+                  project_id: controller.products[index].id!,
+                  user_id: controller.products[index].userId!,
                 );
               })
         ],
@@ -260,7 +200,8 @@ Widget tasks(BuildContext context, MyAccountCompanyControllerImpl controller) {
   );
 }
 
-Widget contactInfo(BuildContext context) {
+Widget contactInfo(
+    BuildContext context, MyAccountCompanyControllerImpl controller) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
     child: Column(
@@ -280,7 +221,7 @@ Widget contactInfo(BuildContext context) {
               width: 10.w,
             ),
             Text(
-              "+963996541809",
+              "controller.data['phone']",
               style: TextStyles.w50013(context),
             )
           ],
@@ -310,7 +251,7 @@ Widget contactInfo(BuildContext context) {
           ),
           Expanded(
             child: Text(
-              "Syria",
+              controller.data['location'],
               style: TextStyles.w50013(context),
             ),
           ),

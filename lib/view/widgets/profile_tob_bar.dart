@@ -66,12 +66,12 @@ class TobBar extends StatelessWidget {
               ),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(60),
-                  child: Image.network(
+                  child:image!=""? Image.network(
                     image[0] == "h" ? image : AppLinks.IP + "/" + image,
                     fit: BoxFit.cover,
                     width: 110,
                     height: 110,
-                  )),
+                  ):Container()),
             ),
           ],
         ),

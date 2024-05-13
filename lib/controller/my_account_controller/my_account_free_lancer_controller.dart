@@ -7,6 +7,7 @@ import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/freelancer/freelancer_profile.dart';
 import 'package:joblance/data/remote/profile_back.dart';
@@ -24,13 +25,15 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   Myservices myServices = Get.find();
   FreelancerAccount freelancerAccount = new FreelancerAccount(Get.put(Crud()));
   late TextEditingController skill;
-  late String token, id;
+  late String token, id, language;
   AddProjectOrProductBack addProjectOrProductBack =
       new AddProjectOrProductBack(Get.put(Crud()));
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   Map data = {};
-  List skills = [], projects = [];
+
+  List skills = [];
   List userSkills = [];
+  List<ProjectOrProductModel> projects = [];
   List<Widget> tabs = [
     Tab(
       text: "about".tr,
@@ -49,6 +52,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     update();
     token = myServices.sharedPreferences.getString("token")!;
     id = myServices.sharedPreferences.getInt("id")!.toString();
+    language = myServices.sharedPreferences.getString("lang")!;
     getUserData();
     getSkills();
     getProjects();
@@ -58,21 +62,39 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     super.onInit();
   }
 
+  Future<void> refreshPage() async {
+    statusRequest = StatusRequest.loading;
+    update();
+    projects.clear();
+    data.clear();
+    userSkills.clear();
+    update();
+    getUserData();
+    getProjects();
+    getSkills();
+  }
+
   getProjects() async {
     var response =
         await addProjectOrProductBack.getData({}, AppLinks.project, token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        projects.addAll(response['data']);
-        print(projects.length);
+        for (int i = 0; i < response['data'].length; i++) {
+          projects.add(ProjectOrProductModel(
+              id: response['data'][i]['id'],
+              projectName: response['data'][i]['project_name'],
+              projectDescription: response['data'][i]['project_description'],
+              link: response['data'][i]['link'],
+              userId: response['data'][i]['user_id']));
+        }
       }
     }
     update();
   }
 
   getUserData() async {
-    var response = await profileBack.getData(token, id);
+    var response = await profileBack.getData(token, id, language);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
