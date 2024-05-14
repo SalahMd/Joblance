@@ -121,8 +121,8 @@ class Crud {
       var file) async {
     try {
       var response;
-      if (isFile && fileName != null) {
-        String name = fileName;
+      if (isFile && file != null) {
+        String name = fileName==null?"image":fileName;
         var request = http.MultipartRequest('PUT', Uri.parse(linkurl));
 
         for (int i = 0; i < file.length; i++) {
