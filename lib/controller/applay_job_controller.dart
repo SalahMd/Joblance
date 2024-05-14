@@ -20,6 +20,9 @@ class ApplayJobControllerImpl extends ApplayJobController {
   late TextEditingController lastName;
   late TextEditingController email;
   late TextEditingController phoneNumber;
+  late TextEditingController salary;
+  late TextEditingController yearsOfExperience;
+  String country = "";
   late TextEditingController coverLetter;
   var CV;
   ApplayJobBack applayJobBack = new ApplayJobBack(Get.put(Crud()));
@@ -37,6 +40,8 @@ class ApplayJobControllerImpl extends ApplayJobController {
     email = TextEditingController();
     phoneNumber = TextEditingController();
     coverLetter = TextEditingController();
+    yearsOfExperience = TextEditingController();
+    salary = TextEditingController();
     super.onInit();
   }
 
@@ -46,6 +51,8 @@ class ApplayJobControllerImpl extends ApplayJobController {
     email.dispose();
     phoneNumber.dispose();
     coverLetter.dispose();
+    yearsOfExperience.dispose();
+    salary.dispose();
     super.dispose();
   }
 

@@ -261,5 +261,7 @@ Map<String, String> english = {
   "couldn'topenlink":"The link is not valid",
   "yourproducthasbeenadded":"Your product has been added",
   "yourprojecthasbeenadded":"You project has been added",
-  "addproduct":"Add product"
+  "addproduct":"Add product",
+  "yearsofexperience":"Years of experience",
+  "expectedsalary":"Expected salary"
 };

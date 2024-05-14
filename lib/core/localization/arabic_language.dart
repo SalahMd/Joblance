@@ -258,5 +258,7 @@ Map<String, String> arabic = {
   "couldn'tdeleteyourskill":"لم يتم حذف المهارة",
   "couldn'topenlink":"هناك خطأ في الرابط",
   "addproduct":"إضافة منتج",
+  "expectedsalary":"الراتب المتوقع",
+  "yearsofexperience":"سنوات الخبرة",
   "yourproducthasbeenadded":"تم إضافة المنتج بنجاح","yourprojecthasbeenadded":"تم إضافة المشروع بنجاح"
 };

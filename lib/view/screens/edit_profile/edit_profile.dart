@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/settings_controller/edit_profile_controller.dart';
@@ -50,32 +53,52 @@ class EditProfile extends StatelessWidget {
                     SizedBox(
                       height: 30.h,
                     ),
-                    Stack(
-                      children: [
-                        Container(
-                          width: 140,
-                          height: 140,
-                          decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(70)),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(79),
-                              child: Image.network(
-                                controller.image![0] != "h"
-                                    ? AppLinks.IP + "/" + controller.image!
-                                    : controller.image!,
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                        PositionedDirectional(
-                            bottom: 5.h,
-                            end: 5.w,
-                            child: Icon(
-                              Icons.edit_outlined,
-                              size: 30.sp,
-                              color: LightAppColors.primaryColor,
-                            ))
-                      ],
+                    GestureDetector(
+                      onTap: () {
+                        controller.pickImage();
+                      },
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: 140,
+                            height: 140,
+                            decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(70)),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(79),
+                                child: controller.newImage == null
+                                    ? Image.network(
+                                        controller.image![0] != "h"
+                                            ? AppLinks.IP +
+                                                "/" +
+                                                controller.image!
+                                            : controller.image!,
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.file(
+                                        File(controller.newImage.path),
+                                        fit: BoxFit.cover,
+                                      )),
+                          ),
+                          PositionedDirectional(
+                              bottom: 5.h,
+                              end: 5.w,
+                              child: Container(
+                                width: 32,
+                                height: 32,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Icon(
+                                  Icons.edit_outlined,
+                                  size: 18.sp,
+                                  color: LightAppColors.primaryColor,
+                                ),
+                              ))
+                        ],
+                      ),
                     ),
                     SizedBox(height: 30.h),
                     ProfileTextField(controller: controller),

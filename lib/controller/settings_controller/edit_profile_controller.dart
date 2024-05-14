@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
@@ -11,6 +13,7 @@ abstract class EditProfileController extends GetxController {
   getUserInfo();
   initializeControllers();
   updateCountry(BuildContext context);
+  pickImage();
   updateDropDownValue(String? newValue, String changingElement);
 }
 
@@ -22,6 +25,7 @@ class EditProfileControllerImpl extends EditProfileController {
   late TextEditingController description;
   late TextEditingController bio;
   String? image;
+  var newImage;
   EditProfileBack editProfileBack = new EditProfileBack(Get.put(Crud()));
   StatusRequest? statusRequest;
   bool openToWork = false;
@@ -107,6 +111,20 @@ class EditProfileControllerImpl extends EditProfileController {
     super.dispose();
   }
 
+  @override
+  Future<void> pickImage() async {
+    final picker = ImagePicker();
+    XFile? pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      print(pickedImage.path);
+     newImage= File(pickedImage.path);
+    } else {
+      print("Image picking canceled");
+    }
+
+    update();
+  }
+
   getUserInfo() async {
     statusRequest = StatusRequest.loading;
     var response = await editProfileBack.getData(token, id, lang);
@@ -125,7 +143,7 @@ class EditProfileControllerImpl extends EditProfileController {
       lastName.text = data['last_name'];
       bio.text = data['bio'];
       openToWork = data['open_to_work'] == 1 ? true : false;
-    //  studyCase = data['study_case_id'].toString();
+      studyCase = data['study_case_id'].toString();
     } else {
       companyName.text = data['name'];
       description.text = data['description'];
@@ -133,7 +151,7 @@ class EditProfileControllerImpl extends EditProfileController {
     country = data['location'];
     image = data['image'];
     phoneNumber.text = data['phone_number'];
-  //  major = data['major_id'].toString();
+    major = data['major_id'].toString();
     update();
   }
 

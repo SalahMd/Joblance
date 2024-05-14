@@ -383,3 +383,119 @@ Future<bool> popUp(
   ));
   return Future.value(true);
 }
+Future<bool> applicantsFilter(
+  BuildContext context,
+) {
+  Get.bottomSheet(Container(
+    width: Dimensions.screenWidth(context),
+    decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
+        ),
+        color: Theme.of(context).colorScheme.primaryContainer),
+    child: SingleChildScrollView(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                width: 60.w,
+                height: 8.h,
+                margin: const EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
+                    color: LightAppColors.greyColor,
+                    borderRadius: BorderRadius.circular(50)),
+              ),
+            )),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 12.w),
+          child: Text(
+            "filter".tr,
+            style: TextStyles.bold17(context),
+          ),
+        ),
+        SizedBox(height: 20.h),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(
+            horizontal: 10.w,
+          ),
+          child: Text(
+            "yearsofexperience".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "1 year".tr,
+          "2 years".tr,
+          "3 years".tr,
+          "4 and above".tr
+        ]),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+          child: Text(
+            "expectedsalary".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "hightolow".tr,
+          "lowtohigh".tr,
+        ]),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+          child: Text(
+            "gender".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "male".tr,
+          "female".tr,
+        ]),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+          child: Text(
+            "gender".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "male".tr,
+          "female".tr,
+        ]),
+        Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+          child: Text(
+            "date".tr,
+            style: TextStyles.w50015(context),
+          ),
+        ),
+        ChipsChoices(options: [
+          "new".tr,
+          "old".tr,
+        ]),
+        InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Container(
+            width: Dimensions.screenWidth(context),
+            height: 40.h,
+            margin: const EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+            alignment: Alignment.center,
+            decoration: AppButtons.buttonDecoration,
+            child: Text(
+              "confirm".tr,
+              style: TextStyles.w50016White(context),
+            ),
+          ),
+        ),
+      ]),
+    ),
+  ));
+  return Future.value(true);
+}

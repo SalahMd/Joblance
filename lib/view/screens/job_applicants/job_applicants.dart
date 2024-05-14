@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/view/screens/job_applicants/applicants_top_bar.dart';
 import 'package:joblance/view/widgets/job_applicant_design.dart';
 
@@ -18,6 +22,28 @@ class JobApplicants extends StatelessWidget {
           Padding(
             padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
             child: JobApplicantsTobBar(),
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.symmetric(
+                horizontal: 15.w, vertical: 10.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "filter".tr,
+                  style: TextStyles.w50013(context),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    applicantsFilter(context);
+                  },
+                  child: Icon(
+                    Icons.filter_alt_outlined,
+                    size: 20.sp,
+                  ),
+                )
+              ],
+            ),
           ),
           JobApplicantDesign(),
           JobApplicantDesign(),

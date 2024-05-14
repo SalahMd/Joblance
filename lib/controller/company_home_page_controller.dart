@@ -6,7 +6,11 @@ import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/categorie_model.dart';
 import 'package:joblance/data/remote/company/company_home_page_back.dart';
 
-abstract class CompanyHomePageController extends GetxController {}
+abstract class CompanyHomePageController extends GetxController {
+  getCompanyInfo();
+  getMajors();
+  getFreelancers();
+}
 
 class CompanyHomePageControllerImpl extends CompanyHomePageController {
   StatusRequest? statusRequest;

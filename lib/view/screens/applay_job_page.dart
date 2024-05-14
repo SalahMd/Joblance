@@ -101,6 +101,38 @@ class ApplayJobPage extends StatelessWidget {
                   isBorder: true,
                   isLabel: false,
                 ),
+                Row(
+                  children: [
+                    Expanded(
+                        child: Customtextformfiled(
+                      hintText: "expectedsalary".tr,
+                      labelText: "",
+                      iconData: null,
+                      controller: controller.salary,
+                      min: 1,
+                      max: 10,
+                      isNumber: true,
+                      isPassword: false,
+                      isBorder: true,
+                      isLabel: false,
+                      isFilled: true,
+                    )),
+                    Expanded(
+                        child: Customtextformfiled(
+                      hintText: "yearsofexperience".tr,
+                      labelText: "",
+                      iconData: null,
+                      controller: controller.yearsOfExperience,
+                      min: 0,
+                      max: 3,
+                      isNumber: true,
+                      isPassword: false,
+                      isBorder: true,
+                      isLabel: false,
+                      isFilled: true,
+                    ))
+                  ],
+                ),
                 Customtextformfiled(
                   hintText: "coverletter".tr + " " + "optional".tr,
                   labelText: "",

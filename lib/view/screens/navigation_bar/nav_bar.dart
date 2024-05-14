@@ -111,7 +111,7 @@ class ButtomBar extends StatelessWidget {
                     Text(
                       "profile".tr,
                       style: TextStyle(
-                          fontSize: 10.sp,
+                          fontSize: 9.sp,
                           color: controllerImp.currentPage == 0
                               ? LightAppColors.primaryColor
                               : Colors.white),
@@ -143,7 +143,7 @@ class ButtomBar extends StatelessWidget {
                     Text(
                       "home".tr,
                       style: TextStyle(
-                          fontSize: 10.sp,
+                          fontSize: 9.sp,
                           color: controllerImp.currentPage == 1
                               ? LightAppColors.primaryColor
                               : Colors.white),
@@ -179,7 +179,7 @@ class ButtomBar extends StatelessWidget {
                     Text(
                       "message".tr,
                       style: TextStyle(
-                          fontSize: 10.sp,
+                          fontSize: 9.sp,
                           color: controllerImp.currentPage == 2
                               ? LightAppColors.primaryColor
                               : Colors.white),
@@ -212,7 +212,7 @@ class ButtomBar extends StatelessWidget {
                     Text(
                       "settings".tr,
                       style: TextStyle(
-                          fontSize: 10.sp,
+                          fontSize: 9.sp,
                           color: controllerImp.currentPage == 3
                               ? LightAppColors.primaryColor
                               : Colors.white),
