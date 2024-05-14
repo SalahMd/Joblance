@@ -19,7 +19,7 @@ class EditProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(EditProfileControllerImpl());
+    Get.put(EditProfileControllerImpl(context: context));
     return Scaffold(
       body: GetBuilder<EditProfileControllerImpl>(
         builder: (controller) => SingleChildScrollView(
