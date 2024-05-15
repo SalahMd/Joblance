@@ -13,13 +13,11 @@ import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/sounds.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
-import 'package:joblance/core/laravel_echo/laravel_echo.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/chat_model.dart';
 import 'package:joblance/data/model/message_model.dart';
 import 'package:joblance/data/remote/chat/messages_back.dart';
 import 'package:joblance/view/screens/chat/confirm_sending_file.dart';
-import 'package:laravel_flutter_pusher/laravel_flutter_pusher.dart';
 import 'package:soundpool/soundpool.dart';
 
 abstract class TextingPageController extends GetxController {
@@ -39,7 +37,6 @@ class TextingPageControllerImpl extends TextingPageController {
   late TextEditingController message;
   Myservices myServices = Get.find();
   StatusRequest? statusRequest;
-   late LaravelFlutterPusher pusher;
   FilePickerResult? result;
   MessagesBack sendMessageBack = new MessagesBack(Get.put(Crud()));
   bool showEmojes = false, isMaxPosition = false, isDelete = false;
@@ -54,17 +51,13 @@ class TextingPageControllerImpl extends TextingPageController {
   });
   @override
   void onInit() async {
-    print(PusherConfig.hostEndPoint);
     message = new TextEditingController();
     token = myServices.sharedPreferences.getString("token")!;
     soundId =
         await rootBundle.load(AppSounds.messageSent).then((ByteData soundData) {
       return pool.load(soundData);
     });
-    addListener(() async {
-      listenChatChannel();
-     
-    });
+   
 
     statusRequest = StatusRequest.loading;
     reciverId = myServices.sharedPreferences.getInt('id').toString();
@@ -121,34 +114,6 @@ class TextingPageControllerImpl extends TextingPageController {
     }
 
     update();
-  }
-
-  void listenChatChannel() {
-    var options = PusherOptions(
-      auth: PusherAuth(
-        PusherConfig.hostAuthEndPoint,
-        headers: {'Authorization': "Bearer $token"},
-      ),
-      host: PusherConfig.hostEndPoint,
-      port: PusherConfig.port,
-      encrypted: true,
-      cluster: PusherConfig.cluster,
-    );
-    LaravelEcho.init(token: token);
-    LaravelEcho.instance
-        .private("Messenger.$id")
-        .listen("MessageSent", (e) => print(e));
-
-    pusher = LaravelFlutterPusher("21fe88719842ee7606a5", options,
-        onError: (ConnectionError) {
-      print("Error: $ConnectionError");
-    }, enableLogging: true);
-    pusher.connect();
-
-    pusher.subscribe('Messenger.$id').bind("App\\Events\\MessageSent",
-        (event) => print("My event/////////////////////" + event.toString()));
-
-    createEcho(id!, token, pusher, options);
   }
 
   readMessages() async {
@@ -308,7 +273,6 @@ class TextingPageControllerImpl extends TextingPageController {
     message.dispose();
     // pusher.disconnect();
     // pusher.unsubscribe("Meesenger.$id");
-    await pusher.disconnect();
     focusNode.dispose();
     // pusher.unsubscribe("Messenger.${id}");
     // pusher.disconnect();

@@ -12,7 +12,7 @@ class TabBarWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageView(children: [
+    return TabBarView(children: [
       about(context, controller),
       projects(context, controller),
       skills(context, controller),

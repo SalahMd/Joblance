@@ -632,23 +632,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
-  laravel_echo:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: master
-      resolved-ref: "80c5b94e5de575220b038de21387d6bcb47feb3c"
-      url: "https://github.com/kakajansh/echo"
-    source: git
-    version: "1.0.0-beta.1"
-  laravel_flutter_pusher:
-    dependency: "direct main"
-    description:
-      name: laravel_flutter_pusher
-      sha256: a83edb50e3c8b11f1e8661daef8d53fa48fe5cc7dbbff2bcc959115dbef78df6
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.4"
   leak_tracker:
     dependency: transitive
     description:
@@ -833,22 +816,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
-  pusher_channels_flutter:
-    dependency: "direct main"
-    description:
-      name: pusher_channels_flutter
-      sha256: "1e4e1878f4c600b32adec898d9974355fcdbb08ac3bd1b3fd4fb1f8c3f732e6d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.5"
-  pusher_client_fixed:
-    dependency: "direct main"
-    description:
-      name: pusher_client_fixed
-      sha256: aa9bd5b88054a88f18ac3cff6a32b9f82f7cb47f3e6ab3797602cf9034167bad
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.2+3"
   recase:
     dependency: transitive
     description:
@@ -1142,30 +1109,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.1"
-  web_socket_channel:
-    dependency: "direct main"
-    description:
-      name: web_socket_channel
-      sha256: "58c6666b342a38816b2e7e50ed0f1e261959630becd4c879c4f26bfa14aa5a42"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.4.5"
-  web_socket_client:
-    dependency: "direct main"
-    description:
-      name: web_socket_client
-      sha256: de52c9b3acf1f9fafb2951aa2764dd67c7d99d70be70c7c1fd791fae8f632f98
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.0"
-  websocket_universal:
-    dependency: "direct main"
-    description:
-      name: websocket_universal
-      sha256: "8e50d8238a26147fed64512e7af200ef9ab73fab51ab56010f7a54f94a0bb480"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.5"
   widget_event:
     dependency: transitive
     description:

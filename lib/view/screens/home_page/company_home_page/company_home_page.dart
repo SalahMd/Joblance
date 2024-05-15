@@ -15,7 +15,6 @@ class CompanyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     Get.put(CompanyHomePageControllerImpl());
     return Scaffold(
       body: GetBuilder<CompanyHomePageControllerImpl>(
@@ -38,8 +37,7 @@ class CompanyHomePage extends StatelessWidget {
                                 bottom: 10.h,
                                 end: 15.w),
                             child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   "categories".tr,
@@ -68,7 +66,10 @@ class CompanyHomePage extends StatelessWidget {
                         physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           return FreeLancerDesign(
-                              name: controller.freelancers[index]['first_name']+controller.freelancers[index]['last_name'],
+                              name: controller.freelancers[index]
+                                      ['first_name'] +
+                                  " " +
+                                  controller.freelancers[index]['last_name'],
                               bio: controller.freelancers[index]['bio'],
                               location: controller.freelancers[index]
                                   ['location'],
