@@ -14,7 +14,7 @@ class JobInfoControllerImpl extends JobInfoController {
   Myservices myServices = Get.find();
   StatusRequest? statusRequest;
   final int id;
-  JobInfoBack jobInfoBack = new JobInfoBack(Get.put(Crud()));
+  JobBack jobInfoBack = new JobBack(Get.put(Crud()));
   late String roleId;
   late String token;
 
@@ -41,10 +41,8 @@ class JobInfoControllerImpl extends JobInfoController {
     statusRequest = StatusRequest.loading;
     var response = await jobInfoBack.getData(token, id.toString());
     statusRequest = handelingData(response);
-      if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
-        
-      }
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {}
     }
   }
 }

@@ -25,7 +25,7 @@ class TaskPage extends StatelessWidget {
                 budget: "200-500",
                 duration: "60 days"),
             SizedBox(
-              height: 10.h,
+              height: 5.h,
             ),
             AbouTask(),
             Requirements(),

@@ -263,5 +263,7 @@ Map<String, String> english = {
   "yourprojecthasbeenadded":"You project has been added",
   "addproduct":"Add product",
   "yearsofexperience":"Years of experience",
-  "expectedsalary":"Expected salary"
+  "expectedsalary":"Expected salary",
+  "showinimportantjobs":"Show in important jobs",
+  "thisallowsyoutoaddyourjobtoimportantjobsitcoastsonly5":"This allows you to add your job to important jobs\nit coasts only 5\$"
 };

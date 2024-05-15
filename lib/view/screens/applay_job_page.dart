@@ -43,6 +43,8 @@ class ApplayJobPage extends StatelessWidget {
                   ),
                 )),
                 SizedBox(height: 30.h),
+                Text("fillyourofferinformation".tr,style: TextStyles.w40013grey(context),),
+                SizedBox(height:10.h),
                 Row(
                   children: [
                     Expanded(
@@ -123,7 +125,7 @@ class ApplayJobPage extends StatelessWidget {
                       labelText: "",
                       iconData: null,
                       controller: controller.yearsOfExperience,
-                      min: 0,
+                      min: 1,
                       max: 3,
                       isNumber: true,
                       isPassword: false,

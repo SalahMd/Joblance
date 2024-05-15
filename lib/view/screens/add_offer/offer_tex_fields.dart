@@ -106,6 +106,34 @@ class OfferTextFields extends StatelessWidget {
             Expanded(
                 flex: 3,
                 child: Customtextformfiled(
+                  hintText: "yearsofexperience".tr,
+                  labelText: "",
+                  iconData: null,
+                  controller: controller.duration,
+                  min: 1,
+                  max: 3,
+                  isNumber: true,
+                  isPassword: false,
+                  isBorder: true,
+                  isLabel: false,
+                  isFilled: true,
+                )),
+            Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.only(top: 12.h, start: 10.w),
+                  child: Text(
+                    "years".tr,
+                    style: TextStyles.w50014(context),
+                  ),
+                ))
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+                flex: 3,
+                child: Customtextformfiled(
                   hintText: "excutingtime".tr,
                   labelText: "",
                   iconData: null,
