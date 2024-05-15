@@ -12,7 +12,8 @@ class TabBarWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TabBarView(children: [
+    return TabBarView(
+      children: [
       about(context, controller),
       projects(context, controller),
       skills(context, controller),
@@ -21,7 +22,7 @@ class TabBarWidgets extends StatelessWidget {
   }
 }
 
-Widget about(context,FreelancerProfileControllerImpl controller) {
+Widget about(context, FreelancerProfileControllerImpl controller) {
   return SingleChildScrollView(
     child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
@@ -33,20 +34,21 @@ Widget about(context,FreelancerProfileControllerImpl controller) {
           SizedBox(height: 20.h),
           Container(
               padding: EdgeInsetsDirectional.only(bottom: 5.h, top: 10.h),
-              child:
-                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(
-                  "bio".tr,
-                  style: TextStyles.w50013(context),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Text(
-                  controller.data['bio'],
-                  style: TextStyles.w40012grey(context),
-                ),
-              ])),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "bio".tr,
+                      style: TextStyles.w50013(context),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
+                      controller.data['bio'],
+                      style: TextStyles.w40012grey(context),
+                    ),
+                  ])),
           MyDivider(
             height: 12,
           ),
@@ -90,7 +92,7 @@ Widget about(context,FreelancerProfileControllerImpl controller) {
   );
 }
 
-Widget skills(context,FreelancerProfileControllerImpl controller) {
+Widget skills(context, FreelancerProfileControllerImpl controller) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
     child: Column(

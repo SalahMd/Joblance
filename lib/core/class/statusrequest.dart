@@ -4,5 +4,4 @@ enum StatusRequest{
   failure,
   serverError,
   offline,
-  locationError,
 }

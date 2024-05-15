@@ -19,7 +19,8 @@ class PayPalCheck extends StatelessWidget {
                 sandboxMode: true,
                 clientId:
                     "Af6sEWsXmy9h8Z-ymBz_fSBIrwWHZbhC7DiEH5_8S0DrQQC2Xz8kRVB5ydBYCta21L0EW3WYDuf7O3mC",
-                secretKey: "EBWzTITppe3TgVbPSSQBxIG7Emsc6uD9N-tTEVYe82g4-GaZJUDmVC2N0e5eX8HqYFJ5Fe8ozfwqLr1q",
+                secretKey:
+                    "EBWzTITppe3TgVbPSSQBxIG7Emsc6uD9N-tTEVYe82g4-GaZJUDmVC2N0e5eX8HqYFJ5Fe8ozfwqLr1q",
                 returnURL: "success.snippetcoder.com",
                 cancelURL: "cancel.snippetcoder.com",
                 transactions: const [
@@ -34,10 +35,9 @@ class PayPalCheck extends StatelessWidget {
                       }
                     },
                     "description": "The payment transaction description.",
-                    // "payment_options": {
-                    //   "allowed_payment_method":
-                    //       "INSTANT_FUNDING_SOURCE"
-                    // },
+                    "payment_options": {
+                      "allowed_payment_method": "INSTANT_FUNDING_SOURCE"
+                    },
                     "item_list": {
                       "items": [
                         {
@@ -54,17 +54,17 @@ class PayPalCheck extends StatelessWidget {
                         }
                       ],
 
-                      // shipping address is not required though
-                      //   "shipping_address": {
-                      //     "recipient_name": "Raman Singh",
-                      //     "line1": "Delhi",
-                      //     "line2": "",
-                      //     "city": "Delhi",
-                      //     "country_code": "IN",
-                      //     "postal_code": "11001",
-                      //     "phone": "+00000000",
-                      //     "state": "Texas"
-                      //  },
+                      //   shipping address is not required though
+                      "shipping_address": {
+                        "recipient_name": "Raman Singh",
+                        "line1": "Delhi",
+                        "line2": "",
+                        "city": "Delhi",
+                        "country_code": "IN",
+                        "postal_code": "11001",
+                        "phone": "+00000000",
+                        "state": "Texas"
+                      },
                     }
                   }
                 ],
@@ -72,6 +72,7 @@ class PayPalCheck extends StatelessWidget {
                 onSuccess: (Map params) async {
                   print("onSuccess: $params");
                 },
+                
                 onError: (error) {
                   print("onError: $error");
                   Navigator.pop(context);
