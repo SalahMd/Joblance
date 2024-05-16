@@ -5,14 +5,13 @@ class CompanyAccount {
   Crud crud;
   CompanyAccount(this.crud);
 
-  getData(var token, String id,String lang) async {
-    var response = await crud.requestDataWithHeaders(
-        AppLinks.profile + id+"?lang="+lang,
-       {},
+  getData(var token, String id, String lang) async {
+    var response = await crud.postAndGetData(
+        AppLinks.profile + id + "?lang=" + lang,
+        {},
         {
           'Authorization': 'Bearer $token',
         },
-        
         null,
         false,
         false,

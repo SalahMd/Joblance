@@ -6,7 +6,7 @@ class JobBack {
   JobBack(this.crud);
 
   getData(var token, String id) async {
-    var response = await crud.requestDataWithHeaders(
+    var response = await crud.postAndGetData(
         AppLinks.jobInfo + id,
         {},
         {
@@ -18,8 +18,9 @@ class JobBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
+
   postData(var token, Map data) async {
-    var response = await crud.requestDataWithHeaders(
+    var response = await crud.postAndGetData(
         AppLinks.jobInfo,
         data,
         {
@@ -31,8 +32,9 @@ class JobBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
-  updateData(var token, String id,Map data) async {
-    var response = await crud.requestDataWithHeaders(
+
+  updateData(var token, String id, Map data) async {
+    var response = await crud.postAndGetData(
         AppLinks.jobInfo + id,
         data,
         {

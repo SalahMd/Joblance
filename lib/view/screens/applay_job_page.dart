@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/applay_job_controller.dart';
@@ -43,8 +44,15 @@ class ApplayJobPage extends StatelessWidget {
                   ),
                 )),
                 SizedBox(height: 30.h),
-                Text("fillyourofferinformation".tr,style: TextStyles.w40013grey(context),),
-                SizedBox(height:10.h),
+                Padding(
+                  padding: EdgeInsetsDirectional.only(start: 10.w),
+                  child: Text(
+                    "fillyourofferinformation".tr,
+                    maxLines: 2,
+                    style: TextStyles.w50015grey(context),
+                  ),
+                ),
+                SizedBox(height: 10.h),
                 Row(
                   children: [
                     Expanded(

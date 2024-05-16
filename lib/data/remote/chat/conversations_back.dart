@@ -7,7 +7,7 @@ class Conversations {
   getConversations(
     var token,
   ) async {
-    var response = await crud.requestDataWithHeaders(
+    var response = await crud.postAndGetData(
         AppLinks.getConversations,
         {},
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},

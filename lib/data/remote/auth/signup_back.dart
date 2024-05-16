@@ -7,17 +7,17 @@ class SignUpBack {
   Crud crud;
   SignUpBack(this.crud);
 
-  signUp(Map <String ,String>data, File image) async {
-    var response =
-        await crud.requestData(AppLinks.signUp, data, true, true, image);
+  signUp(Map<String, String> data, File image) async {
+    var response = await crud.postAndGetData(
+        AppLinks.signUp, data, {}, "image", true, true, image);
     return response.fold((l) => l, (r) => r);
   }
 
   googleSignUp(
     Map data,
   ) async {
-    var response =
-        await crud.requestData(AppLinks.googleSignup, data, true, false, null);
+    var response = await crud.postAndGetData(
+        AppLinks.googleSignup, data, {}, null, true, false, null);
     return response.fold((l) => l, (r) => r);
   }
 }

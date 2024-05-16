@@ -19,7 +19,7 @@ class Filters extends StatelessWidget {
         children: [
           Text(
             "filter".tr,
-            style: TextStyles.w50017(context),
+            style: TextStyles.w50015(context),
           ),
           IconButton(
               onPressed: () {

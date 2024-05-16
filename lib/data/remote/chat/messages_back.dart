@@ -5,7 +5,7 @@ class MessagesBack {
   Crud crud;
   MessagesBack(this.crud);
   sendMessage(var token, Map data) async {
-    var response = await crud.requestDataWithHeaders(
+    var response = await crud.postAndGetData(
         AppLinks.sendMessage,
         data,
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},
@@ -15,8 +15,9 @@ class MessagesBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
-  sendFile(var token, Map data,var image,String fileName) async {
-    var response = await crud.requestDataWithHeaders(
+
+  sendFile(var token, Map data, var image, String fileName) async {
+    var response = await crud.postAndGetData(
         AppLinks.sendMessage,
         data,
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},
@@ -28,12 +29,11 @@ class MessagesBack {
   }
 
   getMessages(var token, String id) async {
-    var response = await crud.requestDataWithHeaders(
+    var response = await crud.postAndGetData(
         AppLinks.getMessages + id + "/messages",
         {},
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},
-                null,
-
+        null,
         false,
         false,
         null);
@@ -44,15 +44,19 @@ class MessagesBack {
     var response = await crud.putData(
         AppLinks.readMessages + "/" + id + "/read",
         {},
-        {'Authorization': 'Bearer $token', 'accept': 'application/json'},null,false,null);
+        {'Authorization': 'Bearer $token', 'accept': 'application/json'},
+        null,
+        false,
+        null);
     return response.fold((l) => l, (r) => r);
   }
-  deleteMessage(var token, String id,String target)async{
-      var response = await crud.deleteData(
-        AppLinks.deleteMessage + id + "/delete",
-        {"target" :target},
-        {'Authorization': 'Bearer $token', 'accept': 'application/json'},
-          );
+
+  deleteMessage(var token, String id, String target) async {
+    var response = await crud.deleteData(
+      AppLinks.deleteMessage + id + "/delete",
+      {"target": target},
+      {'Authorization': 'Bearer $token', 'accept': 'application/json'},
+    );
     return response.fold((l) => l, (r) => r);
   }
 }

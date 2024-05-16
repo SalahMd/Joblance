@@ -5,22 +5,14 @@ class LoginBack {
   Crud crud;
   LoginBack(this.crud);
   login(Map data) async {
-    var response = await crud.requestData(
-        AppLinks.logIn,
-        data,
-        true,
-        false,
-        null);
+    var response = await crud.postAndGetData(
+        AppLinks.logIn, data, {}, null, true, false, null);
     return response.fold((l) => l, (r) => r);
   }
 
   googleLogin(Map data) async {
-    var response = await crud.requestData(
-        AppLinks.googleSignin,
-        data,
-        true,
-        false,
-        null);
+    var response = await crud.postAndGetData(
+        AppLinks.googleSignin, data, {}, null, true, false, null);
     return response.fold((l) => l, (r) => r);
   }
 }

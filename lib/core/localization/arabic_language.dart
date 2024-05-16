@@ -260,6 +260,7 @@ Map<String, String> arabic = {
   "addproduct":"إضافة منتج",
   "expectedsalary":"الراتب المتوقع",
   "yearsofexperience":"سنوات الخبرة",
+  "fillyourofferinformation":"قم بإضافة معلوماتك للتقدم للعمل",
   "yourproducthasbeenadded":"تم إضافة المنتج بنجاح","yourprojecthasbeenadded":"تم إضافة المشروع بنجاح",
   "showinimportantjobs":"إظهار في قائمة الفرص المهمة",
   "thisallowsyoutoaddyourjobtoimportantjobsitcoastsonly5":"يقوم هذا الخيار بإضافة فرصة العمل إلى قائمة الفرص المهمة\ىيكلف فقط 5\$"

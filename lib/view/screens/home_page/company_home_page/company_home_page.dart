@@ -15,72 +15,78 @@ class CompanyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CompanyHomePageControllerImpl());
-    return Scaffold(
-      body: GetBuilder<CompanyHomePageControllerImpl>(
-        builder: (controller) => SingleChildScrollView(
-          child: controller.statusRequest == StatusRequest.loading
-              ? ShimmerCompanyHomePage()
-              : SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      TopBar(
-                        name: controller.name,
-                        image: controller.image,
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional.centerStart,
-                        child: Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                start: 15.w,
-                                top: 10.h,
-                                bottom: 10.h,
-                                end: 15.w),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "categories".tr,
-                                  style: TextStyles.bold17(context),
-                                ),
-                              ],
-                            )),
-                      ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                      Categories(
-                        controller: controller,
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional.centerStart,
-                        child: Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                start: 15.w, top: 10.h, bottom: 10.h),
-                            child: Text(
-                              "popularfreelancers".tr,
-                              style: TextStyles.bold17(context),
-                            )),
-                      ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                      ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        itemCount: controller.freelancers.length,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return FreeLancerDesign(
-                              name: controller.freelancers[index]
-                                      ['first_name'] +
-                                  " " +
-                                  controller.freelancers[index]['last_name'],
-                              bio: controller.freelancers[index]['bio'],
-                              location: controller.freelancers[index]
-                                  ['location'],
-                              image: controller.freelancers[index]['image'],
-                              major: controller.freelancers[index]['major'],
-                              id: controller.freelancers[index]['id']);
-                        },
-                      )
-                    ],
+    var controller = Get.put(CompanyHomePageControllerImpl());
+    return RefreshIndicator(
+      onRefresh: () async {
+        controller.refreshPage();
+      },
+      child: Scaffold(
+        body: GetBuilder<CompanyHomePageControllerImpl>(
+          builder: (controller) => SingleChildScrollView(
+            child: controller.statusRequest == StatusRequest.loading
+                ? ShimmerCompanyHomePage()
+                : SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        TopBar(
+                          name: controller.name,
+                          image: controller.image,
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Padding(
+                              padding: EdgeInsetsDirectional.only(
+                                  start: 15.w,
+                                  top: 10.h,
+                                  bottom: 10.h,
+                                  end: 15.w),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "categories".tr,
+                                    style: TextStyles.bold17(context),
+                                  ),
+                                ],
+                              )),
+                        ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
+                        Categories(
+                          controller: controller,
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Padding(
+                              padding: EdgeInsetsDirectional.only(
+                                  start: 15.w, top: 10.h, bottom: 10.h),
+                              child: Text(
+                                "popularfreelancers".tr,
+                                style: TextStyles.bold17(context),
+                              )),
+                        ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
+                        ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          itemCount: controller.freelancers.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return FreeLancerDesign(
+                                name: controller.freelancers[index]
+                                        ['first_name'] +
+                                    " " +
+                                    controller.freelancers[index]['last_name'],
+                                bio: controller.freelancers[index]['bio'],
+                                location: controller.freelancers[index]
+                                    ['location'],
+                                image: controller.freelancers[index]['image'],
+                                major: controller.freelancers[index]['major'],
+                                id: controller.freelancers[index]['id']);
+                          },
+                        )
+                      ],
+                    ),
                   ),
-                ),
+          ),
         ),
       ),
     );

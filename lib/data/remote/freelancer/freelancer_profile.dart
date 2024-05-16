@@ -5,12 +5,12 @@ class FreelancerAccount {
   Crud crud;
   FreelancerAccount(this.crud);
 
-  getSkills(String link, var token,String id) async {
-    var response = await crud.requestDataWithHeaders(
+  getSkills(String link, var token, String id) async {
+    var response = await crud.postAndGetData(
         //"${AppLinks.skills}?search=$skill",
         link,
         {
-          "user_id":id,
+          "user_id": id,
         },
         {
           'Authorization': 'Bearer $token',
@@ -23,7 +23,7 @@ class FreelancerAccount {
   }
 
   addSkill(var token, Map data) async {
-    var response = await crud.requestDataWithHeaders(
+    var response = await crud.postAndGetData(
         AppLinks.skills,
         data,
         {
@@ -38,7 +38,7 @@ class FreelancerAccount {
 
   deleteSkill(String token, String id) async {
     var response = await crud.deleteData(
-      AppLinks.skills+"/"+id,
+      AppLinks.skills + "/" + id,
       {},
       {'Authorization': 'Bearer $token', 'accept': 'application/json'},
     );

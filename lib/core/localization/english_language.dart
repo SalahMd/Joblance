@@ -265,5 +265,6 @@ Map<String, String> english = {
   "yearsofexperience":"Years of experience",
   "expectedsalary":"Expected salary",
   "showinimportantjobs":"Show in important jobs",
+  "fillyourofferinformation":"Fill your information to applay for the job",
   "thisallowsyoutoaddyourjobtoimportantjobsitcoastsonly5":"This allows you to add your job to important jobs\nit coasts only 5\$"
 };

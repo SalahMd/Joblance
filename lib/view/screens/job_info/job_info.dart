@@ -16,7 +16,7 @@ class JobInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(JobInfoControllerImpl(id: id));
+    Get.put(JobInfoControllerImpl(jobId: id));
     return Scaffold(
       body: GetBuilder<JobInfoControllerImpl>(
         builder: (controller) => SingleChildScrollView(
@@ -33,6 +33,10 @@ class JobInfo extends StatelessWidget {
                 remote: "Remote",
                 major: "Engineering",
                 roleId: controller.roleId,
+                isVisible: controller.isVisible,
+                onTap: () {
+                  controller.buttonFunction();
+                },
               ),
               SizedBox(
                 height: 5.h,

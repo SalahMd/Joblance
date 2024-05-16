@@ -5,15 +5,14 @@ class ChangePasswordBack {
   Crud crud;
   ChangePasswordBack(this.crud);
   changePassword(String oldPassword, String newPassword, var token) async {
-    var response = await crud.requestDataWithHeaders(
+    var response = await crud.postAndGetData(
         AppLinks.ChangePassword,
         {
           "old_password": oldPassword,
           "new_password": newPassword,
         },
         {'Authorization': 'Bearer $token'},
-                null,
-
+        null,
         true,
         false,
         null);

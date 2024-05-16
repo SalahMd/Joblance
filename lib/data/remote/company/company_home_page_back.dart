@@ -6,13 +6,10 @@ class CompanyHomePageBack {
   CompanyHomePageBack(this.crud);
 
   getFreeLancers(var token, String language) async {
-    var response = await crud.requestDataWithHeaders(
+    var response = await crud.postAndGetData(
         AppLinks.freelancers + "?lang=" + language,
         {},
-        {
-          'Authorization': 'Bearer $token',
-          'accept':'application/json'
-        },
+        {'Authorization': 'Bearer $token', 'accept': 'application/json'},
         null,
         false,
         false,
@@ -21,7 +18,7 @@ class CompanyHomePageBack {
   }
 
   getMajor(var token, String language) async {
-    var response = await crud.requestDataWithHeaders(
+    var response = await crud.postAndGetData(
         AppLinks.major + "?lang=" + language,
         {},
         {'Authorization': 'Bearer $token'},
@@ -31,14 +28,12 @@ class CompanyHomePageBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
-  getCompanyInfo(var token, String language,String id)async{
-    var response = await crud.requestDataWithHeaders(
-        AppLinks.profile +id+"?lang="+language,
+
+  getCompanyInfo(var token, String language, String id) async {
+    var response = await crud.postAndGetData(
+        AppLinks.profile + id + "?lang=" + language,
         {},
-        {
-          'Authorization': 'Bearer $token',
-          'accept':'application/json'
-        },
+        {'Authorization': 'Bearer $token', 'accept': 'application/json'},
         null,
         false,
         false,

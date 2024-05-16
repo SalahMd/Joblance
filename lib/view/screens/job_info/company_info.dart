@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/view/screens/applay_job_page.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class CompanyInfo extends StatelessWidget {
@@ -15,7 +14,9 @@ class CompanyInfo extends StatelessWidget {
   final String jobTitle;
   final String remote;
   final String jobLocation;
+  final Function() onTap;
   final String major;
+  final bool isVisible;
   final String roleId;
   const CompanyInfo(
       {super.key,
@@ -26,7 +27,10 @@ class CompanyInfo extends StatelessWidget {
       required this.jobTitle,
       required this.jobLocation,
       required this.remote,
-      required this.major, required this.roleId});
+      required this.major,
+      required this.isVisible,
+      required this.onTap,
+      required this.roleId});
 
   @override
   Widget build(BuildContext context) {
@@ -134,10 +138,10 @@ class CompanyInfo extends StatelessWidget {
                 ),
               ]),
               Visibility(
-                visible: roleId=="2",
+                visible: isVisible,
                 child: GestureDetector(
                   onTap: () {
-                    Get.to(ApplayJobPage());
+                    onTap();
                   },
                   child: Padding(
                     padding: EdgeInsets.only(top: 65.h),
@@ -147,7 +151,7 @@ class CompanyInfo extends StatelessWidget {
                       alignment: Alignment.center,
                       decoration: AppButtons.buttonDecoration,
                       child: Text(
-                        "applay".tr,
+                        roleId == "2" ? "applay".tr : "applicants".tr,
                         style: TextStyles.w50013White(context),
                       ),
                     ),

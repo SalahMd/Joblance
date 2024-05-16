@@ -13,7 +13,7 @@ class JobTobBar extends StatelessWidget {
       child: Container(
         width: Dimensions.screenWidth(context),
         height: 50.h,
-        padding: EdgeInsets.symmetric(horizontal: 15.w),
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,

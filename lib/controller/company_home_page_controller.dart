@@ -13,9 +13,10 @@ abstract class CompanyHomePageController extends GetxController {
 }
 
 class CompanyHomePageControllerImpl extends CompanyHomePageController {
-  StatusRequest? statusRequest;
+  StatusRequest? statusRequest, majorStatus;
   Myservices myServices = Get.find();
   late String token, id;
+
   late String language;
   String name = "", image = "";
   List<CategoryModel> majors = [];
@@ -31,7 +32,6 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
         ? "en"
         : myServices.sharedPreferences.getString("lang")!;
     getCompanyInfo();
-
     getFreelancers();
     getMajors();
     super.onInit();
@@ -53,9 +53,11 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
   }
 
   getMajors() async {
+    majorStatus = StatusRequest.loading;
     var response = await companyHomePageBack.getMajor(token, language);
-    statusRequest = handelingData(response);
-    if (StatusRequest.success == statusRequest) {
+    majorStatus = handelingData(response);
+
+    if (StatusRequest.success == majorStatus) {
       if (response['status'] == "success") {
         for (int i = 0; i < response['data'].length; i++) {
           majors.add(CategoryModel(
@@ -67,6 +69,19 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
       }
     }
     update();
+  }
+
+  refreshPage() {
+    majors.clear();
+    freelancers.clear();
+    name = "";
+    image = "";
+    language = myServices.sharedPreferences.getString("lang") == null
+        ? "en"
+        : myServices.sharedPreferences.getString("lang")!;
+    getCompanyInfo();
+    getFreelancers();
+    getMajors();
   }
 
   getFreelancers() async {

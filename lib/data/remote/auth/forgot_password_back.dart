@@ -4,12 +4,16 @@ import 'package:joblance/core/constants/links.dart';
 class ForgotPasswordBack {
   Crud crud;
   ForgotPasswordBack(this.crud);
-  sendCode(String email, ) async {
-    var response = await crud.requestData(
-            AppLinks.emailVerificationForPassword,
+  sendCode(
+    String email,
+  ) async {
+    var response = await crud.postAndGetData(
+        AppLinks.emailVerificationForPassword,
         {
           "email": email,
         },
+        {},
+        null,
         true,
         false,
         null);
@@ -17,7 +21,7 @@ class ForgotPasswordBack {
   }
 
   checkCode(String email, String code, String checkFor) async {
-    var response = await crud.requestData(
+    var response = await crud.postAndGetData(
         checkFor == "forgot_password"
             ? AppLinks.checkCodeForPassword
             : AppLinks.checkCodeForSignUp,
@@ -25,6 +29,8 @@ class ForgotPasswordBack {
           "email": email,
           "code": code,
         },
+        {},
+        null,
         true,
         false,
         null);
@@ -32,18 +38,21 @@ class ForgotPasswordBack {
   }
 
   resetPassword(String password, String email) async {
-    var response = await crud.requestData(AppLinks.resetPassword,
-        {"password": password, "email": email}, true, false, null);
+    var response = await crud.postAndGetData(AppLinks.resetPassword,
+        {"password": password, "email": email}, {}, null, true, false, null);
     return response.fold((l) => l, (r) => r);
   }
-  resendCode(String email,String codeFor)async{
-     var response = await crud.requestData(
-          codeFor =="forgot_password"?
-            AppLinks.resendCodeForPassword:AppLinks.resendCodeSignup,
-           
+
+  resendCode(String email, String codeFor) async {
+    var response = await crud.postAndGetData(
+        codeFor == "forgot_password"
+            ? AppLinks.resendCodeForPassword
+            : AppLinks.resendCodeSignup,
         {
-          "email": email,          
+          "email": email,
         },
+        {},
+        null,
         true,
         false,
         null);
