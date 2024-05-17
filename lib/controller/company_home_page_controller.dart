@@ -31,9 +31,10 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
     language = myServices.sharedPreferences.getString("lang") == null
         ? "en"
         : myServices.sharedPreferences.getString("lang")!;
-    getCompanyInfo();
     getFreelancers();
     getMajors();
+    getCompanyInfo();
+
     super.onInit();
   }
 

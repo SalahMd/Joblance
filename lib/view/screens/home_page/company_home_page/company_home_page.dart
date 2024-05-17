@@ -8,6 +8,7 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/home_page/categories.dart';
 import 'package:joblance/view/screens/home_page/company_home_page/shimmer_company_home_page.dart';
 import 'package:joblance/view/screens/home_page/top_bar.dart';
+import 'package:joblance/view/screens/status_screen.dart';
 import 'package:joblance/view/widgets/freelancer_design.dart';
 
 class CompanyHomePage extends StatelessWidget {
@@ -24,8 +25,8 @@ class CompanyHomePage extends StatelessWidget {
         body: GetBuilder<CompanyHomePageControllerImpl>(
           builder: (controller) => SingleChildScrollView(
             child: controller.statusRequest == StatusRequest.loading
-                ? ShimmerCompanyHomePage()
-                : SingleChildScrollView(
+                ? ShimmerCompanyHomePage():controller.statusRequest == StatusRequest.success?
+                 SingleChildScrollView(
                     child: Column(
                       children: [
                         TopBar(
@@ -85,7 +86,7 @@ class CompanyHomePage extends StatelessWidget {
                         )
                       ],
                     ),
-                  ),
+                  ):StatusScreen(statusRequest: controller.statusRequest),
           ),
         ),
       ),

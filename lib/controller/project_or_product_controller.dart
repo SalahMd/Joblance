@@ -137,7 +137,7 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
 
   deleteData() async {
     Get.back();
-    var response = await addProjectOrProductBack.deleteData({}, token);
+    var response = await addProjectOrProductBack.deleteData(projectId.toString(), token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

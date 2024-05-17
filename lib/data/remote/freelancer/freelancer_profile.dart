@@ -5,12 +5,11 @@ class FreelancerAccount {
   Crud crud;
   FreelancerAccount(this.crud);
 
-  getSkills(String link, var token, String id) async {
+  getSkills(String link, var token) async {
     var response = await crud.postAndGetData(
         //"${AppLinks.skills}?search=$skill",
         link,
         {
-          "user_id": id,
         },
         {
           'Authorization': 'Bearer $token',

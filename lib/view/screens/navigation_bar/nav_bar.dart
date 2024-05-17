@@ -32,21 +32,6 @@ class ButtomBar extends StatelessWidget {
               backgroundColor: LightAppColors.primaryColor,
               labelWidget: Container(
                 child: Text(
-                  "post".tr,
-                  style: TextStyles.w50013White(context),
-                ),
-              ),
-              shape: CircleBorder(),
-              onTap: () {
-                //   Get.to(AddPost());
-              },
-              child: Icon(Icons.post_add_outlined,
-                  size: 18.sp, color: LightAppColors.whiteColor),
-            ),
-            SpeedDialChild(
-              backgroundColor: LightAppColors.primaryColor,
-              labelWidget: Container(
-                child: Text(
                   "task".tr,
                   style: TextStyles.w50013White(context),
                 ),

@@ -114,7 +114,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   Future<void> getSkills() async {
     skillStatus = StatusRequest.loading;
     var response =
-        await freelancerAccount.getSkills(AppLinks.skills, token, id);
+        await freelancerAccount.getSkills(AppLinks.skills+"?id="+id, token, );
     skillStatus = handelingData(response);
     if (StatusRequest.success == skillStatus) {
       if (response['status'] == "success") {

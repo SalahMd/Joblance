@@ -15,12 +15,12 @@ class AddProjectOrProductBack {
   }
 
   deleteData(
-    Map data,
+    String id,
     var token,
   ) async {
     var response = await crud.deleteData(
-      AppLinks.project,
-      data,
+      AppLinks.project+"/"+id,
+      {},
       {'Authorization': 'Bearer $token'},
     );
     return response.fold((l) => l, (r) => r);

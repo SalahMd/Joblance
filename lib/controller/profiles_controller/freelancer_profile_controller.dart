@@ -111,7 +111,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
 
   Future<void> getSkills() async {
     var response =
-        await profileBack.getSkills(AppLinks.skills, token, id.toString());
+        await profileBack.getSkills(AppLinks.skills+"?id="+id.toString(), token, );
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

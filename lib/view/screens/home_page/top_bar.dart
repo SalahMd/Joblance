@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -15,7 +13,6 @@ class TopBar extends StatelessWidget {
   final String image;
 
   const TopBar({super.key, required this.name, required this.image});
-
   @override
   Widget build(BuildContext context) {
     return Column(

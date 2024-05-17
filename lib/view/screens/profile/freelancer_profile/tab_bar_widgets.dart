@@ -101,7 +101,24 @@ Widget skills(context, FreelancerProfileControllerImpl controller) {
         Text(
           "skills".tr,
           style: TextStyles.w50015(context),
-        )
+        ),
+        ListView.builder(
+                padding: EdgeInsets.only(
+                    top: 20.h, left: 12.w, right: 12.w, bottom: 10.h),
+                shrinkWrap: true,
+                itemCount: controller.userSkills.length,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Text(controller.userSkills[index]['skill_name']
+                          .toString()),
+                      MyDivider(
+                        height: 8,
+                      ),
+                    ],
+                  );
+                })
       ],
     ),
   );

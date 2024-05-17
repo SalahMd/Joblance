@@ -407,7 +407,7 @@ Widget skills(
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(controller.userSkills[index]['skill_id']
+                          Text(controller.userSkills[index]['skill_name']
                               .toString()),
                           GestureDetector(
                               onTap: () {

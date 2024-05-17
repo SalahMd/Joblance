@@ -27,7 +27,7 @@ dependencies:
   get: ^4.6.6
   google_nav_bar: ^5.0.6
   google_sign_in: ^6.2.1
-  http: ^0.13.5
+  http: ^0.13.6
   image_picker: ^1.0.4
   lottie: ^2.6.0
   path: ^1.8.3
