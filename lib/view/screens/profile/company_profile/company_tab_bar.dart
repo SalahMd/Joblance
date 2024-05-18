@@ -2,30 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:joblance/controller/profiles_controller/company_profile_controller.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/view/screens/my_account/company/company_tab_bar_view.dart';
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/job_design.dart';
 import 'package:joblance/view/widgets/project_design.dart';
 
 class CompanyTabBar extends StatelessWidget {
-  const CompanyTabBar({super.key});
+  final CompanyProfileControllerImpl controller;
+  const CompanyTabBar({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return PageView(children: [
+    return TabBarView(children: [
       jobs(
         context,
       ),
-      //tasks(context,),
-      aboutCompany(context),
-      products(context),
+      tasks(context,controller),
+      aboutCompany(context, controller),
+      products(context,controller),
       contactInfo(context)
     ]);
   }
 }
 
-Widget aboutCompany(BuildContext context) {
+Widget aboutCompany(
+    BuildContext context, CompanyProfileControllerImpl controller) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
     child: Column(
@@ -40,7 +44,7 @@ Widget aboutCompany(BuildContext context) {
         ),
         Expanded(
             child: Text(
-          "is an American multinational corporation and technology company focusing on online advertising, search engine technology, cloud computing, computer software, quantum computing, e-commerce, consumer electronics, and artificial intelligence It has been referred to as the most powerful company in the world",
+          controller.data['description'],
           style: TextStyles.w40012grey(context),
         )).animate().fade(duration: 700.ms).slideY(begin: 0.1)
       ],
@@ -81,7 +85,7 @@ Widget jobs(BuildContext context) {
   );
 }
 
-Widget products(BuildContext context) {
+Widget products(BuildContext context,CompanyProfileControllerImpl controller) {
   return SingleChildScrollView(
     child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -94,21 +98,21 @@ Widget products(BuildContext context) {
             style: TextStyles.w50015(context),
           ),
         ),
-        ListView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: 7,
-            itemBuilder: (BuildContext context, int index) {
-              return ProjectDesign(
-                projectTitle: "Joblance",
-                projectDescription:
-                    "Jobs and freelancing app made with flutter and laravel",
-                projectLink: "https//www.google.com",
-                project_id: 5,
-                user_id: 5,
-              );
-            })
+         ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.products.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ProjectDesign(
+                  projectTitle: controller.products[index].projectName!,
+                  projectDescription:
+                      controller.products[index].projectDescription!,
+                  projectLink: controller.products[index].link!,
+                  project_id: controller.products[index].id!,
+                  user_id: controller.products[index].userId!,
+                );
+              })
       ],
     ).animate().fade(duration: 600.ms).slideY(begin: 0.1),
   );

@@ -2,17 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/model/project_or_product_model.dart';
+import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 
 abstract class CompanyProfileController extends GetxController {}
 
 class CompanyProfileControllerImpl extends CompanyProfileController {
+  final int id;
   StatusRequest? statusRequest;
-  late String language;
+  late String language, token;
   Myservices myServices = Get.find();
-  List data = [];
+  AddProjectOrProductBack addProjectOrProductBack =
+      new AddProjectOrProductBack(Get.put(Crud()));
+  Map data = {};
+  List<ProjectOrProductModel> products = [];
   List<Widget> tabs = [
     Tab(
       text: "jobs".tr,
@@ -25,26 +32,47 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     Tab(text: "contact".tr)
   ];
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
-  displayData() async {
+
+  CompanyProfileControllerImpl({required this.id});
+  @override
+  void onInit() async {
+    language = myServices.sharedPreferences.getString("lang")!;
+    token = myServices.sharedPreferences.getString("token")!;
+    await getUserData();
+    await getProduts();
+    super.onInit();
+  }
+
+  getUserData() async {
     statusRequest = StatusRequest.loading;
-    var token = myServices.sharedPreferences.getString("token");
-    var response = await profileBack.getData(token, 3.toString(), language);
+    update();
+    var response = await profileBack.getData(token, id.toString(), language);
     statusRequest = handelingData(response);
-    print(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         data.addAll(response['data']);
-        print(data);
       }
     }
     update();
   }
 
-  @override
-  void onInit() {
-        language = myServices.sharedPreferences.getString("lang")!;
-
-    super.onInit();
+  getProduts() async {
+    var response =
+        await addProjectOrProductBack.getData({}, AppLinks.project, token);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (int i = 0; i < response['data'].length; i++) {
+          products.add(ProjectOrProductModel(
+              id: response['data'][i]['id'],
+              projectName: response['data'][i]['project_name'],
+              projectDescription: response['data'][i]['project_description'],
+              link: response['data'][i]['link'],
+              userId: response['data'][i]['user_id']));
+        }
+      }
+    }
+    update();
   }
 
   @override

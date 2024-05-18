@@ -162,7 +162,7 @@ Widget jobs(BuildContext context, MyAccountCompanyControllerImpl controller) {
   );
 }
 
-Widget tasks(BuildContext context, MyAccountCompanyControllerImpl controller) {
+Widget tasks(BuildContext context, var controller) {
   return RefreshIndicator(
     onRefresh: () async {
       await Future.delayed(Duration(seconds: 2));

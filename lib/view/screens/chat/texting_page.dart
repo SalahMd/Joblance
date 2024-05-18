@@ -14,13 +14,13 @@ import 'package:joblance/view/screens/profile/company_profile/company_profile.da
 class TextingPage extends StatelessWidget {
   final String? id;
   final String image;
- final String userName;
+  final String userName;
   final String? userId;
 
   TextingPage({
     Key? key,
-     this.id,
-     this.userId,
+    this.id,
+    this.userId,
     required this.image,
     required this.userName,
   }) : super(key: key);
@@ -66,7 +66,7 @@ class TextingPage extends StatelessWidget {
                                 child: Image.network(
                                   image[0] == "h"
                                       ? image
-                                      : AppLinks.IP+'/$image',
+                                      : AppLinks.IP + '/$image',
                                   fit: BoxFit.cover,
                                   width: 40,
                                   height: 40,
@@ -88,7 +88,7 @@ class TextingPage extends StatelessWidget {
                         !controller.isDelete
                             ? GestureDetector(
                                 onTap: () {
-                                  Get.to(CompanyProfile());
+                                  Get.to(CompanyProfile(id: 8));
                                 },
                                 child: Icon(Icons.info_outline),
                               )

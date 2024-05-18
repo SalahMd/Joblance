@@ -14,6 +14,7 @@ class TaskTobBar extends StatelessWidget {
   final String taskTitle;
   final String major;
   final String budget;
+  final int id;
   final String duration;
   final bool isActive;
 
@@ -25,7 +26,7 @@ class TaskTobBar extends StatelessWidget {
       required this.major,
       required this.isActive,
       required this.budget,
-      required this.duration});
+      required this.duration, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class TaskTobBar extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(CompanyProfile());
+                      Get.to(CompanyProfile(id:id));
                     },
                     child: Container(
                       width: 45.w,
