@@ -31,6 +31,7 @@ class DarkModeImpl extends DarkMode {
       themeMode = ThemeMode.light;
     } else {
       themeMode = ThemeMode.system;
+      myServices.sharedPreferences.setString("mode", "dark");
     }
     super.onInit();
   }

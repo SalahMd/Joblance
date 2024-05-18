@@ -64,9 +64,8 @@ Future<bool> exitAlertt() async {
       false;
 }
 
-
 Future<bool> animationedAlertWithActions(
-    var animation, String title,  Function() onYesTap) {
+    var animation, String title, Function() onYesTap) {
   Get.defaultDialog(
       title: title,
       titleStyle: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),
@@ -234,13 +233,13 @@ Future<bool> animationedAlert(var animation, String title) {
 }
 
 snackBar(String title, String message, BuildContext context) {
-  Get.snackbar(
-    title, message,
+  Get.snackbar(title, message,
       duration: const Duration(seconds: 4),
       titleText: Text(
         title,
         style: TextStyles.w50012(context),
       ),
+      borderWidth: 0.5,
       borderColor: LightAppColors.primaryColor,
       padding: EdgeInsets.only(bottom: 18.h, left: 10.w, right: 10.w, top: 0),
       messageText: Text(
@@ -385,6 +384,7 @@ Future<bool> popUp(
   ));
   return Future.value(true);
 }
+
 Future<bool> applicantsFilter(
   BuildContext context,
 ) {

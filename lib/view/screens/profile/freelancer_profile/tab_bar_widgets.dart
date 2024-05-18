@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/profiles_controller/freelancer_profile_controller.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/view/screens/my_account/freelancer/tab_bar_view_widgets.dart';
 import 'package:joblance/view/widgets/divider.dart';
+import 'package:joblance/view/widgets/project_design.dart';
 
 class TabBarWidgets extends StatelessWidget {
   final FreelancerProfileControllerImpl controller;
@@ -12,14 +12,51 @@ class TabBarWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TabBarView(
-      children: [
+    return TabBarView(children: [
       about(context, controller),
       projects(context, controller),
       skills(context, controller),
       contactInfo(context, controller)
     ]);
   }
+}
+
+Widget projects(BuildContext context, var controller) {
+  return RefreshIndicator(
+    onRefresh: () async {
+      await Future.delayed(Duration(seconds: 2));
+      controller.refreshPage();
+    },
+    child: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+            child: Text(
+              "projects".tr,
+              style: TextStyles.w50015(context),
+            ),
+          ),
+          ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.projects.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ProjectDesign(
+                  projectTitle: controller.projects[index].projectName,
+                  projectDescription:
+                      controller.projects[index].projectDescription,
+                  projectLink: controller.projects[index].link,
+                  project_id: controller.projects[index].id,
+                  user_id: controller.projects[index].userId,
+                );
+              })
+        ],
+      ),
+    ),
+  );
 }
 
 Widget about(context, FreelancerProfileControllerImpl controller) {
@@ -103,22 +140,21 @@ Widget skills(context, FreelancerProfileControllerImpl controller) {
           style: TextStyles.w50015(context),
         ),
         ListView.builder(
-                padding: EdgeInsets.only(
-                    top: 20.h, left: 12.w, right: 12.w, bottom: 10.h),
-                shrinkWrap: true,
-                itemCount: controller.userSkills.length,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Text(controller.userSkills[index]['skill_name']
-                          .toString()),
-                      MyDivider(
-                        height: 8,
-                      ),
-                    ],
-                  );
-                })
+            padding: EdgeInsets.only(
+                top: 20.h, left: 12.w, right: 12.w, bottom: 10.h),
+            shrinkWrap: true,
+            itemCount: controller.userSkills.length,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  Text(controller.userSkills[index]['skill_name'].toString()),
+                  MyDivider(
+                    height: 8,
+                  ),
+                ],
+              );
+            })
       ],
     ),
   );

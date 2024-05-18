@@ -70,7 +70,7 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
         "project_name": title.text,
         "project_description": description.text,
         "link": link.text,
-      }, token, projectId.toString(),images);
+      }, token, projectId.toString(), images);
       updateStatus = handelingData(response);
       if (StatusRequest.success == updateStatus) {
         if (response['status'] == "success") {
@@ -130,6 +130,7 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
         }
       }
     } else {
+      Get.back();
       animationedAlert(AppAnimations.wrong, "couldn'tloadinfo".tr);
     }
     update();
@@ -137,7 +138,8 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
 
   deleteData() async {
     Get.back();
-    var response = await addProjectOrProductBack.deleteData(projectId.toString(), token);
+    var response =
+        await addProjectOrProductBack.deleteData(projectId.toString(), token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

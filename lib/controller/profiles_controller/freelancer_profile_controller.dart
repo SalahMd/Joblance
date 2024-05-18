@@ -37,20 +37,20 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   FreelancerProfileControllerImpl({required this.id});
   List userSkills = [];
   @override
-  void onInit() {
+  void onInit() async {
     token = myServices.sharedPreferences.getString("token")!;
     language = myServices.sharedPreferences.getString("lang")!;
 
     //displayData();
-    getUserData();
-    getSkills();
-    getProjects();
+    await getUserData();
+    await getSkills();
+    await getProjects();
     super.onInit();
   }
 
   getProjects() async {
-    var response =
-        await addProjectOrProductBack.getData({}, AppLinks.project, token);
+    var response = await addProjectOrProductBack
+        .getData({}, AppLinks.project + "?user_id=" + id.toString(), token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -70,7 +70,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
 
   displayData() async {
     statusRequest = StatusRequest.loading;
-    var response = await profileBack.getData(token, id.toString(),language);
+    var response = await profileBack.getData(token, id.toString(), language);
     statusRequest = handelingData(response);
     print(response);
     if (StatusRequest.success == statusRequest) {
@@ -110,8 +110,10 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   }
 
   Future<void> getSkills() async {
-    var response =
-        await profileBack.getSkills(AppLinks.skills+"?id="+id.toString(), token, );
+    var response = await profileBack.getSkills(
+      AppLinks.skills + "?id=" + id.toString(),
+      token,
+    );
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:joblance/core/class/statusrequest.dart';
-import 'package:joblance/core/constants/animations.dart';
-import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/checkinternet.dart';
 import 'package:path/path.dart';
 

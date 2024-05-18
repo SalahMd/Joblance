@@ -411,7 +411,8 @@ Widget skills(
                               .toString()),
                           GestureDetector(
                               onTap: () {
-                                controller.deleteSkill(index);
+                                controller.deleteSkill(
+                                    controller.userSkills[index]['id'], index);
                               },
                               child: Icon(Icons.delete_outline))
                         ],

@@ -15,7 +15,7 @@ import 'package:joblance/data/remote/profile_back.dart';
 abstract class MyAccountFreelancerController extends GetxController {
   addSkill(int id);
   searchSkill();
-  deleteSkill(int id);
+  deleteSkill(int id, int index);
   getSkills();
   getUserData();
   refreshPage();
@@ -48,15 +48,15 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
 
   @override
-  void onInit() async{
+  void onInit() async {
     statusRequest = StatusRequest.loading;
     update();
     token = myServices.sharedPreferences.getString("token")!;
     id = myServices.sharedPreferences.getInt("id")!.toString();
     language = myServices.sharedPreferences.getString("lang")!;
     await getUserData();
-    getSkills();
-    getProjects();
+    await getSkills();
+    await getProjects();
 
     skill = new TextEditingController();
     super.onInit();
@@ -69,12 +69,10 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     data.clear();
     userSkills.clear();
     update();
-    getUserData();
-    getProjects();
-    getSkills();
+    await getUserData();
+    await getProjects();
+    await getSkills();
   }
-
- 
 
   getProjects() async {
     var response =
@@ -113,8 +111,10 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
 
   Future<void> getSkills() async {
     skillStatus = StatusRequest.loading;
-    var response =
-        await freelancerAccount.getSkills(AppLinks.skills+"?id="+id, token, );
+    var response = await freelancerAccount.getSkills(
+      AppLinks.skills + "?id=" + id,
+      token,
+    );
     skillStatus = handelingData(response);
     if (StatusRequest.success == skillStatus) {
       if (response['status'] == "success") {
@@ -144,14 +144,14 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     update();
   }
 
-  deleteSkill(int id) async {
+  deleteSkill(int id, int index) async {
     Get.back();
     StatusRequest skillStatus = StatusRequest.loading;
     var response = await freelancerAccount.deleteSkill(token, id.toString());
     skillStatus = handelingData(response);
     if (StatusRequest.success == skillStatus) {
       if (response['status'] == "success") {
-        userSkills.removeAt(id);
+        userSkills.removeAt(index);
       } else {
         animationedAlert(AppAnimations.wrong, "couldn'tdeleteyourskill".tr);
       }

@@ -43,7 +43,7 @@ class AddProjectOrProductBack {
     var token,
   ) async {
     var response = await crud.postAndGetData(link, data,
-        {'Authorization': 'Bearer $token'}, null, false, false, null);
+        {'Authorization': 'Bearer $token',"accept":"application/json"}, null, false, false, null);
     return response.fold((l) => l, (r) => r);
   }
 }
