@@ -239,7 +239,7 @@ snackBar(String title, String message, BuildContext context) {
         title,
         style: TextStyles.w50012(context),
       ),
-      borderWidth: 0.5,
+      borderWidth: 0.8,
       borderColor: LightAppColors.primaryColor,
       padding: EdgeInsets.only(bottom: 18.h, left: 10.w, right: 10.w, top: 0),
       messageText: Text(

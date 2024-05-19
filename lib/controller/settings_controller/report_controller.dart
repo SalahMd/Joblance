@@ -8,7 +8,9 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/report_back.dart';
 
-abstract class ReportController extends GetxController {}
+abstract class ReportController extends GetxController {
+  sendReport();
+}
 
 class ReportControllerImpl extends ReportController {
   late TextEditingController reportTitle;

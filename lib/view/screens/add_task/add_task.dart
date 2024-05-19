@@ -40,7 +40,7 @@ class AddTask extends StatelessWidget {
                 ),
                 Text(
                   "addtask".tr,
-                  style: Theme.of(context).textTheme.headline1,
+                  style: TextStyles.w50017(context),
                 )
               ])),
               SizedBox(height: 20.h),
