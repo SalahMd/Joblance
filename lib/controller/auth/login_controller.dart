@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/animations.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
@@ -24,6 +25,7 @@ class LogInControllerImpl extends LogiInController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController ip = new TextEditingController();
   late TextEditingController phoneController;
   LoginBack loginBata = LoginBack(Get.put(Crud()));
   StatusRequest? statusRequest;
@@ -49,12 +51,14 @@ class LogInControllerImpl extends LogiInController {
     myServices.sharedPreferences.setString("token", data["accessToken"]);
     myServices.sharedPreferences.setString("role_id", data["type"]);
     myServices.sharedPreferences.setString("step", "2");
+    myServices.sharedPreferences.setString("ip", ip.text);
   }
 
   @override
   logIn() async {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
+      AppLinks.IP = ip.text;
       statusRequest = StatusRequest.loading;
       animationedAlert(AppAnimations.loadings, "pleasewait".tr);
       var response = await loginBata.login({

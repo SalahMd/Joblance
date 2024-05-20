@@ -6,7 +6,7 @@ class ChangePasswordBack {
   ChangePasswordBack(this.crud);
   changePassword(String oldPassword, String newPassword, var token) async {
     var response = await crud.postAndGetData(
-        AppLinks.ChangePassword,
+        AppLinks.changePassword,
         {
           "old_password": oldPassword,
           "new_password": newPassword,

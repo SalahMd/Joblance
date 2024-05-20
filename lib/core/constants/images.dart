@@ -1,4 +1,4 @@
-class AppImages  {
+class AppImages {
   static const String onBoarding1 = "assets/images/onboarding1.png";
   static const String onBoarding2 = "assets/images/onboarding2.png";
   static const String onBoarding3 = "assets/images/onboarding3.png";
@@ -23,6 +23,6 @@ class AppImages  {
   static const String studyCase = "assets/images/studycase.png";
   static const String salah = "assets/images/salah.jpg";
   static const String englishimage = "assets/images/english.png";
+  static const String enterIcon = "assets/images/enter_icon.png";
   static const String arabicimage = "assets/images/arabic.png";
 }
- 

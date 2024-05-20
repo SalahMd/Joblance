@@ -1,33 +1,31 @@
 class AppLinks {
-  static const String IP = "http://192.168.1.105:8000";
-  static const String logIn = "$IP" "/api/login";
-  static const String signUp = "$IP" "/api/register";
-  static const String logOut = "$IP" "/api/user/logout";
-  static const String googleSignin = "$IP" "/api/auth/google/login";
-  static const String emailVerificationForPassword =
-      "$IP" "/api/user/password/email";
-  static const String resendCodeForPassword =
-      "$IP" "/api/user/password/email/resend";
-  static const String resendCodeSignup = "$IP" "/api/user/email/code/resend";
-  static const String checkCodeForPassword =
-      "$IP" "/api/user/password/code/check";
-  static const String checkCodeForSignUp = "$IP" "/api/user/email/code/check";
-  static const String resetPassword = "$IP" "/api/user/password/reset";
-  static const String major = "$IP" "/api/major";
-  static const String applayJob = "$IP" "/api/applayjob";
-  static const String jobInfo = "$IP" "/api/job";
-  static const String ChangePassword = "$IP" "/api/user/changepassword";
-  static const String profile = "$IP" "/api/user/";
-  static const String freelancers = "$IP" "/api/freelancer";
-  static const String jobs = "$IP" "/api/jobs";
-  static const String sendReport = "$IP" "/api/report/send";
-  static const String user = "$IP" "/api/user";
-  static const String googleSignup = "$IP" "/api/auth/google/userinfo";
-  static const String getMessages = "$IP" "/api/conversations/";
-  static const String sendMessage = "$IP" "/api/message/send";
-  static const String getConversations = "$IP" "/api/conversations";
-  static const String readMessages = "$IP" "/api/conversations";
-  static const String deleteMessage = "$IP" "/api/message/";
-  static const String skills = "$IP" "/api/user_skills";
-  static const String project = "$IP" "/api/userProject";
+  static String IP = "http://192.168.1.105:8000";
+  
+  static String get logIn => "$IP/api/login";
+  static String get signUp => "$IP/api/register";
+  static String get logOut => "$IP/api/user/logout";
+  static String get googleSignin => "$IP/api/auth/google/login";
+  static String get emailVerificationForPassword => "$IP/api/user/password/email";
+  static String get resendCodeForPassword => "$IP/api/user/password/email/resend";
+  static String get resendCodeSignup => "$IP/api/user/email/code/resend";
+  static String get checkCodeForPassword => "$IP/api/user/password/code/check";
+  static String get checkCodeForSignUp => "$IP/api/user/email/code/check";
+  static String get resetPassword => "$IP/api/user/password/reset";
+  static String get major => "$IP/api/major";
+  static String get applayJob => "$IP/api/applayjob";
+  static String get jobInfo => "$IP/api/job";
+  static String get changePassword => "$IP/api/user/changepassword";
+  static String get profile => "$IP/api/user/";
+  static String get freelancers => "$IP/api/freelancer";
+  static String get jobs => "$IP/api/jobs";
+  static String get sendReport => "$IP/api/report/send";
+  static String get user => "$IP/api/user";
+  static String get googleSignup => "$IP/api/auth/google/userinfo";
+  static String get getMessages => "$IP/api/conversations/";
+  static String get sendMessage => "$IP/api/message/send";
+  static String get getConversations => "$IP/api/conversations";
+  static String get readMessages => "$IP/api/conversations";
+  static String get deleteMessage => "$IP/api/message/";
+  static String get skills => "$IP/api/user_skills";
+  static String get project => "$IP/api/userProject";
 }

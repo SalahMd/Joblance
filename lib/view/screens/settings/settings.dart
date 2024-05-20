@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/settings_controller/settings_controller.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/create_CV/create_CV.dart';
 import 'package:joblance/view/screens/edit_profile/edit_profile.dart';
 import 'package:joblance/view/screens/my_jobs/my_jobs.dart';
 import 'package:joblance/view/screens/settings/change_language.dart';
@@ -28,8 +29,8 @@ class Settings extends StatelessWidget {
               children: [
                 SafeArea(
                   child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 5.w, vertical: 10.h),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
                       child: Text("account".tr,
                           style: TextStyles.w40014grey(context))),
                 ),
@@ -39,8 +40,7 @@ class Settings extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color:
-                            Theme.of(context).colorScheme.primaryContainer),
+                        color: Theme.of(context).colorScheme.primaryContainer),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -50,8 +50,7 @@ class Settings extends StatelessWidget {
                             },
                             child: ListTiles(
                                 leadingIcon: Icons.edit_outlined,
-                                trailingIcon:
-                                    Icons.arrow_forward_ios_outlined,
+                                trailingIcon: Icons.arrow_forward_ios_outlined,
                                 listText: "editprofile".tr),
                           ),
                           GestureDetector(
@@ -60,8 +59,7 @@ class Settings extends StatelessWidget {
                             },
                             child: ListTiles(
                                 leadingIcon: Icons.lock_outline,
-                                trailingIcon:
-                                    Icons.arrow_forward_ios_outlined,
+                                trailingIcon: Icons.arrow_forward_ios_outlined,
                                 listText: "changepassword".tr),
                           ),
                           GestureDetector(
@@ -70,9 +68,17 @@ class Settings extends StatelessWidget {
                             },
                             child: ListTiles(
                                 leadingIcon: Icons.work_outline,
-                                trailingIcon:
-                                    Icons.arrow_forward_ios_outlined,
+                                trailingIcon: Icons.arrow_forward_ios_outlined,
                                 listText: "myjobs".tr),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(CreateCV());
+                            },
+                            child: ListTiles(
+                                leadingIcon: Icons.work_outline,
+                                trailingIcon: Icons.arrow_forward_ios_outlined,
+                                listText: "createcv".tr),
                           ),
                         ])),
                 Padding(
