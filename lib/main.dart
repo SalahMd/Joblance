@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/notification_permission.dart';
 import 'package:joblance/core/localization/change_language.dart';
 import 'package:joblance/core/services/services.dart';
@@ -24,6 +25,12 @@ void main() async {
 //  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  Myservices myservices = Get.find();
+  if (myservices.sharedPreferences.getString("ip") != null)
+    AppLinks.IP = myservices.sharedPreferences.getString("ip")!;
+  else {
+    AppLinks.IP = AppLinks.IP;
+  }
   runApp(const MyApp());
 }
 

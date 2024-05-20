@@ -31,8 +31,7 @@ class Login extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline1,
               )),
               Container(
-                  margin:
-                      EdgeInsets.symmetric(vertical: 20.h, horizontal: 5.w),
+                  margin: EdgeInsets.symmetric(vertical: 20.h, horizontal: 5.w),
                   width: Dimensions.screenWidth(context),
                   height: 180.h,
                   child: Image.asset(AppImages.joblance)),
@@ -73,6 +72,21 @@ class Login extends StatelessWidget {
                 isLabel: false,
                 ontapicon: controller.showPassword,
               ),
+
+              Customtextformfiled(
+                hintText: "IP".tr,
+                labelText: "Ip".tr,
+                iconData: null,
+                controller: controller.ip,
+                min: 8,
+                max: 30,
+                isNumber: false,
+                isPassword: false,
+                isBorder: false,
+                isFilled: true,
+                isLabel: false,
+                ontapicon: controller.showPassword,
+              ),
               Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: TextButton(
@@ -104,8 +118,7 @@ class Login extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
+                padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
                 child: Row(
                   children: [
                     const Expanded(
@@ -134,8 +147,7 @@ class Login extends StatelessWidget {
                 child: Container(
                   width: Dimensions.screenWidth(context),
                   height: 40.h,
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
+                  margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primaryContainer,
