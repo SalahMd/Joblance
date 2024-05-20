@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/settings_controller/settings_controller.dart';
@@ -71,14 +72,17 @@ class Settings extends StatelessWidget {
                                 trailingIcon: Icons.arrow_forward_ios_outlined,
                                 listText: "myjobs".tr),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(CreateCV());
-                            },
-                            child: ListTiles(
-                                leadingIcon: Icons.work_outline,
-                                trailingIcon: Icons.arrow_forward_ios_outlined,
-                                listText: "createcv".tr),
+                          Visibility(
+                            visible: controller.role=="2",
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.to(CreateCV());
+                              },
+                              child: ListTiles(
+                                  leadingIcon: Icons.file_copy_outlined,
+                                  trailingIcon: Icons.arrow_forward_ios_outlined,
+                                  listText: "createcv".tr),
+                            ),
                           ),
                         ])),
                 Padding(

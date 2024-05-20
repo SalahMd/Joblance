@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -45,7 +47,33 @@ class CreateCV extends StatelessWidget {
                   ],
                 ),
               )),
-              SizedBox(height: 20.h),
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    controller.pickImage();
+                  },
+                  child: Container(
+                    width: 120.w,
+                    height: 140.h,
+                    margin: EdgeInsets.symmetric(vertical: 25.h),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(70),
+                    ),
+                    child: controller.image == null
+                        ? const Icon(
+                            Icons.photo_camera_outlined,
+                            size: 50,
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(70),
+                            child: Image.file(File(controller.image.path),
+                                fit: BoxFit.fill, width: 120.w, height: 140.h),
+                          ),
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w),
                 child: Text(

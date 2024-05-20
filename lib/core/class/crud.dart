@@ -28,7 +28,7 @@ class Crud {
             var stream = http.ByteStream(file[i].openRead());
 
             var multiPartFile = http.MultipartFile(
-                name == "images" ? name + "[$i][image]" : name, stream, length,
+                name == "images" ? name + "[$i]" : name, stream, length,
                 filename: basename(file[i].path));
             request.files.add(
               multiPartFile,
@@ -88,7 +88,7 @@ class Crud {
             var stream = http.ByteStream(file[i].openRead());
 
             var multiPartFile = http.MultipartFile(
-                name == "images" ? name + "[$i][image]" : name, stream, length,
+                name == "images" ? name + "[$i]" : name, stream, length,
                 filename: basename(file[i].path));
             request.files.add(
               multiPartFile,
