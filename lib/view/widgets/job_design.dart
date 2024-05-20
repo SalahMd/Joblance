@@ -37,18 +37,18 @@ class JobDesign extends StatelessWidget {
       child: Container(
         width: Dimensions.screenWidth(context),
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
-        margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+        margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
             borderRadius: BorderRadius.circular(10)),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Row(
               children: [
                 Container(
-                  width: 45,
-                  height: 45,
+                  width: 40.sp,
+                  height: 40.sp,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
@@ -58,7 +58,7 @@ class JobDesign extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 15.w,
+                  width: 12.w,
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -68,16 +68,18 @@ class JobDesign extends StatelessWidget {
                       jobTitle,
                       style: TextStyles.w50014(context),
                     ),
-                    //SizedBox(height: .h),
                     Text(
                       companyName,
                       style: TextStyles.w50012(context),
                     ),
                     SizedBox(height: 3.h),
-                    Text(
-                      remote + " - " + location,
-                      style: TextStyles.w40011grey(context),
-                      overflow: TextOverflow.ellipsis,
+                    Container(
+                      width: 160.w,
+                      child: Text(
+                        remote + " - " + location,
+                        style: TextStyles.w40011grey(context),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     //SizedBox(height: 3.h),
                     Text(
@@ -120,8 +122,8 @@ class JobDesign extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          width: 8,
-                          height: 8,
+                          width: 7.sp,
+                          height: 7.sp,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: isActive

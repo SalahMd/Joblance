@@ -26,10 +26,9 @@ class SliderWidget extends StatelessWidget {
       children: [
         Container(
           alignment: AlignmentDirectional.centerEnd,
-          padding:
-              EdgeInsetsDirectional.only(end: 10.w, top: 10.h, bottom: 6.h),
+          padding: EdgeInsetsDirectional.only(end: 10.w, top: 10, bottom: 6),
           margin: EdgeInsets.symmetric(
-            vertical: 20.h,
+            vertical: 20,
             horizontal: 15.w,
           ),
           decoration: BoxDecoration(
@@ -50,7 +49,7 @@ class SliderWidget extends StatelessWidget {
             children: [
               Container(
                 width: 20.w,
-                height: 20.h,
+                height: 20,
                 margin: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Image.asset(
                   AppImages.save,
@@ -81,8 +80,8 @@ class SliderWidget extends StatelessWidget {
         ),
         Container(
           width: Dimensions.screenWidth(context) / 1.55,
-          margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
-          padding: EdgeInsetsDirectional.only(start: 6.w, top: 5.h),
+          margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20),
+          padding: EdgeInsetsDirectional.only(start: 6.w, top: 5),
           decoration: BoxDecoration(
               color: LightAppColors.primaryColor.withOpacity(0.7),
               borderRadius: BorderRadiusDirectional.only(
@@ -96,7 +95,7 @@ class SliderWidget extends StatelessWidget {
                 children: [
                   Container(
                       width: 30.w,
-                      height: 45.h,
+                      height: 45,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10)),
                       child: ClipRRect(
@@ -121,7 +120,7 @@ class SliderWidget extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 10.h,
+                height: 10,
               ),
               Row(
                 children: [
@@ -156,7 +155,7 @@ class SliderWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 3.h),
+              SizedBox(height: 3),
               Row(
                 children: [
                   Icon(

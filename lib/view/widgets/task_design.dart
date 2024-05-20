@@ -33,9 +33,9 @@ class TaskDesign extends StatelessWidget {
       },
       child: Container(
         alignment: Alignment.topRight,
-        width: Dimensions.screenWidth(context) / 1.3,
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
-        margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+        width: 240.w,
+        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10),
+        margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10),
         decoration: BoxDecoration(
             border: Border.all(color: LightAppColors.greyColor!, width: 0.5),
             color: Theme.of(context).colorScheme.primaryContainer,
@@ -85,7 +85,7 @@ class TaskDesign extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 5.h,
+                      height: 5,
                     ),
                     Row(
                       children: [
@@ -124,7 +124,7 @@ class TaskDesign extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 5.h, top: 10.h),
+                  padding: EdgeInsets.only(bottom: 5, top: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -132,8 +132,8 @@ class TaskDesign extends StatelessWidget {
                         alignment: AlignmentDirectional.centerEnd,
                         child: Container(
                             width: 20.w,
-                            height: 20.h,
-                            margin: EdgeInsets.only(bottom: 10.h),
+                            height: 20,
+                            margin: EdgeInsets.only(bottom: 10),
                             child: Image.asset(
                               AppImages.save,
                               fit: BoxFit.fill,
@@ -141,11 +141,11 @@ class TaskDesign extends StatelessWidget {
                             )),
                       ),
                       SizedBox(
-                        height: 20.h,
+                        height: 25,
                       ),
                       Container(
                         width: 60.w,
-                        height: 25.h,
+                        height: 25,
                         alignment: AlignmentDirectional.center,
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.background,

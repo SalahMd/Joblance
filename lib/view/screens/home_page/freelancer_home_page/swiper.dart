@@ -13,7 +13,7 @@ class Swiper extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: Dimensions.screenWidth(context),
-      height: 190.h,
+      height: 195,
       child: CarouselSlider(
         items: [
           SliderWidget(
