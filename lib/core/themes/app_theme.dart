@@ -79,18 +79,18 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: lightTheme,
       textTheme: TextTheme(
-        headline1: TextStyle(
+        headlineLarge: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 24,
             fontFamily: "PlayfairDisplay"),
-        headline2: TextStyle(
+        headlineMedium: TextStyle(
             color: Get.theme.cardColor,
             fontWeight: FontWeight.bold,
             fontSize: 21.sp,
             fontFamily: "PlayfairDisplay"),
-        bodyText1: TextStyle(
+        bodyLarge: TextStyle(
             fontWeight: FontWeight.w400, fontSize: 17.sp, height: 1.5),
-        bodyText2: TextStyle(
+        bodyMedium: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 15.sp,
         ),
@@ -99,21 +99,21 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: darkTheme,
       textTheme: TextTheme(
-        headline1: TextStyle(
+        headlineLarge: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 24,
             fontFamily: "PlayfairDisplay"),
-        headline2: TextStyle(
+        headlineMedium: TextStyle(
             //color: Get.theme.cardColor,
             fontWeight: FontWeight.bold,
             fontSize: 21.sp,
             fontFamily: "PlayfairDisplay"),
-        bodyText1: TextStyle(
+        bodyLarge: TextStyle(
             color: Colors.grey[700],
             fontWeight: FontWeight.w400,
             fontSize: 17.sp,
             height: 1.5),
-        bodyText2: TextStyle(
+        bodyMedium: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 15.sp,
         ),

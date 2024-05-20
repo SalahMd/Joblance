@@ -33,7 +33,7 @@ class SignUp extends StatelessWidget {
                     controller.isGoogleSignin
                         ? "completeyourinfo".tr
                         : "addyourinfo".tr,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ),
                 Visibility(

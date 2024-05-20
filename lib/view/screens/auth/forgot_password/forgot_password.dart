@@ -27,7 +27,7 @@ class ForgotPassword extends StatelessWidget {
                 SafeArea(
                     child: Text(
                   "resetyourpassword".tr,
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 )),
                 SizedBox(
                   height: 50.h,

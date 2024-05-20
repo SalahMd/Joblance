@@ -54,7 +54,7 @@ class OnBoarding extends GetView<OnBoardingControllerImpl> {
                               horizontal: 15, vertical: 10.h),
                           child: Text(
                             Onbordingmodel[i].title!,
-                            style: Theme.of(context).textTheme.headline1,
+                            style: Theme.of(context).textTheme.headlineLarge,
                             textAlign: TextAlign.center,
                           ),
                         )

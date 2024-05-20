@@ -37,7 +37,7 @@ class AddJob extends StatelessWidget {
                     SizedBox(width: 10.w),
                     Text(
                       "fillyourjobinfo".tr,
-                      style: Theme.of(context).textTheme.headline1,
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ],
                 ),

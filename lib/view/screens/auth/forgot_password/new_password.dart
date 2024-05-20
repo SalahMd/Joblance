@@ -26,7 +26,7 @@ class NewPassword extends StatelessWidget {
                 SafeArea(
                     child: Text(
                   "emailverified".tr,
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 )),
                 SizedBox(
                   height: 50.h,

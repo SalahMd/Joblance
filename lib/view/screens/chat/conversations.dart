@@ -29,7 +29,7 @@ class Conversations extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 15.w),
                 child: Text(
                   "messages".tr,
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
               )),
               SizedBox(

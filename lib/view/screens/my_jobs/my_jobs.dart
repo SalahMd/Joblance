@@ -35,7 +35,7 @@ class MyJobs extends StatelessWidget {
                             child: Icon(Icons.arrow_back)),
                         SizedBox(width: 10.w),
                         Text("myjobs".tr,
-                            style: Theme.of(context).textTheme.headline1)
+                            style: Theme.of(context).textTheme.headlineLarge)
                       ],
                     )),
                   ),

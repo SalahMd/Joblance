@@ -26,7 +26,7 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
           SafeArea(
             child: Text(
               "chooselanguage".tr,
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ),
           const Padding(padding: EdgeInsets.only(top: 30)),

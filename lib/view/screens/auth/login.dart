@@ -28,7 +28,7 @@ class Login extends StatelessWidget {
               SafeArea(
                   child: Text(
                 "title1".tr,
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.headlineLarge,
               )),
               Container(
                   margin: EdgeInsets.symmetric(vertical: 20.h, horizontal: 5.w),
