@@ -13,7 +13,13 @@ abstract class SettingsController extends GetxController {
 class SettingsControllerImpl extends SettingsController {
   StatusRequest? statusRequest;
   Myservices myServices = Get.find();
+  late String role;
   LogOutBack logout = new LogOutBack(Get.put(Crud()));
+  void onInit() {
+    role = myServices.sharedPreferences.getString("role_id")!;
+    super.onInit();
+  }
+
   @override
   logOut() async {
     statusRequest = StatusRequest.loading;
