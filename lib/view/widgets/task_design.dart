@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/task_info/task_page.dart';
 
 class TaskDesign extends StatelessWidget {

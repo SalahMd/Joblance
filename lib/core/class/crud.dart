@@ -48,6 +48,7 @@ class Crud {
         else if (isPost && !isFile) {
           response =
               await http.post(Uri.parse(linkurl), body: data, headers: headers);
+          print(response.body);
         } else if (!isPost && !isFile) {
           response = await http.get(Uri.parse(linkurl), headers: headers);
           print(response.body);

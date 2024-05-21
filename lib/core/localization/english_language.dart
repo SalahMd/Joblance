@@ -283,5 +283,10 @@ Map<String, String> english = {
   "educations": "Educations",
   "createcv": "Create CV",
   "experiences": "Experiences",
+  "ratethiscompany":"Rate this company",
+  "reviews":"Reviews",
+  "postreview":"Post review",
+  "review":"Review",
+  "thisreviewispublic":"This review is public and include your account information",
   "experience": "Experience"
 };

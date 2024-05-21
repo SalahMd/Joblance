@@ -60,8 +60,8 @@ class TobBar extends StatelessWidget {
                 Get.to(ImageView(image: image));
               },
               child: Container(
-                width: 120,
-                height: 120,
+                width: 100.sp,
+                height: 100.sp,
                 alignment: Alignment.center,
                 margin: EdgeInsetsDirectional.only(start: 5.w, top: 125.h),
                 decoration: BoxDecoration(
@@ -75,8 +75,8 @@ class TobBar extends StatelessWidget {
                         ? Image.network(
                             image[0] == "h" ? image : AppLinks.IP + "/" + image,
                             fit: BoxFit.cover,
-                            width: 120,
-                            height: 120,
+                            width: 100.sp,
+                            height: 100.sp,
                           )
                         : Container()),
               ),

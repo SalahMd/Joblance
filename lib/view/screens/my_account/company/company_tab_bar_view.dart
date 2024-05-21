@@ -10,6 +10,7 @@ import 'package:joblance/view/screens/add_project_or_product/add_project_or_prod
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/job_design.dart';
 import 'package:joblance/view/widgets/project_design.dart';
+import 'package:joblance/view/widgets/review_design.dart';
 import 'package:joblance/view/widgets/task_design.dart';
 
 class CompanyTabBarViewWidget extends StatelessWidget {
@@ -38,25 +39,47 @@ class CompanyTabBarViewWidget extends StatelessWidget {
 }
 
 Widget about(BuildContext context, MyAccountCompanyControllerImpl controller) {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "aboutcompany".tr,
-          style: TextStyles.w50015(context),
-        ).animate().fade(duration: 600.ms).slideY(begin: 0.9),
-        SizedBox(
-          height: 20.h,
+  return ListView(
+    padding: EdgeInsets.zero,
+    children: [
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "aboutcompany".tr,
+              style: TextStyles.w50015(context),
+            ).animate().fade(duration: 600.ms).slideY(begin: 0.9),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              controller.data['description'],
+              style: TextStyles.w40012grey(context),
+            ).animate().fade(duration: 700.ms).slideY(begin: 0.1),
+            SizedBox(height: 10.h),
+            MyDivider(height: 10,),
+            Text("reviews".tr, style: TextStyles.w50015(context)),
+            SizedBox(height: 20.h),
+            ListView.builder(
+                itemCount: 4,
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return ReviewDesign(
+                      image: controller.data['image'],
+                      review:
+                          controller.reviews[index]['comment'],
+                      name: "Sala Mdagmesh",
+                      level: controller.reviews[index]['level'],
+                      date: controller.reviews[index]['created_at'],);
+                })
+          ],
         ),
-        Expanded(
-            child: Text(
-          controller.data['description'],
-          style: TextStyles.w40012grey(context),
-        )).animate().fade(duration: 700.ms).slideY(begin: 0.1)
-      ],
-    ),
+      ),
+    ],
   );
 }
 

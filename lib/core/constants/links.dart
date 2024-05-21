@@ -31,4 +31,5 @@ class AppLinks {
   static String get skills => "$IP/api/user_skills";
   static String get project => "$IP/api/userProject";
   static String get createCV => "$IP/api/generate-cv";
+  static String get review => "$IP/api/review";
 }

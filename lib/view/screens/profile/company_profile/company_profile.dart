@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/profiles_controller/company_profile_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/buttons.dart';
+import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/view/screens/add_review.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_tab_bar.dart';
 import 'package:joblance/view/widgets/profile_tob_bar.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
@@ -31,6 +34,41 @@ class CompanyProfile extends StatelessWidget {
                           image: controller.data['image'],
                           name: controller.data['name'],
                           description: controller.data['major'],
+                        ),
+                        SizedBox(height: 10.h),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10.w),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Container(
+                                height: 40.h,
+                                alignment: Alignment.center,
+                                decoration: AppButtons.buttonDecoration,
+                                child: Text("follow".tr,
+                                    style: TextStyles.w50013White(context)),
+                              )),
+                              SizedBox(width: 10.w),
+                              Expanded(
+                                  child: GestureDetector(
+                                onTap: () {
+                                  Get.to(AddReview(id:controller.data['id'],image: controller.data['image'],name: controller.data['name'],));
+                                },
+                                child: Container(
+                                  height: 40.h,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary)),
+                                  child: Text("review".tr,
+                                      style: TextStyles.w50012(context)),
+                                ),
+                              )),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 15.h,

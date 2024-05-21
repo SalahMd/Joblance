@@ -7,11 +7,13 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
+import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/company/company_profile.dart';
 
 abstract class MyAccountCompanyController extends GetxController {
   getUserData();
   getProduts();
+  getReviews();
 }
 
 class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
@@ -19,8 +21,10 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   AddProjectOrProductBack addProjectOrProductBack =
       AddProjectOrProductBack(Get.put(Crud()));
   CompanyAccount companyAccount = new CompanyAccount(Get.put(Crud()));
+  AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   Myservices myServices = Get.find();
   Map data = {};
+  List reviews = [];
   List<ProjectOrProductModel> products = [];
   late String token, id, lang;
   List<Widget> tabs = [
@@ -43,6 +47,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     id = myServices.sharedPreferences.getInt("id")!.toString();
     await getUserData();
     await getProduts();
+    await getReviews();
     super.onInit();
   }
 
@@ -51,9 +56,23 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     update();
     products.clear();
     data.clear();
+    reviews.clear();
     update();
     await getUserData();
     await getProduts();
+    await getReviews();
+  }
+
+  getReviews() async {
+    statusRequest = StatusRequest.loading;
+    var response = await addReviewBack.getData({}, token, id.toString());
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        reviews.addAll(response['data']);
+      }
+    }
+    update();
   }
 
   getUserData() async {

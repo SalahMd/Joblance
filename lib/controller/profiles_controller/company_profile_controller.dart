@@ -7,9 +7,12 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
+import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 
-abstract class CompanyProfileController extends GetxController {}
+abstract class CompanyProfileController extends GetxController {
+  getReviews();
+}
 
 class CompanyProfileControllerImpl extends CompanyProfileController {
   final int id;
@@ -18,7 +21,9 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   Myservices myServices = Get.find();
   AddProjectOrProductBack addProjectOrProductBack =
       new AddProjectOrProductBack(Get.put(Crud()));
+  AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   Map data = {};
+  List reviews = [];
   List<ProjectOrProductModel> products = [];
   List<Widget> tabs = [
     Tab(
@@ -40,7 +45,20 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     token = myServices.sharedPreferences.getString("token")!;
     await getUserData();
     await getProduts();
+    await getReviews();
     super.onInit();
+  }
+
+  getReviews() async {
+    statusRequest = StatusRequest.loading;
+    var response = await addReviewBack.getData({}, token, id.toString());
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        reviews.addAll(response['data']);
+      }
+    }
+    update();
   }
 
   getUserData() async {

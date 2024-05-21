@@ -9,6 +9,7 @@ import 'package:joblance/view/screens/my_account/company/company_tab_bar_view.da
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/job_design.dart';
 import 'package:joblance/view/widgets/project_design.dart';
+import 'package:joblance/view/widgets/review_design.dart';
 
 class CompanyTabBar extends StatelessWidget {
   final CompanyProfileControllerImpl controller;
@@ -20,9 +21,9 @@ class CompanyTabBar extends StatelessWidget {
       jobs(
         context,
       ),
-      tasks(context,controller),
+      tasks(context, controller),
       aboutCompany(context, controller),
-      products(context,controller),
+      products(context, controller),
       contactInfo(context)
     ]);
   }
@@ -30,24 +31,45 @@ class CompanyTabBar extends StatelessWidget {
 
 Widget aboutCompany(
     BuildContext context, CompanyProfileControllerImpl controller) {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "aboutcompany".tr,
-          style: TextStyles.w50015(context),
-        ).animate().fade(duration: 600.ms).slideY(begin: 0.9),
-        SizedBox(
-          height: 20.h,
-        ),
-        Expanded(
-            child: Text(
-          controller.data['description'],
-          style: TextStyles.w40012grey(context),
-        )).animate().fade(duration: 700.ms).slideY(begin: 0.1)
-      ],
+  return SingleChildScrollView(
+    child: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "aboutcompany".tr,
+            style: TextStyles.w50015(context),
+          ).animate().fade(duration: 600.ms).slideY(begin: 0.9),
+          SizedBox(
+            height: 20.h,
+          ),
+          Text(
+            controller.data['description'],
+            style: TextStyles.w40012grey(context),
+          ).animate().fade(duration: 700.ms).slideY(begin: 0.1),
+          SizedBox(height: 10.h),
+          MyDivider(
+            height: 10,
+          ),
+          Text("reviews".tr, style: TextStyles.w50015(context)),
+          SizedBox(height: 20.h),
+          ListView.builder(
+              itemCount: controller.reviews.length,
+              shrinkWrap: true,
+              padding: EdgeInsets.zero,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return ReviewDesign(
+                  image: controller.data['image'],
+                  review: controller.reviews[index]['comment'],
+                  name: "Sala Mdagmesh",
+                  level: controller.reviews[index]['level'],
+                  date: controller.reviews[index]['created_at'],
+                );
+              })
+        ],
+      ),
     ),
   );
 }
@@ -85,7 +107,7 @@ Widget jobs(BuildContext context) {
   );
 }
 
-Widget products(BuildContext context,CompanyProfileControllerImpl controller) {
+Widget products(BuildContext context, CompanyProfileControllerImpl controller) {
   return SingleChildScrollView(
     child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -98,21 +120,21 @@ Widget products(BuildContext context,CompanyProfileControllerImpl controller) {
             style: TextStyles.w50015(context),
           ),
         ),
-         ListView.builder(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: controller.products.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ProjectDesign(
-                  projectTitle: controller.products[index].projectName!,
-                  projectDescription:
-                      controller.products[index].projectDescription!,
-                  projectLink: controller.products[index].link!,
-                  project_id: controller.products[index].id!,
-                  user_id: controller.products[index].userId!,
-                );
-              })
+        ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: controller.products.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ProjectDesign(
+                projectTitle: controller.products[index].projectName!,
+                projectDescription:
+                    controller.products[index].projectDescription!,
+                projectLink: controller.products[index].link!,
+                project_id: controller.products[index].id!,
+                user_id: controller.products[index].userId!,
+              );
+            })
       ],
     ).animate().fade(duration: 600.ms).slideY(begin: 0.1),
   );

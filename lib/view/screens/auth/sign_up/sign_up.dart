@@ -43,13 +43,13 @@ class SignUp extends StatelessWidget {
                       controller.pickImage();
                     },
                     child: Container(
-                      width: 120.w,
-                      height: 140.h,
+                      width: 130.sp,
+                      height: 125.sp,
                       margin: EdgeInsets.symmetric(vertical: 25.h),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.primaryContainer,
-                        borderRadius: BorderRadius.circular(70),
+                        borderRadius: BorderRadius.circular(80),
                       ),
                       child: controller.image == null
                           ? const Icon(
