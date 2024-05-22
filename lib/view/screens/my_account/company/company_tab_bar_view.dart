@@ -65,7 +65,7 @@ Widget about(BuildContext context, MyAccountCompanyControllerImpl controller) {
             Text("reviews".tr, style: TextStyles.w50015(context)),
             SizedBox(height: 20.h),
             ListView.builder(
-                itemCount: 4,
+                itemCount: controller.reviews.length,
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
                 physics: NeverScrollableScrollPhysics(),

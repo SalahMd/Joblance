@@ -88,9 +88,7 @@ class FreeLancerDesign extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsetsDirectional.only(
-                      end: 8.w,
-                    ),
+                    margin: EdgeInsetsDirectional.only(end: 8.w, bottom: 10.h),
                     padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
@@ -143,7 +141,7 @@ class FreeLancerDesign extends StatelessWidget {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.green, width: 2),
+                            border: Border.all(color: Colors.green, width: 1.5),
                           ),
                           child: Text("opentowork".tr,
                               style: TextStyles.w4009grey(context)),
