@@ -286,7 +286,7 @@ class ProjectScreen extends StatelessWidget {
                                         top: 15.h,
                                         child: GestureDetector(
                                           onTap: () {
-                                            controller.removeImage(index);
+                                            controller.removeImage(index,controller.imagesId[index]);
                                           },
                                           child: Container(
                                             width: 35,
@@ -323,7 +323,7 @@ class ProjectScreen extends StatelessWidget {
                         visible: controller.isEditing,
                         child: GestureDetector(
                           onTap: () {
-                            controller.sendData();
+                            controller.updateProject();
                           },
                           child: Container(
                             width: Dimensions.screenWidth(context),

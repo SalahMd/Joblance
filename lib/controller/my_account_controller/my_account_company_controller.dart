@@ -6,6 +6,7 @@ import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
+import 'package:joblance/data/model/review_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/company/company_profile.dart';
@@ -24,7 +25,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   Myservices myServices = Get.find();
   Map data = {};
-  List reviews = [];
+  List <ReviewModel>reviews = [];
   List<ProjectOrProductModel> products = [];
   late String token, id, lang;
   List<Widget> tabs = [
@@ -67,9 +68,9 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     statusRequest = StatusRequest.loading;
     var response = await addReviewBack.getData({}, token, id.toString());
     statusRequest = handelingData(response);
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
-        reviews.addAll(response['data']);
+    if (response['status'] == "success") {
+      for (var reviewData in response['data']) {
+        reviews.add(ReviewModel.fromJson(reviewData));
       }
     }
     update();

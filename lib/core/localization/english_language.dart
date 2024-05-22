@@ -287,6 +287,8 @@ Map<String, String> english = {
   "reviews":"Reviews",
   "postreview":"Post review",
   "review":"Review",
+  "yourproducthasbeensaved":"Your product has been saved",
   "thisreviewispublic":"This review is public and include your account information",
+  "yourprojecthasbeensaved":"Your project has been saved",
   "experience": "Experience"
 };

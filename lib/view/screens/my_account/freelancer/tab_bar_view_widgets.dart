@@ -37,11 +37,6 @@ Widget about(
           margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              "about".tr,
-              style: TextStyles.w50015(context),
-            ),
-            SizedBox(height: 20.h),
             Container(
                 padding: EdgeInsetsDirectional.only(bottom: 5.h, top: 10.h),
                 child: Column(

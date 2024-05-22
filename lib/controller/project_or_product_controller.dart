@@ -13,7 +13,7 @@ import 'package:joblance/data/remote/add_project_or_product_back.dart';
 
 abstract class ProjectScreenController extends GetxController {
   pickImage();
-  removeImage(int index);
+  removeImage(int index, int id);
   getData();
   updateProject();
   sendData();
@@ -29,13 +29,15 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
   StatusRequest? statusRequest, updateStatus;
   late String role, token;
   List<Map> images = [];
+
+  List deletedImages = [], imagesId = [];
   AddProjectOrProductBack addProjectOrProductBack =
       new AddProjectOrProductBack(Get.put(Crud()));
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   late int userId;
   bool isEditing = false, isOwner = false;
   Myservices myServices = Get.find();
-
+  List newImages = [];
   ProjectScreenControllerImpl(this.context,
       {required this.projectId, required this.id});
 
@@ -66,15 +68,28 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
     if (formdata!.validate()) {
       updateStatus = StatusRequest.loading;
       animationedAlert(AppAnimations.loadings, "pleasewait".tr);
-      var response = await addProjectOrProductBack.updateData({
+      Map data = {
         "project_name": title.text,
         "project_description": description.text,
         "link": link.text,
-      }, token, projectId.toString(), images);
+      };
+      for (int i = 0; i < deletedImages.length; i++) {
+        data["images_del[$i]"] = deletedImages[i];
+      }
+      for (int i = 0; i < images.length; i++) {
+        if (images[i].containsKey("device")) {
+          newImages.add(images[i]["device"]);
+        }
+        print(deletedImages);
+        print(images);
+      }
+
+      var response = await addProjectOrProductBack.updateData(
+          data, token, projectId.toString(), newImages);
       updateStatus = handelingData(response);
+      Get.back();
       if (StatusRequest.success == updateStatus) {
         if (response['status'] == "success") {
-          Get.back();
           Get.back();
           if (role == "1") {
             snackBar("", "yourproducthasbeensaved".tr, context);
@@ -83,7 +98,7 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
           }
         } else {
           Get.back();
-          animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);
+          animationedAlert(AppAnimations.wrong, "e".tr);
         }
       } else {
         Get.back();
@@ -126,7 +141,8 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
         description.text = response['data']['project']['project_description'];
         link.text = response['data']['project']['link'];
         for (int i = 0; i < response['data']['images'].length; i++) {
-          images.add({"network": response['data']['images'][i]['image']});
+          imagesId.add(response['data']['images'][i]['id']);
+          images.add({"network": response['data']['images'][i]['image_path']});
         }
       }
     } else {
@@ -176,8 +192,10 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
   }
 
   @override
-  removeImage(int index) {
+  removeImage(int index, int? id) {
+    if (id != null) deletedImages.add(id);
     images.removeAt(index);
+    print(deletedImages);
     update();
   }
 }

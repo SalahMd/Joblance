@@ -6,12 +6,15 @@ import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
+import 'package:joblance/data/model/review_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 
 abstract class CompanyProfileController extends GetxController {
   getReviews();
+  getProduts();
+  getUserData();
 }
 
 class CompanyProfileControllerImpl extends CompanyProfileController {
@@ -23,7 +26,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
       new AddProjectOrProductBack(Get.put(Crud()));
   AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   Map data = {};
-  List reviews = [];
+  List<ReviewModel> reviews = [];
   List<ProjectOrProductModel> products = [];
   List<Widget> tabs = [
     Tab(
@@ -55,7 +58,9 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        reviews.addAll(response['data']);
+        for (var reviewData in response['data']) {
+          reviews.add(ReviewModel.fromJson(reviewData));
+        }
       }
     }
     update();
@@ -75,6 +80,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   }
 
   getProduts() async {
+    statusRequest = StatusRequest.loading;
     var response =
         await addProjectOrProductBack.getData({}, AppLinks.project, token);
     statusRequest = handelingData(response);

@@ -27,11 +27,12 @@ class AddProjectOrProductBack {
   }
 
   updateData(Map data, var token, String id, var images) async {
-    var response = await crud.putData(
-        AppLinks.project,
+    var response = await crud.postAndGetData(
+        AppLinks.project+"/"+id,
         data,
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},
-        "images",
+        "images_add",
+        true,
         true,
         images);
     return response.fold((l) => l, (r) => r);

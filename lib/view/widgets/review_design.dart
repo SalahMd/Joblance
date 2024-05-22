@@ -1,28 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jiffy/jiffy.dart';
+import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/widgets/divider.dart';
 
 class ReviewDesign extends StatelessWidget {
   final String image;
   final String review;
   final String name;
   final String date;
-  final int level;
+  final level;
+  final String userId;
   const ReviewDesign(
       {super.key,
       required this.image,
       required this.review,
       required this.name,
       required this.level,
-      required this.date});
+      required this.date,
+      required this.userId});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: Dimensions.screenWidth(context),
-      height: 200.h,
+      //height: 180.h,
+      padding: EdgeInsets.symmetric(vertical: 5.h),
       margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,21 +66,23 @@ class ReviewDesign extends StatelessWidget {
               Container(
                   width: 100.w,
                   height: 40.h,
-                  child: ListView.builder(
-                    itemCount: level,
-                    padding: EdgeInsets.zero,
-                    physics: NeverScrollableScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Icon(
-                        Icons.star,
-                        color: Colors.yellow[700],
-                        size: 17.sp,
-                      );
-                    },
-                  )),
+                  child: RatingBar.builder(
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      unratedColor: LightAppColors.greyColor,
+                      initialRating: level.toDouble(),
+                      itemSize: 20,
+                      itemBuilder: (context, index) {
+                        return Icon(
+                          Icons.star,
+                          size: 10.sp,
+                          color: Colors.yellow[700],
+                        );
+                      },
+                      onRatingUpdate: (rate) {})),
               Text(
-                date,
+                Jiffy.parse(date).format(pattern: "h:mm a"),
                 style: TextStyles.w40012grey(context),
               )
             ],
@@ -88,7 +97,8 @@ class ReviewDesign extends StatelessWidget {
                 maxLines: 3,
               )),
             ],
-          )
+          ),
+          MyDivider()
         ],
       ),
     );

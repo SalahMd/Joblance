@@ -59,7 +59,9 @@ Widget about(BuildContext context, MyAccountCompanyControllerImpl controller) {
               style: TextStyles.w40012grey(context),
             ).animate().fade(duration: 700.ms).slideY(begin: 0.1),
             SizedBox(height: 10.h),
-            MyDivider(height: 10,),
+            MyDivider(
+              height: 10,
+            ),
             Text("reviews".tr, style: TextStyles.w50015(context)),
             SizedBox(height: 20.h),
             ListView.builder(
@@ -69,12 +71,13 @@ Widget about(BuildContext context, MyAccountCompanyControllerImpl controller) {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return ReviewDesign(
-                      image: controller.data['image'],
-                      review:
-                          controller.reviews[index]['comment'],
-                      name: "Sala Mdagmesh",
-                      level: controller.reviews[index]['level'],
-                      date: controller.reviews[index]['created_at'],);
+                        image: controller.reviews[index].image!,
+                  review: controller.reviews[index].comment!,
+                  name: controller.reviews[index].firstName!,
+                  level: controller.reviews[index].level!,
+                  date: controller.reviews[index].createdAt!,
+                  userId: controller.reviews[index].userId!,
+                  );
                 })
           ],
         ),

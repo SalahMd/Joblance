@@ -61,11 +61,12 @@ Widget aboutCompany(
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return ReviewDesign(
-                  image: controller.data['image'],
-                  review: controller.reviews[index]['comment'],
-                  name: "Sala Mdagmesh",
-                  level: controller.reviews[index]['level'],
-                  date: controller.reviews[index]['created_at'],
+                 image: controller.reviews[index].image!,
+                  review: controller.reviews[index].comment!,
+                  name: controller.reviews[index].firstName!,
+                  level: controller.reviews[index].level!,
+                  date: controller.reviews[index].createdAt!,
+                  userId: controller.reviews[index].userId!,
                 );
               })
         ],
