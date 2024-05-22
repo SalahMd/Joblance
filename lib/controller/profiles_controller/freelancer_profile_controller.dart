@@ -3,17 +3,19 @@ import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/links.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/freelancer_info_model.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
+import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 
 abstract class FreelancerProfileController extends GetxController {}
 
 class FreelancerProfileControllerImpl extends FreelancerProfileController {
-  StatusRequest? statusRequest;
+  StatusRequest? statusRequest, reviewStatus;
   List<FreeLancerInfoModel> info = [];
   final int id;
   Myservices myServices = Get.find();
@@ -34,6 +36,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
   AddProjectOrProductBack addProjectOrProductBack =
       new AddProjectOrProductBack(Get.put(Crud()));
+  AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   FreelancerProfileControllerImpl({required this.id});
   List userSkills = [];
   @override
@@ -122,5 +125,25 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     } else {}
     print(response);
     update();
+  }
+
+  rateFreelancer(
+    var level,
+    BuildContext context,
+  ) async {
+    reviewStatus = StatusRequest.loading;
+    var response =
+        await addReviewBack.postRate(token, {"level": level, "user_id": id});
+    reviewStatus = handelingData(response);
+    Get.back();
+    if (StatusRequest.success == reviewStatus) {
+      if (response['status'] == "success") {
+        snackBar("", "yourreviewhasbeenadded", context);
+      }else{
+        snackBar("", "yourreviewhasnotbeenadded", context);
+      }
+    }else{
+      snackBar("", "yourreviewhasnotbeenadded", context);
+    }
   }
 }

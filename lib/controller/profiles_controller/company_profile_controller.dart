@@ -22,8 +22,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   StatusRequest? statusRequest;
   late String language, token;
   Myservices myServices = Get.find();
-  AddProjectOrProductBack addProjectOrProductBack =
-      new AddProjectOrProductBack(Get.put(Crud()));
+  AddProjectOrProductBack addProjectOrProductBack = AddProjectOrProductBack(Get.put(Crud()));
   AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   Map data = {};
   List<ReviewModel> reviews = [];
@@ -86,13 +85,8 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        for (int i = 0; i < response['data'].length; i++) {
-          products.add(ProjectOrProductModel(
-              id: response['data'][i]['id'],
-              projectName: response['data'][i]['project_name'],
-              projectDescription: response['data'][i]['project_description'],
-              link: response['data'][i]['link'],
-              userId: response['data'][i]['user_id']));
+        for (var reviewData in response['data']) {
+          products.add(ProjectOrProductModel.fromJson(reviewData));
         }
       }
     }

@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/buttons.dart';
@@ -216,6 +218,58 @@ paymentAlert(String text, String body, BuildContext context) {
     },
   );
   return Future.value(true);
+}
+
+Future<double> rateDialog(String title, BuildContext context) async {
+  var level = 4.0;
+  Completer<double> completer = Completer<double>();
+
+  await Get.defaultDialog(
+    title: title,
+    titleStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
+    titlePadding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
+    content: Column(
+      children: [
+        RatingBar.builder(
+          direction: Axis.horizontal,
+          allowHalfRating: true,
+          initialRating: 4,
+          itemCount: 5,
+          itemSize: 30,
+          unratedColor: Colors.grey,
+          itemBuilder: (context, index) {
+            return Icon(
+              Icons.star,
+              size: 20.sp,
+              color: Colors.yellow[700],
+            );
+          },
+          onRatingUpdate: (rate) {
+            level = rate;
+          },
+        ),
+        SizedBox(height: 30.h),
+        GestureDetector(
+          onTap: () {
+            completer.complete(level);
+            Get.back();
+          },
+          child: Container(
+            width: 90.w,
+            height: 27.h,
+            decoration: AppButtons.buttonDecoration,
+            alignment: Alignment.center,
+            child: Text(
+              "confirm".tr,
+              style: TextStyles.w50012White(context),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+
+  return completer.future;
 }
 
 Future<bool> animationedAlert(var animation, String title) {

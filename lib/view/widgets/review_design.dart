@@ -37,8 +37,8 @@ class ReviewDesign extends StatelessWidget {
           Row(
             children: [
               Container(
-                width: 35.sp,
-                height: 35.sp,
+                width: 32.sp,
+                height: 32.sp,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -69,6 +69,7 @@ class ReviewDesign extends StatelessWidget {
                   child: RatingBar.builder(
                       direction: Axis.horizontal,
                       allowHalfRating: true,
+                      ignoreGestures: true,
                       itemCount: 5,
                       unratedColor: LightAppColors.greyColor,
                       initialRating: level.toDouble(),

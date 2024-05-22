@@ -4,9 +4,8 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/profiles_controller/freelancer_profile_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/buttons.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/view/screens/chat/texting_page.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/view/screens/profile/freelancer_profile/tab_bar_widgets.dart';
 import 'package:joblance/view/widgets/profile_tob_bar.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
@@ -54,11 +53,11 @@ class FreelancerProfile extends StatelessWidget {
                                   SizedBox(width: 10.w),
                                   Expanded(
                                       child: GestureDetector(
-                                    onTap: () {
-                                      Get.to(TextingPage(
-                                          userId: id.toString(),
-                                          image: AppImages.Linkedin,
-                                          userName: "salah"));
+                                    onTap: () async {
+                                      var level = await rateDialog(
+                                          "ratethisfreelancer".tr, context);
+
+                                      controller.rateFreelancer(level, context);
                                     },
                                     child: Container(
                                       height: 40.h,
@@ -70,7 +69,7 @@ class FreelancerProfile extends StatelessWidget {
                                               color: Theme.of(context)
                                                   .colorScheme
                                                   .onSecondary)),
-                                      child: Text("message".tr,
+                                      child: Text("rate".tr,
                                           style: TextStyles.w50012(context)),
                                     ),
                                   )),

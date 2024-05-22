@@ -81,7 +81,8 @@ class CompanyHomePage extends StatelessWidget {
                                     ['location'],
                                 image: controller.freelancers[index]['image'],
                                 major: controller.freelancers[index]['major'],
-                                id: controller.freelancers[index]['id']);
+                                openToWork: controller.freelancers[index]['open_to_work'],
+                                id: controller.freelancers[index]['id'],rateLevel: 3,numOfRates: 15,);
                           },
                         )
                       ],

@@ -21,4 +21,9 @@ class AddReviewBack {
         {'Authorization': 'Bearer $token'}, null, false, false, null);
     return response.fold((l) => l, (r) => r);
   }
+  postRate(String token,Map data)async{
+      var response = await crud.postAndGetData(AppLinks.rate, data,
+        {'Authorization': 'Bearer $token'}, null, true, false, null);
+    return response.fold((l) => l, (r) => r);
+  }
 }

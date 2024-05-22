@@ -283,12 +283,18 @@ Map<String, String> english = {
   "educations": "Educations",
   "createcv": "Create CV",
   "experiences": "Experiences",
-  "ratethiscompany":"Rate this company",
-  "reviews":"Reviews",
-  "postreview":"Post review",
-  "review":"Review",
-  "yourproducthasbeensaved":"Your product has been saved",
-  "thisreviewispublic":"This review is public and include your account information",
-  "yourprojecthasbeensaved":"Your project has been saved",
-  "experience": "Experience"
+  "ratethiscompany": "Rate this company",
+  "reviews": "Reviews",
+  "postreview": "Post review",
+  "review": "Review",
+  "yourproducthasbeensaved": "Your product has been saved",
+  "thisreviewispublic":
+      "This review is public and include your account information",
+  "yourprojecthasbeensaved": "Your project has been saved",
+  "experience": "Experience",
+  "ratethisfreelancer": "Rate this freelancer",
+  "yourreviewhasbeenposted": "Your review has been posted",
+  "yourreviewhasbeenadded": "Your review has been added",
+  "rate": "Rate",
+  "yourreviewhasnotbeenadded": "Your review has not been added"
 };

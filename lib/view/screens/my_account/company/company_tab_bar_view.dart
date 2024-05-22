@@ -71,12 +71,14 @@ Widget about(BuildContext context, MyAccountCompanyControllerImpl controller) {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return ReviewDesign(
-                        image: controller.reviews[index].image!,
-                  review: controller.reviews[index].comment!,
-                  name: controller.reviews[index].firstName!,
-                  level: controller.reviews[index].level!,
-                  date: controller.reviews[index].createdAt!,
-                  userId: controller.reviews[index].userId!,
+                    image: controller.reviews[index].image!,
+                    review: controller.reviews[index].comment!,
+                    name: controller.reviews[index].firstName! +
+                        " " +
+                        controller.reviews[index].lastName!,
+                    level: controller.reviews[index].level!,
+                    date: controller.reviews[index].createdAt!,
+                    userId: controller.reviews[index].userId!,
                   );
                 })
           ],

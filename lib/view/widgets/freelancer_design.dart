@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
@@ -15,6 +16,9 @@ class FreeLancerDesign extends StatelessWidget {
   final String image;
   final String major;
   final int id;
+  final int numOfRates;
+  final int openToWork;
+  final rateLevel;
   const FreeLancerDesign(
       {super.key,
       required this.name,
@@ -22,7 +26,10 @@ class FreeLancerDesign extends StatelessWidget {
       required this.location,
       required this.image,
       required this.major,
-      required this.id});
+      required this.id,
+      required this.rateLevel,
+      required this.numOfRates,
+      required this.openToWork});
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +104,54 @@ class FreeLancerDesign extends StatelessWidget {
                 SizedBox(
                   height: 15.h,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsetsDirectional.only(
+                              start: 2.w,
+                            ),
+                            child: RatingBar.builder(
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                ignoreGestures: true,
+                                unratedColor: LightAppColors.greyColor,
+                                initialRating: rateLevel.toDouble(),
+                                itemSize: 15,
+                                itemBuilder: (context, index) {
+                                  return Icon(
+                                    Icons.star,
+                                    size: 10.sp,
+                                    color: Colors.yellow[700],
+                                  );
+                                },
+                                onRatingUpdate: (rate) {})),
+                        SizedBox(width: 10.w),
+                        Text(
+                          "(" + numOfRates.toString() + ")",
+                          style: TextStyles.w40010grey(context),
+                        )
+                      ],
+                    ),
+                    Visibility(
+                        visible: openToWork == 1,
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.green, width: 2),
+                          ),
+                          child: Text("opentowork".tr,
+                              style: TextStyles.w4009grey(context)),
+                        ))
+                  ],
+                ),
                 Padding(
-                  padding: EdgeInsetsDirectional.only(start: 5.w),
+                  padding: EdgeInsetsDirectional.only(start: 5.w, top: 5.h),
                   child: Text(
                     bio,
                     style: TextStyles.w40010grey(context),

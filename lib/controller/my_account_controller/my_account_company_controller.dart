@@ -25,7 +25,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   Myservices myServices = Get.find();
   Map data = {};
-  List <ReviewModel>reviews = [];
+  List<ReviewModel> reviews = [];
   List<ProjectOrProductModel> products = [];
   late String token, id, lang;
   List<Widget> tabs = [
@@ -68,9 +68,11 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     statusRequest = StatusRequest.loading;
     var response = await addReviewBack.getData({}, token, id.toString());
     statusRequest = handelingData(response);
-    if (response['status'] == "success") {
-      for (var reviewData in response['data']) {
-        reviews.add(ReviewModel.fromJson(reviewData));
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var reviewData in response['data']) {
+          reviews.add(ReviewModel.fromJson(reviewData));
+        }
       }
     }
     update();
@@ -90,6 +92,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   }
 
   getProduts() async {
+    statusRequest = StatusRequest.loading;
     var response =
         await addProjectOrProductBack.getData({}, AppLinks.project, token);
     statusRequest = handelingData(response);
