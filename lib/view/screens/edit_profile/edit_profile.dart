@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/settings_controller/edit_profile_controller.dart';
@@ -96,9 +97,15 @@ class EditProfile extends StatelessWidget {
                                 ))
                           ],
                         ),
-                      ),
+                      )
+                          .animate()
+                          .fade(duration: (800.ms), delay: 200.ms)
+                          .slideY(begin: -0.08),
                       SizedBox(height: 30.h),
-                      ProfileTextField(controller: controller),
+                      ProfileTextField(controller: controller)
+                          .animate()
+                          .fade(duration: (800.ms), delay: 400.ms)
+                          .slideY(begin: -0.05),
                       ProfileDropDownWidget(
                           title: "major",
                           choices: controller.majors,
@@ -145,7 +152,10 @@ class EditProfile extends StatelessWidget {
                                   }),
                             ],
                           ),
-                        ),
+                        )
+                            .animate()
+                            .fade(duration: (800.ms), delay: 500.ms)
+                            .slideY(begin: -0.2),
                       ),
                       SizedBox(height: 20.h),
                       GestureDetector(

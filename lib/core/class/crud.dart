@@ -15,7 +15,7 @@ class Crud {
       bool isFile,
       var file) async {
     try {
-      if (true) {
+      if (await checkInternet()) {
         var response;
         // Check if the request is a POST with a file
         if (isFile && isPost && file != null) {
@@ -52,12 +52,11 @@ class Crud {
           print(response.body);
         }
         // Handle other types of requests
-        else if (isPost && file==null) {
+        else if (isPost && file == null) {
           response =
               await http.post(Uri.parse(linkurl), body: data, headers: headers);
           print(response.body);
-        }
-        else if (isPost && !isFile) {
+        } else if (isPost && !isFile) {
           response =
               await http.post(Uri.parse(linkurl), body: data, headers: headers);
           print(response.body);

@@ -16,6 +16,7 @@ class CompanyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(CompanyHomePageControllerImpl());
     return Scaffold(
       body: GetBuilder<CompanyHomePageControllerImpl>(
         builder: (controller) => RefreshIndicator(

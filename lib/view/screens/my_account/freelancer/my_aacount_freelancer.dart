@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/my_account_controller/my_account_free_lancer_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/view/screens/my_account/freelancer/tab_bar_view_widgets.dart';
+import 'package:joblance/view/screens/status_screen.dart';
 import 'package:joblance/view/widgets/profile_tob_bar.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
 
@@ -15,10 +16,12 @@ class MyAccountFreeLancer extends StatelessWidget {
     Get.put(MyAccountFreelancerControllerImpl());
     return Scaffold(
         body: GetBuilder<MyAccountFreelancerControllerImpl>(
-            builder: (controller) => controller.statusRequest !=
-                    StatusRequest.success
+            builder: (controller) => controller.statusRequest ==
+                    StatusRequest.loading
                 ? Container()
-                : DefaultTabController(
+                  : controller.statusRequest == StatusRequest.success
+                    ? 
+               DefaultTabController(
                     length: controller.tabs.length,
                     child: NestedScrollView(
                         headerSliverBuilder:
@@ -54,6 +57,6 @@ class MyAccountFreeLancer extends StatelessWidget {
                         body: TabBarViewWidgets(
                           controller: controller,
                         )),
-                  )));
+                  ) : StatusScreen(statusRequest: controller.statusRequest),));
   }
 }

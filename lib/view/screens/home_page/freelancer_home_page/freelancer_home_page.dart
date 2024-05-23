@@ -12,6 +12,7 @@ import 'package:joblance/view/screens/home_page/freelancer_home_page/shimmer_fre
 import 'package:joblance/view/screens/home_page/freelancer_home_page/swiper.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/tasks.dart';
 import 'package:joblance/view/screens/home_page/top_bar.dart';
+import 'package:joblance/view/screens/status_screen.dart';
 import 'package:joblance/view/widgets/job_design.dart';
 
 class FreelancerHomePage extends StatelessWidget {
@@ -29,8 +30,9 @@ class FreelancerHomePage extends StatelessWidget {
             },
             child: SingleChildScrollView(
               child: controller.statusRequest == StatusRequest.loading
-                  ? ShimmerFreelancerHomePage()
-                  : Column(
+                  ? ShimmerFreelancerHomePage()  : controller.statusRequest == StatusRequest.success
+                    ? 
+                   Column(
                       children: [
                         TopBar(
                           name: controller.name,
@@ -123,7 +125,7 @@ class FreelancerHomePage extends StatelessWidget {
                             image: AppImages.meta,
                             isActive: true),
                       ],
-                    ),
+                    ) : StatusScreen(statusRequest: controller.statusRequest),
             ),
           ),
         ),

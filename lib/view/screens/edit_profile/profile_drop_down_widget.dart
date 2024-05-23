@@ -50,6 +50,6 @@ class ProfileDropDownWidget extends StatelessWidget {
         },
         items: choices,
       ),
-    ).animate().fade(duration: (600.ms)).slideY(begin: -0.5);
+    ).animate().fade(duration: (800.ms), delay: 500.ms).slideY(begin: -0.2);
   }
 }
