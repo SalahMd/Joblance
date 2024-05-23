@@ -296,5 +296,6 @@ Map<String, String> english = {
   "yourreviewhasbeenposted": "Your review has been posted",
   "yourreviewhasbeenadded": "Your review has been added",
   "rate": "Rate",
+  "yourdatahasbeensaved":"Your data has have been saved",
   "yourreviewhasnotbeenadded": "Your review has not been added"
 };

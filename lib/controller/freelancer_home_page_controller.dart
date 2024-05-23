@@ -17,18 +17,19 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   String? token, id;
   String language = 'en';
   Myservices myservices = Get.find();
-  late String name="", image="";
+  late String name = "", image = "";
   @override
   void onInit() {
     token = myservices.sharedPreferences.getString("token")!;
     id = myservices.sharedPreferences.getInt("id").toString();
-   // language = myservices.sharedPreferences.getString("lang");
+    // language = myservices.sharedPreferences.getString("lang");
     super.onInit();
     getFreelancerInfo();
   }
 
   getFreelancerInfo() async {
     statusRequest = StatusRequest.loading;
+    update();
     var response =
         await freeLnacerHomePageBack.getFreelancerInfo(token, language, id!);
     statusRequest = handelingData(response);
@@ -40,6 +41,10 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
       }
     }
     update();
+  }
+
+  refreshPage() async {
+    await getFreelancerInfo();
   }
 
   @override

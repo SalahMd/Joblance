@@ -16,62 +16,61 @@ class CompanyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(CompanyHomePageControllerImpl());
-    return RefreshIndicator(
-      onRefresh: () async {
-        controller.refreshPage();
-      },
-      child: Scaffold(
-        body: GetBuilder<CompanyHomePageControllerImpl>(
-          builder: (controller) => SingleChildScrollView(
+    return Scaffold(
+      body: GetBuilder<CompanyHomePageControllerImpl>(
+        builder: (controller) => RefreshIndicator(
+          onRefresh: () async {
+            controller.refreshPage();
+          },
+          child: SingleChildScrollView(
             child: controller.statusRequest == StatusRequest.loading
-                ? ShimmerCompanyHomePage():controller.statusRequest == StatusRequest.success?
-                 SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        TopBar(
-                          name: controller.name,
-                          image: controller.image,
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional.centerStart,
-                          child: Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                  start: 15.w,
-                                  top: 10.h,
-                                  bottom: 10.h,
-                                  end: 15.w),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "categories".tr,
-                                    style: TextStyles.bold17(context),
-                                  ),
-                                ],
-                              )),
-                        ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                        Categories(
-                          controller: controller,
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional.centerStart,
-                          child: Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                  start: 15.w, top: 10.h, bottom: 10.h),
-                              child: Text(
-                                "popularfreelancers".tr,
-                                style: TextStyles.bold17(context),
-                              )),
-                        ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                        ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          itemCount: controller.freelancers.length,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return FreeLancerDesign(
+                ? ShimmerCompanyHomePage()
+                : controller.statusRequest == StatusRequest.success
+                    ? Column(
+                        children: [
+                          TopBar(
+                            name: controller.name,
+                            image: controller.image,
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                    start: 15.w,
+                                    top: 10.h,
+                                    bottom: 10.h,
+                                    end: 15.w),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "categories".tr,
+                                      style: TextStyles.bold17(context),
+                                    ),
+                                  ],
+                                )),
+                          ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
+                          Categories(
+                            controller: controller,
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                    start: 15.w, top: 10.h, bottom: 10.h),
+                                child: Text(
+                                  "popularfreelancers".tr,
+                                  style: TextStyles.bold17(context),
+                                )),
+                          ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
+                          ListView.builder(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            itemCount: controller.freelancers.length,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return FreeLancerDesign(
                                 name: controller.freelancers[index]
                                         ['first_name'] +
                                     " " +
@@ -81,13 +80,19 @@ class CompanyHomePage extends StatelessWidget {
                                     ['location'],
                                 image: controller.freelancers[index]['image'],
                                 major: controller.freelancers[index]['major'],
-                                openToWork: controller.freelancers[index]['open_to_work'],
-                                id: controller.freelancers[index]['id'],rateLevel: 3,numOfRates: 15,);
-                          },
-                        )
-                      ],
-                    ),
-                  ):StatusScreen(statusRequest: controller.statusRequest),
+                                openToWork: controller.freelancers[index]
+                                    ['open_to_work'],
+                                id: controller.freelancers[index]['id'],
+                                rateLevel: controller.freelancers[index]
+                                    ['rate'],
+                                numOfRates: controller.freelancers[index]
+                                    ['counter'],
+                              );
+                            },
+                          ),
+                        ],
+                      )
+                    : StatusScreen(statusRequest: controller.statusRequest),
           ),
         ),
       ),

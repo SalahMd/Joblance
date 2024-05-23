@@ -73,7 +73,7 @@ class TobBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(60),
                     child: image != ""
                         ? Image.network(
-                            image[0] == "h" ? image : AppLinks.IP + "/" + image,
+                            image[0] == "h" ? image : AppLinks.IP + image,
                             fit: BoxFit.cover,
                             width: 100.sp,
                             height: 100.sp,

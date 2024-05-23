@@ -25,7 +25,9 @@ class SettingsControllerImpl extends SettingsController {
     statusRequest = StatusRequest.loading;
     var token = myServices.sharedPreferences.getString("token");
     String lang = "en", mode;
-    mode = myServices.sharedPreferences.getString("mode")!;
+    mode = await myServices.sharedPreferences.getString("mode")!;
+    lang = await myServices.sharedPreferences.getString("lang")!;
+
     var response = await logout.postData(token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -34,7 +36,7 @@ class SettingsControllerImpl extends SettingsController {
         FirebaseMessaging.instance.unsubscribeFromTopic("users");
         FirebaseMessaging.instance.unsubscribeFromTopic("user" + id);
         myServices.sharedPreferences.clear();
-        myServices.sharedPreferences.setString("lang", lang);
+        await myServices.sharedPreferences.setString("lang", lang);
         myServices.sharedPreferences.setString("mode", mode);
         Get.offNamed("Login");
       } else {

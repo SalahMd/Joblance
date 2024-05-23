@@ -163,6 +163,8 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
       } else {
         animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);
       }
+    }else{
+      animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);
     }
   }
 

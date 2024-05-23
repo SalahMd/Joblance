@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/animations.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/functions/show_countries.dart';
@@ -30,10 +31,12 @@ class EditProfileControllerImpl extends EditProfileController {
   final BuildContext context;
   String? image;
   var newImage;
+
   EditProfileBack editProfileBack = new EditProfileBack(Get.put(Crud()));
   StatusRequest? statusRequest;
   StatusRequest? updateStatusRequest;
   bool openToWork = false;
+  String link = AppLinks.freelancers;
   late String id, token, lang;
   String studyCase = "1", major = "1";
   String? country, birthOfDate, numOfEmployees = "1";
@@ -154,6 +157,7 @@ class EditProfileControllerImpl extends EditProfileController {
     } else {
       companyName.text = data['name'];
       description.text = data['description'];
+      link = AppLinks.company;
     }
     country = data['location'];
     image = data['image'];
@@ -163,30 +167,34 @@ class EditProfileControllerImpl extends EditProfileController {
   }
 
   updateUserData() async {
-    updateStatusRequest = StatusRequest.loading;
-    animationedAlert(AppAnimations.loadings, "pleasewait".tr);
-    var response = await editProfileBack.updateData(
-        token,
-        id,
-        {
-          "first_name": firstName.text,
-          "last_name": lastName.text,
-          "name": companyName.text,
-          "phone_number": phoneNumber.text,
-          "major_id": major,
-          "study_case_id": studyCase,
-          "description": description.text,
-          "bio": bio.text,
-          "open_to_work": openToWork ? "1" : "0",
-          "location": country!,
-        },
-        newImage);
-    updateStatusRequest = handelingData(response);
-    Get.back();
-    if (StatusRequest.success == updateStatusRequest) {
-      if (response['status'] == "success") {
-        Get.back();
-        snackBar("", "yourdatahasbeensaved", context);
+    var formdata = formState.currentState;
+    if (formdata!.validate()) {
+      updateStatusRequest = StatusRequest.loading;
+      animationedAlert(AppAnimations.loadings, "pleasewait".tr);
+      var response = await editProfileBack.updateData(
+          link,
+          token,
+          id,
+          {
+            "first_name": firstName.text,
+            "last_name": lastName.text,
+            "name": companyName.text,
+            "phone_number": phoneNumber.text,
+            "major_id": major,
+            "study_case_id": studyCase,
+            "description": description.text,
+            "bio": bio.text,
+            "open_to_work": openToWork ? "1" : "0",
+            "location": country!,
+          },
+          newImage);
+      updateStatusRequest = handelingData(response);
+      Get.back();
+      if (StatusRequest.success == updateStatusRequest) {
+        if (response['status'] == "success") {
+          Get.back();
+          snackBar("", "yourdatahasbeensaved".tr, context);
+        }
       }
     }
   }

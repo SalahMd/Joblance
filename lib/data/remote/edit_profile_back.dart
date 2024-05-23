@@ -18,16 +18,18 @@ class EditProfileBack {
   }
 
   updateData(
+    String link,
     var token,
     String id,
     Map data,
     var image,
   ) async {
-    var response = await crud.putData(
-        AppLinks.profile + id,
-        {},
+    var response = await crud.postAndGetData(
+        link + "/" + id,
+        data,
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},
         "image",
+        true,
         true,
         image);
     return response.fold((l) => l, (r) => r);

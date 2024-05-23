@@ -40,6 +40,7 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
 
   getCompanyInfo() async {
     statusRequest = StatusRequest.loading;
+    update();
     var response =
         await companyHomePageBack.getCompanyInfo(token, language, id);
     statusRequest = handelingData(response);
@@ -72,17 +73,15 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
     update();
   }
 
-  refreshPage() {
+  refreshPage() async {
     majors.clear();
     freelancers.clear();
-    name = "";
-    image = "";
     language = myServices.sharedPreferences.getString("lang") == null
         ? "en"
         : myServices.sharedPreferences.getString("lang")!;
-    getCompanyInfo();
-    getFreelancers();
-    getMajors();
+    await getCompanyInfo();
+    await getFreelancers();
+    await getMajors();
   }
 
   getFreelancers() async {

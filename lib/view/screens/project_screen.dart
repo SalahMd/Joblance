@@ -274,7 +274,7 @@ class ProjectScreen extends StatelessWidget {
                                                 )
                                               : Image.network(
                                                   AppLinks.IP +
-                                                      "/" +
+                                                      
                                                       controller.images[index]
                                                           .values.last,
                                                   fit: BoxFit.cover,
@@ -311,7 +311,7 @@ class ProjectScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(10),
                                       child: Image.network(
                                         AppLinks.IP +
-                                            "/" +
+                                            
                                             controller
                                                 .images[index].values.last,
                                         fit: BoxFit.cover,

@@ -41,7 +41,7 @@ class TopBar extends StatelessWidget {
                           ? Image.network(
                               image[0] == "h"
                                   ? image
-                                  : AppLinks.IP + "/" + image,
+                                  : AppLinks.IP + image,
                               fit: BoxFit.cover,
                             )
                           : Container(),
