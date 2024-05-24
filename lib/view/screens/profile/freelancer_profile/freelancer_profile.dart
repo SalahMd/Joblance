@@ -58,27 +58,31 @@ class FreelancerProfile extends StatelessWidget {
                                       )),
                                       SizedBox(width: 10.w),
                                       Expanded(
-                                          child: GestureDetector(
-                                        onTap: () async {
-                                          var level = await rateDialog(
-                                              "ratethisfreelancer".tr, context);
+                                          child: Visibility(
+                                        visible: !controller.data['evaluated'],
+                                        child: GestureDetector(
+                                          onTap: () async {
+                                            var level = await rateDialog(
+                                                "ratethisfreelancer".tr,
+                                                context);
 
-                                          controller.rateFreelancer(
-                                              level, context);
-                                        },
-                                        child: Container(
-                                          height: 40.h,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              border: Border.all(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .onSecondary)),
-                                          child: Text("rate".tr,
-                                              style:
-                                                  TextStyles.w50012(context)),
+                                            controller.rateFreelancer(
+                                                level, context);
+                                          },
+                                          child: Container(
+                                            height: 40.h,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                border: Border.all(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .onSecondary)),
+                                            child: Text("rate".tr,
+                                                style:
+                                                    TextStyles.w50012(context)),
+                                          ),
                                         ),
                                       )),
                                     ],

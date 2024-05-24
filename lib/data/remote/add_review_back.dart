@@ -12,17 +12,15 @@ class AddReviewBack {
         {'Authorization': 'Bearer $token'}, null, true, false, null);
     return response.fold((l) => l, (r) => r);
   }
-  getData(
-    Map data,
-    var token,
-    String id
-  ) async {
-    var response = await crud.postAndGetData(AppLinks.review+"?user_id="+id, data,
-        {'Authorization': 'Bearer $token'}, null, false, false, null);
+
+  getData(Map data, var token, String id) async {
+    var response = await crud.postAndGetData(AppLinks.review + "?user_id=" + id,
+        data, {'Authorization': 'Bearer $token'}, null, false, false, null);
     return response.fold((l) => l, (r) => r);
   }
-  postRate(String token,Map data)async{
-      var response = await crud.postAndGetData(AppLinks.rate, data,
+
+  postRate(String token, Map data) async {
+    var response = await crud.postAndGetData(AppLinks.rate, data,
         {'Authorization': 'Bearer $token'}, null, true, false, null);
     return response.fold((l) => l, (r) => r);
   }
