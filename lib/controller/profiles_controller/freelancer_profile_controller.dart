@@ -12,7 +12,12 @@ import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 
-abstract class FreelancerProfileController extends GetxController {}
+abstract class FreelancerProfileController extends GetxController {
+  getUserData();
+  getSkills();
+  getProjects();
+  rateFreelancer(var level,BuildContext context);
+}
 
 class FreelancerProfileControllerImpl extends FreelancerProfileController {
   StatusRequest? statusRequest, reviewStatus;
@@ -72,34 +77,6 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     update();
   }
 
-  displayData() async {
-    statusRequest = StatusRequest.loading;
-    var response = await profileBack.getData(token, id.toString(), language);
-    statusRequest = handelingData(response);
-    print(response);
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
-        data.addAll(response['data']);
-        info.add(FreeLancerInfoModel(
-            response['data']['id'],
-            response['data']['name'],
-            response['data']['major'],
-            response['data']['image'],
-            response['data']['study_case'],
-            response['data']['email'],
-            response['data']['phone_number'],
-            [],
-            response['data']['bio'],
-            response['data']['location'],
-            response['data']['open_to_work'],
-            response['data']['followers'],
-            response['data']['cover_photo']));
-        print(data);
-      }
-    }
-    update();
-  }
-
   getUserData() async {
     statusRequest = StatusRequest.loading;
     update();
@@ -115,7 +92,6 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
 
   Future<void> getSkills() async {
     statusRequest = StatusRequest.loading;
-
     var response = await profileBack.getSkills(
       AppLinks.skills + "?id=" + id.toString(),
       token,
@@ -125,7 +101,9 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
       if (response['status'] == "success") {
         userSkills.addAll(response['data']);
       }
-    } else {}
+    } else {
+      
+    }
     print(response);
     update();
   }
@@ -138,9 +116,9 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     var response = await addReviewBack
         .postRate(token, {"level": level.toString(), "user_id": id.toString()});
     reviewStatus = handelingData(response);
-    Get.back();
     if (StatusRequest.success == reviewStatus) {
       if (response['status'] == "success") {
+        Get.back();
         snackBar("", "yourreviewhasbeenadded".tr, context);
       } else {
         snackBar("", "yourreviewhasnotbeenadded".tr, context);

@@ -9,4 +9,13 @@ class LogOutBack {
         {'Authorization': 'Bearer $token'}, null, true, false, null);
     return response.fold((l) => l, (r) => r);
   }
+
+  deleteAccount(String token, String id) async {
+    var response = await crud.deleteData(
+      AppLinks.user + "/" + id,
+      {},
+      {'Authorization': 'Bearer $token'},
+    );
+    return response.fold((l) => l, (r) => r);
+  }
 }

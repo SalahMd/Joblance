@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/settings_controller/settings_controller.dart';
+import 'package:joblance/core/constants/animations.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/create_CV/create_CV.dart';
 import 'package:joblance/view/screens/edit_profile/edit_profile.dart';
@@ -125,7 +126,20 @@ class Settings extends StatelessWidget {
                             leadingIcon: Icons.logout_outlined,
                             trailingIcon: Icons.arrow_forward_ios_outlined,
                             listText: "logout".tr),
-                      )
+                      ),
+                        GestureDetector(
+                        onTap: () {
+                          animationedAlertWithActions(
+                                                AppAnimations.info,
+                                                "doyoureallywanttodeleteaccount".tr,
+                                                controller.deleteAccount());
+                                            controller.update();
+                        },
+                        child: ListTiles(
+                            leadingIcon: Icons.delete_outline,
+                            trailingIcon: Icons.arrow_forward_ios_outlined,
+                            listText: "deletemyaccount".tr),
+                      ),
                     ],
                   ),
                 ),

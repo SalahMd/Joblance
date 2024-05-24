@@ -298,4 +298,6 @@ Map<String, String> english = {
   "rate": "Rate",
   "yourdatahasbeensaved": "Your data has have been saved",
   "yourreviewhasnotbeenadded": "Couldn't add your review",
+  "deletemyaccount":"Delete my account",
+  "doyoureallywanttodeleteaccount":"Do you really want to delete your account"
 };
