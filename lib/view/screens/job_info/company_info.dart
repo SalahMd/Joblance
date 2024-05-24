@@ -45,7 +45,7 @@ class CompanyInfo extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  Get.to(CompanyProfile(id:8));
+                  Get.to(CompanyProfile(id: 3));
                 },
                 child: Container(
                   width: 50.w,

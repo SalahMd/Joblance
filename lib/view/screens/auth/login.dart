@@ -82,6 +82,7 @@ class Login extends StatelessWidget {
                 max: 30,
                 isNumber: false,
                 isPassword: false,
+                isValidation: false,
                 isBorder: false,
                 isFilled: true,
                 isLabel: false,

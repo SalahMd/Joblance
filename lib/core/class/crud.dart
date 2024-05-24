@@ -88,7 +88,7 @@ class Crud {
       bool isFile,
       var file) async {
     try {
-      if (true) {
+      if (await checkInternet()) {
         var response;
         if (isFile && file != null) {
           String name = fileName == null ? "image" : fileName;

@@ -23,7 +23,7 @@ class TaskPage extends StatelessWidget {
                 major: "Technology",
                 isActive: true,
                 budget: "200-500",
-                id:8,
+                id:3,
                 duration: "60 days"),
             SizedBox(
               height: 5.h,

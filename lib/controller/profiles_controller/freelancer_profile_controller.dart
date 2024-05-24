@@ -52,6 +52,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   }
 
   getProjects() async {
+    statusRequest = StatusRequest.loading;
     var response = await addProjectOrProductBack
         .getData({}, AppLinks.project + "?user_id=" + id.toString(), token);
     statusRequest = handelingData(response);
@@ -113,6 +114,8 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   }
 
   Future<void> getSkills() async {
+    statusRequest = StatusRequest.loading;
+
     var response = await profileBack.getSkills(
       AppLinks.skills + "?id=" + id.toString(),
       token,
@@ -132,18 +135,18 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     BuildContext context,
   ) async {
     reviewStatus = StatusRequest.loading;
-    var response =
-        await addReviewBack.postRate(token, {"level": level, "freelancer_id": id});
+    var response = await addReviewBack
+        .postRate(token, {"level": level, "freelancer_id": id});
     reviewStatus = handelingData(response);
     Get.back();
     if (StatusRequest.success == reviewStatus) {
       if (response['status'] == "success") {
-        snackBar("", "yourreviewhasbeenadded", context);
-      }else{
-        snackBar("", "yourreviewhasnotbeenadded", context);
+        snackBar("", "yourreviewhasbeenadded".tr, context);
+      } else {
+        snackBar("", "yourreviewhasnotbeenadded".tr, context);
       }
-    }else{
-      snackBar("", "yourreviewhasnotbeenadded", context);
+    } else {
+      snackBar("", "yourreviewhasnotbeenadded".tr, context);
     }
   }
 }
