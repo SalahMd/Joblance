@@ -2,6 +2,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/auth/logout_back.dart';
@@ -49,12 +50,18 @@ class SettingsControllerImpl extends SettingsController {
 
   deleteAccount() async {
     statusRequest = StatusRequest.loading;
+    String link;
+    if (myServices.sharedPreferences.getString("role_id") == "2") {
+      link = AppLinks.company;
+    }else{
+      link = AppLinks.freelancers;
+    }
     String token = myServices.sharedPreferences.getString("token")!;
     String lang = "en", mode;
     String id = myServices.sharedPreferences.getInt("id").toString();
     mode = await myServices.sharedPreferences.getString("mode")!;
     lang = await myServices.sharedPreferences.getString("lang")!;
-    var response = await logout.deleteAccount(token, id);
+    var response = await logout.deleteAccount(link,token, id);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

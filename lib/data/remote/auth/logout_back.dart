@@ -10,11 +10,11 @@ class LogOutBack {
     return response.fold((l) => l, (r) => r);
   }
 
-  deleteAccount(String token, String id) async {
+  deleteAccount(String link,String token, String id) async {
     var response = await crud.deleteData(
-      AppLinks.user + "/" + id,
+      link + "/" + id,
       {},
-      {'Authorization': 'Bearer $token'},
+      {'Authorization': 'Bearer $token',"accept":"application/json"},
     );
     return response.fold((l) => l, (r) => r);
   }

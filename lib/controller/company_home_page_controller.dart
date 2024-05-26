@@ -58,7 +58,6 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
     majorStatus = StatusRequest.loading;
     var response = await companyHomePageBack.getMajor(token, language);
     majorStatus = handelingData(response);
-
     if (StatusRequest.success == majorStatus) {
       if (response['status'] == "success") {
         for (int i = 0; i < response['data'].length; i++) {

@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/company_home_page_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
-import 'package:joblance/data/statics/static.dart';
 import 'package:joblance/view/screens/category_screen.dart';
 
 class Categories extends StatelessWidget {
@@ -29,7 +29,9 @@ class Categories extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) =>
                     GestureDetector(
                       onTap: () {
-                        Get.to(CategoryScreen(id: controller.majors[index].id!, name: controller.majors[index].name!));
+                        Get.to(CategoryScreen(
+                            id: controller.majors[index].id!,
+                            name: controller.majors[index].name!));
                       },
                       child: Container(
                         width: 95.w,
@@ -45,8 +47,10 @@ class Categories extends StatelessWidget {
                               Container(
                                 width: 30.w,
                                 height: 30.h,
-                                child: Image.asset(
-                                  categories[index].image!,
+                                child: Image.network(
+                                  AppLinks.IP +
+                                      "/" +
+                                      controller.majors[index].image!,
                                   color: LightAppColors.primaryColor,
                                   width: 30.w,
                                   height: 30.h,

@@ -59,9 +59,9 @@ class SignUp extends StatelessWidget {
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(70),
                               child: Image.file(File(controller.image.path),
-                                  fit: BoxFit.fill,
-                                  width: 120.w,
-                                  height: 140.h),
+                                  fit: BoxFit.cover,
+                                  width: 128.w,
+                                  height: 123.h),
                             ),
                     ),
                   ),

@@ -74,14 +74,15 @@ class Settings extends StatelessWidget {
                                 listText: "myjobs".tr),
                           ),
                           Visibility(
-                            visible: controller.role=="2",
+                            visible: controller.role == "2",
                             child: GestureDetector(
                               onTap: () {
                                 Get.to(CreateCV());
                               },
                               child: ListTiles(
                                   leadingIcon: Icons.file_copy_outlined,
-                                  trailingIcon: Icons.arrow_forward_ios_outlined,
+                                  trailingIcon:
+                                      Icons.arrow_forward_ios_outlined,
                                   listText: "createcv".tr),
                             ),
                           ),
@@ -127,13 +128,13 @@ class Settings extends StatelessWidget {
                             trailingIcon: Icons.arrow_forward_ios_outlined,
                             listText: "logout".tr),
                       ),
-                        GestureDetector(
+                      GestureDetector(
                         onTap: () {
                           animationedAlertWithActions(
-                                                AppAnimations.info,
-                                                "doyoureallywanttodeleteaccount".tr,
-                                                controller.deleteAccount());
-                                            controller.update();
+                              AppAnimations.info,
+                              "doyoureallywanttodeleteaccount".tr,
+                              controller.deleteAccount);
+                          controller.update();
                         },
                         child: ListTiles(
                             leadingIcon: Icons.delete_outline,

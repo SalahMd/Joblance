@@ -1,14 +1,11 @@
 class AppLinks {
   static String IP = "http://192.168.1.105:8000";
-
   static String get logIn => "$IP/api/login";
   static String get signUp => "$IP/api/register";
   static String get logOut => "$IP/api/user/logout";
   static String get googleSignin => "$IP/api/auth/google/login";
-  static String get emailVerificationForPassword =>
-      "$IP/api/user/password/email";
-  static String get resendCodeForPassword =>
-      "$IP/api/user/password/email/resend";
+  static String get emailVerificationForPassword =>"$IP/api/user/password/email";
+  static String get resendCodeForPassword =>"$IP/api/user/password/email/resend";
   static String get resendCodeSignup => "$IP/api/user/email/code/resend";
   static String get checkCodeForPassword => "$IP/api/user/password/code/check";
   static String get checkCodeForSignUp => "$IP/api/user/email/code/check";

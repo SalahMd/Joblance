@@ -2,7 +2,7 @@ class ReviewModel {
   int? id;
   var level;
   String? comment;
-  String? userId;
+  int? userId;
   String? firstName;
   String? lastName;
   String? image;

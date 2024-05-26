@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/animations.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/remote/company/company_home_page_back.dart';
 import 'package:joblance/data/remote/job_info_back.dart';
 
 abstract class AddjobController extends GetxController {
   addJob();
   getJobData();
+  getMajors();
+  changeCheckBoxValue(String box);
   updateDropDownValue(String? newValue, String changingElement);
 }
 
@@ -23,12 +24,12 @@ class AddjobControllerImpl extends AddjobController {
   late TextEditingController salary;
   late TextEditingController jobTitle;
   late TextEditingController jobLocation;
-  late String token;
+  late String token, language;
   StatusRequest? statusRequest;
   Myservices myservices = Get.find();
 
   JobBack jobBack = new JobBack(Get.put(Crud()));
-  bool showNumOfEmployees = false,importantJobs = false;
+  bool showNumOfEmployees = false, importantJobs = false;
   bool showAboutCompany = false;
   String majorValue = '1',
       remoteValue = '1',
@@ -81,109 +82,40 @@ class AddjobControllerImpl extends AddjobController {
       child: Text("director".tr),
     ),
   ];
-  List<DropdownMenuItem<String>> major = [
-    DropdownMenuItem<String>(
-      value: '1',
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("engineering".tr),
-          Container(
-            width: 25.w,
-            height: 25.h,
-            child: Image.asset(
-              AppImages.cat3,
-              width: 25.w,
-              height: 25.h,
-            ),
-          )
-        ],
-      ),
-    ),
-    DropdownMenuItem<String>(
-      value: '2',
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("technology".tr),
-          Container(
-            width: 25.w,
-            height: 25.h,
-            child: Image.asset(
-              AppImages.cat5,
-              width: 25.w,
-              height: 25.h,
-            ),
-          )
-        ],
-      ),
-    ),
-    DropdownMenuItem<String>(
-      value: '3',
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("medical".tr),
-          Container(
-            width: 25.w,
-            height: 25.h,
-            child: Image.asset(
-              AppImages.cat4,
-              width: 25.w,
-              height: 25.h,
-            ),
-          )
-        ],
-      ),
-    ),
-    DropdownMenuItem<String>(
-      value: '4',
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("designing".tr),
-          Container(
-            width: 25.w,
-            height: 25.h,
-            child: Image.asset(
-              AppImages.cat2,
-              width: 25.w,
-              height: 25.h,
-            ),
-          )
-        ],
-      ),
-    ),
-    DropdownMenuItem<String>(
-      value: '5',
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("customer-service".tr),
-          Container(
-            width: 25.w,
-            height: 25.h,
-            child: Image.asset(
-              AppImages.cat6,
-              width: 25.w,
-              height: 25.h,
-            ),
-          )
-        ],
-      ),
-    ),
-  ];
+  CompanyHomePageBack companyHomePageBack =
+      new CompanyHomePageBack(Get.put(Crud()));
+  List<DropdownMenuItem<String>> majors = [];
 
   @override
-  onInit() {
+  onInit() async {
     aboutJob = new TextEditingController();
     additionalInfo = new TextEditingController();
     requirements = new TextEditingController();
     salary = new TextEditingController();
     jobLocation = new TextEditingController();
     jobTitle = new TextEditingController();
+    language = myservices.sharedPreferences.getString("lang")!;
     token = myservices.sharedPreferences.getString("token")!;
+    await getMajors();
     super.onInit();
+  }
+
+  getMajors() async {
+    statusRequest = StatusRequest.loading;
+    var response = await companyHomePageBack.getMajor(token, language);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (int i = 0; i < response['data'].length; i++) {
+          majors.add(DropdownMenuItem(
+            value: response['data'][i]['id'].toString(),
+            child: Text(response['data'][i]['name']),
+          ));
+        }
+        print(majors);
+      }
+    }
+    update();
   }
 
   @override
@@ -233,9 +165,10 @@ class AddjobControllerImpl extends AddjobController {
   changeCheckBoxValue(String box) {
     if (box == "aboutcompany")
       showAboutCompany = !showAboutCompany;
-    else if (box == "showemployees") showNumOfEmployees = !showNumOfEmployees;
+    else if (box == "showemployees")
+      showNumOfEmployees = !showNumOfEmployees;
     else
-    importantJobs = !importantJobs;
+      importantJobs = !importantJobs;
     update();
   }
 

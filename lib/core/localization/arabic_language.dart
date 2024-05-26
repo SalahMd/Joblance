@@ -289,4 +289,6 @@ Map<String, String> arabic = {
   "rate": "التقييم",
   "yourdatahasbeensaved": "تم حفظ المعلومات بنجاح",
   "yourreviewhasnotbeenadded": "لم يتم إضافة التقييم",
+    "deletemyaccount":"حذف حسابي",
+  "doyoureallywanttodeleteaccount":"هل تريد حقا حذف حسابك"
 };

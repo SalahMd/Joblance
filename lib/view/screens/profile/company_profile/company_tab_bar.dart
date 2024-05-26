@@ -68,7 +68,7 @@ Widget aboutCompany(
                       controller.reviews[index].lastName!,
                   level: controller.reviews[index].level!,
                   date: controller.reviews[index].createdAt!,
-                  userId: controller.reviews[index].userId!,
+                  userId: controller.reviews[index].userId!.toString(),
                 );
               })
         ],

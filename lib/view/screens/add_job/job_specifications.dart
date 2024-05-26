@@ -87,7 +87,7 @@ class JobSpecifications extends StatelessWidget {
         ).animate().fade(duration: 600.ms, delay: 1250.ms).slideY(begin: 0.3),
         JobDropDown(
                 title: "major",
-                choices: controller.major,
+                choices: controller.majors,
                 elementValue: controller.majorValue,
                 controller: controller)
             .animate()
