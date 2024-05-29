@@ -8,9 +8,11 @@ import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
+import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/freelancer/freelancer_profile.dart';
 import 'package:joblance/data/remote/profile_back.dart';
+import 'package:joblance/data/remote/task_back.dart';
 
 abstract class MyAccountFreelancerController extends GetxController {
   addSkill(int id);
@@ -31,6 +33,8 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
       new AddProjectOrProductBack(Get.put(Crud()));
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   Map data = {};
+  List<TaskModel> tasks = [];
+  TaskBack taskBack = new TaskBack(Get.put(Crud()));
 
   List skills = [];
   List userSkills = [];
@@ -57,6 +61,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     await getUserData();
     await getSkills();
     await getProjects();
+    await getTasks();
 
     skill = new TextEditingController();
     super.onInit();
@@ -122,6 +127,21 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
       }
     } else {}
     print(response);
+    update();
+  }
+
+  getTasks() async {
+    statusRequest = StatusRequest.loading;
+    var response = await taskBack
+        .getData({}, AppLinks.task + "?user_id" + id.toString(), token);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var reviewData in response['data']) {
+          tasks.add(TaskModel.fromJson(reviewData));
+        }
+      }
+    }
     update();
   }
 

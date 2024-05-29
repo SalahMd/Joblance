@@ -21,6 +21,7 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
   String name = "", image = "";
   List<CategoryModel> majors = [];
   List freelancers = [];
+
   CompanyHomePageBack companyHomePageBack =
       new CompanyHomePageBack(Get.put(Crud()));
 

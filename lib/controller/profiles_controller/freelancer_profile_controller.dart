@@ -8,15 +8,17 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/freelancer_info_model.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
+import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
+import 'package:joblance/data/remote/task_back.dart';
 
 abstract class FreelancerProfileController extends GetxController {
   getUserData();
   getSkills();
   getProjects();
-  rateFreelancer(var level,BuildContext context);
+  rateFreelancer(var level, BuildContext context);
 }
 
 class FreelancerProfileControllerImpl extends FreelancerProfileController {
@@ -24,6 +26,8 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   List<FreeLancerInfoModel> info = [];
   final int id;
   Myservices myServices = Get.find();
+  List<TaskModel> tasks = [];
+  TaskBack taskBack = new TaskBack(Get.put(Crud()));
   Map data = {};
   late String language;
   late String token;
@@ -48,12 +52,27 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   void onInit() async {
     token = myServices.sharedPreferences.getString("token")!;
     language = myServices.sharedPreferences.getString("lang")!;
-
     //displayData();
     await getUserData();
     await getSkills();
     await getProjects();
+    await getTasks();
     super.onInit();
+  }
+
+  getTasks() async {
+    statusRequest = StatusRequest.loading;
+    var response =
+        await taskBack.getData({}, AppLinks.task + "?user_id"+id.toString(), token);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var reviewData in response['data']) {
+          tasks.add(TaskModel.fromJson(reviewData));
+        }
+      }
+    }
+    update();
   }
 
   getProjects() async {
@@ -101,9 +120,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
       if (response['status'] == "success") {
         userSkills.addAll(response['data']);
       }
-    } else {
-      
-    }
+    } else {}
     print(response);
     update();
   }

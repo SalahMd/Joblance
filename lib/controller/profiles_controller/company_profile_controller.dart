@@ -10,6 +10,9 @@ import 'package:joblance/data/model/review_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
+import 'package:joblance/data/remote/task_back.dart';
+
+import '../../data/model/task_model.dart';
 
 abstract class CompanyProfileController extends GetxController {
   getReviews();
@@ -26,6 +29,9 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   Map data = {};
   List<ReviewModel> reviews = [];
+    List<TaskModel> tasks = [];
+  TaskBack taskBack = new TaskBack(Get.put(Crud()));
+
   List<ProjectOrProductModel> products = [];
   List<Widget> tabs = [
     Tab(
@@ -48,6 +54,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     await getUserData();
     await getProduts();
     await getReviews();
+    await getTasks();
     super.onInit();
   }
 
@@ -64,7 +71,20 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     }
     update();
   }
-
+getTasks() async {
+    statusRequest = StatusRequest.loading;
+    var response =
+        await taskBack.getData({}, AppLinks.task + "?user_id"+id.toString(), token);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var reviewData in response['data']) {
+          tasks.add(TaskModel.fromJson(reviewData));
+        }
+      }
+    }
+    update();
+  }
   getUserData() async {
     statusRequest = StatusRequest.loading;
     update();

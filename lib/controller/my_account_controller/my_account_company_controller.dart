@@ -7,9 +7,11 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/model/review_model.dart';
+import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/company/company_profile.dart';
+import 'package:joblance/data/remote/task_back.dart';
 
 abstract class MyAccountCompanyController extends GetxController {
   getUserData();
@@ -25,6 +27,9 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   Myservices myServices = Get.find();
   Map data = {};
+  TaskBack taskBack = new TaskBack(Get.put(Crud()));
+  List<TaskModel> tasks = [];
+
   List<ReviewModel> reviews = [];
   List<ProjectOrProductModel> products = [];
   late String token, id, lang;
@@ -62,6 +67,22 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     await getUserData();
     await getProduts();
     await getReviews();
+    await getTasks();
+  }
+
+  getTasks() async {
+    statusRequest = StatusRequest.loading;
+    var response = await taskBack
+        .getData({}, AppLinks.task + "?user_id" + id.toString(), token);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var reviewData in response['data']) {
+          tasks.add(TaskModel.fromJson(reviewData));
+        }
+      }
+    }
+    update();
   }
 
   getReviews() async {
