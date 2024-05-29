@@ -9,6 +9,7 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/task_back.dart';
+import 'package:joblance/view/screens/add_task/add_task.dart';
 
 abstract class TaskPageController extends GetxController {
   getData();
@@ -19,14 +20,6 @@ abstract class TaskPageController extends GetxController {
 class TaskPageControllerImpl extends TaskPageController {
   final int id, taskId;
   final BuildContext context;
-  late TextEditingController aboutTask;
-  late TextEditingController additionalInfo;
-  late TextEditingController requirements;
-  late TextEditingController minBudget;
-  late TextEditingController maxBudget;
-  late TextEditingController taskTitle;
-  late TextEditingController taskLocation;
-  late TextEditingController taskDuration;
   StatusRequest? statusRequest, updateStatus;
   late String token;
   late TaskModel task;
@@ -39,14 +32,6 @@ class TaskPageControllerImpl extends TaskPageController {
       {required this.taskId, required this.id});
   @override
   void onInit() async {
-    aboutTask = new TextEditingController();
-    additionalInfo = new TextEditingController();
-    requirements = new TextEditingController();
-    minBudget = new TextEditingController();
-    maxBudget = new TextEditingController();
-    taskLocation = new TextEditingController();
-    taskTitle = new TextEditingController();
-    taskDuration = new TextEditingController();
     token = myServices.sharedPreferences.getString("token")!;
     userId = myServices.sharedPreferences.getInt("id")!;
     if (userId == id) {
@@ -54,18 +39,6 @@ class TaskPageControllerImpl extends TaskPageController {
     }
     await getData();
     super.onInit();
-  }
-
-  void dispose() {
-    aboutTask.dispose();
-    additionalInfo.dispose();
-    requirements.dispose();
-    minBudget.dispose();
-    maxBudget.dispose();
-    taskLocation.dispose();
-    taskTitle.dispose();
-    taskDuration.dispose();
-    super.dispose();
   }
 
   @override
@@ -102,35 +75,17 @@ class TaskPageControllerImpl extends TaskPageController {
   }
 
   @override
-  updateTask() async {
-    var formdata = formState.currentState;
-    if (formdata!.validate()) {
-      updateStatus = StatusRequest.loading;
-      animationedAlert(AppAnimations.loadings, "pleasewait".tr);
-      var response = await taskBack.updateData({
-        "about_task": aboutTask.text,
-        "task_title": taskTitle.text,
-        "requirements": requirements.text,
-        "additional_information": additionalInfo.text,
-        "task_duration": taskDuration.text,
-        "budget_min": minBudget.text,
-        "budget_max": maxBudget.text
-      }, token, taskId.toString());
-      updateStatus = handelingData(response);
-      Get.back();
-      if (StatusRequest.success == updateStatus) {
-        if (response['status'] == "success") {
-          Get.back();
-
-          snackBar("", "yourtaskhasbeenupdated".tr, context);
-        } else {
-          Get.back();
-          animationedAlert(AppAnimations.wrong, "e".tr);
-        }
-      } else {
-        Get.back();
-        animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);
-      }
-    }
+  updateTask() {
+    Get.to(AddTask(isUpdate: true,),arguments: {
+        "about_task": task.aboutTask,
+        "task_title": task.taskTitle,
+        "requirements": task.requirements,
+        "additional_information": task.additionalInformation,
+        "task_duration": task.taskDuration,
+        "budget_min": task.budgetMin,
+        "budget_max": task.budgetMax,
+        "id":task.id
+    });
   }
+
 }

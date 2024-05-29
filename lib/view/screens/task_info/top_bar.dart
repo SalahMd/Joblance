@@ -16,8 +16,8 @@ class TaskTobBar extends StatelessWidget {
   final String budget;
   final int id;
   final String duration;
-  final bool isActive;
-
+  final bool isActive,isOwner;
+  final void Function() onTap;
   const TaskTobBar(
       {super.key,
       required this.userImage,
@@ -26,14 +26,14 @@ class TaskTobBar extends StatelessWidget {
       required this.major,
       required this.isActive,
       required this.budget,
-      required this.duration, required this.id});
+      required this.duration, required this.id, required this.isOwner, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        JobTobBar(),
+        JobTobBar(isOwner: isOwner,onTap: onTap,),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w),
           child: Column(

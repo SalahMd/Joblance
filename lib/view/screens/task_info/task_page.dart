@@ -29,6 +29,8 @@ class TaskPage extends StatelessWidget {
                     taskTitle: controller.task.taskTitle!,
                     major: "Technology",
                     isActive: true,
+                    onTap: controller.updateTask,
+                    isOwner: controller.isOwner,
                     budget: controller.task.budgetMin.toString()+"-"+controller.task.budgetMax.toString(),
                     id: controller.task.id!,
                     duration: controller.task.taskDuration.toString()),

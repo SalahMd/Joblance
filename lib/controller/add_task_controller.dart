@@ -12,6 +12,7 @@ import 'package:joblance/data/remote/task_back.dart';
 
 abstract class AddTaskController extends GetxController {
   updateDropDownValue(String? newValue, String changingElement);
+  postTask(BuildContext context, bool isUpdate);
 }
 
 class AddTaskControllerImpl extends AddTaskController {
@@ -21,12 +22,11 @@ class AddTaskControllerImpl extends AddTaskController {
   late TextEditingController minBudget;
   late TextEditingController maxBudget;
   late TextEditingController taskTitle;
-  late TextEditingController taskLocation;
   late TextEditingController taskDuration;
   Myservices myservices = Get.find();
   StatusRequest? statusRequest;
+  int? id;
   bool showNumOfEmployees = false;
-  bool showAboutCompany = false;
   String taskMajorValue = "1";
   List<DropdownMenuItem<String>> major = [
     DropdownMenuItem<String>(
@@ -131,18 +131,28 @@ class AddTaskControllerImpl extends AddTaskController {
     requirements = new TextEditingController();
     minBudget = new TextEditingController();
     maxBudget = new TextEditingController();
-    taskLocation = new TextEditingController();
     taskTitle = new TextEditingController();
     taskDuration = new TextEditingController();
+    if (Get.arguments.isNotEmpty) {
+      taskTitle.text = Get.arguments['task_title'] as String;
+      aboutTask.text = Get.arguments['about_task'] as String;
+      taskDuration.text = Get.arguments['task_duration'] as String;
+      minBudget.text = Get.arguments['budget_min'] as String;
+      maxBudget.text = Get.arguments['budget_max'] as String;
+      id = Get.arguments['id'];
+      if (Get.arguments['budget_max'] != null) {
+        additionalInfo.text = Get.arguments['additional_info'] as String;
+      }
+    }
     super.onInit();
   }
 
-  postTask(BuildContext context) async {
+  postTask(BuildContext context, bool isUpdate) async {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
       animationedAlert(AppAnimations.loadings, "pleasewait".tr);
-      var response = await taskBack.postData({
+      Map data = {
         "about_task": aboutTask.text,
         "task_title": taskTitle.text,
         "requirements": requirements.text,
@@ -150,18 +160,37 @@ class AddTaskControllerImpl extends AddTaskController {
         "task_duration": taskDuration.text,
         "budget_min": minBudget.text,
         "budget_max": maxBudget.text
-      }, token);
+      };
+      var response;
+      if (!isUpdate)
+        response = await taskBack.postData(data, token);
+      else
+        response = await taskBack.updateData(data, token, id.toString());
       statusRequest = handelingData(response);
       Get.back();
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           Get.back();
-          snackBar("", "yourtaskhasbeenposted".tr, context);
-        }else{
-          snackBar("", "couldn'tpostyourtask".tr, context);
+
+          snackBar(
+              "",
+              !isUpdate
+                  ? "yourtaskhasbeenposted".tr
+                  : "yourtaskhasbeenupdated".tr,
+              context);
+        } else {
+          snackBar(
+              "",
+              !isUpdate
+                  ? "couldn'tpostyourtask".tr
+                  : "couldn'tupdateyourtask".tr,
+              context);
         }
-      }else{
-        snackBar("", "couldn'tpostyourtask".tr, context);
+      } else {
+        snackBar(
+            "",
+            !isUpdate ? "couldn'tpostyourtask".tr : "couldn'tupdateyourtask".tr,
+            context);
       }
     }
   }
@@ -173,21 +202,14 @@ class AddTaskControllerImpl extends AddTaskController {
     requirements.dispose();
     minBudget.dispose();
     maxBudget.dispose();
-    taskLocation.dispose();
     taskTitle.dispose();
     taskDuration.dispose();
     super.dispose();
   }
 
-  changeCheckBoxValue(String box) {
-    if (box == "aboutcompany")
-      showAboutCompany = !showAboutCompany;
-    else if (box == "showemployees") showNumOfEmployees = !showNumOfEmployees;
-    update();
-  }
-
   @override
   updateDropDownValue(String? newValue, String changingElement) {
+    taskMajorValue = newValue!;
     update();
   }
 }

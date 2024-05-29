@@ -10,7 +10,8 @@ import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_task/task_text_fields.dart';
 
 class AddTask extends StatelessWidget {
-  const AddTask({super.key});
+  final bool isUpdate;
+  const AddTask({super.key, this.isUpdate=false});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +80,7 @@ class AddTask extends StatelessWidget {
                 TaskTextFields(controller: controller),
                 GestureDetector(
                   onTap: () {
-                    controller.postTask(context);
+                    controller.postTask(context,isUpdate);
                   },
                   child: Container(
                     width: Dimensions.screenWidth(context),

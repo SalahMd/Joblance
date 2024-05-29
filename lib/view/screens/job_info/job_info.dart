@@ -22,7 +22,7 @@ class JobInfo extends StatelessWidget {
         builder: (controller) => SingleChildScrollView(
           child: Column(
             children: [
-              JobTobBar(),
+              JobTobBar(isOwner: false,onTap: (){},),
               CompanyInfo(
                 companyImage: Image.asset(AppImages.Linkedin),
                 companyName: "Linkedin",
