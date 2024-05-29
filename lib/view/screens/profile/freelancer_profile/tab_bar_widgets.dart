@@ -99,7 +99,7 @@ Widget about(context, FreelancerProfileControllerImpl controller) {
                     Icon(Icons.work_outline),
                     SizedBox(width: 10.w),
                     Text(
-                      controller.data['major'],
+                      controller.data['major']['name'],
                       style: TextStyles.w50012(context),
                     ),
                   ],
@@ -112,7 +112,7 @@ Widget about(context, FreelancerProfileControllerImpl controller) {
                     Icon(Icons.cases_outlined),
                     SizedBox(width: 10.w),
                     Text(
-                      controller.data['study_case'],
+                      controller.data['study_case']['name'],
                       style: TextStyles.w50012(context),
                     ),
                   ],

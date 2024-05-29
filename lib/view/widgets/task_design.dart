@@ -12,6 +12,7 @@ class TaskDesign extends StatelessWidget {
   final String major;
   final String date;
   final String duration;
+  final String aboutTask;
   final String image;
   final bool isActive;
   const TaskDesign(
@@ -22,7 +23,7 @@ class TaskDesign extends StatelessWidget {
       required this.date,
       required this.duration,
       required this.image,
-      required this.isActive});
+      required this.isActive, required this.aboutTask});
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +177,7 @@ class TaskDesign extends StatelessWidget {
             ),
             SizedBox(height: 15.h),
             Text(
-              "We need a flutter developer to develop our app to be the best app in the world with good ui and good ux",
+              aboutTask,
               style: TextStyles.w40010grey(context),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,

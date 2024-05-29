@@ -90,7 +90,7 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        freelancers.addAll(response['data']);
+        freelancers.addAll(response['data']['data']);
         print(freelancers);
       }
     }

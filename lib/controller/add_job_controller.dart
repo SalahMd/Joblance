@@ -132,7 +132,7 @@ class AddjobControllerImpl extends AddjobController {
   @override
   addJob() async {
     statusRequest = StatusRequest.loading;
-    animationedAlert(AppAnimations.loadings, "pleasewait");
+    animationedAlert(AppAnimations.loadings, "pleasewait".tr);
     var response = await jobBack.postData(token, {
       "job_title": jobTitle.text,
       "job_description": aboutJob.text,

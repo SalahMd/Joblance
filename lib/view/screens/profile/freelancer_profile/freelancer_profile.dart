@@ -39,7 +39,7 @@ class FreelancerProfile extends StatelessWidget {
                                   name: controller.data['first_name'] +
                                       " " +
                                       controller.data['last_name'],
-                                  description: controller.data['major'],
+                                  description: controller.data['major']['name'],
                                 ),
                                 SizedBox(height: 10.h),
                                 Padding(

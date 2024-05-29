@@ -80,7 +80,7 @@ class FreelancerHomePage extends StatelessWidget {
                                 ],
                               )),
                         ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                        Tasks()
+                        Tasks(controller: controller,)
                             .animate()
                             .fade(duration: 600.ms)
                             .slideX(begin: 0.4),

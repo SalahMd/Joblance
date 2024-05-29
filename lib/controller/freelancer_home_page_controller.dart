@@ -1,9 +1,12 @@
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/freelancer/freelancer_home_page_back.dart';
+import 'package:joblance/data/remote/task_back.dart';
 
 abstract class FreelancerHomePageController extends GetxController {
   getFreelancerInfo();
@@ -18,13 +21,16 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   String language = 'en';
   Myservices myservices = Get.find();
   late String name = "", image = "";
+  List<TaskModel> tasks = [];
+  TaskBack taskBack = new TaskBack(Get.put(Crud()));
   @override
-  void onInit() {
+  void onInit() async {
     token = myservices.sharedPreferences.getString("token")!;
     id = myservices.sharedPreferences.getInt("id").toString();
     // language = myservices.sharedPreferences.getString("lang");
     super.onInit();
-    getFreelancerInfo();
+    await getFreelancerInfo();
+    await getTasks();
   }
 
   getFreelancerInfo() async {
@@ -38,6 +44,20 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
       if (response['status'] == "success") {
         name = response['data']['first_name'];
         image = response['data']['image'];
+      }
+    }
+    update();
+  }
+
+  getTasks() async {
+    statusRequest = StatusRequest.loading;
+    var response = await taskBack.getData({}, AppLinks.task+"?user_id=2", token);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var reviewData in response['data']) {
+          tasks.add(TaskModel.fromJson(reviewData));
+        }
       }
     }
     update();

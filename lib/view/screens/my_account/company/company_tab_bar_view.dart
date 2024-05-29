@@ -220,7 +220,7 @@ Widget tasks(BuildContext context, var controller) {
                     date: "12-5-2024",
                     duration: "1 month",
                     image: AppImages.google,
-                    isActive: true);
+                    isActive: true, aboutTask: '',);
               }),
         ],
       ),
