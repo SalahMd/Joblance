@@ -68,6 +68,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     await getProduts();
     await getReviews();
     await getTasks();
+    await getTasks();
   }
 
   getTasks() async {

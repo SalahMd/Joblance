@@ -65,6 +65,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
 
   refreshPage() async {
     await getFreelancerInfo();
+    await getTasks();
   }
 
   @override

@@ -16,7 +16,6 @@ abstract class ProjectScreenController extends GetxController {
   removeImage(int index, int id);
   getData();
   updateProject();
-  sendData();
 }
 
 class ProjectScreenControllerImpl extends ProjectScreenController {
@@ -165,31 +164,6 @@ class ProjectScreenControllerImpl extends ProjectScreenController {
       }
     }else{
       animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);
-    }
-  }
-
-  sendData() async {
-    var formdata = formState.currentState;
-    if (formdata!.validate()) {
-      statusRequest = StatusRequest.loading;
-      animationedAlert(AppAnimations.loadings, "pleasewait".tr);
-
-      var response = await addProjectOrProductBack.postData({
-        "project_name": title.text,
-        "project_description": description.text,
-        "link": link.text,
-      }, images, token);
-      statusRequest = handelingData(response);
-      if (StatusRequest.success == statusRequest) {
-        if (response['status'] == "success") {
-          Get.back();
-          Get.back();
-        } else {
-          animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);
-        }
-      } else {
-        animationedAlert(AppAnimations.wrong, "errorwhilesavingdata".tr);
-      }
     }
   }
 

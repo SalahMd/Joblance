@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/profiles_controller/freelancer_profile_controller.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/view/screens/my_account/freelancer/tab_bar_view_widgets.dart';
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/project_design.dart';
 
@@ -15,6 +16,7 @@ class TabBarWidgets extends StatelessWidget {
     return TabBarView(children: [
       about(context, controller),
       projects(context, controller),
+      tasks(context, controller),
       skills(context, controller),
       contactInfo(context, controller)
     ]);

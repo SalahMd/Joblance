@@ -43,8 +43,8 @@ class JobInfo extends StatelessWidget {
               ),
               AboutCompany(),
               AboutJob(),
-              Requirements(),
-              AdditionalInfo()
+              Requirements(requirements:  "dadawwa\nwdawdawda"),
+              AdditionalInfo(additionalInfo: "daas dasdasdas\nfd;smfod sd\nfsklmfsdmf",)
             ],
           ),
         ),

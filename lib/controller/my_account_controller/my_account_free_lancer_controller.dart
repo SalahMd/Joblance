@@ -77,6 +77,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     await getUserData();
     await getProjects();
     await getSkills();
+    await getTasks();
   }
 
   getProjects() async {

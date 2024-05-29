@@ -25,10 +25,11 @@ class Tasks extends StatelessWidget {
             userName: "Google",
             major: "Technology",
             date: controller.tasks[index].createdAt!,
-            duration: "2 months",
+            duration: controller.tasks[index].taskDuration.toString(),
             image: AppImages.google,
             isActive: true,
             aboutTask: controller.tasks[index].aboutTask!,
+             taskId: controller.tasks[index].id!, id: controller.tasks[index].userId!,
           );
         },
       ),

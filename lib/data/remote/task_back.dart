@@ -29,7 +29,7 @@ class TaskBack {
     return response.fold((l) => l, (r) => r);
   }
 
-  updateData(Map data, var token, String id, var images) async {
+  updateData(Map data, var token, String id,) async {
     var response = await crud.putData(
         AppLinks.task + "/" + id,
         data,

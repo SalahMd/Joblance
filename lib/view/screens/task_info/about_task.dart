@@ -5,7 +5,8 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
 class AbouTask extends StatelessWidget {
-  const AbouTask({super.key});
+  final String aboutTask;
+  const AbouTask({super.key, required this.aboutTask});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class AbouTask extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "fsnesoifn oin eosienfo foishfesoih ieshf opesihf olfsn isen ieusfn esibf iuiun nosohi insef noeisfnheisnof nseoifn senfoi nsef noeisnfi nesoifnoi snief niesnfo isneofin esoifn iosenfoi nesoinf oiesnifonb njfn;odifnv ;iofdn io bsoi beoisb eoisbf oiesbf oibes",
+                aboutTask,
                 style: TextStyles.w40012grey(context),
               )
             ],

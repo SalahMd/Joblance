@@ -211,16 +211,16 @@ Widget tasks(BuildContext context, var controller) {
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 8,
+              itemCount: controller.tasks.length,
               itemBuilder: (BuildContext context, int index) {
                 return TaskDesign(
-                    taskTitle: "Application developer",
-                    userName: "Google",
+                    taskTitle: controller.tasks[index].taskTitle,
+                    userName: controller.tasks[index].name,
                     major: "software developer",
-                    date: "12-5-2024",
-                    duration: "1 month",
+                    date: controller.tasks[index].createdAt,
+                    duration: controller.tasks[index].taskDuration.toString(),
                     image: AppImages.google,
-                    isActive: true, aboutTask: '',);
+                    isActive: true, aboutTask:controller.tasks[index].aboutTask, taskId: controller.tasks[index].id, id: controller.tasks[index].userId,);
               }),
         ],
       ),

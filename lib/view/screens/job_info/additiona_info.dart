@@ -5,7 +5,8 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
 class AdditionalInfo extends StatelessWidget {
-  const AdditionalInfo({super.key});
+  final String additionalInfo;
+  const AdditionalInfo({super.key, required this.additionalInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class AdditionalInfo extends StatelessWidget {
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
           padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 5.w),
           child: Text(
-            "fsnesoifn oin eosienfo foishfesoih ieshf opesihf olfsn isen ieusfn esibf iuiun nosohi insef noeisfnheisnof nseoifn senfoi nsef noeisnfi nesoifnoi snief niesnfo isneofin esoifn iosenfoi nesoinf oiesnifonb njfn;odifnv ;iofdn io bsoi beoisb eoisbf oiesbf oibes",
+            additionalInfo,
             style: TextStyles.w40012grey(context),
           ),
         ),

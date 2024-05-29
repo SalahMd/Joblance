@@ -3,12 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/my_account_controller/my_account_free_lancer_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_project_or_product/add_project_or_product.dart';
 import 'package:joblance/view/screens/my_account/freelancer/add_skill.dart';
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/project_design.dart';
+import 'package:joblance/view/widgets/task_design.dart';
 
 class TabBarViewWidgets extends StatelessWidget {
   final MyAccountFreelancerControllerImpl controller;
@@ -20,9 +22,47 @@ class TabBarViewWidgets extends StatelessWidget {
       about(context, controller),
       projects(context, controller),
       skills(context, controller),
+      tasks(context, controller),
       contactInfo(context, controller)
     ]);
   }
+}
+Widget tasks(BuildContext context, var controller) {
+  return RefreshIndicator(
+    onRefresh: () async {
+      await Future.delayed(Duration(seconds: 2));
+      controller.refreshPage();
+    },
+    child: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
+            child: Text(
+              "mytasks".tr,
+              style: TextStyles.w50015(context),
+            ),
+          ),
+          ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.tasks.length,
+              itemBuilder: (BuildContext context, int index) {
+                return TaskDesign(
+                    taskTitle: controller.tasks[index].taskTitle,
+                    userName: controller.tasks[index].name,
+                    major: "software developer",
+                    date: controller.tasks[index].createdAt,
+                    duration: controller.tasks[index].taskDuration.toString(),
+                    image: AppImages.google,
+                    isActive: true, aboutTask:controller.tasks[index].aboutTask, taskId: controller.tasks[index].id, id: controller.tasks[index].userId,);
+              }),
+        ],
+      ),
+    ),
+  );
 }
 
 Widget about(

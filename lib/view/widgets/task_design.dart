@@ -15,6 +15,8 @@ class TaskDesign extends StatelessWidget {
   final String aboutTask;
   final String image;
   final bool isActive;
+  final int taskId,id;
+
   const TaskDesign(
       {super.key,
       required this.taskTitle,
@@ -23,13 +25,17 @@ class TaskDesign extends StatelessWidget {
       required this.date,
       required this.duration,
       required this.image,
-      required this.isActive, required this.aboutTask});
+      required this.isActive,
+      required this.aboutTask, required this.taskId, required this.id});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(TaskPage());
+        Get.to(TaskPage(
+          taskId: taskId,
+          id: id,
+        ));
       },
       child: Container(
         alignment: Alignment.topRight,

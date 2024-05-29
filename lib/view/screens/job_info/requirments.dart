@@ -5,7 +5,8 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
 class Requirements extends StatelessWidget {
-  const Requirements({super.key});
+  final String requirements;
+  const Requirements({super.key, required this.requirements});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class Requirements extends StatelessWidget {
             vertical: 3.h,
           ),
           child: Text(
-            "- fsnesoifn oin eosienfo foishfesoih ieshf\n- opesihf olfsn isen ieusfn esibf iuiun nosohi\n- insef noeisfnheisnof nseoifn senfoi nsef noeisnfi nesoifnoi\n- snief niesnfo isneofin esoifn iosenfoi nesoinf oiesnifonb njfn;odifnv\n- ;iofdn io bsoi beoisb eoisbf oiesbf oibes",
+            requirements,
             style: TextStyles.w40012grey(context),
           ),
         ),

@@ -11,13 +11,13 @@ import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
-
 import '../../data/model/task_model.dart';
 
 abstract class CompanyProfileController extends GetxController {
   getReviews();
   getProduts();
   getUserData();
+  getTasks();
 }
 
 class CompanyProfileControllerImpl extends CompanyProfileController {
@@ -25,11 +25,12 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   StatusRequest? statusRequest;
   late String language, token;
   Myservices myServices = Get.find();
-  AddProjectOrProductBack addProjectOrProductBack = AddProjectOrProductBack(Get.put(Crud()));
+  AddProjectOrProductBack addProjectOrProductBack =
+      AddProjectOrProductBack(Get.put(Crud()));
   AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   Map data = {};
   List<ReviewModel> reviews = [];
-    List<TaskModel> tasks = [];
+  List<TaskModel> tasks = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
 
   List<ProjectOrProductModel> products = [];
@@ -71,10 +72,11 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     }
     update();
   }
-getTasks() async {
+
+  getTasks() async {
     statusRequest = StatusRequest.loading;
-    var response =
-        await taskBack.getData({}, AppLinks.task + "?user_id"+id.toString(), token);
+    var response = await taskBack
+        .getData({}, AppLinks.task + "?user_id" + id.toString(), token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -85,6 +87,7 @@ getTasks() async {
     }
     update();
   }
+
   getUserData() async {
     statusRequest = StatusRequest.loading;
     update();
@@ -111,10 +114,5 @@ getTasks() async {
       }
     }
     update();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }
