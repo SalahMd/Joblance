@@ -5,7 +5,7 @@ import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/add_offer/add_offer.dart';
-import 'package:joblance/view/screens/job_info/tob_bar.dart';
+import 'package:joblance/view/screens/job_info/task_and_tob_bar.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class TaskTobBar extends StatelessWidget {
@@ -16,8 +16,9 @@ class TaskTobBar extends StatelessWidget {
   final String budget;
   final int id;
   final String duration;
-  final bool isActive,isOwner;
+  final bool isActive, isOwner;
   final void Function() onTap;
+  final void Function()? onDelete;
   const TaskTobBar(
       {super.key,
       required this.userImage,
@@ -26,14 +27,22 @@ class TaskTobBar extends StatelessWidget {
       required this.major,
       required this.isActive,
       required this.budget,
-      required this.duration, required this.id, required this.isOwner, required this.onTap});
+      required this.duration,
+      required this.id,
+      required this.isOwner,
+      required this.onTap,
+      this.onDelete});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        JobTobBar(isOwner: isOwner,onTap: onTap,),
+        TaskAndJobTobBar(
+          isOwner: isOwner,
+          onTap: onTap,
+          onDelete: onDelete,
+        ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w),
           child: Column(
@@ -45,7 +54,7 @@ class TaskTobBar extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(CompanyProfile(id:id));
+                      Get.to(CompanyProfile(id: id));
                     },
                     child: Container(
                       width: 45.w,
@@ -86,7 +95,7 @@ class TaskTobBar extends StatelessWidget {
                           SizedBox(width: 2.w),
                           Text(
                             budget,
-                            style: TextStyles.w40012grey(context),
+                            style: TextStyles.w40011grey(context),
                           ),
                         ],
                       ),
@@ -100,7 +109,7 @@ class TaskTobBar extends StatelessWidget {
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 20.h),
+                        SizedBox(height: 10.h),
                         Row(
                           children: [
                             Icon(
@@ -110,11 +119,11 @@ class TaskTobBar extends StatelessWidget {
                             SizedBox(width: 8.w),
                             Text(
                               "excutingtime".tr + " : ",
-                              style: TextStyles.w40012grey(context),
+                              style: TextStyles.w40011grey(context),
                             ),
                             Text(
-                              duration,
-                              style: TextStyles.w40012grey(context),
+                              duration + " " + "days".tr,
+                              style: TextStyles.w40011grey(context),
                             ),
                           ],
                         ),
@@ -124,7 +133,7 @@ class TaskTobBar extends StatelessWidget {
                             SizedBox(width: 8.w),
                             Text(
                               "major".tr + ": " + major,
-                              style: TextStyles.w40012grey(context),
+                              style: TextStyles.w40011grey(context),
                             ),
                           ],
                         ),
@@ -134,7 +143,7 @@ class TaskTobBar extends StatelessWidget {
                             SizedBox(width: 8.w),
                             Text(
                               "2 weeks ago".tr,
-                              style: TextStyles.w40012grey(context),
+                              style: TextStyles.w40011grey(context),
                             ),
                           ],
                         ),
@@ -151,25 +160,28 @@ class TaskTobBar extends StatelessWidget {
                             SizedBox(width: 10.w),
                             Text(
                               "active".tr,
-                              style: TextStyles.w40012grey(context),
+                              style: TextStyles.w40011grey(context),
                             ),
                           ],
                         ),
                       ]),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(AddOffer());
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 65.h),
-                      child: Container(
-                        width: 100.w,
-                        height: 30.h,
-                        alignment: Alignment.center,
-                        decoration: AppButtons.buttonDecoration,
-                        child: Text(
-                          "addoffer".tr,
-                          style: TextStyles.w50013White(context),
+                  Visibility(
+                    visible: !isOwner,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(AddOffer());
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 65.h),
+                        child: Container(
+                          width: 100.w,
+                          height: 30.h,
+                          alignment: Alignment.center,
+                          decoration: AppButtons.buttonDecoration,
+                          child: Text(
+                            "addoffer".tr,
+                            style: TextStyles.w50013White(context),
+                          ),
                         ),
                       ),
                     ),

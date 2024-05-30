@@ -8,7 +8,7 @@ import 'package:joblance/view/screens/job_info/about_job.dart';
 import 'package:joblance/view/screens/job_info/additiona_info.dart';
 import 'package:joblance/view/screens/job_info/company_info.dart';
 import 'package:joblance/view/screens/job_info/requirments.dart';
-import 'package:joblance/view/screens/job_info/tob_bar.dart';
+import 'package:joblance/view/screens/job_info/task_and_tob_bar.dart';
 
 class JobInfo extends StatelessWidget {
   final int id;
@@ -22,7 +22,10 @@ class JobInfo extends StatelessWidget {
         builder: (controller) => SingleChildScrollView(
           child: Column(
             children: [
-              JobTobBar(isOwner: false,onTap: (){},),
+              TaskAndJobTobBar(
+                isOwner: false,
+                onTap: () {},
+              ),
               CompanyInfo(
                 companyImage: Image.asset(AppImages.Linkedin),
                 companyName: "Linkedin",
@@ -43,8 +46,10 @@ class JobInfo extends StatelessWidget {
               ),
               AboutCompany(),
               AboutJob(),
-              Requirements(requirements:  "dadawwa\nwdawdawda"),
-              AdditionalInfo(additionalInfo: "daas dasdasdas\nfd;smfod sd\nfsklmfsdmf",)
+              Requirements(requirements: "dadawwa\nwdawdawda"),
+              AdditionalInfo(
+                additionalInfo: "daas dasdasdas\nfd;smfod sd\nfsklmfsdmf",
+              )
             ],
           ),
         ),

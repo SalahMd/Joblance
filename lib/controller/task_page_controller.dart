@@ -22,7 +22,7 @@ class TaskPageControllerImpl extends TaskPageController {
   final BuildContext context;
   StatusRequest? statusRequest, updateStatus;
   late String token;
-  late TaskModel task;
+  TaskModel task = TaskModel();
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   late int userId;
@@ -32,6 +32,8 @@ class TaskPageControllerImpl extends TaskPageController {
       {required this.taskId, required this.id});
   @override
   void onInit() async {
+    statusRequest = StatusRequest.loading;
+    update();
     token = myServices.sharedPreferences.getString("token")!;
     userId = myServices.sharedPreferences.getInt("id")!;
     if (userId == id) {
@@ -76,16 +78,19 @@ class TaskPageControllerImpl extends TaskPageController {
 
   @override
   updateTask() {
-    Get.to(AddTask(isUpdate: true,),arguments: {
-        "about_task": task.aboutTask,
-        "task_title": task.taskTitle,
-        "requirements": task.requirements,
-        "additional_information": task.additionalInformation,
-        "task_duration": task.taskDuration,
-        "budget_min": task.budgetMin,
-        "budget_max": task.budgetMax,
-        "id":task.id
-    });
+    Get.to(
+        AddTask(
+          isUpdate: true,
+        ),
+        arguments: {
+          "about_task": task.aboutTask,
+          "task_title": task.taskTitle,
+          "requirements": task.requirements,
+          "additional_information": task.additionalInformation,
+          "task_duration": task.taskDuration,
+          "budget_min": task.budgetMin,
+          "budget_max": task.budgetMax,
+          "id": task.id
+        });
   }
-
 }

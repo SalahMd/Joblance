@@ -15,7 +15,7 @@ class TaskDesign extends StatelessWidget {
   final String aboutTask;
   final String image;
   final bool isActive;
-  final int taskId,id;
+  final int taskId, id;
 
   const TaskDesign(
       {super.key,
@@ -26,7 +26,9 @@ class TaskDesign extends StatelessWidget {
       required this.duration,
       required this.image,
       required this.isActive,
-      required this.aboutTask, required this.taskId, required this.id});
+      required this.aboutTask,
+      required this.taskId,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +106,7 @@ class TaskDesign extends StatelessWidget {
                           width: 5.w,
                         ),
                         Text(
-                          duration,
+                          duration + " " + "days".tr,
                           style: TextStyles.w40010grey(context),
                           overflow: TextOverflow.ellipsis,
                         ),

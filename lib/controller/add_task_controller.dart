@@ -133,15 +133,16 @@ class AddTaskControllerImpl extends AddTaskController {
     maxBudget = new TextEditingController();
     taskTitle = new TextEditingController();
     taskDuration = new TextEditingController();
-    if (Get.arguments.isNotEmpty) {
+    if (Get.arguments != null) {
       taskTitle.text = Get.arguments['task_title'] as String;
       aboutTask.text = Get.arguments['about_task'] as String;
-      taskDuration.text = Get.arguments['task_duration'] as String;
-      minBudget.text = Get.arguments['budget_min'] as String;
-      maxBudget.text = Get.arguments['budget_max'] as String;
+      requirements.text = Get.arguments['requirements'] as String;
+      taskDuration.text = Get.arguments['task_duration'].toString();
+      minBudget.text = Get.arguments['budget_min'].toString();
+      maxBudget.text = Get.arguments['budget_max'].toString();
       id = Get.arguments['id'];
-      if (Get.arguments['budget_max'] != null) {
-        additionalInfo.text = Get.arguments['additional_info'] as String;
+      if (Get.arguments['additional_information'] != null) {
+        additionalInfo.text = Get.arguments['additional_information'] as String;
       }
     }
     super.onInit();

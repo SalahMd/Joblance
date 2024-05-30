@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/task_page_controller.dart';
+import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/view/screens/job_info/additiona_info.dart';
 import 'package:joblance/view/screens/job_info/requirments.dart';
@@ -17,33 +18,48 @@ class TaskPage extends StatelessWidget {
     Get.put(TaskPageControllerImpl(context, taskId: taskId, id: id));
     return Scaffold(
       body: GetBuilder<TaskPageControllerImpl>(
-        builder: (controller) => SingleChildScrollView(
-          child: Form(
-            key: controller.formState,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                TaskTobBar(
-                    userImage: Image.asset(AppImages.google),
-                    userName: controller.task.name!,
-                    taskTitle: controller.task.taskTitle!,
-                    major: "Technology",
-                    isActive: true,
-                    onTap: controller.updateTask,
-                    isOwner: controller.isOwner,
-                    budget: controller.task.budgetMin.toString()+"-"+controller.task.budgetMax.toString(),
-                    id: controller.task.id!,
-                    duration: controller.task.taskDuration.toString()),
-                SizedBox(
-                  height: 5.h,
+        builder: (controller) => controller.statusRequest ==
+                StatusRequest.loading
+            ? Container()
+            : SingleChildScrollView(
+                child: Form(
+                  key: controller.formState,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      TaskTobBar(
+                          userImage: Image.asset(AppImages.google),
+                          userName: "dasda",
+                          taskTitle: controller.task.taskTitle!,
+                          major: "Technology",
+                          isActive: true,
+                          onTap: controller.updateTask,
+                          onDelete: controller.deleteData,
+                          isOwner: controller.isOwner,
+                          budget: controller.task.budgetMin.toString() +
+                              "-" +
+                              controller.task.budgetMax.toString(),
+                          id: controller.task.id!,
+                          duration: controller.task.taskDuration.toString()),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      AbouTask(
+                        aboutTask: controller.task.aboutTask!,
+                      ),
+                      Requirements(
+                        requirements: controller.task.requirements!,
+                      ),
+                      controller.task.additionalInformation != null
+                          ? AdditionalInfo(
+                              additionalInfo:
+                                  controller.task.additionalInformation!,
+                            )
+                          : Container()
+                    ],
+                  ),
                 ),
-                AbouTask(aboutTask: controller.task.aboutTask!,),
-                Requirements(requirements: controller.task.requirements!,),
-                AdditionalInfo(additionalInfo: controller.task.additionalInformation!,)
-              ],
-            ),
-          ),
-        ),
+              ),
       ),
     );
   }
