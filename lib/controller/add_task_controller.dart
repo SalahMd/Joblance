@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/animations.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/remote/company/company_home_page_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
 
 abstract class AddTaskController extends GetxController {
@@ -24,109 +23,21 @@ class AddTaskControllerImpl extends AddTaskController {
   late TextEditingController taskTitle;
   late TextEditingController taskDuration;
   TextDirection direction = TextDirection.ltr;
+  CompanyHomePageBack companyHomePageBack =
+      CompanyHomePageBack(Get.put(Crud()));
   Myservices myservices = Get.find();
-  StatusRequest? statusRequest;
+  StatusRequest? statusRequest, majorStatus;
   int? id;
   bool showNumOfEmployees = false;
   String taskMajorValue = "1";
-  List<DropdownMenuItem<String>> major = [
-    DropdownMenuItem<String>(
-      value: '1',
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("engineering".tr),
-          Container(
-            width: 25.w,
-            height: 25.h,
-            child: Image.asset(
-              AppImages.cat3,
-              width: 25.w,
-              height: 25.h,
-            ),
-          )
-        ],
-      ),
-    ),
-    DropdownMenuItem<String>(
-      value: '2',
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("technology".tr),
-          Container(
-            width: 25.w,
-            height: 25.h,
-            child: Image.asset(
-              AppImages.cat5,
-              width: 25.w,
-              height: 25.h,
-            ),
-          )
-        ],
-      ),
-    ),
-    DropdownMenuItem<String>(
-      value: '3',
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("medical".tr),
-          Container(
-            width: 25.w,
-            height: 25.h,
-            child: Image.asset(
-              AppImages.cat4,
-              width: 25.w,
-              height: 25.h,
-            ),
-          )
-        ],
-      ),
-    ),
-    DropdownMenuItem<String>(
-      value: '4',
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("designing".tr),
-          Container(
-            width: 25.w,
-            height: 25.h,
-            child: Image.asset(
-              AppImages.cat2,
-              width: 25.w,
-              height: 25.h,
-            ),
-          )
-        ],
-      ),
-    ),
-    DropdownMenuItem<String>(
-      value: '5',
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("customer-service".tr),
-          Container(
-            width: 25.w,
-            height: 25.h,
-            child: Image.asset(
-              AppImages.cat6,
-              width: 25.w,
-              height: 25.h,
-            ),
-          )
-        ],
-      ),
-    ),
-  ];
-  late String token;
+  late String lang,token;
+  List<DropdownMenuItem<String>> majors = [];
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   @override
   onInit() {
     token = myservices.sharedPreferences.getString("token")!;
+    lang = myservices.sharedPreferences.getString("lang")!;
     aboutTask = new TextEditingController();
     additionalInfo = new TextEditingController();
     requirements = new TextEditingController();
@@ -134,6 +45,7 @@ class AddTaskControllerImpl extends AddTaskController {
     maxBudget = new TextEditingController();
     taskTitle = new TextEditingController();
     taskDuration = new TextEditingController();
+    getMajors();
     if (Get.arguments != null) {
       taskTitle.text = Get.arguments['task_title'] as String;
       aboutTask.text = Get.arguments['about_task'] as String;
@@ -150,6 +62,24 @@ class AddTaskControllerImpl extends AddTaskController {
     super.onInit();
   }
 
+  getMajors() async {
+    majorStatus = StatusRequest.loading;
+    var response = await companyHomePageBack.getMajor(token, lang);
+    majorStatus = handelingData(response);
+    if (StatusRequest.success == majorStatus) {
+      if (response['status'] == "success") {
+        for (int i = 0; i < response['data'].length; i++) {
+          majors.add(DropdownMenuItem(
+            value: response['data'][i]['id'].toString(),
+            child: Text(response['data'][i]['name']),
+          ));
+        }
+        print(majors);
+      }
+    }
+    update();
+  }
+
   postTask(BuildContext context, bool isUpdate) async {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
@@ -162,7 +92,8 @@ class AddTaskControllerImpl extends AddTaskController {
         "additional_information": additionalInfo.text,
         "task_duration": taskDuration.text,
         "budget_min": minBudget.text,
-        "budget_max": maxBudget.text
+        "budget_max": maxBudget.text,
+        "major_id":taskMajorValue
       };
       var response;
       if (!isUpdate)
@@ -174,7 +105,6 @@ class AddTaskControllerImpl extends AddTaskController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           Get.back();
-
           snackBar(
               "",
               !isUpdate

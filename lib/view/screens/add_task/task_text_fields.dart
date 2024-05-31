@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/add_task_controller.dart';
 import 'package:joblance/core/constants/custom_text_form_filed.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/view/screens/add_task/task_drop_down.dart';
 
 class TaskTextFields extends StatelessWidget {
   final AddTaskControllerImpl controller;
@@ -103,6 +104,21 @@ class TaskTextFields extends StatelessWidget {
           isLabel: false,
           isFilled: true,
         ).animate().fade(duration: 600.ms, delay: 900.ms).slideY(begin: 0.4),
+        Padding(
+          padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
+          child: Text(
+            "task".tr + " " + "major".tr,
+            style: TextStyles.w50014(context),
+          ),
+        ).animate().fade(duration: 600.ms, delay: 800.ms).slideY(begin: 0.4),
+        TaskDropDown(
+                title: "major",
+                choices: controller.majors,
+                elementValue: controller.taskMajorValue,
+                controller: controller)
+            .animate()
+            .fade(duration: 600.ms, delay: 800.ms)
+            .slideY(begin: 0.4),
         Padding(
           padding: EdgeInsetsDirectional.only(start: 15.w, top: 15.h),
           child: Text(
