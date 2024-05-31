@@ -23,6 +23,7 @@ class AddTaskControllerImpl extends AddTaskController {
   late TextEditingController maxBudget;
   late TextEditingController taskTitle;
   late TextEditingController taskDuration;
+  TextDirection direction = TextDirection.ltr;
   Myservices myservices = Get.find();
   StatusRequest? statusRequest;
   int? id;
@@ -145,6 +146,7 @@ class AddTaskControllerImpl extends AddTaskController {
         additionalInfo.text = Get.arguments['additional_information'] as String;
       }
     }
+
     super.onInit();
   }
 

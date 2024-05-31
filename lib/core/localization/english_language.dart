@@ -298,8 +298,11 @@ Map<String, String> english = {
   "rate": "Rate",
   "yourdatahasbeensaved": "Your data has have been saved",
   "yourreviewhasnotbeenadded": "Couldn't add your review",
-  "deletemyaccount":"Delete my account",
-  "doyoureallywanttodeleteaccount":"Do you really want to delete your account",
-  "couldn'tpostyourtask":"Couldn't post your task",
-  "yourtaskhasbeenposted":"Your task has been posted"
+  "deletemyaccount": "Delete my account",
+  "doyoureallywanttodeleteaccount": "Do you really want to delete your account",
+  "couldn'tpostyourtask": "Couldn't post your task",
+  "yourtaskhasbeenposted": "Your task has been posted",
+  "couldn'tupdateyourtask": "Could not update your task",
+  "yourtaskhasbeenupdated": "Your task has been updated",
+  "yourtaskhasbeendeleted": "Your task has been deleted",
 };

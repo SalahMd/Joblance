@@ -21,6 +21,7 @@ abstract class MyAccountFreelancerController extends GetxController {
   getSkills();
   getUserData();
   refreshPage();
+  getTasks();
 }
 
 class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
@@ -35,9 +36,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   Map data = {};
   List<TaskModel> tasks = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
-
-  List skills = [];
-  List userSkills = [];
+  List userSkills = [],skills = [];
   List<ProjectOrProductModel> projects = [];
   List<Widget> tabs = [
     Tab(
@@ -47,14 +46,13 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     Tab(
       text: "skills".tr,
     ),
+    Tab(text: "tasks".tr),
     Tab(text: "contact".tr),
   ];
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
 
   @override
   void onInit() async {
-    statusRequest = StatusRequest.loading;
-    update();
     token = myServices.sharedPreferences.getString("token")!;
     id = myServices.sharedPreferences.getInt("id")!.toString();
     language = myServices.sharedPreferences.getString("lang")!;
@@ -62,16 +60,14 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     await getSkills();
     await getProjects();
     await getTasks();
-
     skill = new TextEditingController();
     super.onInit();
   }
 
   Future<void> refreshPage() async {
-    statusRequest = StatusRequest.loading;
-    update();
     projects.clear();
     data.clear();
+    tasks.clear();
     userSkills.clear();
     update();
     await getUserData();
@@ -81,6 +77,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   }
 
   getProjects() async {
+    statusRequest = StatusRequest.loading;
     var response =
         await addProjectOrProductBack.getData({}, AppLinks.project, token);
     statusRequest = handelingData(response);
@@ -100,6 +97,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   }
 
   getUserData() async {
+    statusRequest = StatusRequest.loading;
     var response = await profileBack.getData(token, id, language);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -133,8 +131,8 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
 
   getTasks() async {
     statusRequest = StatusRequest.loading;
-    var response = await taskBack
-        .getData({}, AppLinks.task + "?user_id" + id.toString(), token);
+    var response =
+        await taskBack.getData({}, AppLinks.task + "?user_id=" + id, token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

@@ -11,7 +11,7 @@ class AppAnimations {
   static LottieBuilder loadings =
       Lottie.asset(path + "confirmloading.json", width: 120.w, height: 120.h);
   static LottieBuilder loadingDots =
-      Lottie.asset(path + "loadingDots.json", repeat: false);
+      Lottie.asset(path + "loadingDots.json", repeat: true);
   static LottieBuilder serverError =
       Lottie.asset(path + "server_error.json", repeat: false);
 }

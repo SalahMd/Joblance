@@ -104,18 +104,22 @@ class SliderWidget extends StatelessWidget {
                   SizedBox(
                     width: 10.w,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        jobTitle,
-                        style: TextStyles.w50013White(context),
-                      ),
-                      Text(
-                        companyName,
-                        style: TextStyles.w50011White(context),
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          jobTitle,
+                          style: TextStyles.w50013White(context),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          companyName,
+                          style: TextStyles.w50011White(context),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -16,14 +16,14 @@ class AbouTask extends StatelessWidget {
           width: Dimensions.screenWidth(context),
           height: 40.h,
           alignment: AlignmentDirectional.centerStart,
-          margin: EdgeInsets.symmetric(vertical: 10.h),
+          margin: EdgeInsets.symmetric(vertical: 20.h),
           padding: EdgeInsetsDirectional.only(
             start: 10.w,
           ),
           color: Theme.of(context).colorScheme.onPrimaryContainer,
           child: Text(
             "abouttask".tr,
-            style: TextStyles.w50015(context),
+            style: TextStyles.w50014(context),
           ),
         ),
         Container(

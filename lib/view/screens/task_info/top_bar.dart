@@ -85,19 +85,21 @@ class TaskTobBar extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.attach_money,
-                            size: 15.sp,
-                            color: LightAppColors.greyColor,
-                          ),
-                          SizedBox(width: 2.w),
-                          Text(
-                            budget,
-                            style: TextStyles.w40011grey(context),
-                          ),
-                        ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(end: 10.w),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.attach_money,
+                              size: 15.sp,
+                              color: LightAppColors.greyColor,
+                            ),
+                            Text(
+                              budget,
+                              style: TextStyles.w40011grey(context),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

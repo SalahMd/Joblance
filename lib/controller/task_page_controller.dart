@@ -67,6 +67,7 @@ class TaskPageControllerImpl extends TaskPageController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
+        snackBar("", "yourtaskhasbeendeleted".tr, context);
         Get.back();
       } else {
         animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);

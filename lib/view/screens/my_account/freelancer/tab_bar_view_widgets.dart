@@ -52,7 +52,7 @@ Widget tasks(BuildContext context, var controller) {
               itemBuilder: (BuildContext context, int index) {
                 return TaskDesign(
                     taskTitle: controller.tasks[index].taskTitle,
-                    userName: controller.tasks[index].name,
+                    userName: "controller.tasks[index].name",
                     major: "software developer",
                     date: controller.tasks[index].createdAt,
                     duration: controller.tasks[index].taskDuration.toString(),
@@ -491,7 +491,7 @@ Widget contactInfo(
                 width: 10.w,
               ),
               Text(
-                controller.data['phone_number'],
+                "controller.data['phone_number']",
                 style: TextStyles.w50013(context),
               )
             ],
@@ -506,7 +506,7 @@ Widget contactInfo(
             ),
             Expanded(
               child: Text(
-                controller.data['email'],
+                "controller.data['email']",
                 style: TextStyles.w50013(context),
               ),
             ),

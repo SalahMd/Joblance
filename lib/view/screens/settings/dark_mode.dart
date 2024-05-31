@@ -33,7 +33,7 @@ class DarkMode extends StatelessWidget {
               ),
             ],
           )),
-          SizedBox(height: 50.h),
+          SizedBox(height: 30.h),
           GestureDetector(
             onTap: () {
               controller.changeMode("dark");

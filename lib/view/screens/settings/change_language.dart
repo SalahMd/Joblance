@@ -33,7 +33,7 @@ class ChangeTheLanguage extends GetView<ChangeLanguage> {
               ),
             ],
           )),
-          SizedBox(height: 50.h),
+          SizedBox(height: 30.h),
           GestureDetector(
             onTap: () {
               controller.changeLang("ar");

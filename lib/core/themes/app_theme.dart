@@ -11,7 +11,7 @@ class AppTheme {
 //     //onPrimary: Colors.indigo,
       surfaceTint: Colors.black,
       primaryContainer: DarkAppColors.whiteColor,
-//     onPrimaryContainer: Color.fromARGB(255, 250, 248, 248),
+      onPrimaryContainer: Color.fromARGB(255, 53, 52, 52),
 //     onErrorContainer: Color(0xFFF9DEDC),
 //     outline: Color(0xFF938F99),
       background: Colors.grey[900]!,

@@ -29,9 +29,9 @@ class TaskPage extends StatelessWidget {
                     children: [
                       TaskTobBar(
                           userImage: Image.asset(AppImages.google),
-                          userName: "dasda",
+                          userName: "Salah",
                           taskTitle: controller.task.taskTitle!,
-                          major: "Technology",
+                          major: "Porn",
                           isActive: true,
                           onTap: controller.updateTask,
                           onDelete: controller.deleteData,

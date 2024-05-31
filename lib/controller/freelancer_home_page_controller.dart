@@ -51,7 +51,8 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
 
   getTasks() async {
     statusRequest = StatusRequest.loading;
-    var response = await taskBack.getData({}, AppLinks.task+"?user_id=2", token);
+    var response =
+        await taskBack.getData({}, AppLinks.task + "?user_id=2", token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -64,6 +65,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   }
 
   refreshPage() async {
+    tasks.clear();
     await getFreelancerInfo();
     await getTasks();
   }

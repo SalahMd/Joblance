@@ -40,10 +40,9 @@ class CahngePassword extends StatelessWidget {
                     ),
                   ]),
                 )),
-                //SizedBox(height: 40.h),
                 Padding(
                   padding: EdgeInsetsDirectional.only(
-                      start: 10.w, top: 50.h, end: 10.w),
+                      start: 15.w, top: 30.h, end: 10.w),
                   child: Text("Create a new password for your account".tr,
                       style: TextStyles.w50015(context)),
                 ),
@@ -87,7 +86,9 @@ class CahngePassword extends StatelessWidget {
                   height: 30.h,
                 ),
                 GestureDetector(
-                  onTap:() {controller.changePassword();},
+                  onTap: () {
+                    controller.changePassword();
+                  },
                   child: Container(
                     width: Dimensions.screenWidth(context),
                     height: 40.h,

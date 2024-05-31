@@ -37,6 +37,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
       text: "about".tr,
     ),
     Tab(text: "projects".tr),
+    Tab(text: "tasks".tr),
     Tab(
       text: "skills".tr,
     ),
@@ -62,8 +63,8 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
 
   getTasks() async {
     statusRequest = StatusRequest.loading;
-    var response =
-        await taskBack.getData({}, AppLinks.task + "?user_id"+id.toString(), token);
+    var response = await taskBack
+        .getData({}, AppLinks.task + "?user_id" + id.toString(), token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
