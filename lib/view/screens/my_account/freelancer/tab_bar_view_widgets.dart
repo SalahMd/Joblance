@@ -27,6 +27,7 @@ class TabBarViewWidgets extends StatelessWidget {
     ]);
   }
 }
+
 Widget tasks(BuildContext context, var controller) {
   return RefreshIndicator(
     onRefresh: () async {
@@ -51,13 +52,17 @@ Widget tasks(BuildContext context, var controller) {
               itemCount: controller.tasks.length,
               itemBuilder: (BuildContext context, int index) {
                 return TaskDesign(
-                    taskTitle: controller.tasks[index].taskTitle,
-                    userName: "controller.tasks[index].name",
-                    major: "software developer",
-                    date: controller.tasks[index].createdAt,
-                    duration: controller.tasks[index].taskDuration.toString(),
-                    image: AppImages.google,
-                    isActive: true, aboutTask:controller.tasks[index].aboutTask, taskId: controller.tasks[index].id, id: controller.tasks[index].userId,);
+                  taskTitle: controller.tasks[index].taskTitle,
+                  userName: "controller.tasks[index].name",
+                  major: "software developer",
+                  date: controller.tasks[index].createdAt,
+                  duration: controller.tasks[index].taskDuration.toString(),
+                  image: AppImages.google,
+                  isActive: true,
+                  aboutTask: controller.tasks[index].aboutTask,
+                  taskId: controller.tasks[index].id,
+                  id: controller.tasks[index].userId,
+                );
               }),
         ],
       ),
@@ -491,7 +496,7 @@ Widget contactInfo(
                 width: 10.w,
               ),
               Text(
-                "controller.data['phone_number']",
+                controller.data['phone_number'],
                 style: TextStyles.w50013(context),
               )
             ],
@@ -506,7 +511,7 @@ Widget contactInfo(
             ),
             Expanded(
               child: Text(
-                "controller.data['email']",
+                controller.data['email'],
                 style: TextStyles.w50013(context),
               ),
             ),

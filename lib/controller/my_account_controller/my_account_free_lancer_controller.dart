@@ -36,7 +36,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   Map data = {};
   List<TaskModel> tasks = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
-  List userSkills = [],skills = [];
+  List userSkills = [], skills = [];
   List<ProjectOrProductModel> projects = [];
   List<Widget> tabs = [
     Tab(
@@ -114,13 +114,13 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   }
 
   Future<void> getSkills() async {
-    skillStatus = StatusRequest.loading;
+    statusRequest = StatusRequest.loading;
     var response = await freelancerAccount.getSkills(
       AppLinks.skills + "?id=" + id,
       token,
     );
-    skillStatus = handelingData(response);
-    if (StatusRequest.success == skillStatus) {
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         userSkills.addAll(response['data']);
       }
@@ -148,8 +148,8 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
       skillStatus = StatusRequest.loading;
-      var response =
-          await freelancerAccount.addSkill(token, {"skill_id": id.toString()});
+      var response = await freelancerAccount.addSkill(
+          token, {"skill_id": id.toString()}, AppLinks.skills);
       skillStatus = handelingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
@@ -180,20 +180,22 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     update();
   }
 
-  Future<void> searchSkill() async {
-    // if (skill.text != "") {
-    //   skillStatus = StatusRequest.loading;
-    //   var response = await freelancerAccount.getSkills(
-    //       "${AppLinks.skills}?search=$skill", token);
-    //   skillStatus = handelingData(response);
-    //   if (StatusRequest.success == statusRequest) {
-    //     if (response['status'] == "success") {
-    //       {
-    //         skills.addAll(response['data']);
-    //       }
-    //     }
-    //   }
-    // }
+  searchSkill() async {
+    skills.clear();
     update();
+    if (skill.text != "") {
+      skillStatus = StatusRequest.loading;
+      var response = await freelancerAccount.addSkill(
+          token, {"search": skill.text}, AppLinks.IP + "/api/skills/search");
+      skillStatus = handelingData(response);
+      update();
+      if (StatusRequest.success == skillStatus) {
+        if (response['status'] == "success") {
+          skills.addAll(response['data']);
+           update();
+        }
+      }
+    }
+   
   }
 }

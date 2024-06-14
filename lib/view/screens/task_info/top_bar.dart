@@ -3,13 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/add_offer/add_offer.dart';
 import 'package:joblance/view/screens/job_info/task_and_tob_bar.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class TaskTobBar extends StatelessWidget {
-  final Image userImage;
+  final String userImage;
   final String userName;
   final String taskTitle;
   final String major;
@@ -36,6 +37,7 @@ class TaskTobBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         TaskAndJobTobBar(
@@ -46,6 +48,7 @@ class TaskTobBar extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 10.h,
@@ -58,15 +61,19 @@ class TaskTobBar extends StatelessWidget {
                     },
                     child: Container(
                       width: 45.w,
-                      height: 55.h,
-                      decoration:
-                          BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                      height: 50.h,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10)),
                       child: ClipRRect(
-                          child: userImage,
-                          borderRadius: BorderRadius.circular(5)),
+                          child: Image.network(
+                            AppLinks.IP + userImage,
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.circular(10)),
                     ),
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 20.w),
@@ -86,7 +93,7 @@ class TaskTobBar extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.only(end: 10.w),
+                        padding: EdgeInsetsDirectional.only(start: 15.w),
                         child: Row(
                           children: [
                             Icon(

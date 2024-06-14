@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/task_page_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/view/screens/job_info/additiona_info.dart';
 import 'package:joblance/view/screens/job_info/requirments.dart';
 import 'package:joblance/view/screens/task_info/about_task.dart';
@@ -28,10 +27,10 @@ class TaskPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       TaskTobBar(
-                          userImage: Image.asset(AppImages.google),
-                          userName: "Salah",
+                          userImage: controller.task.image!,
+                          userName: controller.task.name!,
                           taskTitle: controller.task.taskTitle!,
-                          major: "Porn",
+                          major: "wwww",
                           isActive: true,
                           onTap: controller.updateTask,
                           onDelete: controller.deleteData,

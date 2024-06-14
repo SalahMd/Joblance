@@ -21,9 +21,9 @@ class FreelancerAccount {
     return response.fold((l) => l, (r) => r);
   }
 
-  addSkill(var token, Map data) async {
+  addSkill(var token, Map data,String link) async {
     var response = await crud.postAndGetData(
-        AppLinks.skills,
+        link,
         data,
         {
           'Authorization': 'Bearer $token',

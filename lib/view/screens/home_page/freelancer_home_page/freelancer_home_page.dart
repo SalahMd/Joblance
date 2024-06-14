@@ -145,7 +145,7 @@ class FreelancerHomePage extends StatelessWidget {
                                 remote: "remote".tr,
                                 jobId: 2,
                                 image: AppImages.meta,
-                                isActive: true),
+                                isActive: false),
                           ],
                         )
                       : StatusScreen(statusRequest: controller.statusRequest),

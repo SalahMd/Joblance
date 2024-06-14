@@ -1,5 +1,5 @@
 class AppLinks {
-  static String IP = "http://192.168.1.105:8000";
+  static String IP = "http://192.168.43.25:8000";
   static String get logIn => "$IP/api/login";
   static String get signUp => "$IP/api/register";
   static String get logOut => "$IP/api/user/logout";

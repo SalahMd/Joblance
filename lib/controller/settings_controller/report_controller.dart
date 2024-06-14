@@ -41,13 +41,16 @@ class ReportControllerImpl extends ReportController {
       var response = await reportBack.postData(
           {"title": reportTitle.text, "body": reportbody.text}, token);
       statusRequest = handelingData(response);
+      Get.back();
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           Get.back();
-          reportTitle.clear();
-          reportbody.clear();
           animationedAlert(AppAnimations.done, "yourreporthasbeensent".tr);
+        } else {
+          animationedAlert(AppAnimations.done, "couldntsendreport".tr);
         }
+      } else {
+        animationedAlert(AppAnimations.done, "couldntsendreport".tr);
       }
     }
   }

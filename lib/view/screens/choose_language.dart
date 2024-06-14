@@ -7,8 +7,8 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/core/localization/change_language.dart';
 
-bool isarabic = false;
-bool isenglish = false;
+bool isArabic = false;
+bool isEnglish = false;
 
 class ChooseLanguage extends GetView<ChangeLanguage> {
   const ChooseLanguage({super.key});
@@ -55,8 +55,8 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    isarabic = true;
-                    isenglish = false;
+                    isArabic = true;
+                    isEnglish = false;
                     controller.changeColor();
                     controller.changeLang("ar");
                   },
@@ -65,7 +65,7 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
                       height: Dimensions.screenHeight(context) / 13,
                       margin: const EdgeInsets.only(left: 10, right: 10),
                       decoration: BoxDecoration(
-                        color: isarabic
+                        color: isArabic
                             ? Colors.blue[700]
                             : Theme.of(context).colorScheme.background,
                         borderRadius: BorderRadius.circular(20),
@@ -90,8 +90,8 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
                 const Padding(padding: EdgeInsets.only(top: 10)),
                 GestureDetector(
                   onTap: () {
-                    isarabic = false;
-                    isenglish = true;
+                    isArabic = false;
+                    isEnglish = true;
 
                     controller.changeColor();
                     controller.changeLang("en");
@@ -101,7 +101,7 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
                       height: Dimensions.screenHeight(context) / 13,
                       margin: const EdgeInsets.only(left: 10, right: 10),
                       decoration: BoxDecoration(
-                        color: isenglish
+                        color: isEnglish
                             ? Colors.blue[700]
                             : Theme.of(context).colorScheme.background,
                         borderRadius: BorderRadius.circular(20),
@@ -129,7 +129,7 @@ class ChooseLanguage extends GetView<ChangeLanguage> {
           const Padding(padding: EdgeInsets.only(top: 40)),
           GestureDetector(
             onTap: () {
-              if (isarabic || isenglish) Get.offNamed("OnBoarding");
+              if (isArabic || isEnglish) Get.offNamed("OnBoarding");
             },
             child: Container(
               width: Dimensions.screenWidth(context),
