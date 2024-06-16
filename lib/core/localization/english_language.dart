@@ -305,4 +305,7 @@ Map<String, String> english = {
   "couldn'tupdateyourtask": "Could not update your task",
   "yourtaskhasbeenupdated": "Your task has been updated",
   "yourtaskhasbeendeleted": "Your task has been deleted",
+  "update": "Update",
+  "deactivate": "Deactivate",
+  "activate": "Activate",
 };

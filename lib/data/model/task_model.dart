@@ -12,6 +12,9 @@ class TaskModel {
   int? budgetMax;
   String? createdAt;
   String? updatedAt;
+  String? majorName;
+  int? active;
+  int? majorId;
 
   TaskModel(
       {this.id,
@@ -24,8 +27,11 @@ class TaskModel {
       this.additionalInformation,
       this.taskDuration,
       this.budgetMin,
+      this.majorId,
+      this.active,
       this.budgetMax,
       this.createdAt,
+      this.majorName,
       this.updatedAt});
 
   TaskModel.fromJson(Map<String, dynamic> json) {
@@ -42,6 +48,9 @@ class TaskModel {
     budgetMax = json['budget_max'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    majorName = json["major_name"];
+    active = json['active'];
+    majorId = json["major_id"];
   }
 
   Map<String, dynamic> toJson() {
@@ -59,6 +68,9 @@ class TaskModel {
     data['budget_max'] = this.budgetMax;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
+    data['major_name'] = this.majorName;
+    data['active'] = this.active;
+    data['major_id'] = this.majorId;
     return data;
   }
 }

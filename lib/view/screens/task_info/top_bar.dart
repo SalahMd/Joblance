@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/links.dart';
@@ -20,6 +21,7 @@ class TaskTobBar extends StatelessWidget {
   final bool isActive, isOwner;
   final void Function() onTap;
   final void Function()? onDelete;
+  final String date;
   const TaskTobBar(
       {super.key,
       required this.userImage,
@@ -32,7 +34,8 @@ class TaskTobBar extends StatelessWidget {
       required this.id,
       required this.isOwner,
       required this.onTap,
-      this.onDelete});
+      this.onDelete,
+      required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +154,7 @@ class TaskTobBar extends StatelessWidget {
                             Icon(Icons.calendar_month_outlined, size: 15.sp),
                             SizedBox(width: 8.w),
                             Text(
-                              "2 weeks ago".tr,
+                              Jiffy.parse(date).Hm.toString(),
                               style: TextStyles.w40011grey(context),
                             ),
                           ],
@@ -168,7 +171,7 @@ class TaskTobBar extends StatelessWidget {
                             ),
                             SizedBox(width: 10.w),
                             Text(
-                              "active".tr,
+                              isActive ? "active".tr : "inactive".tr,
                               style: TextStyles.w40011grey(context),
                             ),
                           ],

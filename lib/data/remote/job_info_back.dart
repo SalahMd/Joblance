@@ -7,7 +7,7 @@ class JobBack {
 
   getData(var token, String id) async {
     var response = await crud.postAndGetData(
-        AppLinks.jobInfo + id,
+        AppLinks.jobInfo +"/"+ id,
         {},
         {
           'Authorization': 'Bearer $token',
@@ -34,16 +34,16 @@ class JobBack {
   }
 
   updateData(var token, String id, Map data) async {
-    var response = await crud.postAndGetData(
-        AppLinks.jobInfo + id,
+    var response = await crud.putData(
+        AppLinks.jobInfo +"/"+ id,
         data,
         {
           'Authorization': 'Bearer $token',
         },
         null,
         false,
-        false,
-        null);
+        null,
+       );
     return response.fold((l) => l, (r) => r);
   }
 }

@@ -15,7 +15,7 @@ class Crud {
       bool isFile,
       var file) async {
     try {
-      if (true) {
+      if (await checkInternet()) {
         var response;
         // Check if the request is a POST with a file
         if (isFile && isPost && file != null) {
@@ -88,7 +88,7 @@ class Crud {
       bool isFile,
       var file) async {
     try {
-      if (true) {
+      if (await checkInternet()) {
         var response;
         if (isFile && file != null) {
           String name = fileName == null ? "image" : fileName;
@@ -148,7 +148,7 @@ class Crud {
     Map<String, String> headers,
   ) async {
     try {
-      if (true) {
+      if (await checkInternet()) {
         var response;
         response =
             await http.delete(Uri.parse(linkurl), body: data, headers: headers);

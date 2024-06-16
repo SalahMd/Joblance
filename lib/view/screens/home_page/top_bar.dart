@@ -39,9 +39,7 @@ class TopBar extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                       child: image != ""
                           ? Image.network(
-                              image[0] == "h"
-                                  ? image
-                                  : AppLinks.IP + image,
+                              image[0] == "h" ? image : AppLinks.IP + image,
                               fit: BoxFit.cover,
                             )
                           : Container(),

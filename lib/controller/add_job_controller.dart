@@ -10,7 +10,7 @@ import 'package:joblance/data/remote/company/company_home_page_back.dart';
 import 'package:joblance/data/remote/job_info_back.dart';
 
 abstract class AddjobController extends GetxController {
-  addJob();
+  addJob(bool isUpdate);
   getJobData();
   getMajors();
   changeCheckBoxValue(String box);
@@ -27,7 +27,7 @@ class AddjobControllerImpl extends AddjobController {
   late String token, language;
   StatusRequest? statusRequest;
   Myservices myservices = Get.find();
-
+int? id;
   JobBack jobBack = new JobBack(Get.put(Crud()));
   bool showNumOfEmployees = false, importantJobs = false;
   bool showAboutCompany = false;
@@ -130,10 +130,11 @@ class AddjobControllerImpl extends AddjobController {
   }
 
   @override
-  addJob() async {
+  addJob(bool isUpdate) async {
     statusRequest = StatusRequest.loading;
     animationedAlert(AppAnimations.loadings, "pleasewait".tr);
-    var response = await jobBack.postData(token, {
+    var response;
+    Map data = {
       "job_title": jobTitle.text,
       "job_description": aboutJob.text,
       "salary": salary.text,
@@ -146,7 +147,11 @@ class AddjobControllerImpl extends AddjobController {
       "experience_level_id": jobExpirenceValue,
       "about_company": showAboutCompany ? "1" : "0",
       "num_of_employees": showNumOfEmployees ? "1" : "0",
-    });
+    };
+    if (!isUpdate)
+      response = await jobBack.postData(token, data);
+    else
+      response = await jobBack.updateData(token,id.toString(), data);
     statusRequest = handelingData(response);
     Get.back();
     if (StatusRequest.success == statusRequest) {

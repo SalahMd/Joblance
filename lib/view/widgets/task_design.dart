@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/task_info/task_page.dart';
 
@@ -42,7 +44,7 @@ class TaskDesign extends StatelessWidget {
       child: Container(
         alignment: Alignment.topRight,
         width: 240.w,
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10),
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10),
         decoration: BoxDecoration(
             border: Border.all(color: LightAppColors.greyColor!, width: 0.5),
@@ -62,33 +64,40 @@ class TaskDesign extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          width: 35,
-                          height: 35,
+                          width: 35.sp,
+                          height: 35.sp,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              image,
+                            child: Image.network(
+                              AppLinks.IP + image,
                               fit: BoxFit.fill,
                             ),
                           ),
                         ),
                         SizedBox(
-                          width: 15.w,
+                          width: 10.w,
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              taskTitle,
-                              style: TextStyles.w50013(context),
+                        Container(
+                          width: 115.w,
+                          child: Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  taskTitle,
+                                  style: TextStyles.w50013(context),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                //SizedBox(height: .h),
+                                Text(
+                                  userName,
+                                  style: TextStyles.w50012(context),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                              ],
                             ),
-                            //SizedBox(height: .h),
-                            Text(
-                              userName,
-                              style: TextStyles.w50012(context),
-                            ),
-                          ],
+                          ),
                         ),
                       ],
                     ),

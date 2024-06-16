@@ -38,7 +38,10 @@ class ButtomBar extends StatelessWidget {
               ),
               shape: CircleBorder(),
               onTap: () {
-                Get.to(AddTask());
+                Get.to(AddTask(
+                  image: controllerImp.image!,
+                  name: controllerImp.name!,
+                ));
               },
               child: Icon(Icons.task_outlined,
                   size: 18.sp, color: LightAppColors.whiteColor),

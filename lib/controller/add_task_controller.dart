@@ -7,6 +7,7 @@ import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/company/company_home_page_back.dart';
+import 'package:joblance/data/remote/profile_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
 
 abstract class AddTaskController extends GetxController {
@@ -30,12 +31,15 @@ class AddTaskControllerImpl extends AddTaskController {
   int? id;
   bool showNumOfEmployees = false;
   String taskMajorValue = "1";
-  late String lang,token;
+  late String lang, token, userId;
   List<DropdownMenuItem<String>> majors = [];
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
+  bool active = false;
+  ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
+
   @override
-  onInit() {
+  onInit() async{
     token = myservices.sharedPreferences.getString("token")!;
     lang = myservices.sharedPreferences.getString("lang")!;
     aboutTask = new TextEditingController();
@@ -45,7 +49,8 @@ class AddTaskControllerImpl extends AddTaskController {
     maxBudget = new TextEditingController();
     taskTitle = new TextEditingController();
     taskDuration = new TextEditingController();
-    getMajors();
+   await getMajors();
+   
     if (Get.arguments != null) {
       taskTitle.text = Get.arguments['task_title'] as String;
       aboutTask.text = Get.arguments['about_task'] as String;
@@ -53,7 +58,11 @@ class AddTaskControllerImpl extends AddTaskController {
       taskDuration.text = Get.arguments['task_duration'].toString();
       minBudget.text = Get.arguments['budget_min'].toString();
       maxBudget.text = Get.arguments['budget_max'].toString();
+      active = Get.arguments['active'];
+
+      taskMajorValue = Get.arguments['major_id'].toString();
       id = Get.arguments['id'];
+
       if (Get.arguments['additional_information'] != null) {
         additionalInfo.text = Get.arguments['additional_information'] as String;
       }
@@ -61,6 +70,8 @@ class AddTaskControllerImpl extends AddTaskController {
 
     super.onInit();
   }
+
+ 
 
   getMajors() async {
     majorStatus = StatusRequest.loading;
@@ -93,7 +104,8 @@ class AddTaskControllerImpl extends AddTaskController {
         "task_duration": taskDuration.text,
         "budget_min": minBudget.text,
         "budget_max": maxBudget.text,
-        "major_id":taskMajorValue
+        "major_id": taskMajorValue,
+        "active": active ? "1" : "0",
       };
       var response;
       if (!isUpdate)
@@ -125,6 +137,7 @@ class AddTaskControllerImpl extends AddTaskController {
             !isUpdate ? "couldn'tpostyourtask".tr : "couldn'tupdateyourtask".tr,
             context);
       }
+      print(response);
     }
   }
 
@@ -143,6 +156,11 @@ class AddTaskControllerImpl extends AddTaskController {
   @override
   updateDropDownValue(String? newValue, String changingElement) {
     taskMajorValue = newValue!;
+    update();
+  }
+
+  changeTaskStatus() {
+    active = !active;
     update();
   }
 }

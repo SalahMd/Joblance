@@ -1,7 +1,7 @@
 class JobInfoModel {
   final String jobTitle;
   final String companyName;
-  final companyImage;
+  final String companyImage;
   final String jobLocation;
   final String remote;
   final String date;
@@ -11,7 +11,9 @@ class JobInfoModel {
   final String employees;
   final String reqirments;
   final String additionalInfo;
+  final String JobExperience;
   final isActive;
+  final int id;
   JobInfoModel(
     this.jobTitle,
     this.companyName,
@@ -26,5 +28,6 @@ class JobInfoModel {
     this.reqirments,
     this.additionalInfo,
     this.isActive,
+    this.id, this.JobExperience,
   );
 }

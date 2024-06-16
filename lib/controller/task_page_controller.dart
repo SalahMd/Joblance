@@ -21,7 +21,7 @@ class TaskPageControllerImpl extends TaskPageController {
   final int id, taskId;
   final BuildContext context;
   StatusRequest? statusRequest, updateStatus;
-  late String token;
+  late String token,lang;
   TaskModel task = TaskModel();
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   GlobalKey<FormState> formState = GlobalKey<FormState>();
@@ -35,6 +35,7 @@ class TaskPageControllerImpl extends TaskPageController {
     statusRequest = StatusRequest.loading;
     update();
     token = myServices.sharedPreferences.getString("token")!;
+    lang = myServices.sharedPreferences.getString("lang")!;
     userId = myServices.sharedPreferences.getInt("id")!;
     if (userId == id) {
       isOwner = true;
@@ -47,7 +48,7 @@ class TaskPageControllerImpl extends TaskPageController {
   getData() async {
     statusRequest = StatusRequest.loading;
     var response = await taskBack
-        .getData({}, AppLinks.task + "/" + taskId.toString(), token);
+        .getData({}, AppLinks.task + "/" + taskId.toString()+"?lang="+lang, token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -81,7 +82,7 @@ class TaskPageControllerImpl extends TaskPageController {
   updateTask() {
     Get.to(
         AddTask(
-          isUpdate: true,
+          isUpdate: true, image: task.image!,name: task.name!,
         ),
         arguments: {
           "about_task": task.aboutTask,
@@ -91,7 +92,9 @@ class TaskPageControllerImpl extends TaskPageController {
           "task_duration": task.taskDuration,
           "budget_min": task.budgetMin,
           "budget_max": task.budgetMax,
-          "id": task.id
+          "id": task.id,
+          "major_id":task.majorId,
+          "active":task.active==1?true:false,
         });
   }
 }

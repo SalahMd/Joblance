@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/my_account_controller/my_account_free_lancer_controller.dart';
 import 'package:joblance/core/constants/colors.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_project_or_product/add_project_or_product.dart';
@@ -53,12 +52,12 @@ Widget tasks(BuildContext context, var controller) {
               itemBuilder: (BuildContext context, int index) {
                 return TaskDesign(
                   taskTitle: controller.tasks[index].taskTitle,
-                  userName: "controller.tasks[index].name",
-                  major: "software developer",
+                  userName: controller.tasks[index].name!,
+                  major: controller.tasks[index].majorName,
                   date: controller.tasks[index].createdAt,
                   duration: controller.tasks[index].taskDuration.toString(),
-                  image: AppImages.google,
-                  isActive: true,
+                  image: controller.tasks[index].image,
+                  isActive: controller.tasks[index].active==1?true:false,
                   aboutTask: controller.tasks[index].aboutTask,
                   taskId: controller.tasks[index].id,
                   id: controller.tasks[index].userId,

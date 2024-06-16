@@ -15,7 +15,7 @@ import 'package:joblance/data/remote/profile_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
 
 abstract class MyAccountFreelancerController extends GetxController {
-  addSkill(int id);
+  addSkill(int id,BuildContext context);
   searchSkill();
   deleteSkill(int id, int index);
   getSkills();
@@ -132,7 +132,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   getTasks() async {
     statusRequest = StatusRequest.loading;
     var response =
-        await taskBack.getData({}, AppLinks.task + "?user_id=" + id, token);
+        await taskBack.getData({}, AppLinks.task + "?user_id=" + id+"&&lang="+language, token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -144,18 +144,17 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     update();
   }
 
-  Future<void> addSkill(int id) async {
-    var formdata = formState.currentState;
-    if (formdata!.validate()) {
-      skillStatus = StatusRequest.loading;
-      var response = await freelancerAccount.addSkill(
-          token, {"skill_id": id.toString()}, AppLinks.skills);
-      skillStatus = handelingData(response);
-      if (StatusRequest.success == statusRequest) {
-        if (response['status'] == "success") {
-          {
-            Get.back();
-          }
+  Future<void> addSkill(int? id,BuildContext context) async {
+    skillStatus = StatusRequest.loading;
+    var response = await freelancerAccount.addSkill(
+        token, {"skill_id": id.toString()}, AppLinks.skills);
+    skillStatus = handelingData(response);
+    Get.back();
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        {
+          Get.back();
+          snackBar("", "yourskillhasbeenadded".tr, context);
         }
       }
     }
@@ -192,10 +191,9 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
       if (StatusRequest.success == skillStatus) {
         if (response['status'] == "success") {
           skills.addAll(response['data']);
-           update();
+          update();
         }
       }
     }
-   
   }
 }

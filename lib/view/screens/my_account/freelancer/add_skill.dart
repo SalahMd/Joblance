@@ -44,13 +44,13 @@ class AddSkill extends StatelessWidget {
                 onChanged: (s) {
                   controller.searchSkill();
                 },
-                 textInputAction: TextInputAction.search,
+                textInputAction: TextInputAction.search,
                 decoration: InputDecoration(
                   focusedBorder: UnderlineInputBorder(),
                   suffixIcon: GestureDetector(
                     onTap: () {
                       // FocusScope.of(context).unfocus();
-                       controller.searchSkill();
+                      controller.searchSkill();
                     },
                     child: Container(
                       child: Icon(
@@ -81,9 +81,15 @@ class AddSkill extends StatelessWidget {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            controller.skills[index]['name'],
-                            style: TextStyles.w50012(context),
+                          GestureDetector(
+                            onTap: () {
+                              controller
+                                  .addSkill(controller.skills[index]['id'],context);
+                            },
+                            child: Text(
+                              controller.skills[index]['name'],
+                              style: TextStyles.w50012(context),
+                            ),
                           ),
                           MyDivider(
                             height: 10,

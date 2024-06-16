@@ -4,14 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_task_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
-import 'package:joblance/core/constants/images.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_task/task_text_fields.dart';
 
 class AddTask extends StatelessWidget {
   final bool isUpdate;
-  const AddTask({super.key, this.isUpdate=false});
+  final String image,name;
+  const AddTask({super.key, this.isUpdate = false, required this.image,required  this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +56,8 @@ class AddTask extends StatelessWidget {
                         height: 45.h,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            AppImages.Linkedin,
+                          child: Image.network(
+                            AppLinks.IP + image,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -65,7 +66,7 @@ class AddTask extends StatelessWidget {
                         width: 15.w,
                       ),
                       Text(
-                        "Linkedin",
+                        name,
                         style: TextStyles.w50015(context),
                       )
                     ],
@@ -77,10 +78,34 @@ class AddTask extends StatelessWidget {
                 SizedBox(
                   height: 25.h,
                 ),
+                Visibility(
+                    child: GestureDetector(
+                  onTap: () {
+                    controller.changeTaskStatus();
+                  },
+                  child: Container(
+                    width: 90.w,
+                    height: 30.h,
+                    margin:
+                        EdgeInsetsDirectional.only(start: 15.w, bottom: 20.h),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: controller.active == true
+                            ? Colors.red
+                            : Colors.green[800]),
+                    child: Text(
+                      controller.active == true
+                          ? "deactivate".tr
+                          : "activate".tr,
+                      style: TextStyles.w50012White(context),
+                    ),
+                  ),
+                )),
                 TaskTextFields(controller: controller),
                 GestureDetector(
                   onTap: () {
-                    controller.postTask(context,isUpdate);
+                    controller.postTask(context, isUpdate);
                   },
                   child: Container(
                     width: Dimensions.screenWidth(context),
@@ -90,7 +115,7 @@ class AddTask extends StatelessWidget {
                     alignment: Alignment.center,
                     decoration: AppButtons.buttonDecoration,
                     child: Text(
-                      "post".tr,
+                      isUpdate ? "update".tr : "post".tr,
                       style: TextStyles.w50016White(context),
                     ),
                   ),

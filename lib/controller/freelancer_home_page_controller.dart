@@ -18,16 +18,16 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   FreeLnacerHomePageBack freeLnacerHomePageBack =
       new FreeLnacerHomePageBack(Get.put(Crud()));
   String? token, id;
-  String language = 'en';
+  late String language;
   Myservices myservices = Get.find();
-  late String name = "", image = "";
+  late String name, image;
   List<TaskModel> tasks = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   @override
   void onInit() async {
     token = myservices.sharedPreferences.getString("token")!;
     id = myservices.sharedPreferences.getInt("id").toString();
-    // language = myservices.sharedPreferences.getString("lang");
+    language = myservices.sharedPreferences.getString("lang")!;
     super.onInit();
     await getFreelancerInfo();
     await getTasks();
@@ -52,7 +52,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   getTasks() async {
     statusRequest = StatusRequest.loading;
     var response =
-        await taskBack.getData({}, AppLinks.task + "?user_id=2", token);
+        await taskBack.getData({}, AppLinks.task + "?lang=" + language, token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

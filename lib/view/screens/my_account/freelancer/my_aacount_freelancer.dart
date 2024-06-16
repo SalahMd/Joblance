@@ -9,7 +9,7 @@ import 'package:joblance/view/widgets/profile_tob_bar.dart';
 import 'package:joblance/view/widgets/tab_bar.dart';
 
 class MyAccountFreeLancer extends StatelessWidget {
-  const MyAccountFreeLancer({super.key});
+  const MyAccountFreeLancer({super.key, });
 
   @override
   Widget build(BuildContext context) {

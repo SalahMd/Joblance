@@ -30,11 +30,12 @@ class TaskPage extends StatelessWidget {
                           userImage: controller.task.image!,
                           userName: controller.task.name!,
                           taskTitle: controller.task.taskTitle!,
-                          major: "wwww",
-                          isActive: true,
+                          major: controller.task.majorName!,
+                          isActive: controller.task.active == 1 ? true : false,
                           onTap: controller.updateTask,
                           onDelete: controller.deleteData,
                           isOwner: controller.isOwner,
+                          date: controller.task.createdAt!,
                           budget: controller.task.budgetMin.toString() +
                               "-" +
                               controller.task.budgetMax.toString(),

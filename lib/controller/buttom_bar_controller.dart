@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:joblance/core/class/crud.dart';
+import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/remote/profile_back.dart';
 import 'package:joblance/view/screens/home_page/company_home_page/company_home_page.dart';
 import 'package:joblance/view/screens/chat/conversations.dart';
 import 'package:joblance/view/screens/my_account/freelancer/my_aacount_freelancer.dart';
@@ -19,6 +23,9 @@ class ButtomBarControllerImp extends ButtomBarController {
   bool isOpen = false;
   int currentPage = 1;
   List<Widget> listPage = [];
+  String? name, image, lang, token, id;
+  StatusRequest? statusRequest;
+  ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
   @override
   changePage(int index) {
     currentPage = index;
@@ -26,8 +33,17 @@ class ButtomBarControllerImp extends ButtomBarController {
   }
 
   @override
-  void onInit() {
+  void onInit() async {
+    statusRequest = StatusRequest.loading;
+    update();
     role = myServices.sharedPreferences.getString("role_id");
+    id = myServices.sharedPreferences.getInt("id")!.toString();
+
+    lang = myServices.sharedPreferences.getString("lang")!;
+    token = myServices.sharedPreferences.getString("token")!;
+    print(id);
+    getFreelancerInfo();
+
     if (role == "1") {
       listPage = [
         const MyAccountCompany(),
@@ -43,11 +59,30 @@ class ButtomBarControllerImp extends ButtomBarController {
         const Settings(),
       ];
     }
+
     super.onInit();
   }
 
   changeButtonState() {
     isOpen = !isOpen;
+    update();
+  }
+
+  getFreelancerInfo() async {
+    var response = await profileBack.getData(token, id!, lang!);
+    statusRequest = handelingData(response);
+    update();
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        if (role == "1")
+          name = response['data']['name'];
+        else
+          name = response['data']['first_name'] +
+              " " +
+              response['data']['last_name'];
+        image = response['data']['image'];
+      }
+    }
     update();
   }
 }

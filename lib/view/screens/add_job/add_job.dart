@@ -13,7 +13,8 @@ import 'package:joblance/view/screens/add_job/job_specifications.dart';
 import 'package:joblance/view/screens/add_job/job_text_fileds.dart';
 
 class AddJob extends StatelessWidget {
-  const AddJob({super.key});
+  final bool isUpdate;
+  const AddJob({super.key,  this.isUpdate=false});
   @override
   Widget build(BuildContext context) {
     Get.put(AddjobControllerImpl());

@@ -64,7 +64,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   getTasks() async {
     statusRequest = StatusRequest.loading;
     var response = await taskBack
-        .getData({}, AppLinks.task + "?user_id" + id.toString(), token);
+        .getData({}, AppLinks.task + "?user_id=" + id.toString()+"&&lang="+language, token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
