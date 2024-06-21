@@ -5,22 +5,24 @@ import 'package:joblance/controller/add_offer_controller.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
-import 'package:joblance/view/screens/add_offer/offer_tex_fields.dart';
+import 'package:joblance/view/screens/add_offer/offer_text_fields.dart';
 
 class AddOffer extends StatelessWidget {
-  const AddOffer({super.key});
+  final int taskId;
+  const AddOffer({super.key, required this.taskId});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(AddOfferControllerImpl()); 
+    Get.put(AddOfferControllerImpl(taskId: taskId));
     return Scaffold(
       body: SingleChildScrollView(
         child: GetBuilder<AddOfferControllerImpl>(
-          builder:(controller)=>
-           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-               SizedBox(
+          builder: (controller) => Form(
+            key: controller.formState,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
                   height: 10.h,
                 ),
                 SafeArea(
@@ -41,11 +43,11 @@ class AddOffer extends StatelessWidget {
                     ],
                   ),
                 )),
-                SizedBox(height: 30.h),
-              OfferTextFields(controller: controller),
+                SizedBox(height: 20.h),
+                OfferTextFields(controller: controller),
                 GestureDetector(
                   onTap: () {
-                   // controller.applay();
+                    controller.addOffer();
                   },
                   child: Container(
                     width: Dimensions.screenWidth(context),
@@ -60,7 +62,8 @@ class AddOffer extends StatelessWidget {
                     ),
                   ),
                 )
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -7,8 +7,9 @@ import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/widgets/divider.dart';
 
-class JobApplicantsTobBar extends StatelessWidget {
-  const JobApplicantsTobBar({super.key});
+class ApplicantsTobBar extends StatelessWidget {
+  final String name;
+  const ApplicantsTobBar({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class JobApplicantsTobBar extends StatelessWidget {
             Expanded(
               flex: 4,
               child: Text(
-                "Flutter developer",
+                name,
                 style: TextStyles.w50017(context),
                 overflow: TextOverflow.ellipsis,
               ),

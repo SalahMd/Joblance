@@ -30,8 +30,8 @@ class TopBar extends StatelessWidget {
               Expanded(
                 child: Row(children: [
                   Container(
-                    width: 40,
-                    height: 40,
+                    width: 35.sp,
+                    height: 35.sp,
                     margin: EdgeInsetsDirectional.only(end: 10.w),
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(20)),

@@ -32,4 +32,5 @@ class AppLinks {
   static String get rate => "$IP/api/evaluation";
   static String get task => "$IP/api/task";
   static String get company => "$IP/api/company";
+  static String get offer => "$IP/api/offer";
 }

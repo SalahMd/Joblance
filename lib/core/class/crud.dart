@@ -55,7 +55,7 @@ class Crud {
         else if (isPost && file == null) {
           response =
               await http.post(Uri.parse(linkurl), body: data, headers: headers);
-          print(response);
+          print(response.body);
         } else if (isPost && !isFile) {
           response =
               await http.post(Uri.parse(linkurl), body: data, headers: headers);

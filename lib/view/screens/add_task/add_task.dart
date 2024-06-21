@@ -11,8 +11,12 @@ import 'package:joblance/view/screens/add_task/task_text_fields.dart';
 
 class AddTask extends StatelessWidget {
   final bool isUpdate;
-  final String image,name;
-  const AddTask({super.key, this.isUpdate = false, required this.image,required  this.name});
+  final String image, name;
+  const AddTask(
+      {super.key,
+      this.isUpdate = false,
+      required this.image,
+      required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -79,29 +83,30 @@ class AddTask extends StatelessWidget {
                   height: 25.h,
                 ),
                 Visibility(
+                    visible: isUpdate,
                     child: GestureDetector(
-                  onTap: () {
-                    controller.changeTaskStatus();
-                  },
-                  child: Container(
-                    width: 90.w,
-                    height: 30.h,
-                    margin:
-                        EdgeInsetsDirectional.only(start: 15.w, bottom: 20.h),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: controller.active == true
-                            ? Colors.red
-                            : Colors.green[800]),
-                    child: Text(
-                      controller.active == true
-                          ? "deactivate".tr
-                          : "activate".tr,
-                      style: TextStyles.w50012White(context),
-                    ),
-                  ),
-                )),
+                      onTap: () {
+                        controller.changeTaskStatus();
+                      },
+                      child: Container(
+                        width: 90.w,
+                        height: 30.h,
+                        margin: EdgeInsetsDirectional.only(
+                            start: 15.w, bottom: 20.h),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: controller.active == true
+                                ? Colors.red
+                                : Colors.green[800]),
+                        child: Text(
+                          controller.active == true
+                              ? "deactivate".tr
+                              : "activate".tr,
+                          style: TextStyles.w50012White(context),
+                        ),
+                      ),
+                    )),
                 TaskTextFields(controller: controller),
                 GestureDetector(
                   onTap: () {

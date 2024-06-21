@@ -15,6 +15,7 @@ class TaskModel {
   String? majorName;
   int? active;
   int? majorId;
+  int? roleId;
 
   TaskModel(
       {this.id,
@@ -31,6 +32,7 @@ class TaskModel {
       this.active,
       this.budgetMax,
       this.createdAt,
+      this.roleId,
       this.majorName,
       this.updatedAt});
 
@@ -51,6 +53,7 @@ class TaskModel {
     majorName = json["major_name"];
     active = json['active'];
     majorId = json["major_id"];
+    roleId = json['user_role'];
   }
 
   Map<String, dynamic> toJson() {
@@ -71,6 +74,7 @@ class TaskModel {
     data['major_name'] = this.majorName;
     data['active'] = this.active;
     data['major_id'] = this.majorId;
+    data ['user_role']= this.roleId;
     return data;
   }
 }

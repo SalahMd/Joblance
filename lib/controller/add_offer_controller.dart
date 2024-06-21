@@ -1,10 +1,12 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/animations.dart';
+import 'package:joblance/core/functions/alerts.dart';
+import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
-import 'package:joblance/data/remote/applay_job_back.dart';
+import 'package:joblance/data/remote/task_back.dart';
 
 abstract class AddOfferController extends GetxController {
   addOffer();
@@ -17,14 +19,15 @@ class AddOfferControllerImpl extends AddOfferController {
   late TextEditingController phoneNumber;
   late TextEditingController offerBudget;
   late TextEditingController offerInformation;
-  late TextEditingController duration;
-  ApplayJobBack applayJobBack = new ApplayJobBack(Get.put(Crud()));
-  FilePickerResult? result;
+  late TextEditingController excutingTime;
+  late TextEditingController yearsOfExperience;
+  final int taskId;
+  TaskBack taskBack = new TaskBack(Get.put(Crud()));
   Myservices myServices = Get.find();
   StatusRequest? statusRequest;
-
-  String? fileName;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
+
+  AddOfferControllerImpl({required this.taskId});
 
   @override
   void onInit() {
@@ -34,7 +37,8 @@ class AddOfferControllerImpl extends AddOfferController {
     phoneNumber = TextEditingController();
     offerInformation = TextEditingController();
     offerBudget = TextEditingController();
-    duration = TextEditingController();
+    excutingTime = TextEditingController();
+    yearsOfExperience = TextEditingController();
     super.onInit();
   }
 
@@ -45,35 +49,42 @@ class AddOfferControllerImpl extends AddOfferController {
     offerBudget.dispose();
     phoneNumber.dispose();
     offerInformation.dispose();
-    duration.dispose();
+    excutingTime.dispose();
+    yearsOfExperience.dispose();
     super.dispose();
   }
 
   @override
-  addOffer() {
-    // var token = myServices.sharedPreferences.getString("token");
-    // var formdata = formState.currentState;
-    // if (formdata!.validate()) {
-
-    //   statusRequest = StatusRequest.loading;
-    //   animationedAlert(AppAnimations.loadings, "checkingdata".tr);
-    //   var response = applayJobBack.postData({
-    //     "first_name": firstName.text,
-    //     "last_name": lastName.text,
-    //     "email": email.text,
-    //     "phone_number": phoneNumber.text,
-    //     "cover_letter": coverLetter.text,
-    //   }, token,);
-    //   statusRequest = hadelingData(response);
-    //   if (StatusRequest.success == statusRequest) {
-    //     if (response['status'] == "success") {
-    //       Get.back();
-    //       animationedAlert(AppAnimations.done, "yourrequesthasbeensent".tr);
-    //       update();
-    //     }
-    //     animationedAlert(AppAnimations.wrong, "errorsendingyourrequest".tr);
-    //     update();
-    //   }
-    // }
+  addOffer() async {
+    var formdata = formState.currentState;
+    if (formdata!.validate()) {
+      String token = myServices.sharedPreferences.getString("token")!;
+      statusRequest = StatusRequest.loading;
+      animationedAlert(AppAnimations.loadings, "checkingdata".tr);
+      var response = await taskBack.addOffer(
+        token,
+        {
+          "task_id": taskId.toString(),
+          "first_name": firstName.text,
+          "last_name": lastName.text,
+          "email": email.text,
+          "phone": phoneNumber.text,
+          "budget": offerBudget.text,
+          "years_of_experience": yearsOfExperience.text,
+          "excuting_time": excutingTime.text,
+          "information": offerInformation.text
+        },
+      );
+      statusRequest = handelingData(response);
+      Get.back();
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          Get.back();
+          animationedAlert(AppAnimations.done, "yourrequesthasbeensent".tr);
+        } else
+          animationedAlert(AppAnimations.wrong, "errorsendingyourrequest".tr);
+      } else
+        animationedAlert(AppAnimations.wrong, "errorsendingyourrequest".tr);
+    }
   }
 }

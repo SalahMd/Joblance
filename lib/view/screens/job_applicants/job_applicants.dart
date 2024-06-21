@@ -20,7 +20,7 @@ class JobApplicants extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
-            child: JobApplicantsTobBar(),
+            child: ApplicantsTobBar(name: "Flutter",),
           ),
           Padding(
             padding: EdgeInsetsDirectional.symmetric(

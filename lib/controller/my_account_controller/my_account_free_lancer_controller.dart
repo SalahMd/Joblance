@@ -15,7 +15,7 @@ import 'package:joblance/data/remote/profile_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
 
 abstract class MyAccountFreelancerController extends GetxController {
-  addSkill(int id,BuildContext context);
+  addSkill(int id, BuildContext context);
   searchSkill();
   deleteSkill(int id, int index);
   getSkills();
@@ -131,8 +131,8 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
 
   getTasks() async {
     statusRequest = StatusRequest.loading;
-    var response =
-        await taskBack.getData({}, AppLinks.task + "?user_id=" + id+"&&lang="+language, token);
+    var response = await taskBack.getData(
+        {}, AppLinks.task + "?user_id=" + id + "&&lang=" + language, token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -144,20 +144,20 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     update();
   }
 
-  Future<void> addSkill(int? id,BuildContext context) async {
+  Future<void> addSkill(int? id, BuildContext context) async {
     skillStatus = StatusRequest.loading;
     var response = await freelancerAccount.addSkill(
         token, {"skill_id": id.toString()}, AppLinks.skills);
     skillStatus = handelingData(response);
     Get.back();
+
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        {
-          Get.back();
-          snackBar("", "yourskillhasbeenadded".tr, context);
-        }
-      }
-    }
+        snackBar("", "yourskillhasbeenadded".tr, context);
+      } else
+        snackBar("", "yourskillhasbeenadded".tr, context);
+    } else
+      snackBar("", "yourskillhasbeenadded".tr, context);
 
     update();
   }
@@ -184,8 +184,10 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     update();
     if (skill.text != "") {
       skillStatus = StatusRequest.loading;
-      var response = await freelancerAccount.addSkill(
-          token, {"search": skill.text}, AppLinks.IP + "/api/skills/search");
+      var response = await freelancerAccount.getSkills(
+        AppLinks.IP + "/api/skills/search" + "?search=" + skill.text,
+        token,
+      );
       skillStatus = handelingData(response);
       update();
       if (StatusRequest.success == skillStatus) {

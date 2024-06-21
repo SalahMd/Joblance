@@ -12,10 +12,13 @@ class ImageView extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 50.h,
       ),
-      body: Center(
-        child: Image.network(
-          image[0] == "h" ? image : AppLinks.IP + "/" + image,
-          fit: BoxFit.fill,
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 20.h),
+        child: Center(
+          child: Image.network(
+            image[0] == "h" ? image : AppLinks.IP + image,
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     );

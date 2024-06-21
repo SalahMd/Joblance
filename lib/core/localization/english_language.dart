@@ -307,5 +307,8 @@ Map<String, String> english = {
   "yourtaskhasbeendeleted": "Your task has been deleted",
   "update": "Update",
   "deactivate": "Deactivate",
+  "yourskillhasbeenadded":"Yours kill has been added",
+  "couldn'taddyourskill":"Couldn't add your skill",
   "activate": "Activate",
+  "taskoffers":"Task offers",
 };

@@ -9,6 +9,8 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/add_offer/add_offer.dart';
 import 'package:joblance/view/screens/job_info/task_and_tob_bar.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
+import 'package:joblance/view/screens/profile/freelancer_profile/freelancer_profile.dart';
+import 'package:joblance/view/screens/task_offers/task_offers.dart';
 
 class TaskTobBar extends StatelessWidget {
   final String userImage;
@@ -16,12 +18,14 @@ class TaskTobBar extends StatelessWidget {
   final String taskTitle;
   final String major;
   final String budget;
-  final int id;
+  final int userId;
+  final int taskId;
   final String duration;
   final bool isActive, isOwner;
   final void Function() onTap;
   final void Function()? onDelete;
   final String date;
+  final int userRole;
   const TaskTobBar(
       {super.key,
       required this.userImage,
@@ -31,11 +35,12 @@ class TaskTobBar extends StatelessWidget {
       required this.isActive,
       required this.budget,
       required this.duration,
-      required this.id,
+      required this.userId,
       required this.isOwner,
       required this.onTap,
       this.onDelete,
-      required this.date});
+      required this.date,
+      required this.taskId, required this.userRole});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +65,10 @@ class TaskTobBar extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(CompanyProfile(id: id));
+                      if(userRole==1)
+                      Get.to(CompanyProfile(id: userId));
+                      else
+                      Get.to(FreelancerProfile(id: userId));
                     },
                     child: Container(
                       width: 45.w,
@@ -166,7 +174,9 @@ class TaskTobBar extends StatelessWidget {
                               height: 12.h,
                               margin: EdgeInsetsDirectional.only(start: 2.w),
                               decoration: BoxDecoration(
-                                  color: LightAppColors.greenColor,
+                                  color: isActive
+                                      ? LightAppColors.greenColor
+                                      : Colors.red[800],
                                   borderRadius: BorderRadius.circular(10)),
                             ),
                             SizedBox(width: 10.w),
@@ -178,10 +188,20 @@ class TaskTobBar extends StatelessWidget {
                         ),
                       ]),
                   Visibility(
-                    visible: !isOwner,
+                    visible: isActive || isOwner,
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(AddOffer());
+                        if (!isOwner)
+                          Get.to(AddOffer(
+                            taskId: taskId,
+                          ));
+                        else {
+                          Get.to(TaskOffers(
+                            id: taskId.toString(),
+                            name: taskTitle,
+                            dateOfPost: date,
+                          ));
+                        }
                       },
                       child: Padding(
                         padding: EdgeInsets.only(top: 65.h),
@@ -191,7 +211,7 @@ class TaskTobBar extends StatelessWidget {
                           alignment: Alignment.center,
                           decoration: AppButtons.buttonDecoration,
                           child: Text(
-                            "addoffer".tr,
+                            isOwner ? "offers".tr : "addoffer".tr,
                             style: TextStyles.w50013White(context),
                           ),
                         ),
