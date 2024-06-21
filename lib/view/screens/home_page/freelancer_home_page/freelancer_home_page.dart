@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/freelancer_home_page_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/colors.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/shimmer_freelancer_home_page.dart';
@@ -118,34 +117,28 @@ class FreelancerHomePage extends StatelessWidget {
                                 .animate()
                                 .fade(duration: 600.ms)
                                 .slideX(begin: 0.4),
-                            JobDesign(
-                                jobTitle: "Ai developer",
-                                companyName: "Google",
-                                location: "Germany",
-                                date: "5 days ago",
-                                jobId: 2,
-                                remote: "onsite".tr,
-                                image: AppImages.googleLogo,
-                                isActive: true),
-
-                            JobDesign(
-                                jobTitle: "Flutter developer",
-                                companyName: "Linkedin",
-                                location: "United states",
-                                date: "2 days ago",
-                                jobId: 2,
-                                remote: "remote".tr,
-                                image: AppImages.Linkedin,
-                                isActive: true),
-                            JobDesign(
-                                jobTitle: "Java developer",
-                                companyName: "Meta",
-                                location: "United kingdomdawdw",
-                                date: "2 weeks ago",
-                                remote: "remote".tr,
-                                jobId: 2,
-                                image: AppImages.meta,
-                                isActive: false),
+                            ListView.builder(
+                              itemCount: controller.jobs.length,
+                              physics: NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              itemBuilder: (BuildContext context, int index) {
+                                return JobDesign(
+                                  jobTitle: controller.jobs[index].jobTitle!,
+                                  companyName:
+                                      controller.jobs[index].companyName!,
+                                  location: controller.jobs[index].location!,
+                                  date: controller.jobs[index].date!,
+                                  remote: controller.jobs[index].remoteName!,
+                                  image: controller.jobs[index].companyImage!,
+                                  isActive: controller.jobs[index].active == 1
+                                      ? true
+                                      : false,
+                                  companyId: controller.jobs[index].companyId!,
+                                  jobId: controller.jobs[index].id!,
+                                );
+                              },
+                            )
                           ],
                         )
                       : StatusScreen(statusRequest: controller.statusRequest),

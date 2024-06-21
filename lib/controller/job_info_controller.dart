@@ -26,7 +26,7 @@ class JobInfoControllerImpl extends JobInfoController {
   late String token;
   bool isOwner = false, isVisible = false;
   Map data = {};
-  late JobInfoModel jobInfoModel;
+  late JobModel jobInfoModel;
   JobInfoControllerImpl({required this.jobId});
   @override
   void onInit() {
@@ -72,16 +72,16 @@ class JobInfoControllerImpl extends JobInfoController {
           isUpdate: true,
         ),
         arguments: {
-          "about_job": jobInfoModel.aboutJob,
+          "about_job": jobInfoModel.jobDescription,
           "job_title": jobInfoModel.jobTitle,
-          "requirements": jobInfoModel.reqirments,
+          "requirements": jobInfoModel.requirements,
           "additional_information": jobInfoModel.additionalInfo,
           "id": jobInfoModel.id,
-          "job_location": jobInfoModel.jobLocation,
+          "job_location": jobInfoModel.location,
           "company_name": jobInfoModel.companyName,
-          "remote": jobInfoModel.remote,
-          "major": jobInfoModel.major,
-          "experience": jobInfoModel.JobExperience,
+          "remote": jobInfoModel.remoteId,
+          "major": jobInfoModel.mojorId,
+          "experience": jobInfoModel.experienceLevelId,
           "about_company": jobInfoModel.aboutCompany
         });
   }

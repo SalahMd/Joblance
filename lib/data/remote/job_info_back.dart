@@ -5,9 +5,9 @@ class JobBack {
   Crud crud;
   JobBack(this.crud);
 
-  getData(var token, String id) async {
+  getData(var token, String link) async {
     var response = await crud.postAndGetData(
-        AppLinks.jobInfo +"/"+ id,
+       link,
         {},
         {
           'Authorization': 'Bearer $token',

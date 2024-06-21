@@ -172,17 +172,22 @@ Widget jobs(BuildContext context, MyAccountCompanyControllerImpl controller) {
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 8,
+              itemCount: controller.jobs.length,
               itemBuilder: (BuildContext context, int index) {
                 return JobDesign(
-                    jobTitle: "React developer",
-                    companyName: "Google",
-                    location: "United states",
-                    date: "9 days ago",
-                    remote: "remote".tr,
-                    jobId: index,
-                    image: AppImages.googleLogo,
-                    isActive: false);
+                                  jobTitle: controller.jobs[index].jobTitle!,
+                                  companyName:
+                                      controller.jobs[index].companyName!,
+                                  location: controller.jobs[index].location!,
+                                  date: controller.jobs[index].date!,
+                                  remote: controller.jobs[index].remoteName!,
+                                  image: controller.jobs[index].companyImage!,
+                                  isActive: controller.jobs[index].active == 1
+                                      ? true
+                                      : false,
+                                  companyId: controller.jobs[index].companyId!,
+                                  jobId: controller.jobs[index].id!,
+                                );
               }),
         ],
       ),

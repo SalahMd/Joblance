@@ -4,8 +4,10 @@ import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/model/job_info_model.dart';
 import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/freelancer/freelancer_home_page_back.dart';
+import 'package:joblance/data/remote/job_info_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
 
 abstract class FreelancerHomePageController extends GetxController {
@@ -17,11 +19,12 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   StatusRequest? statusRequest;
   FreeLnacerHomePageBack freeLnacerHomePageBack =
       new FreeLnacerHomePageBack(Get.put(Crud()));
-  String? token, id;
-  late String language;
+  JobBack jobBack = new JobBack(Get.put(Crud()));
+  late String language, token, id;
   Myservices myservices = Get.find();
   late String name, image;
   List<TaskModel> tasks = [];
+  List<JobModel> jobs = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   @override
   void onInit() async {
@@ -31,13 +34,14 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
     super.onInit();
     await getFreelancerInfo();
     await getTasks();
+    await getJobs();
   }
 
   getFreelancerInfo() async {
     statusRequest = StatusRequest.loading;
     update();
     var response =
-        await freeLnacerHomePageBack.getFreelancerInfo(token, language, id!);
+        await freeLnacerHomePageBack.getFreelancerInfo(token, language, id);
     statusRequest = handelingData(response);
     update();
     if (StatusRequest.success == statusRequest) {
@@ -56,8 +60,8 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        for (var reviewData in response['data']) {
-          tasks.add(TaskModel.fromJson(reviewData));
+        for (var data in response['data']) {
+          tasks.add(TaskModel.fromJson(data));
         }
       }
     }
@@ -66,12 +70,24 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
 
   refreshPage() async {
     tasks.clear();
+    jobs.clear();
     await getFreelancerInfo();
     await getTasks();
+    await getJobs();
   }
 
   @override
-  getJobs() {
-    throw UnimplementedError();
+  getJobs() async {
+    statusRequest = StatusRequest.loading;
+    var response = await jobBack.getData(token, AppLinks.jobInfo+"?lang="+language);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var data in response['data']) {
+          jobs.add(JobModel.fromJson(data));
+        }
+      }
+    }
+    update();
   }
 }

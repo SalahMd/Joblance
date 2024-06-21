@@ -27,7 +27,7 @@ class AddjobControllerImpl extends AddjobController {
   late String token, language;
   StatusRequest? statusRequest;
   Myservices myservices = Get.find();
-int? id;
+  int? id;
   JobBack jobBack = new JobBack(Get.put(Crud()));
   bool showNumOfEmployees = false, importantJobs = false;
   bool showAboutCompany = false;
@@ -85,6 +85,7 @@ int? id;
   CompanyHomePageBack companyHomePageBack =
       new CompanyHomePageBack(Get.put(Crud()));
   List<DropdownMenuItem<String>> majors = [];
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
 
   @override
   onInit() async {
@@ -131,40 +132,47 @@ int? id;
 
   @override
   addJob(bool isUpdate) async {
-    statusRequest = StatusRequest.loading;
-    animationedAlert(AppAnimations.loadings, "pleasewait".tr);
-    var response;
-    Map data = {
-      "job_title": jobTitle.text,
-      "job_description": aboutJob.text,
-      "salary": salary.text,
-      "location": jobLocation.text,
-      "job_type_id": jobTypeValue,
-      "job_mojor": majorValue,
-      "remote_id": remoteValue,
-      "requirements": requirements.text,
-      "additional_info": additionalInfo.text,
-      "experience_level_id": jobExpirenceValue,
-      "about_company": showAboutCompany ? "1" : "0",
-      "num_of_employees": showNumOfEmployees ? "1" : "0",
-    };
-    if (!isUpdate)
-      response = await jobBack.postData(token, data);
-    else
-      response = await jobBack.updateData(token,id.toString(), data);
-    statusRequest = handelingData(response);
-    Get.back();
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
-        Get.back();
-        animationedAlert(AppAnimations.done, "yourjobhasbeenposted");
-      }
+    var formdata = formState.currentState;
+    if (formdata!.validate()) {
+      statusRequest = StatusRequest.loading;
+      animationedAlert(AppAnimations.loadings, "pleasewait".tr);
+      var response;
+      Map data = {
+        "job_title": jobTitle.text,
+        "job_description": aboutJob.text,
+        "salary": salary.text,
+        "location": jobLocation.text,
+        "job_type_id": jobTypeValue,
+        "mojor_id": majorValue,
+        "remote_id": remoteValue,
+        "requirements": requirements.text,
+        "additional_info": additionalInfo.text,
+        "experience_level_id": jobExpirenceValue,
+        "about_company": showAboutCompany ? "1" : "0",
+        "num_of_employees": showNumOfEmployees ? "1" : "0",
+      };
+      if (!isUpdate)
+        response = await jobBack.postData(token, data);
+      else
+        response = await jobBack.updateData(token, id.toString(), data);
+      statusRequest = handelingData(response);
+      Get.back();
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          Get.back();
+          animationedAlert(AppAnimations.done, "yourjobhasbeenposted".tr);
+        } else {
+          animationedAlert(AppAnimations.done, "couldn'tpostyourjob".tr);
+        }
+      }else {
+          animationedAlert(AppAnimations.done, "couldn'tpostyourjob".tr);
+        }
     }
   }
 
   @override
   getJobData() {
-    throw UnimplementedError();
+    
   }
 
   changeCheckBoxValue(String box) {

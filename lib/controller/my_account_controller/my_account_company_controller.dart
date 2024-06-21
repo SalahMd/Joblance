@@ -5,18 +5,21 @@ import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/model/job_info_model.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/model/review_model.dart';
 import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/company/company_profile.dart';
+import 'package:joblance/data/remote/job_info_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
 
 abstract class MyAccountCompanyController extends GetxController {
   getUserData();
   getProduts();
   getReviews();
+  getJobs();
 }
 
 class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
@@ -29,10 +32,11 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   Map data = {};
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   List<TaskModel> tasks = [];
-
+  List<JobModel> jobs = [];
   List<ReviewModel> reviews = [];
   List<ProjectOrProductModel> products = [];
   late String token, id, lang;
+  JobBack jobBack = new JobBack(Get.put(Crud()));
   List<Widget> tabs = [
     Tab(
       text: "jobs".tr,
@@ -54,6 +58,8 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     await getUserData();
     await getProduts();
     await getReviews();
+    await getTasks();
+    await getJobs();
     super.onInit();
   }
 
@@ -62,19 +68,36 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     update();
     products.clear();
     data.clear();
+    jobs.clear();
     reviews.clear();
     update();
     await getUserData();
     await getProduts();
     await getReviews();
     await getTasks();
-    await getTasks();
+    await getJobs();
+  }
+
+  @override
+  getJobs() async {
+    statusRequest = StatusRequest.loading;
+    var response = await jobBack.getData(
+        token, AppLinks.jobInfo + "?lang=" + lang + "&&company_id=" + id);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var data in response['data']) {
+          jobs.add(JobModel.fromJson(data));
+        }
+      }
+    }
+    update();
   }
 
   getTasks() async {
     statusRequest = StatusRequest.loading;
-    var response = await taskBack
-        .getData({}, AppLinks.task + "?user_id=" + id+"&&lang="+lang, token);
+    var response = await taskBack.getData(
+        {}, AppLinks.task + "?user_id=" + id + "&&lang=" + lang, token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

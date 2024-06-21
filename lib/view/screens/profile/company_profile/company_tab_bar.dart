@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/profiles_controller/company_profile_controller.dart';
-import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/my_account/company/company_tab_bar_view.dart';
 import 'package:joblance/view/widgets/divider.dart';
@@ -20,6 +19,7 @@ class CompanyTabBar extends StatelessWidget {
     return TabBarView(children: [
       jobs(
         context,
+        controller
       ),
       tasks(context, controller),
       aboutCompany(context, controller),
@@ -77,7 +77,7 @@ Widget aboutCompany(
   );
 }
 
-Widget jobs(BuildContext context) {
+Widget jobs(BuildContext context,CompanyProfileControllerImpl controller) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,17 +93,22 @@ Widget jobs(BuildContext context) {
             padding: EdgeInsets.zero,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 10,
+            itemCount: controller.jobs.length,
             itemBuilder: (BuildContext context, int index) {
               return JobDesign(
-                  jobTitle: "React developer",
-                  companyName: "Google",
-                  location: "United states",
-                  date: "9 days ago",
-                  remote: "remote".tr,
-                  jobId: index,
-                  image: AppImages.googleLogo,
-                  isActive: false);
+                                  jobTitle: controller.jobs[index].jobTitle!,
+                                  companyName:
+                                      controller.jobs[index].companyName!,
+                                  location: controller.jobs[index].location!,
+                                  date: controller.jobs[index].date!,
+                                  remote: controller.jobs[index].remoteName!,
+                                  image: controller.jobs[index].companyImage!,
+                                  isActive: controller.jobs[index].active == 1
+                                      ? true
+                                      : false,
+                                  companyId: controller.jobs[index].companyId!,
+                                  jobId: controller.jobs[index].id!,
+                                );
             }),
       ],
     ),

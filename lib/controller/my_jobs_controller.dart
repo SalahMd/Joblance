@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/model/job_info_model.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 
 abstract class MyJobsController extends GetxController {
@@ -13,6 +14,8 @@ class MyJobsControllerImpl extends MyJobsController {
   StatusRequest? statusRequest;
   Myservices myServices = Get.find();
   List data = [];
+    List <JobModel> jobs = [];
+
   List<Widget> tabs = [
     Tab(
       text: "savedjobs".tr,

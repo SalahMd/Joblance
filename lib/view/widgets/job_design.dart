@@ -16,6 +16,7 @@ class JobDesign extends StatelessWidget {
   final int jobId;
   final String remote;
   final String image;
+  final int companyId;
   final bool isActive;
   const JobDesign(
       {super.key,
@@ -26,7 +27,7 @@ class JobDesign extends StatelessWidget {
       required this.remote,
       required this.image,
       required this.isActive,
-      required this.jobId});
+      required this.jobId, required this.companyId});
 
   @override
   Widget build(BuildContext context) {

@@ -5,6 +5,7 @@ import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/model/job_info_model.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/model/review_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
@@ -31,6 +32,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   Map data = {};
   List<ReviewModel> reviews = [];
   List<TaskModel> tasks = [];
+  List <JobModel> jobs = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
 
   List<ProjectOrProductModel> products = [];

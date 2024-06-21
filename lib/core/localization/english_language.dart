@@ -310,5 +310,7 @@ Map<String, String> english = {
   "yourskillhasbeenadded":"Yours kill has been added",
   "couldn'taddyourskill":"Couldn't add your skill",
   "activate": "Activate",
+  "yourjobhasbeenposted":"Your job has been posted",
+  "couldn'tpostyourjob":"Couldn't post your job",
   "taskoffers":"Task offers",
 };
