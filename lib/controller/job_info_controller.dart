@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/job_info_model.dart';
@@ -11,7 +12,7 @@ import 'package:joblance/view/screens/job_applicants/job_applicants.dart';
 
 abstract class JobInfoController extends GetxController {
   getUserInfo();
-  buttonFunction();
+  buttonFunction(int id);
   getJobInfo();
   updateJob();
 }
@@ -25,13 +26,12 @@ class JobInfoControllerImpl extends JobInfoController {
   late String roleId;
   late String token;
   bool isOwner = false, isVisible = false;
-  Map data = {};
-  late JobModel jobInfoModel;
+  JobModel jobInfoModel = JobModel();
   JobInfoControllerImpl({required this.jobId});
   @override
-  void onInit() {
-    getUserInfo();
-    getJobInfo();
+  void onInit() async {
+    await getUserInfo();
+    await getJobInfo();
     super.onInit();
   }
 
@@ -49,14 +49,15 @@ class JobInfoControllerImpl extends JobInfoController {
   @override
   getJobInfo() async {
     statusRequest = StatusRequest.loading;
-    var response = await jobInfoBack.getData(token, jobId.toString());
+    var response = await jobInfoBack.getData(token,AppLinks.jobInfo+"/"+ jobId.toString());
     statusRequest = handelingData(response);
+    print(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        data.addAll(response['data']);
+        jobInfoModel = JobModel.fromJson(response['data']);
       }
     }
-    if (userId == data['user_id']) {
+    if (userId == jobInfoModel.companyId) {
       isOwner = true;
     }
     if (isOwner || roleId == "2") {
@@ -70,27 +71,32 @@ class JobInfoControllerImpl extends JobInfoController {
     Get.to(
         AddJob(
           isUpdate: true,
+          name: jobInfoModel.companyName!,
+          image: jobInfoModel.companyImage!,
         ),
         arguments: {
           "about_job": jobInfoModel.jobDescription,
-          "job_title": jobInfoModel.jobTitle,
+          "title": jobInfoModel.jobTitle,
           "requirements": jobInfoModel.requirements,
           "additional_information": jobInfoModel.additionalInfo,
           "id": jobInfoModel.id,
-          "job_location": jobInfoModel.location,
-          "company_name": jobInfoModel.companyName,
-          "remote": jobInfoModel.remoteId,
-          "major": jobInfoModel.mojorId,
-          "experience": jobInfoModel.experienceLevelId,
-          "about_company": jobInfoModel.aboutCompany
+          "salary": jobInfoModel.salary,
+          "location": jobInfoModel.location,
+          "remote_id": jobInfoModel.remoteId,
+          "major_id": jobInfoModel.mojorId,
+          "experience_level_id": jobInfoModel.experienceLevelId,
+          "job_type_id": jobInfoModel.jobTypeId,
+          "about_company": jobInfoModel.aboutCompany,
+          "num_of_employees": jobInfoModel.numOfEmployees,
+          "active": jobInfoModel.active,
         });
   }
 
-  buttonFunction() {
+  buttonFunction(int id) {
     if (isOwner) {
       Get.to(JobApplicants());
     } else {
-      Get.to(ApplayJobPage());
+      Get.to(ApplayJobPage(JobId: id,));
     }
   }
 }

@@ -60,6 +60,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
+        if(response['data'].isNotEmpty)
         for (var data in response['data']) {
           tasks.add(TaskModel.fromJson(data));
         }

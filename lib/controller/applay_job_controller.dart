@@ -22,16 +22,18 @@ class ApplayJobControllerImpl extends ApplayJobController {
   late TextEditingController phoneNumber;
   late TextEditingController salary;
   late TextEditingController yearsOfExperience;
-  String country = "";
   late TextEditingController coverLetter;
   var CV;
   ApplayJobBack applayJobBack = new ApplayJobBack(Get.put(Crud()));
   FilePickerResult? result;
   Myservices myServices = Get.find();
   StatusRequest? statusRequest;
-
+  final int jobId;
   String? fileName;
+  late String token;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
+
+  ApplayJobControllerImpl({required this.jobId});
 
   @override
   void onInit() {
@@ -42,6 +44,8 @@ class ApplayJobControllerImpl extends ApplayJobController {
     coverLetter = TextEditingController();
     yearsOfExperience = TextEditingController();
     salary = TextEditingController();
+    token = myServices.sharedPreferences.getString("token")!;
+
     super.onInit();
   }
 
@@ -69,8 +73,7 @@ class ApplayJobControllerImpl extends ApplayJobController {
   }
 
   @override
-  applay() {
-    var token = myServices.sharedPreferences.getString("token");
+  applay() async {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
       if (CV == null) {
@@ -79,22 +82,25 @@ class ApplayJobControllerImpl extends ApplayJobController {
       }
       statusRequest = StatusRequest.loading;
       animationedAlert(AppAnimations.loadings, "checkingdata".tr);
-      var response = applayJobBack.postData({
+      var response = await applayJobBack.postData({
         "first_name": firstName.text,
         "last_name": lastName.text,
         "email": email.text,
         "phone_number": phoneNumber.text,
+        "job_detail_id": jobId.toString(),
         "cover_letter": coverLetter.text,
       }, token, CV);
       statusRequest = handelingData(response);
+      Get.back();
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           Get.back();
           animationedAlert(AppAnimations.done, "yourrequesthasbeensent".tr);
-          update();
+        } else {
+          animationedAlert(AppAnimations.wrong, "errorsendingyourrequest".tr);
         }
+      } else {
         animationedAlert(AppAnimations.wrong, "errorsendingyourrequest".tr);
-        update();
       }
     }
   }

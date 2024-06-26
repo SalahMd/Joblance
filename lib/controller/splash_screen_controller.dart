@@ -12,7 +12,7 @@ abstract class SplashScreenController extends GetxController {
 class SplashScreenControllerImpl extends SplashScreenController {
   int timer = 2;
   late Timer countdownTimer;
- late ButtomBarControllerImp controller;
+  ButtomBarControllerImp? controller;
   Myservices myservices = Get.find();
 
   @override
@@ -21,10 +21,18 @@ class SplashScreenControllerImpl extends SplashScreenController {
     countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (this.timer == 0) {
         timer.cancel();
-        if (controller.statusRequest!=StatusRequest.loading) {
-          if (myservices.sharedPreferences.getString("step") == "2") {
-            Get.offAllNamed("HomePage");
-          } else if (myservices.sharedPreferences.getString("step") == "1") {
+        if (controller != null) {
+          if (controller!.statusRequest != StatusRequest.loading) {
+            if (myservices.sharedPreferences.getString("step") == "2") {
+              Get.offAllNamed("HomePage");
+            } else if (myservices.sharedPreferences.getString("step") == "1") {
+              Get.offAllNamed("Login");
+            } else {
+              Get.off(ChooseLanguage());
+            }
+          }
+        } else {
+          if (myservices.sharedPreferences.getString("step") == "1") {
             Get.offAllNamed("Login");
           } else {
             Get.off(ChooseLanguage());
@@ -38,7 +46,8 @@ class SplashScreenControllerImpl extends SplashScreenController {
   }
 
   void onInit() {
-    controller = Get.put(ButtomBarControllerImp());
+    if (myservices.sharedPreferences.getString("step") == "2")
+      controller = Get.put(ButtomBarControllerImp());
 
     startTimer();
     super.onInit();

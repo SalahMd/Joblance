@@ -9,11 +9,12 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
 class ApplayJobPage extends StatelessWidget {
-  const ApplayJobPage({super.key});
+  final int JobId;
+  const ApplayJobPage({super.key, required this.JobId});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ApplayJobControllerImpl());
+    Get.put(ApplayJobControllerImpl(jobId: JobId));
     return GetBuilder<ApplayJobControllerImpl>(
       builder: (controller) => Scaffold(
         body: SingleChildScrollView(
@@ -122,6 +123,7 @@ class ApplayJobPage extends StatelessWidget {
                       min: 1,
                       max: 10,
                       isNumber: true,
+                      isValidation: false,
                       isPassword: false,
                       isBorder: true,
                       isLabel: false,
@@ -136,6 +138,7 @@ class ApplayJobPage extends StatelessWidget {
                       min: 1,
                       max: 3,
                       isNumber: true,
+                      isValidation: false,
                       isPassword: false,
                       isBorder: true,
                       isLabel: false,

@@ -21,7 +21,7 @@ class Crud {
         if (isFile && isPost && file != null) {
           var request = http.MultipartRequest('POST', Uri.parse(linkurl));
           String name = fileName == null ? "image" : fileName;
-          if (name != "image") {
+          if (name != "image" && name != "CV") {
             for (int i = 0; i < file.length; i++) {
               var length = await file[i].length();
               var stream = http.ByteStream(file[i].openRead());
@@ -49,6 +49,7 @@ class Crud {
           });
           var myRequest = await request.send();
           response = await http.Response.fromStream(myRequest);
+
           print(response.body);
         }
         // Handle other types of requests

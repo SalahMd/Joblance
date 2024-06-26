@@ -5,7 +5,8 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
 class AboutJob extends StatelessWidget {
-  const AboutJob({super.key});
+  final String abotJob;
+  const AboutJob({super.key, required this.abotJob});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class AboutJob extends StatelessWidget {
               borderRadius: BorderRadius.circular(10)),
           padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 5.w),
           child: Text(
-            "fsnesoifn oin eosienfo foishfesoih ieshf opesihf olfsn isen ieusfn esibf iuiun nosohi insef noeisfnheisnof nseoifn senfoi nsef noeisnfi nesoifnoi snief niesnfo isneofin esoifn iosenfoi nesoinf oiesnifonb njfn;odifnv ;iofdn io bsoi beoisb eoisbf oiesbf oibes",
+            abotJob,
             style: TextStyles.w40012grey(context),
           ),
         ),

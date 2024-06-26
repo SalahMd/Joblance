@@ -127,7 +127,7 @@ class FreelancerHomePage extends StatelessWidget {
                                   jobTitle: controller.jobs[index].jobTitle!,
                                   companyName:
                                       controller.jobs[index].companyName!,
-                                  location: controller.jobs[index].location!,
+                                  location: controller.jobs[index].location,
                                   date: controller.jobs[index].date!,
                                   remote: controller.jobs[index].remoteName!,
                                   image: controller.jobs[index].companyImage!,

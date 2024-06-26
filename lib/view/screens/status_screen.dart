@@ -33,7 +33,9 @@ class StatusScreen extends StatelessWidget {
           ),
           statusRequest == StatusRequest.offline
               ? Text("nointernetconnection".tr)
-              : Text("servererror".tr)
+              : statusRequest == StatusRequest.serverError
+                  ? Text("servererror".tr)
+                  : Text('')
         ],
       ),
     );

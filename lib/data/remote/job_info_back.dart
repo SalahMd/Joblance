@@ -24,10 +24,10 @@ class JobBack {
         AppLinks.jobInfo,
         data,
         {
-          'Authorization': 'Bearer $token',
+          'Authorization': 'Bearer $token', "accept": "application/json"
         },
         null,
-        false,
+        true,
         false,
         null);
     return response.fold((l) => l, (r) => r);

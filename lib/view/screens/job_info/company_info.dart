@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class CompanyInfo extends StatelessWidget {
-  final Image companyImage;
+  final String companyImage;
   final String companyName;
   final String numOfEmployees;
   final String jobType;
@@ -16,8 +18,11 @@ class CompanyInfo extends StatelessWidget {
   final String jobLocation;
   final Function() onTap;
   final String major;
+  final salary;
   final bool isVisible;
   final String roleId;
+  final String date;
+  final int active;
   const CompanyInfo(
       {super.key,
       required this.companyImage,
@@ -30,7 +35,10 @@ class CompanyInfo extends StatelessWidget {
       required this.major,
       required this.isVisible,
       required this.onTap,
-      required this.roleId});
+      required this.roleId,
+      required this.date,
+      required this.active,
+      required this.salary});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +61,10 @@ class CompanyInfo extends StatelessWidget {
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(5)),
                   child: ClipRRect(
-                      child: companyImage,
+                      child: Image.network(
+                        AppLinks.IP + companyImage,
+                        fit: BoxFit.fill,
+                      ),
                       borderRadius: BorderRadius.circular(5)),
                 ),
               ),
@@ -91,7 +102,7 @@ class CompanyInfo extends StatelessWidget {
                 SizedBox(height: 20.h),
                 Row(
                   children: [
-                    Icon(Icons.work_outline, size: 18),
+                    Icon(Icons.work_outline, size: 17.sp),
                     SizedBox(width: 8.w),
                     Text(
                       "major".tr + ": " + major,
@@ -101,7 +112,7 @@ class CompanyInfo extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.apartment_outlined, size: 18),
+                    Icon(Icons.apartment_outlined, size: 17.sp),
                     SizedBox(width: 8.w),
                     Text(
                       "employees".tr + ": " + numOfEmployees,
@@ -111,30 +122,44 @@ class CompanyInfo extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.calendar_month_outlined, size: 18),
+                    Icon(Icons.calendar_month_outlined, size: 17.sp),
                     SizedBox(width: 8.w),
                     Text(
-                      "2 weeks ago".tr,
+                      Jiffy.parse(date).fromNow().toString(),
                       style: TextStyles.w40012grey(context),
                     ),
                   ],
                 ),
                 Row(
                   children: [
-                    Container(
-                      width: 10.w,
-                      height: 12.h,
-                      margin: EdgeInsetsDirectional.only(start: 2.w),
-                      decoration: BoxDecoration(
-                          color: LightAppColors.greenColor,
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                    SizedBox(width: 10.w),
+                    Icon(Icons.attach_money_outlined, size: 17.sp),
+                    SizedBox(width: 8.w),
                     Text(
-                      "active".tr,
+                      "salary".tr + " " + salary.toString(),
                       style: TextStyles.w40012grey(context),
                     ),
                   ],
+                ),
+                Visibility(
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 10.w,
+                        height: 12.h,
+                        margin: EdgeInsetsDirectional.only(start: 2.w),
+                        decoration: BoxDecoration(
+                            color: active == 1
+                                ? LightAppColors.greenColor
+                                : Colors.red[800],
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                      SizedBox(width: 10.w),
+                      Text(
+                        active == 1 ? "active".tr : "inactive".tr,
+                        style: TextStyles.w40012grey(context),
+                      ),
+                    ],
+                  ),
                 ),
               ]),
               Visibility(

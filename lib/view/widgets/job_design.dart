@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/job_info/job_info.dart';
@@ -11,7 +13,7 @@ import 'package:joblance/view/screens/job_info/job_info.dart';
 class JobDesign extends StatelessWidget {
   final String jobTitle;
   final String companyName;
-  final String location;
+  final String? location;
   final String date;
   final int jobId;
   final String remote;
@@ -27,7 +29,8 @@ class JobDesign extends StatelessWidget {
       required this.remote,
       required this.image,
       required this.isActive,
-      required this.jobId, required this.companyId});
+      required this.jobId,
+      required this.companyId});
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +55,8 @@ class JobDesign extends StatelessWidget {
                   height: 40.sp,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      image,
+                    child: Image.network(
+                      AppLinks.IP + image,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -76,15 +79,17 @@ class JobDesign extends StatelessWidget {
                     SizedBox(height: 3.h),
                     Container(
                       width: 160.w,
-                      child: Text(
-                        remote + " - " + location,
-                        style: TextStyles.w40011grey(context),
-                        overflow: TextOverflow.ellipsis,
+                      child: Visibility(
+                        visible: location != null,
+                        child: Text(
+                          remote + " - " + location!,
+                          style: TextStyles.w40011grey(context),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
-                    //SizedBox(height: 3.h),
                     Text(
-                      date,
+                      Jiffy.parse(date).fromNow().toString(),
                       style: TextStyles.w4009grey(context),
                     )
                   ],

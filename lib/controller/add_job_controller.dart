@@ -29,8 +29,9 @@ class AddjobControllerImpl extends AddjobController {
   Myservices myservices = Get.find();
   int? id;
   JobBack jobBack = new JobBack(Get.put(Crud()));
-  bool showNumOfEmployees = false, importantJobs = false;
+  bool showNumOfEmployees = false, importantJobs = false, active = false;
   bool showAboutCompany = false;
+
   String majorValue = '1',
       remoteValue = '1',
       jobTypeValue = '1',
@@ -98,6 +99,31 @@ class AddjobControllerImpl extends AddjobController {
     language = myservices.sharedPreferences.getString("lang")!;
     token = myservices.sharedPreferences.getString("token")!;
     await getMajors();
+    if (Get.arguments != null) {
+      jobTitle.text = Get.arguments['title'] as String;
+      aboutJob.text = Get.arguments['about_job'] as String;
+      requirements.text = Get.arguments['requirements'] as String;
+      majorValue = Get.arguments['major_id'].toString();
+      remoteValue = Get.arguments['remote_id'].toString();
+      jobTypeValue = Get.arguments['job_type_id'].toString();
+      jobExpirenceValue = Get.arguments['expirence_level_id'].toString();
+      active = Get.arguments['active'];
+      showAboutCompany =
+          Get.arguments['show_about_company'] != null ? false : true;
+      showNumOfEmployees =
+          Get.arguments['num_of_employees'] != null ? false : true;
+      id = Get.arguments['id'];
+      if (Get.arguments['additional_information'] != null) {
+        additionalInfo.text = Get.arguments['additional_information'] as String;
+      }
+      if (Get.arguments['salary'] != null) {
+        salary.text = Get.arguments['salary'].toString();
+      }
+        if (Get.arguments['location'] != null) {
+        jobLocation.text = Get.arguments['location'].toString();
+      }
+    }
+
     super.onInit();
   }
 
@@ -138,18 +164,18 @@ class AddjobControllerImpl extends AddjobController {
       animationedAlert(AppAnimations.loadings, "pleasewait".tr);
       var response;
       Map data = {
-        "job_title": jobTitle.text,
-        "job_description": aboutJob.text,
+        "title": jobTitle.text,
+        "about_job": aboutJob.text,
         "salary": salary.text,
         "location": jobLocation.text,
         "job_type_id": jobTypeValue,
-        "mojor_id": majorValue,
+        "major_id": majorValue,
         "remote_id": remoteValue,
         "requirements": requirements.text,
-        "additional_info": additionalInfo.text,
+        "additional_information": additionalInfo.text,
         "experience_level_id": jobExpirenceValue,
-        "about_company": showAboutCompany ? "1" : "0",
-        "num_of_employees": showNumOfEmployees ? "1" : "0",
+        "show_about_the_company": showAboutCompany ? "1" : "0",
+        "show_number_of_employees": showNumOfEmployees ? "1" : "0",
       };
       if (!isUpdate)
         response = await jobBack.postData(token, data);
@@ -162,18 +188,16 @@ class AddjobControllerImpl extends AddjobController {
           Get.back();
           animationedAlert(AppAnimations.done, "yourjobhasbeenposted".tr);
         } else {
-          animationedAlert(AppAnimations.done, "couldn'tpostyourjob".tr);
+          animationedAlert(AppAnimations.wrong, "couldn'tpostyourjob".tr);
         }
-      }else {
-          animationedAlert(AppAnimations.done, "couldn'tpostyourjob".tr);
-        }
+      } else {
+        animationedAlert(AppAnimations.wrong, "couldn'tpostyourjob".tr);
+      }
     }
   }
 
   @override
-  getJobData() {
-    
-  }
+  getJobData() {}
 
   changeCheckBoxValue(String box) {
     if (box == "aboutcompany")

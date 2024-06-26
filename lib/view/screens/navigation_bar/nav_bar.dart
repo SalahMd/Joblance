@@ -57,7 +57,7 @@ class ButtomBar extends StatelessWidget {
                     ),
                     shape: CircleBorder(),
                     onTap: () {
-                      Get.to(AddJob());
+                      Get.to(AddJob(name: controllerImp.name!,image: controllerImp.image!,));
                     },
                     child: Icon(Icons.work_outline,
                         size: 18.sp, color: LightAppColors.whiteColor),
