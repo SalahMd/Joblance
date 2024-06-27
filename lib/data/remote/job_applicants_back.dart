@@ -7,7 +7,7 @@ class JobApplicantsBack {
 
   getApplicants(String token, String jobId,String lang) async {
     var response = await crud.postAndGetData(
-        AppLinks.applayJob+"/?job_detail_id="+jobId+"&lang="+lang,
+        AppLinks.applayJob+"?job_detail_id="+jobId+"&lang="+lang,
         {},
         {
           'Authorization': 'Bearer $token',

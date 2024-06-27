@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
@@ -23,7 +24,7 @@ class JobApplicantDesign extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Dimensions.screenWidth(context),
-      height: 220.h,
+      // height: 220.h,
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       decoration: BoxDecoration(
@@ -99,7 +100,20 @@ class JobApplicantDesign extends StatelessWidget {
                       SizedBox(
                         width: 5.w,
                       ),
-                      Text(date, style: TextStyles.w40011grey(context)),
+                      Text(Jiffy.parse(date).fromNow().toString(),
+                          style: TextStyles.w40011grey(context)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.cases_outlined,
+                        size: 12.sp,
+                      ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                      Text("2 years", style: TextStyles.w40011grey(context)),
                     ],
                   ),
                 ],
@@ -117,19 +131,18 @@ class JobApplicantDesign extends StatelessWidget {
           height: 5.h,
         ),
         Visibility(
-          visible: coverLetter!=null,
+          visible: coverLetter != null,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("cover letter:".tr, style: TextStyles.w50012(context)),
-              Text(coverLetter!,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyles.w40011grey(context)),
+              Text("coverletter:".tr, style: TextStyles.w50012(context)),
+              Text(coverLetter == null ? "" : coverLetter!,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyles.w40011grey(context)),
             ],
           ),
         ),
-        
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

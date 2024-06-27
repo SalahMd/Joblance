@@ -28,6 +28,8 @@ class JobApplicants extends StatelessWidget {
               padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
               child: ApplicantsTobBar(
                 name: name,
+                numOfApplicants: controller.applicants.length,
+                date: date,
               ),
             ),
             Padding(
@@ -59,10 +61,10 @@ class JobApplicants extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, i) {
                   return JobApplicantDesign(
-                      name: name,
+                      name: controller.applicants[i].name!,
                       email: controller.applicants[i].email!,
                       major: controller.applicants[i].majorName!,
-                      date: date,
+                      date: controller.applicants[i].createdAt!,
                       image: controller.applicants[i].image!,
                       coverLetter: controller.applicants[i].coverLetter,
                       id: controller.applicants[i].id.toString());

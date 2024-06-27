@@ -1,15 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:joblance/core/constants/buttons.dart';
-import 'package:joblance/core/constants/colors.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/view/widgets/divider.dart';
 
 class ApplicantsTobBar extends StatelessWidget {
   final String name;
-  const ApplicantsTobBar({super.key, required this.name});
+  final int numOfApplicants;
+  final String date;
+  const ApplicantsTobBar(
+      {super.key,
+      required this.name,
+      required this.numOfApplicants,
+      required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +40,6 @@ class ApplicantsTobBar extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Icon(
-                Icons.edit_outlined,
-                size: 18.sp,
-                color: LightAppColors.primaryColor,
-              ),
-            )
           ],
         ),
         SizedBox(height: 10.h),
@@ -62,7 +58,7 @@ class ApplicantsTobBar extends StatelessWidget {
                         SizedBox(
                           width: 3.w,
                         ),
-                        Text("3" + "applicants".tr,
+                        Text(numOfApplicants.toString() + "applicants".tr,
                             style: TextStyles.w40011grey(context)),
                       ],
                     ),
@@ -75,43 +71,16 @@ class ApplicantsTobBar extends StatelessWidget {
                         SizedBox(
                           width: 3.w,
                         ),
-                        Text("2 weeks ago".tr,
-                            style: TextStyles.w40011grey(context)),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          width: 10.w,
-                          height: 12.h,
-                          margin: EdgeInsetsDirectional.only(start: 2.w),
-                          decoration: BoxDecoration(
-                              color: LightAppColors.greenColor,
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
-                        Text("active".tr,
+                        Text(Jiffy.parse(date).fromNow().toString(),
                             style: TextStyles.w40011grey(context)),
                       ],
                     ),
                   ],
                 )),
-            Expanded(
-                flex: 1,
-                child: Container(
-                  width: 50.w,
-                  height: 26.h,
-                  margin: EdgeInsets.only(top: 40.h),
-                  alignment: Alignment.center,
-                  decoration: AppButtons.buttonDecoration,
-                  child: Text(
-                    "inactive".tr,
-                    style: TextStyles.w50012White(context),
-                  ),
-                ))
           ],
+        ),
+        SizedBox(
+          height: 10.h,
         ),
         MyDivider()
       ],
