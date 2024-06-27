@@ -21,6 +21,7 @@ class CompanyInfo extends StatelessWidget {
   final salary;
   final bool isVisible;
   final String roleId;
+  final String experience;
   final String date;
   final int active;
   const CompanyInfo(
@@ -38,7 +39,8 @@ class CompanyInfo extends StatelessWidget {
       required this.roleId,
       required this.date,
       required this.active,
-      required this.salary});
+      required this.salary,
+      required this.experience});
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +107,7 @@ class CompanyInfo extends StatelessWidget {
                     Icon(Icons.work_outline, size: 17.sp),
                     SizedBox(width: 8.w),
                     Text(
-                      "major".tr + ": " + major,
+                      "major".tr + ": " + major + " - " + experience,
                       style: TextStyles.w40012grey(context),
                     ),
                   ],

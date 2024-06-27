@@ -67,7 +67,7 @@ class JobInfoControllerImpl extends JobInfoController {
     if (userId == jobInfoModel.companyId) {
       isOwner = true;
     }
-    if (isOwner || roleId == "2") {
+    if (isOwner || roleId == "2"&&jobInfoModel.active==1) {
       isVisible = true;
     }
     update();
@@ -93,8 +93,8 @@ class JobInfoControllerImpl extends JobInfoController {
           "major_id": jobInfoModel.mojorId,
           "experience_level_id": jobInfoModel.experienceLevelId,
           "job_type_id": jobInfoModel.jobTypeId,
-          "about_company": jobInfoModel.aboutCompany,
-          "num_of_employees": jobInfoModel.numOfEmployees,
+          "show_about_the_company": jobInfoModel.aboutCompany,
+          "show_number_of_employees": jobInfoModel.numOfEmployees,
           "active": jobInfoModel.active,
         });
   }
@@ -106,8 +106,9 @@ class JobInfoControllerImpl extends JobInfoController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        snackBar("", "yourjobhasbeendeleted".tr, context);
         Get.back();
+
+        snackBar("", "yourjobhasbeendeleted".tr, context);
       } else {
         animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);
       }

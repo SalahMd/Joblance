@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/add_job_controller.dart';
+import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/links.dart';
@@ -25,7 +26,7 @@ class AddJob extends StatelessWidget {
     Get.put(AddjobControllerImpl());
     return GetBuilder<AddjobControllerImpl>(
       builder: (controller) => Scaffold(
-        body: SingleChildScrollView(
+        body:controller.statusRequest==StatusRequest.loading?Container(): SingleChildScrollView(
           child: Form(
             key: controller.formState,
             child: Column(

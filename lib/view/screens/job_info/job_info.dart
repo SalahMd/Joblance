@@ -17,7 +17,7 @@ class JobInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(JobInfoControllerImpl(jobId: id,context));
+    Get.put(JobInfoControllerImpl(jobId: id, context));
     return Scaffold(
       body: GetBuilder<JobInfoControllerImpl>(
         builder: (controller) => SingleChildScrollView(
@@ -45,6 +45,8 @@ class JobInfo extends StatelessWidget {
                           active: controller.jobInfoModel.active!,
                           salary: controller.jobInfoModel.salary,
                           date: controller.jobInfoModel.date!,
+                          experience:
+                              controller.jobInfoModel.experienceLevelName!,
                           onTap: () {
                             controller.buttonFunction(id);
                           },

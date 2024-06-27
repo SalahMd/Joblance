@@ -162,7 +162,7 @@ class EditProfileControllerImpl extends EditProfileController {
     country = data['location'];
     image = data['image'];
     phoneNumber.text = data['phone_number'];
-    major = data['major_id'].toString();
+    major = data['major']['id'].toString();
     update();
   }
 

@@ -31,7 +31,7 @@ class AddjobControllerImpl extends AddjobController {
   Myservices myservices = Get.find();
   int? id;
   JobBack jobBack = new JobBack(Get.put(Crud()));
-  bool showNumOfEmployees = false, importantJobs = false, active = false;
+  bool showNumOfEmployees = false, importantJobs = false, active = true;
   bool showAboutCompany = false;
   String majorValue = '1',
       remoteValue = '1',
@@ -72,7 +72,6 @@ class AddjobControllerImpl extends AddjobController {
   List<DropdownMenuItem<String>> majors = [];
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
-
   @override
   onInit() async {
     aboutJob = new TextEditingController();
@@ -92,12 +91,12 @@ class AddjobControllerImpl extends AddjobController {
       majorValue = Get.arguments['major_id'].toString();
       remoteValue = Get.arguments['remote_id'].toString();
       jobTypeValue = Get.arguments['job_type_id'].toString();
-      jobExpirenceValue = Get.arguments['expirence_level_id'].toString();
-      active = Get.arguments['active'];
+      jobExpirenceValue = Get.arguments['experience_level_id'].toString();
+      active = Get.arguments['active'] == 1 ? true : false;
       showAboutCompany =
-          Get.arguments['show_about_company'] != null ? false : true;
+          Get.arguments['show_about_the_company'] == 0 ? false : true;
       showNumOfEmployees =
-          Get.arguments['num_of_employees'] != null ? false : true;
+          Get.arguments['show_number_of_employees'] == 0 ? false : true;
       id = Get.arguments['id'];
       if (Get.arguments['additional_information'] != null) {
         additionalInfo.text = Get.arguments['additional_information'] as String;
@@ -133,7 +132,6 @@ class AddjobControllerImpl extends AddjobController {
         print(majors);
       }
     }
-    update();
   }
 
   getExperience() async {
@@ -153,8 +151,6 @@ class AddjobControllerImpl extends AddjobController {
     }
     update();
   }
-
- 
 
   @override
   dispose() {
@@ -187,6 +183,7 @@ class AddjobControllerImpl extends AddjobController {
         "experience_level_id": jobExpirenceValue,
         "show_about_the_company": showAboutCompany ? "1" : "0",
         "show_number_of_employees": showNumOfEmployees ? "1" : "0",
+        "active": active ? "1" : "0"
       };
       if (!isUpdate)
         response = await jobBack.postData(token, data);
