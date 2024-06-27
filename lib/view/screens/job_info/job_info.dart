@@ -17,7 +17,7 @@ class JobInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(JobInfoControllerImpl(jobId: id));
+    Get.put(JobInfoControllerImpl(jobId: id,context));
     return Scaffold(
       body: GetBuilder<JobInfoControllerImpl>(
         builder: (controller) => SingleChildScrollView(

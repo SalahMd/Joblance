@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/animations.dart';
 import 'package:joblance/core/constants/links.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/job_info_model.dart';
@@ -14,6 +17,7 @@ abstract class JobInfoController extends GetxController {
   getUserInfo();
   buttonFunction(int id);
   getJobInfo();
+  deleteJob();
   updateJob();
 }
 
@@ -25,9 +29,11 @@ class JobInfoControllerImpl extends JobInfoController {
   JobBack jobInfoBack = new JobBack(Get.put(Crud()));
   late String roleId;
   late String token;
+  final BuildContext context;
+
   bool isOwner = false, isVisible = false;
   JobModel jobInfoModel = JobModel();
-  JobInfoControllerImpl({required this.jobId});
+  JobInfoControllerImpl(this.context, {required this.jobId});
   @override
   void onInit() async {
     await getUserInfo();
@@ -49,7 +55,8 @@ class JobInfoControllerImpl extends JobInfoController {
   @override
   getJobInfo() async {
     statusRequest = StatusRequest.loading;
-    var response = await jobInfoBack.getData(token,AppLinks.jobInfo+"/"+ jobId.toString());
+    var response = await jobInfoBack.getData(
+        token, AppLinks.jobInfo + "/" + jobId.toString());
     statusRequest = handelingData(response);
     print(response);
     if (StatusRequest.success == statusRequest) {
@@ -92,11 +99,30 @@ class JobInfoControllerImpl extends JobInfoController {
         });
   }
 
+  @override
+  deleteJob() async {
+    Get.back();
+    var response = await jobInfoBack.deleteData(jobId.toString(), token);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        snackBar("", "yourjobhasbeendeleted".tr, context);
+        Get.back();
+      } else {
+        animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);
+      }
+    } else {
+      animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);
+    }
+  }
+
   buttonFunction(int id) {
     if (isOwner) {
       Get.to(JobApplicants());
     } else {
-      Get.to(ApplayJobPage(JobId: id,));
+      Get.to(ApplayJobPage(
+        JobId: id,
+      ));
     }
   }
 }

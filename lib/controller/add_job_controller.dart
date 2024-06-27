@@ -16,7 +16,6 @@ abstract class AddjobController extends GetxController {
   getMajors();
   changeCheckBoxValue(String box);
   updateDropDownValue(String? newValue, String changingElement);
-  deleteData();
   getExperience();
 }
 
@@ -34,7 +33,6 @@ class AddjobControllerImpl extends AddjobController {
   JobBack jobBack = new JobBack(Get.put(Crud()));
   bool showNumOfEmployees = false, importantJobs = false, active = false;
   bool showAboutCompany = false;
-  final BuildContext context;
   String majorValue = '1',
       remoteValue = '1',
       jobTypeValue = '1',
@@ -74,7 +72,6 @@ class AddjobControllerImpl extends AddjobController {
   List<DropdownMenuItem<String>> majors = [];
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
-  AddjobControllerImpl({required this.context});
 
   @override
   onInit() async {
@@ -157,22 +154,7 @@ class AddjobControllerImpl extends AddjobController {
     update();
   }
 
-  @override
-  deleteData() async {
-    Get.back();
-    var response = await jobBack.deleteData(id.toString(), token);
-    statusRequest = handelingData(response);
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
-        snackBar("", "yourjobhasbeendeleted".tr, context);
-        Get.back();
-      } else {
-        animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);
-      }
-    } else {
-      animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);
-    }
-  }
+ 
 
   @override
   dispose() {

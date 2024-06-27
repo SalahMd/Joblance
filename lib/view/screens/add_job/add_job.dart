@@ -22,7 +22,7 @@ class AddJob extends StatelessWidget {
       required this.name});
   @override
   Widget build(BuildContext context) {
-    Get.put(AddjobControllerImpl(context: context));
+    Get.put(AddjobControllerImpl());
     return GetBuilder<AddjobControllerImpl>(
       builder: (controller) => Scaffold(
         body: SingleChildScrollView(
