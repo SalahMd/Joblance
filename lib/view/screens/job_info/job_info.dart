@@ -27,8 +27,9 @@ class JobInfo extends StatelessWidget {
                   ? Column(
                       children: [
                         TaskAndJobTobBar(
-                          isOwner: false,
-                          onTap: () {},
+                          isOwner: controller.isOwner,
+                          onTap: controller.updateJob,
+                          onDelete: controller.deleteJob,
                         ),
                         CompanyInfo(
                           companyImage: controller.jobInfoModel.companyImage!,

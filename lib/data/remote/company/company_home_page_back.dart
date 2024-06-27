@@ -17,9 +17,20 @@ class CompanyHomePageBack {
     return response.fold((l) => l, (r) => r);
   }
 
-  getMajor(var token, String language) async {
+  getMajor(String token, String language) async {
     var response = await crud.postAndGetData(
         AppLinks.major + "?lang=" + language,
+        {},
+        {'Authorization': 'Bearer $token'},
+        null,
+        false,
+        false,
+        null);
+    return response.fold((l) => l, (r) => r);
+  }
+  getExperience(String token, String language) async {
+    var response = await crud.postAndGetData(
+        AppLinks.jobExperience + "?lang=" + language,
         {},
         {'Authorization': 'Bearer $token'},
         null,

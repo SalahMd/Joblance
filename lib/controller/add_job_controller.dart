@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
@@ -15,6 +16,8 @@ abstract class AddjobController extends GetxController {
   getMajors();
   changeCheckBoxValue(String box);
   updateDropDownValue(String? newValue, String changingElement);
+  deleteData();
+  getExperience();
 }
 
 class AddjobControllerImpl extends AddjobController {
@@ -31,7 +34,7 @@ class AddjobControllerImpl extends AddjobController {
   JobBack jobBack = new JobBack(Get.put(Crud()));
   bool showNumOfEmployees = false, importantJobs = false, active = false;
   bool showAboutCompany = false;
-
+  final BuildContext context;
   String majorValue = '1',
       remoteValue = '1',
       jobTypeValue = '1',
@@ -65,28 +68,13 @@ class AddjobControllerImpl extends AddjobController {
       child: Text("onsite".tr),
     ),
   ];
-  List<DropdownMenuItem<String>> jobExperience = [
-    DropdownMenuItem<String>(
-      value: '1',
-      child: Text("internship".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '2',
-      child: Text("junior".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '3',
-      child: Text("senior".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '4',
-      child: Text("director".tr),
-    ),
-  ];
+  List<DropdownMenuItem<String>> jobExperience = [];
   CompanyHomePageBack companyHomePageBack =
       new CompanyHomePageBack(Get.put(Crud()));
   List<DropdownMenuItem<String>> majors = [];
   GlobalKey<FormState> formState = GlobalKey<FormState>();
+
+  AddjobControllerImpl({required this.context});
 
   @override
   onInit() async {
@@ -99,6 +87,7 @@ class AddjobControllerImpl extends AddjobController {
     language = myservices.sharedPreferences.getString("lang")!;
     token = myservices.sharedPreferences.getString("token")!;
     await getMajors();
+    await getExperience();
     if (Get.arguments != null) {
       jobTitle.text = Get.arguments['title'] as String;
       aboutJob.text = Get.arguments['about_job'] as String;
@@ -119,12 +108,17 @@ class AddjobControllerImpl extends AddjobController {
       if (Get.arguments['salary'] != null) {
         salary.text = Get.arguments['salary'].toString();
       }
-        if (Get.arguments['location'] != null) {
+      if (Get.arguments['location'] != null) {
         jobLocation.text = Get.arguments['location'].toString();
       }
     }
 
     super.onInit();
+  }
+
+  changeJobStatus() {
+    active = !active;
+    update();
   }
 
   getMajors() async {
@@ -143,6 +137,41 @@ class AddjobControllerImpl extends AddjobController {
       }
     }
     update();
+  }
+
+  getExperience() async {
+    statusRequest = StatusRequest.loading;
+    var response = await companyHomePageBack.getExperience(token, language);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (int i = 0; i < response['data'].length; i++) {
+          jobExperience.add(DropdownMenuItem(
+            value: response['data'][i]['id'].toString(),
+            child: Text(response['data'][i]['name']),
+          ));
+        }
+        print(majors);
+      }
+    }
+    update();
+  }
+
+  @override
+  deleteData() async {
+    Get.back();
+    var response = await jobBack.deleteData(id.toString(), token);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        snackBar("", "yourjobhasbeendeleted".tr, context);
+        Get.back();
+      } else {
+        animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);
+      }
+    } else {
+      animationedAlert(AppAnimations.wrong, "couldn'tdelete".tr);
+    }
   }
 
   @override

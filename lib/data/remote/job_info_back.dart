@@ -46,4 +46,15 @@ class JobBack {
        );
     return response.fold((l) => l, (r) => r);
   }
+  deleteData(
+    String id,
+    var token,
+  ) async {
+    var response = await crud.deleteData(
+      AppLinks.jobInfo + "/" + id,
+      {},
+      {'Authorization': 'Bearer $token'},
+    );
+    return response.fold((l) => l, (r) => r);
+  }
 }

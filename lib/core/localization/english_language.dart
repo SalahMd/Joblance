@@ -313,4 +313,5 @@ Map<String, String> english = {
   "yourjobhasbeenposted":"Your job has been posted",
   "couldn'tpostyourjob":"Couldn't post your job",
   "taskoffers":"Task offers",
+  "yourjobhasbeendeleted":"Yours job has been deleted",
 };

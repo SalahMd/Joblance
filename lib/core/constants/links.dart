@@ -33,4 +33,5 @@ class AppLinks {
   static String get task => "$IP/api/task";
   static String get company => "$IP/api/company";
   static String get offer => "$IP/api/offer";
+  static String get jobExperience => "$IP/api/experienceLevel";
 }
