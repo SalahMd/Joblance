@@ -3,6 +3,7 @@ import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/model/job_applicants_model.dart';
 import 'package:joblance/data/remote/job_applicants_back.dart';
 
 abstract class JobApplicantsController extends GetxController {
@@ -13,11 +14,10 @@ class JobApplicantsControllerImpl extends JobApplicantsController {
   Myservices myServices = Get.find();
   StatusRequest? statusRequest;
   final int jobId;
-  final String jobName, datePosted;
   late String language, token;
   JobApplicantsBack jobApplicantsBack = new JobApplicantsBack(Get.put(Crud()));
-
-  JobApplicantsControllerImpl(this.jobName, this.datePosted,
+  List <JobApplicantsModel> applicants=[];
+  JobApplicantsControllerImpl(
       {required this.jobId});
   @override
   onInit() async {
@@ -35,7 +35,11 @@ class JobApplicantsControllerImpl extends JobApplicantsController {
         token, jobId.toString(), language);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {}
+      if (response['status'] == "success") {
+         for (var data in response['data']) {
+          applicants.add(JobApplicantsModel.fromJson(data));
+        }
+      }
     }
     update();
   }

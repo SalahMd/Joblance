@@ -2,12 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
-import 'package:joblance/core/constants/images.dart';
+import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
 class JobApplicantDesign extends StatelessWidget {
-  const JobApplicantDesign({super.key});
+  final String name, email, major, date, image, id;
+  final String? coverLetter;
+  const JobApplicantDesign(
+      {super.key,
+      required this.name,
+      required this.email,
+      required this.major,
+      required this.date,
+      required this.image,
+      required this.coverLetter,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +44,8 @@ class JobApplicantDesign extends StatelessWidget {
                         height: 40.sp,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            AppImages.arabicimage,
+                          child: Image.network(
+                            AppLinks.IP + image,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -51,13 +61,13 @@ class JobApplicantDesign extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
-                                "Salah Aldeen",
+                                name,
                                 style: TextStyles.w50014(context),
                               ),
                             ],
                           ),
                           Text(
-                            "Flutter developer",
+                            major,
                             style: TextStyles.w50012(context),
                           ),
                         ],
@@ -76,7 +86,7 @@ class JobApplicantDesign extends StatelessWidget {
                       SizedBox(
                         width: 5.w,
                       ),
-                      Text("salahaldeenmdaghmesh@gmail.com".tr,
+                      Text(email,
                           maxLines: 2, style: TextStyles.w40011grey(context)),
                     ],
                   ),
@@ -89,8 +99,7 @@ class JobApplicantDesign extends StatelessWidget {
                       SizedBox(
                         width: 5.w,
                       ),
-                      Text("2 weeks ago".tr,
-                          style: TextStyles.w40011grey(context)),
+                      Text(date, style: TextStyles.w40011grey(context)),
                     ],
                   ),
                 ],
@@ -107,12 +116,20 @@ class JobApplicantDesign extends StatelessWidget {
         SizedBox(
           height: 5.h,
         ),
-        Text("cover letter:", style: TextStyles.w50012(context)),
-        Text(
-            "I would like to applay for this job because i found my experiences match the job requirements and i expect that i can add more success for this company",
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyles.w40011grey(context)),
+        Visibility(
+          visible: coverLetter!=null,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("cover letter:".tr, style: TextStyles.w50012(context)),
+              Text(coverLetter!,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyles.w40011grey(context)),
+            ],
+          ),
+        ),
+        
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

@@ -119,7 +119,7 @@ class JobInfoControllerImpl extends JobInfoController {
 
   buttonFunction(int id) {
     if (isOwner) {
-      Get.to(JobApplicants());
+      Get.to(JobApplicants(name: jobInfoModel.jobTitle!, date: jobInfoModel.date!, id:jobInfoModel.id!,));
     } else {
       Get.to(ApplayJobPage(
         JobId: id,
