@@ -16,26 +16,19 @@ abstract class AddTaskController extends GetxController {
 }
 
 class AddTaskControllerImpl extends AddTaskController {
-  late TextEditingController aboutTask;
-  late TextEditingController additionalInfo;
-  late TextEditingController requirements;
-  late TextEditingController minBudget;
-  late TextEditingController maxBudget;
-  late TextEditingController taskTitle;
-  late TextEditingController taskDuration;
+  late TextEditingController aboutTask,additionalInfo,requirements,minBudget,maxBudget,taskTitle,taskDuration;
   TextDirection direction = TextDirection.ltr;
   CompanyHomePageBack companyHomePageBack =
       CompanyHomePageBack(Get.put(Crud()));
   Myservices myservices = Get.find();
   StatusRequest? statusRequest, majorStatus;
   int? id;
-  bool showNumOfEmployees = false;
+  bool showNumOfEmployees = false,active = true;
   String taskMajorValue = "1";
   late String lang, token, userId;
   List<DropdownMenuItem<String>> majors = [];
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
-  bool active = true;
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
 
   @override
@@ -61,12 +54,10 @@ class AddTaskControllerImpl extends AddTaskController {
       active = Get.arguments['active'];
       taskMajorValue = Get.arguments['major_id'].toString();
       id = Get.arguments['id'];
-
       if (Get.arguments['additional_information'] != null) {
         additionalInfo.text = Get.arguments['additional_information'] as String;
       }
     }
-
     super.onInit();
   }
 

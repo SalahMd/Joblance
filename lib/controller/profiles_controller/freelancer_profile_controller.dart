@@ -6,7 +6,6 @@ import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
-import 'package:joblance/data/model/freelancer_info_model.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
@@ -24,16 +23,14 @@ abstract class FreelancerProfileController extends GetxController {
 
 class FreelancerProfileControllerImpl extends FreelancerProfileController {
   StatusRequest? statusRequest, reviewStatus, followStatus;
-  List<FreeLancerInfoModel> info = [];
   final int id;
   Myservices myServices = Get.find();
   List<TaskModel> tasks = [];
+  List<ProjectOrProductModel> projects = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   Map data = {};
   bool followed = false;
-  late String language;
-  late String token;
-  List<ProjectOrProductModel> projects = [];
+  late String language, token;
   List<Widget> tabs = [
     Tab(
       text: "about".tr,
@@ -56,7 +53,6 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
   void onInit() async {
     token = myServices.sharedPreferences.getString("token")!;
     language = myServices.sharedPreferences.getString("lang")!;
-    //displayData();
     await getUserData();
     await getSkills();
     await getProjects();

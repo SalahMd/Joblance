@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,9 +18,7 @@ abstract class AddProjectOrProductController extends GetxController {
 }
 
 class AddProjectOrProductImpl extends AddProjectOrProductController {
-  late TextEditingController title;
-  late TextEditingController description;
-  late TextEditingController link;
+  late TextEditingController title,description,link;
   bool isProduct = true;
   StatusRequest? statusRequest;
   final BuildContext context;
@@ -30,9 +27,7 @@ class AddProjectOrProductImpl extends AddProjectOrProductController {
   AddProjectOrProductBack addProjectOrProductBack =
       new AddProjectOrProductBack(Get.put(Crud()));
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-
   Myservices myServices = Get.find();
-
   AddProjectOrProductImpl({required this.context});
 
   void onInit() {

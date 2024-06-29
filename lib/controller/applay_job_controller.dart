@@ -16,13 +16,7 @@ abstract class ApplayJobController extends GetxController {
 }
 
 class ApplayJobControllerImpl extends ApplayJobController {
-  late TextEditingController firstName;
-  late TextEditingController lastName;
-  late TextEditingController email;
-  late TextEditingController phoneNumber;
-  late TextEditingController salary;
-  late TextEditingController yearsOfExperience;
-  late TextEditingController coverLetter;
+  late TextEditingController firstName,lastName,email,phoneNumber,salary,yearsOfExperience,coverLetter;
   var CV;
   ApplayJobBack applayJobBack = new ApplayJobBack(Get.put(Crud()));
   FilePickerResult? result;

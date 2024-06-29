@@ -11,7 +11,6 @@ import 'package:joblance/data/remote/job_info_back.dart';
 
 abstract class AddjobController extends GetxController {
   addJob(bool isUpdate, BuildContext context);
-  getJobData();
   getMajors();
   changeCheckBoxValue(String box);
   updateDropDownValue(String? newValue, String changingElement);
@@ -19,24 +18,25 @@ abstract class AddjobController extends GetxController {
 }
 
 class AddjobControllerImpl extends AddjobController {
-  late TextEditingController aboutJob;
-  late TextEditingController additionalInfo;
-  late TextEditingController requirements;
-  late TextEditingController salary;
-  late TextEditingController jobTitle;
-  late TextEditingController jobLocation;
+  late TextEditingController jobLocation,
+      jobTitle,
+      requirements,
+      aboutJob,
+      salary,
+      additionalInfo;
   late String token, language;
   StatusRequest? statusRequest;
   Myservices myservices = Get.find();
   int? id;
   JobBack jobBack = new JobBack(Get.put(Crud()));
-  bool showNumOfEmployees = false, importantJobs = false, active = true;
-  bool showAboutCompany = false;
+  bool showAboutCompany = false,
+      showNumOfEmployees = false,
+      importantJobs = false,
+      active = true;
   String majorValue = '1',
       remoteValue = '1',
       jobTypeValue = '1',
       jobExpirenceValue = '1';
-
   List<DropdownMenuItem<String>> jobType = [
     DropdownMenuItem<String>(
       value: '1',
@@ -206,9 +206,6 @@ class AddjobControllerImpl extends AddjobController {
       }
     }
   }
-
-  @override
-  getJobData() {}
 
   changeCheckBoxValue(String box) {
     if (box == "aboutcompany")

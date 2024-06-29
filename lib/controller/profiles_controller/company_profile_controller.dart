@@ -50,7 +50,6 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     Tab(text: "contact".tr)
   ];
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
-
   CompanyProfileControllerImpl({required this.id});
   @override
   void onInit() async {

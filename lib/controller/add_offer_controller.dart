@@ -13,20 +13,12 @@ abstract class AddOfferController extends GetxController {
 }
 
 class AddOfferControllerImpl extends AddOfferController {
-  late TextEditingController firstName;
-  late TextEditingController lastName;
-  late TextEditingController email;
-  late TextEditingController phoneNumber;
-  late TextEditingController offerBudget;
-  late TextEditingController offerInformation;
-  late TextEditingController excutingTime;
-  late TextEditingController yearsOfExperience;
+  late TextEditingController firstName,lastName,email,phoneNumber,offerBudget,offerInformation,excutingTime,yearsOfExperience;
   final int taskId;
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   Myservices myServices = Get.find();
   StatusRequest? statusRequest;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-
   AddOfferControllerImpl({required this.taskId});
 
   @override
