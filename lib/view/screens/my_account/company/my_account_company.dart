@@ -39,6 +39,7 @@ class MyAccountCompany extends StatelessWidget {
                                   image: controller.data['image'],
                                   name: controller.data['name'],
                                   description: controller.data['major']['name'],
+                                   followers: controller.data['followers'],
                                 ),
                                 SizedBox(
                                   height: 15.h,

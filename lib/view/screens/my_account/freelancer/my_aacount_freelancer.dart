@@ -39,6 +39,7 @@ class MyAccountFreeLancer extends StatelessWidget {
                                               " " +
                                               controller.data['last_name'],
                                           description: controller.data['major']['name'],
+                                           followers: controller.data['followers'],
                                         ),
                                         SizedBox(
                                           height: 15.h,

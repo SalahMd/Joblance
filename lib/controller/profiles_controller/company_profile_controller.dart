@@ -10,6 +10,7 @@ import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/model/review_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
+import 'package:joblance/data/remote/follow_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
 import '../../data/model/task_model.dart';
@@ -23,7 +24,7 @@ abstract class CompanyProfileController extends GetxController {
 
 class CompanyProfileControllerImpl extends CompanyProfileController {
   final int id;
-  StatusRequest? statusRequest;
+  StatusRequest? statusRequest, followStatus;
   late String language, token;
   Myservices myServices = Get.find();
   AddProjectOrProductBack addProjectOrProductBack =
@@ -32,10 +33,11 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   Map data = {};
   List<ReviewModel> reviews = [];
   List<TaskModel> tasks = [];
-  List <JobModel> jobs = [];
+  List<JobModel> jobs = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
-
+  FollowBack follow = new FollowBack(Get.put(Crud()));
   List<ProjectOrProductModel> products = [];
+  bool followed = false;
   List<Widget> tabs = [
     Tab(
       text: "jobs".tr,
@@ -77,8 +79,9 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
 
   getTasks() async {
     statusRequest = StatusRequest.loading;
-    var response = await taskBack
-        .getData({}, AppLinks.task + "?user_id=" + id.toString()+"&&lang="+language, token);
+    var response = await taskBack.getData({},
+        AppLinks.task + "?user_id=" + id.toString() + "&&lang=" + language,
+        token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -98,6 +101,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         data.addAll(response['data']);
+        followed = data['followed']==1?true:false;
       }
     }
     update();
@@ -113,6 +117,29 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
         for (var reviewData in response['data']) {
           products.add(ProjectOrProductModel.fromJson(reviewData));
         }
+      }
+    }
+    update();
+  }
+
+  followUser() async {
+    followStatus = StatusRequest.loading;
+    var response = await follow.followUser(token, data['id'].toString());
+    followStatus = handelingData(response);
+    if (StatusRequest.success == followStatus) {
+      if (response['status'] == "success") {
+        followed = true;
+      }
+    }
+    update();
+  }
+  unFollowUser() async {
+    followStatus = StatusRequest.loading;
+    var response = await follow.unFollowUser(token, data['id'].toString());
+    followStatus = handelingData(response);
+    if (StatusRequest.success == followStatus) {
+      if (response['status'] == "success") {
+        followed = false;
       }
     }
     update();

@@ -34,6 +34,7 @@ class CompanyProfile extends StatelessWidget {
                           image: controller.data['image'],
                           name: controller.data['name'],
                           description: controller.data['major'],
+                           followers: controller.data['followers'],
                         ),
                         SizedBox(height: 10.h),
                         Padding(

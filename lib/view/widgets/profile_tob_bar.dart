@@ -12,6 +12,7 @@ class TobBar extends StatelessWidget {
   final String image;
   final String name;
   final String description;
+  final int followers;
   final bool isMyAccount;
 
   TobBar({
@@ -19,7 +20,7 @@ class TobBar extends StatelessWidget {
     required this.image,
     required this.name,
     required this.description,
-    this.isMyAccount = false,
+    this.isMyAccount = false, required this.followers,
   });
 
   @override
@@ -107,7 +108,7 @@ class TobBar extends StatelessWidget {
                     height: 5.h,
                   ),
                   Text(
-                    "10 M Followers",
+                   followers.toString() ,
                     style: TextStyles.w40012grey(context),
                   ),
                 ])),

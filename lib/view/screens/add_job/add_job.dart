@@ -112,7 +112,7 @@ class AddJob extends StatelessWidget {
                 CompanyInfo(controller: controller),
                 GestureDetector(
                   onTap: () {
-                    controller.addJob(isUpdate);
+                    controller.addJob(isUpdate,context);
                   },
                   child: Container(
                     width: Dimensions.screenWidth(context),

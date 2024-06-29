@@ -35,11 +35,11 @@ class AddTaskControllerImpl extends AddTaskController {
   List<DropdownMenuItem<String>> majors = [];
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
-  bool active = false;
+  bool active = true;
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
 
   @override
-  onInit() async{
+  onInit() async {
     token = myservices.sharedPreferences.getString("token")!;
     lang = myservices.sharedPreferences.getString("lang")!;
     aboutTask = new TextEditingController();
@@ -49,8 +49,8 @@ class AddTaskControllerImpl extends AddTaskController {
     maxBudget = new TextEditingController();
     taskTitle = new TextEditingController();
     taskDuration = new TextEditingController();
-   await getMajors();
-   
+    await getMajors();
+
     if (Get.arguments != null) {
       taskTitle.text = Get.arguments['task_title'] as String;
       aboutTask.text = Get.arguments['about_task'] as String;
@@ -59,7 +59,6 @@ class AddTaskControllerImpl extends AddTaskController {
       minBudget.text = Get.arguments['budget_min'].toString();
       maxBudget.text = Get.arguments['budget_max'].toString();
       active = Get.arguments['active'];
-
       taskMajorValue = Get.arguments['major_id'].toString();
       id = Get.arguments['id'];
 
@@ -70,8 +69,6 @@ class AddTaskControllerImpl extends AddTaskController {
 
     super.onInit();
   }
-
- 
 
   getMajors() async {
     majorStatus = StatusRequest.loading;
@@ -93,6 +90,10 @@ class AddTaskControllerImpl extends AddTaskController {
 
   postTask(BuildContext context, bool isUpdate) async {
     var formdata = formState.currentState;
+    if (int.parse(minBudget.text)>int.parse(maxBudget.text)) {
+      animationedAlert(AppAnimations.wrong, "minbudgetcantbehigherthanmax".tr);
+      return;
+    }
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
       animationedAlert(AppAnimations.loadings, "pleasewait".tr);

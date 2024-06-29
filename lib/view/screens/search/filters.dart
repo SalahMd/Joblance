@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:joblance/controller/search_controller.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 
 class Filters extends StatelessWidget {
-  const Filters({super.key});
+  final SearchControllerImpl controller;
+  const Filters({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,8 @@ class Filters extends StatelessWidget {
           ),
           IconButton(
               onPressed: () {
-                popUp(context);
+                popUp(context, controller.jobType, controller.remote,
+                    controller.jobExperience, controller.majors);
               },
               icon: const Icon(
                 Icons.filter_alt_outlined,

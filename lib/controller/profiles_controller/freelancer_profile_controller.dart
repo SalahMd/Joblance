@@ -11,6 +11,7 @@ import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
+import 'package:joblance/data/remote/follow_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
 
@@ -22,13 +23,14 @@ abstract class FreelancerProfileController extends GetxController {
 }
 
 class FreelancerProfileControllerImpl extends FreelancerProfileController {
-  StatusRequest? statusRequest, reviewStatus;
+  StatusRequest? statusRequest, reviewStatus, followStatus;
   List<FreeLancerInfoModel> info = [];
   final int id;
   Myservices myServices = Get.find();
   List<TaskModel> tasks = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   Map data = {};
+  bool followed = false;
   late String language;
   late String token;
   List<ProjectOrProductModel> projects = [];
@@ -44,6 +46,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     Tab(text: "contact".tr),
   ];
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
+  FollowBack follow = new FollowBack(Get.put(Crud()));
   AddProjectOrProductBack addProjectOrProductBack =
       new AddProjectOrProductBack(Get.put(Crud()));
   AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
@@ -63,8 +66,9 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
 
   getTasks() async {
     statusRequest = StatusRequest.loading;
-    var response = await taskBack
-        .getData({}, AppLinks.task + "?user_id=" + id.toString()+"&&lang="+language, token);
+    var response = await taskBack.getData({},
+        AppLinks.task + "?user_id=" + id.toString() + "&&lang=" + language,
+        token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -105,6 +109,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         data.addAll(response['data']);
+        followed = data['followed'] == 1 ? true : false;
       }
     }
     update();
@@ -123,6 +128,30 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
       }
     } else {}
     print(response);
+    update();
+  }
+
+  followUser() async {
+    followStatus = StatusRequest.loading;
+    var response = await follow.followUser(token, data['id'].toString());
+    followStatus = handelingData(response);
+    if (StatusRequest.success == followStatus) {
+      if (response['status'] == "success") {
+        followed = true;
+      }
+    }
+    update();
+  }
+
+  unFollowUser() async {
+    followStatus = StatusRequest.loading;
+    var response = await follow.unFollowUser(token, data['id'].toString());
+    followStatus = handelingData(response);
+    if (StatusRequest.success == followStatus) {
+      if (response['status'] == "success") {
+        followed = false;
+      }
+    }
     update();
   }
 

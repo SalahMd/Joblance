@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
@@ -11,7 +10,7 @@ import 'package:joblance/data/remote/company/company_home_page_back.dart';
 import 'package:joblance/data/remote/job_info_back.dart';
 
 abstract class AddjobController extends GetxController {
-  addJob(bool isUpdate);
+  addJob(bool isUpdate, BuildContext context);
   getJobData();
   getMajors();
   changeCheckBoxValue(String box);
@@ -164,7 +163,7 @@ class AddjobControllerImpl extends AddjobController {
   }
 
   @override
-  addJob(bool isUpdate) async {
+  addJob(bool isUpdate, BuildContext context) async {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
@@ -194,7 +193,11 @@ class AddjobControllerImpl extends AddjobController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           Get.back();
-          animationedAlert(AppAnimations.done, "yourjobhasbeenposted".tr);
+
+          snackBar(
+              "",
+              !isUpdate ? "yourjobhasbeenposted".tr : "yourjobhasbeenupdated",
+              context);
         } else {
           animationedAlert(AppAnimations.wrong, "couldn'tpostyourjob".tr);
         }

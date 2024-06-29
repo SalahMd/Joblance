@@ -307,6 +307,10 @@ snackBar(String title, String message, BuildContext context) {
 
 Future<bool> popUp(
   BuildContext context,
+  List<String> jobTypes,
+  List<String> remote,
+  List<String> experience,
+  List<String> majors,
 ) {
   Get.bottomSheet(Container(
     width: Dimensions.screenWidth(context),
@@ -348,13 +352,7 @@ Future<bool> popUp(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: [
-          "medical".tr,
-          "engineering".tr,
-          "Technology".tr,
-          "designing".tr,
-          "servicing".tr,
-        ]),
+        ChipsChoices(options:majors),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
@@ -374,11 +372,7 @@ Future<bool> popUp(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: [
-          "fulltime".tr,
-          "parttime".tr,
-          "temporary".tr,
-        ]),
+        ChipsChoices(options:jobTypes),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(
             horizontal: 10.w,
@@ -388,12 +382,7 @@ Future<bool> popUp(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: [
-          "internship".tr,
-          "junior".tr,
-          "senior".tr,
-          "director".tr
-        ]),
+        ChipsChoices(options:experience),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
@@ -401,11 +390,7 @@ Future<bool> popUp(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: [
-          "onsite".tr,
-          "remote".tr,
-          "hybrid".tr,
-        ]),
+        ChipsChoices(options:remote),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(

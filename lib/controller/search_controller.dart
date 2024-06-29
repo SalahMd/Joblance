@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
@@ -18,11 +17,12 @@ class SearchControllerImpl extends SearchController {
   late String lang, token;
   SearchBack searchBack = new SearchBack(Get.put(Crud()));
 
-   List<DropdownMenuItem<String>> jobExperience = [];
-
-  List<DropdownMenuItem<String>> majors = [];
+  List <String>jobExperience = [];
+  List <String>remote = [];
+List <String>jobType = [];
+  List <String>majors = [];
   void onInit() async {
-     lang = myservices.sharedPreferences.getString("lang")!;
+    lang = myservices.sharedPreferences.getString("lang")!;
     token = myservices.sharedPreferences.getString("token")!;
     super.onInit();
   }
@@ -34,10 +34,7 @@ class SearchControllerImpl extends SearchController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         for (int i = 0; i < response['data'].length; i++) {
-          majors.add(DropdownMenuItem(
-            value: response['data'][i]['id'].toString(),
-            child: Text(response['data'][i]['name']),
-          ));
+          majors.addAll(response['data'][i]['name']);
         }
         print(majors);
       }
@@ -51,10 +48,8 @@ class SearchControllerImpl extends SearchController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         for (int i = 0; i < response['data'].length; i++) {
-          jobExperience.add(DropdownMenuItem(
-            value: response['data'][i]['id'].toString(),
-            child: Text(response['data'][i]['name']),
-          ));
+          jobExperience.addAll(response['data'][i]['name']
+          );
         }
         print(majors);
       }
