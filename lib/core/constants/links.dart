@@ -4,8 +4,10 @@ class AppLinks {
   static String get signUp => "$IP/api/register";
   static String get logOut => "$IP/api/user/logout";
   static String get googleSignin => "$IP/api/auth/google/login";
-  static String get emailVerificationForPassword =>"$IP/api/user/password/email";
-  static String get resendCodeForPassword =>"$IP/api/user/password/email/resend";
+  static String get emailVerificationForPassword =>
+      "$IP/api/user/password/email";
+  static String get resendCodeForPassword =>
+      "$IP/api/user/password/email/resend";
   static String get resendCodeSignup => "$IP/api/user/email/code/resend";
   static String get checkCodeForPassword => "$IP/api/user/password/code/check";
   static String get checkCodeForSignUp => "$IP/api/user/email/code/check";
@@ -35,4 +37,7 @@ class AppLinks {
   static String get offer => "$IP/api/offer";
   static String get jobExperience => "$IP/api/experienceLevel";
   static String get follow => "$IP/api/follower";
+  static String get favouriteTask => "$IP/api/favourite_task";
+  static String get favouriteJob => "$IP/api/favourite_job";
+  static String get favouriteFreelancer => "$IP/api/favourite_freelancer";
 }

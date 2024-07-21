@@ -174,19 +174,21 @@ Widget jobs(BuildContext context, MyAccountCompanyControllerImpl controller) {
               itemCount: controller.jobs.length,
               itemBuilder: (BuildContext context, int index) {
                 return JobDesign(
-                                  jobTitle: controller.jobs[index].jobTitle!,
-                                  companyName:
-                                      controller.jobs[index].companyName!,
-                                  location: controller.jobs[index].location!,
-                                  date: controller.jobs[index].date!,
-                                  remote: controller.jobs[index].remoteName!,
-                                  image: controller.jobs[index].companyImage!,
-                                  isActive: controller.jobs[index].active == 1
-                                      ? true
-                                      : false,
-                                  companyId: controller.jobs[index].companyId!,
-                                  jobId: controller.jobs[index].id!,
-                                );
+                  jobTitle: controller.jobs[index].jobTitle!,
+                  companyName: controller.jobs[index].companyName!,
+                  location: controller.jobs[index].location!,
+                  date: controller.jobs[index].date!,
+                  remote: controller.jobs[index].remoteName!,
+                  image: controller.jobs[index].companyImage!,
+                  isActive: controller.jobs[index].active == 1 ? true : false,
+                  companyId: controller.jobs[index].companyId!,
+                  jobId: controller.jobs[index].id!,
+                  isFavourite: controller.jobs[index].isFavorite!,
+                  onFavouriteTap: () {
+                    controller.addRemoveFavourite(
+                        controller.jobs[index].id!, false);
+                  },
+                );
               }),
         ],
       ),
@@ -218,13 +220,17 @@ Widget tasks(BuildContext context, var controller) {
               itemCount: controller.tasks.length,
               itemBuilder: (BuildContext context, int index) {
                 return TaskDesign(
-                    taskTitle: controller.tasks[index].taskTitle,
-                    userName: controller.tasks[index].name,
-                    major: controller.tasks[index].majorName,
-                    date: controller.tasks[index].createdAt,
-                    duration: controller.tasks[index].taskDuration.toString(),
-                    image: controller.tasks[index].image,
-                    isActive: controller.tasks[index].active==1?true:false, aboutTask:controller.tasks[index].aboutTask, taskId: controller.tasks[index].id, id: controller.tasks[index].userId,);
+                  taskTitle: controller.tasks[index].taskTitle,
+                  userName: controller.tasks[index].name,
+                  major: controller.tasks[index].majorName,
+                  date: controller.tasks[index].createdAt,
+                  duration: controller.tasks[index].taskDuration.toString(),
+                  image: controller.tasks[index].image,
+                  isActive: controller.tasks[index].active == 1 ? true : false,
+                  aboutTask: controller.tasks[index].aboutTask,
+                  taskId: controller.tasks[index].id,
+                  id: controller.tasks[index].userId,
+                );
               }),
         ],
       ),

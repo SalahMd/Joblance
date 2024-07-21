@@ -12,6 +12,7 @@ import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/company/company_profile.dart';
+import 'package:joblance/data/remote/favourite_back.dart';
 import 'package:joblance/data/remote/job_info_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
 
@@ -23,7 +24,7 @@ abstract class MyAccountCompanyController extends GetxController {
 }
 
 class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
-  StatusRequest? statusRequest;
+  StatusRequest? statusRequest,addToFavouriteStatus;
   AddProjectOrProductBack addProjectOrProductBack =
       AddProjectOrProductBack(Get.put(Crud()));
   CompanyAccount companyAccount = new CompanyAccount(Get.put(Crud()));
@@ -34,6 +35,8 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   List<TaskModel> tasks = [];
   List<JobModel> jobs = [];
   List<ReviewModel> reviews = [];
+    FavouriteBack favourite = new FavouriteBack(Get.put(Crud()));
+
   List<ProjectOrProductModel> products = [];
   late String token, id, lang;
   JobBack jobBack = new JobBack(Get.put(Crud()));
@@ -131,6 +134,41 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         data.addAll(response['data']);
+      }
+    }
+    update();
+  }
+    addRemoveFavourite(int id, bool isTask) async {
+    addToFavouriteStatus = StatusRequest.loading;
+    var response;
+    if (!isTask) {
+      if (!jobs[id].isFavorite!)
+        response = await favourite.addTaskAndJobsToFavourite(
+            token, isTask, {"job_id": id.toString()});
+      else
+        response = await favourite.removeTaskAndJobsFromFavourite(
+          token,
+          id.toString(),
+          isTask,
+        );
+    } else {
+      if (!tasks[id].isFavourite!)
+        response = await favourite.addTaskAndJobsToFavourite(
+            token, isTask, {"task_id": id.toString()});
+      else
+        response = await favourite.removeTaskAndJobsFromFavourite(
+          token,
+          id.toString(),
+          isTask,
+        );
+    }
+    addToFavouriteStatus = handelingData(response);
+    if (StatusRequest.success == addToFavouriteStatus) {
+      if (response['status'] == "success") {
+        if (!isTask)
+          jobs[id].isFavorite = !jobs[id].isFavorite!;
+        else
+          tasks[id].isFavourite = !tasks[id].isFavourite!;
       }
     }
     update();

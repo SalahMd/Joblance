@@ -21,6 +21,7 @@ class JobModel {
   int? companyId;
   int? active;
   String? numOfEmployees;
+  bool? isFavorite;
 
   JobModel(
       {this.jobTitle,
@@ -44,6 +45,7 @@ class JobModel {
       this.id,
       this.active,
       this.companyId,
+      this.isFavorite,
       this.numOfEmployees});
 
   JobModel.fromJson(Map<String, dynamic> json) {
@@ -62,13 +64,14 @@ class JobModel {
     experienceLevelId = json['experience_level_id'];
     experienceLevelName = json['experience_level_name'];
     aboutCompany = json['about_company'];
-    date = json['created_at'];
+    date = json['date'];
     companyName = json['company_name'];
     companyImage = json['image'];
     id = json['id'];
     active = json['active'];
     numOfEmployees = json['num_of_employees'];
     companyId = json['company_id'];
+    isFavorite = json['is_favourite'];
   }
 
   Map<String, dynamic> toJson() {
@@ -88,13 +91,14 @@ class JobModel {
     data['experience_level_id'] = this.experienceLevelId;
     data['experience_level_name'] = this.experienceLevelName;
     data['about_company'] = this.aboutCompany;
-    data['created_at'] = this.date;
+    data['date'] = this.date;
     data['company_name'] = this.companyName;
     data['image'] = this.companyImage;
     data['id'] = this.id;
     data['active'] = this.active;
     data['num_of_employees'] = this.numOfEmployees;
     data['company_id'] = this.companyImage;
+    data['is_favourite']= this.isFavorite;
     return data;
   }
 }

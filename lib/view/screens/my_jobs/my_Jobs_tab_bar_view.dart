@@ -37,7 +37,7 @@ Widget savedJobs(BuildContext context,MyJobsControllerImpl controller) {
             jobId: index,
             image: AppImages.googleLogo,
             companyId: 12,
-            isActive: false);
+            isActive: false, isFavourite: false, onFavouriteTap: () {  },);
       });
 }
 
@@ -59,7 +59,7 @@ Widget applaiedJobs(BuildContext context,MyJobsControllerImpl controller) {
                                       ? true
                                       : false,
                                   companyId: controller.jobs[index].companyId!,
-                                  jobId: controller.jobs[index].id!,
+                                  jobId: controller.jobs[index].id!, isFavourite: false, onFavouriteTap: () {  },
                                 );
       });
 }

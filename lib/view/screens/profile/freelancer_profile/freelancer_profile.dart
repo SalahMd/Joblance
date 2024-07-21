@@ -39,7 +39,8 @@ class FreelancerProfile extends StatelessWidget {
                                   name: controller.data['first_name'] +
                                       " " +
                                       controller.data['last_name'],
-                                  description: controller.data['major']['name'], followers: controller.data['followers'],
+                                  description: controller.data['major']['name'],
+                                  followers: controller.data['followers'],
                                 ),
                                 SizedBox(height: 10.h),
                                 Padding(
@@ -47,60 +48,72 @@ class FreelancerProfile extends StatelessWidget {
                                       EdgeInsets.symmetric(horizontal: 10.w),
                                   child: Row(
                                     children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          if (controller.followed)
-                                            controller.followUser();
-                                          else
-                                            controller.unFollowUser();
-                                        },
-                                        child: Expanded(
-                                            child: Container(
-                                          height: 40.h,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                                border: Border.all(color: Theme.of(context).colorScheme.secondary,width: 0.5),
-                                            color:!controller.followed? LightAppColors.primaryColor:Theme.of(context).colorScheme.background,
-                                          ),
-                                          child: Text(
-                                              !controller.followed
-                                                  ? "follow".tr
-                                                  : "unfollow".tr,
-                                              style: TextStyles.w50013White(
-                                                  context)),
-                                        )),
-                                      ),
-                                      SizedBox(width: 10.w),
                                       Expanded(
-                                          child: Visibility(
-                                        visible: !controller.data['evaluated'],
                                         child: GestureDetector(
-                                          onTap: () async {
-                                            var level = await rateDialog(
-                                                "ratethisfreelancer".tr,
-                                                context);
-
-                                            controller.rateFreelancer(
-                                                level, context);
+                                          onTap: () {
+                                            if (controller.followed)
+                                              controller.unFollowUser();
+                                            else
+                                              controller.followUser();
                                           },
                                           child: Container(
                                             height: 40.h,
                                             alignment: Alignment.center,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                border: Border.all(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .onSecondary)),
-                                            child: Text("rate".tr,
-                                                style:
-                                                    TextStyles.w50012(context)),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              border: Border.all(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .secondary,
+                                                  width: 0.5),
+                                              color: !controller.followed
+                                                  ? LightAppColors.primaryColor
+                                                  : Theme.of(context)
+                                                      .colorScheme
+                                                      .background,
+                                            ),
+                                            child: Text(
+                                                !controller.followed
+                                                    ? "follow".tr
+                                                    : "unfollow".tr,
+                                                style: TextStyles.w50013White(
+                                                    context)),
                                           ),
                                         ),
-                                      )),
+                                      ),
+                                      SizedBox(width: 10.w),
+                                      Expanded(
+                                          flex: 1,
+                                          child: Visibility(
+                                            visible:
+                                                !controller.data['evaluated'],
+                                            child: GestureDetector(
+                                              onTap: () async {
+                                                var level = await rateDialog(
+                                                    "ratethisfreelancer".tr,
+                                                    context);
+
+                                                controller.rateFreelancer(
+                                                    level, context);
+                                              },
+                                              child: Container(
+                                                height: 40.h,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    border: Border.all(
+                                                        color: Theme.of(context)
+                                                            .colorScheme
+                                                            .onSecondary)),
+                                                child: Text("rate".tr,
+                                                    style: TextStyles.w50012(
+                                                        context)),
+                                              ),
+                                            ),
+                                          )),
                                     ],
                                   ),
                                 ),

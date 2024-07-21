@@ -16,6 +16,7 @@ class TaskModel {
   int? active;
   int? majorId;
   int? roleId;
+  bool? isFavourite;
 
   TaskModel(
       {this.id,
@@ -34,6 +35,7 @@ class TaskModel {
       this.createdAt,
       this.roleId,
       this.majorName,
+      this.isFavourite,
       this.updatedAt});
 
   TaskModel.fromJson(Map<String, dynamic> json) {
@@ -54,6 +56,7 @@ class TaskModel {
     active = json['active'];
     majorId = json["major_id"];
     roleId = json['user_role'];
+    isFavourite = json['is_favourite'];
   }
 
   Map<String, dynamic> toJson() {
@@ -74,7 +77,8 @@ class TaskModel {
     data['major_name'] = this.majorName;
     data['active'] = this.active;
     data['major_id'] = this.majorId;
-    data ['user_role']= this.roleId;
+    data['user_role'] = this.roleId;
+    data['is_favourite'] = this.isFavourite;
     return data;
   }
 }

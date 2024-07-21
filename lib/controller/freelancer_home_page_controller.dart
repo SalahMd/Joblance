@@ -6,6 +6,7 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/job_info_model.dart';
 import 'package:joblance/data/model/task_model.dart';
+import 'package:joblance/data/remote/favourite_back.dart';
 import 'package:joblance/data/remote/freelancer/freelancer_home_page_back.dart';
 import 'package:joblance/data/remote/job_info_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
@@ -13,19 +14,22 @@ import 'package:joblance/data/remote/task_back.dart';
 abstract class FreelancerHomePageController extends GetxController {
   getFreelancerInfo();
   getJobs();
+  addRemoveFavourite(int id, bool isTask);
+  getTasks();
+  refreshPage();
 }
 
 class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
-  StatusRequest? statusRequest;
+  StatusRequest? statusRequest, addToFavouriteStatus;
   FreeLnacerHomePageBack freeLnacerHomePageBack =
       new FreeLnacerHomePageBack(Get.put(Crud()));
   JobBack jobBack = new JobBack(Get.put(Crud()));
-  late String language, token, id;
+  late String language, token, id, name, image;
   Myservices myservices = Get.find();
-  late String name, image;
   List<TaskModel> tasks = [];
   List<JobModel> jobs = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
+  FavouriteBack favourite = new FavouriteBack(Get.put(Crud()));
   @override
   void onInit() async {
     token = myservices.sharedPreferences.getString("token")!;
@@ -60,10 +64,10 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        if(response['data'].isNotEmpty)
-        for (var data in response['data']) {
-          tasks.add(TaskModel.fromJson(data));
-        }
+        if (response['data'].isNotEmpty)
+          for (var data in response['data']) {
+            tasks.add(TaskModel.fromJson(data));
+          }
       }
     }
     update();
@@ -80,13 +84,50 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   @override
   getJobs() async {
     statusRequest = StatusRequest.loading;
-    var response = await jobBack.getData(token, AppLinks.jobInfo+"?lang="+language);
+    var response =
+        await jobBack.getData(token, AppLinks.jobInfo + "?lang=" + language);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         for (var data in response['data']) {
           jobs.add(JobModel.fromJson(data));
         }
+      }
+    }
+    update();
+  }
+
+  addRemoveFavourite(int id, bool isTask) async {
+    addToFavouriteStatus = StatusRequest.loading;
+    var response;
+    if (!isTask) {
+      if (!jobs[id].isFavorite!)
+        response = await favourite.addTaskAndJobsToFavourite(
+            token, isTask, {"job_id": id.toString()});
+      else
+        response = await favourite.removeTaskAndJobsFromFavourite(
+          token,
+          id.toString(),
+          isTask,
+        );
+    } else {
+      if (!tasks[id].isFavourite!)
+        response = await favourite.addTaskAndJobsToFavourite(
+            token, isTask, {"task_id": id.toString()});
+      else
+        response = await favourite.removeTaskAndJobsFromFavourite(
+          token,
+          id.toString(),
+          isTask,
+        );
+    }
+    addToFavouriteStatus = handelingData(response);
+    if (StatusRequest.success == addToFavouriteStatus) {
+      if (response['status'] == "success") {
+        if (!isTask)
+          jobs[id].isFavorite = !jobs[id].isFavorite!;
+        else
+          tasks[id].isFavourite = !tasks[id].isFavourite!;
       }
     }
     update();

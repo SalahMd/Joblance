@@ -100,7 +100,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         data.addAll(response['data']);
-        followed = data['followed']==1?true:false;
+        followed = data['followed'];
       }
     }
     update();
@@ -132,6 +132,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     }
     update();
   }
+
   unFollowUser() async {
     followStatus = StatusRequest.loading;
     var response = await follow.unFollowUser(token, data['id'].toString());

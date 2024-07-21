@@ -105,7 +105,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         data.addAll(response['data']);
-        followed = data['followed'] == 1 ? true : false;
+        followed = response['data']['followed'];
       }
     }
     update();
@@ -134,6 +134,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     if (StatusRequest.success == followStatus) {
       if (response['status'] == "success") {
         followed = true;
+        data['followers'] += 1;
       }
     }
     update();
@@ -146,6 +147,7 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     if (StatusRequest.success == followStatus) {
       if (response['status'] == "success") {
         followed = false;
+        data['followers'] -= 1;
       }
     }
     update();

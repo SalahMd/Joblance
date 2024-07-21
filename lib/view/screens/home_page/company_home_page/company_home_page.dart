@@ -80,7 +80,8 @@ class CompanyHomePage extends StatelessWidget {
                                 location: controller.freelancers[index]
                                     ['location'],
                                 image: controller.freelancers[index]['image'],
-                                major: controller.freelancers[index]['major']['name'],
+                                major: controller.freelancers[index]['major']
+                                    ['name'],
                                 openToWork: controller.freelancers[index]
                                     ['open_to_work'],
                                 id: controller.freelancers[index]['id'],
@@ -88,6 +89,12 @@ class CompanyHomePage extends StatelessWidget {
                                     ['rate'],
                                 numOfRates: controller.freelancers[index]
                                     ['counter'],
+                                onFavoriteTap: () {
+                                  controller.addToFavourite(controller.freelancers[index]['id'],);
+                                  
+                                },
+                                isFavorite: controller.freelancers[index]
+                                    ['favourite'],
                               );
                             },
                           ),

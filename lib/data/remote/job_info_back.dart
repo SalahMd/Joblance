@@ -7,11 +7,9 @@ class JobBack {
 
   getData(var token, String link) async {
     var response = await crud.postAndGetData(
-       link,
+        link,
         {},
-        {
-          'Authorization': 'Bearer $token',
-        },
+        {'Authorization': 'Bearer $token', "accept": "application/json"},
         null,
         false,
         false,
@@ -23,9 +21,7 @@ class JobBack {
     var response = await crud.postAndGetData(
         AppLinks.jobInfo,
         data,
-        {
-          'Authorization': 'Bearer $token', "accept": "application/json"
-        },
+        {'Authorization': 'Bearer $token', "accept": "application/json"},
         null,
         true,
         false,
@@ -35,17 +31,18 @@ class JobBack {
 
   updateData(var token, String id, Map data) async {
     var response = await crud.putData(
-        AppLinks.jobInfo +"/"+ id,
-        data,
-        {
-          'Authorization': 'Bearer $token',
-        },
-        null,
-        false,
-        null,
-       );
+      AppLinks.jobInfo + "/" + id,
+      data,
+      {
+        'Authorization': 'Bearer $token',
+      },
+      null,
+      false,
+      null,
+    );
     return response.fold((l) => l, (r) => r);
   }
+
   deleteData(
     String id,
     var token,

@@ -19,6 +19,8 @@ class FreeLancerDesign extends StatelessWidget {
   final int numOfRates;
   final int openToWork;
   final rateLevel;
+  final void Function() onFavoriteTap;
+  final bool isFavorite;
   const FreeLancerDesign(
       {super.key,
       required this.name,
@@ -29,7 +31,8 @@ class FreeLancerDesign extends StatelessWidget {
       required this.id,
       required this.rateLevel,
       required this.numOfRates,
-      required this.openToWork});
+      required this.openToWork,
+      required this.onFavoriteTap, required this.isFavorite});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,7 @@ class FreeLancerDesign extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(
-                        image[0] == "h" ? image : AppLinks.IP  + image,
+                        image[0] == "h" ? image : AppLinks.IP + image,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -93,9 +96,15 @@ class FreeLancerDesign extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Theme.of(context).colorScheme.primaryContainer),
-                    child: Icon(
-                      Icons.favorite_border_outlined,
-                      size: 17.sp,
+                    child: GestureDetector(
+                      onTap: () {
+                        onFavoriteTap();
+                      },
+                      child: Icon(
+                        Icons.favorite_border_outlined,
+                        size: 17.sp,
+                        color: isFavorite?Colors.red[800]:null,
+                      ),
                     ),
                   ),
                 ]),

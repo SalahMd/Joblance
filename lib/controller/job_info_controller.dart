@@ -28,7 +28,7 @@ class JobInfoControllerImpl extends JobInfoController {
   late int userId;
   JobBack jobInfoBack = new JobBack(Get.put(Crud()));
   late String roleId;
-  late String token;
+  late String token, language;
   final BuildContext context;
 
   bool isOwner = false, isVisible = false;
@@ -50,13 +50,14 @@ class JobInfoControllerImpl extends JobInfoController {
     roleId = myServices.sharedPreferences.getString("role_id")!;
     userId = myServices.sharedPreferences.getInt("id")!;
     token = myServices.sharedPreferences.getString('token')!;
+    language = myServices.sharedPreferences.getString("lang")!;
   }
 
   @override
   getJobInfo() async {
     statusRequest = StatusRequest.loading;
     var response = await jobInfoBack.getData(
-        token, AppLinks.jobInfo + "/" + jobId.toString());
+        token, AppLinks.jobInfo + "/" + jobId.toString() + "?lang=" + language);
     statusRequest = handelingData(response);
     print(response);
     if (StatusRequest.success == statusRequest) {
@@ -67,7 +68,7 @@ class JobInfoControllerImpl extends JobInfoController {
     if (userId == jobInfoModel.companyId) {
       isOwner = true;
     }
-    if (isOwner || roleId == "2"&&jobInfoModel.active==1) {
+    if (isOwner || roleId == "2" && jobInfoModel.active == 1) {
       isVisible = true;
     }
     update();
@@ -119,7 +120,11 @@ class JobInfoControllerImpl extends JobInfoController {
 
   buttonFunction(int id) {
     if (isOwner) {
-      Get.to(JobApplicants(name: jobInfoModel.jobTitle!, date: jobInfoModel.date!, id:jobInfoModel.id!,));
+      Get.to(JobApplicants(
+        name: jobInfoModel.jobTitle!,
+        date: jobInfoModel.date!,
+        id: jobInfoModel.id!,
+      ));
     } else {
       Get.to(ApplayJobPage(
         JobId: id,

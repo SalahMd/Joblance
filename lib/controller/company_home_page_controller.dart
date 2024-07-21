@@ -5,23 +5,23 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/categorie_model.dart';
 import 'package:joblance/data/remote/company/company_home_page_back.dart';
+import 'package:joblance/data/remote/favourite_back.dart';
 
 abstract class CompanyHomePageController extends GetxController {
   getCompanyInfo();
   getMajors();
+  addToFavourite(int id);
   getFreelancers();
 }
 
 class CompanyHomePageControllerImpl extends CompanyHomePageController {
-  StatusRequest? statusRequest, majorStatus;
+  StatusRequest? statusRequest, majorStatus, addToFavouriteStatus;
   Myservices myServices = Get.find();
-  late String token, id;
-
-  late String language;
+  late String token, language, id;
   String name = "", image = "";
   List<CategoryModel> majors = [];
   List freelancers = [];
-
+  FavouriteBack favorite = new FavouriteBack(Get.put(Crud()));
   CompanyHomePageBack companyHomePageBack =
       new CompanyHomePageBack(Get.put(Crud()));
 
@@ -52,6 +52,7 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
         image = response['data']['image'];
       }
     }
+    print("ww1");
     update();
   }
 
@@ -67,7 +68,6 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
               name: response['data'][i]['name'],
               image: response['data'][i]['image']));
         }
-        print(majors);
       }
     }
     update();
@@ -93,6 +93,27 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
       if (response['status'] == "success") {
         freelancers.addAll(response['data']['data']);
         print(freelancers);
+      }
+    }
+
+    update();
+  }
+
+  @override
+  addToFavourite(
+    int id,
+  ) async {
+    addToFavouriteStatus = StatusRequest.loading;
+    var response;
+    if (!freelancers[id]['favourite'])
+      response = await favorite.addFreelancerToFavorite(token, id.toString());
+    else
+      response =
+          await favorite.removeFreelancerFromFavourite(token, id.toString());
+    addToFavouriteStatus = handelingData(response);
+    if (StatusRequest.success == addToFavouriteStatus) {
+      if (response['status'] == "success") {
+        freelancers[id]['favourite'] = !freelancers[id]['favourite'];
       }
     }
     update();
