@@ -19,7 +19,7 @@ class AppLinks {
   static String get profile => "$IP/api/user/";
   static String get freelancers => "$IP/api/freelancer";
   static String get jobs => "$IP/api/jobs";
-  static String get sendReport => "$IP/api/report/send";
+  static String get sendReport => "$IP/api/reports/send";
   static String get user => "$IP/api/user";
   static String get googleSignup => "$IP/api/auth/google/userinfo";
   static String get getMessages => "$IP/api/conversations/";
@@ -40,4 +40,5 @@ class AppLinks {
   static String get favouriteTask => "$IP/api/favourite_task";
   static String get favouriteJob => "$IP/api/favourite_job";
   static String get favouriteFreelancer => "$IP/api/favourite_freelancer";
+  static String get budget => "$IP/api/budget";
 }

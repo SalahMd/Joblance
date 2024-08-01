@@ -30,6 +30,10 @@ class Tasks extends StatelessWidget {
             aboutTask: controller.tasks[index].aboutTask!,
             taskId: controller.tasks[index].id!,
             id: controller.tasks[index].userId!,
+            isFavourite: controller.tasks[index].isFavourite,
+            onFavouriteTap: () {
+              controller.addRemoveFavourite(controller.tasks[index].id!, true);
+            },
           );
         },
       ),

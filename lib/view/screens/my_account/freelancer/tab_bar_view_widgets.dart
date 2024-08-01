@@ -57,10 +57,15 @@ Widget tasks(BuildContext context, var controller) {
                   date: controller.tasks[index].createdAt,
                   duration: controller.tasks[index].taskDuration.toString(),
                   image: controller.tasks[index].image,
-                  isActive: controller.tasks[index].active==1?true:false,
+                  isActive: controller.tasks[index].active == 1 ? true : false,
                   aboutTask: controller.tasks[index].aboutTask,
                   taskId: controller.tasks[index].id,
                   id: controller.tasks[index].userId,
+                  isFavourite: controller.tasks[index].isFavourite,
+                  onFavouriteTap: () {
+                    controller.addRemoveFavourite(
+                        controller.tasks[index].id!, true);
+                  },
                 );
               }),
         ],
@@ -157,7 +162,7 @@ Widget about(
               child: Column(
                 children: [
                   Text(
-                    "200 \$",
+                    controller.balance.toString() + "\$",
                     style: TextStyle(
                         color: LightAppColors.greenColor,
                         fontSize: 30.sp,

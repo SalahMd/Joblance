@@ -57,7 +57,10 @@ class ButtomBar extends StatelessWidget {
                     ),
                     shape: CircleBorder(),
                     onTap: () {
-                      Get.to(AddJob(name: controllerImp.name!,image: controllerImp.image!,));
+                      Get.to(AddJob(
+                        name: controllerImp.name!,
+                        image: controllerImp.image!,
+                      ));
                     },
                     child: Icon(Icons.work_outline,
                         size: 18.sp, color: LightAppColors.whiteColor),
@@ -99,7 +102,7 @@ class ButtomBar extends StatelessWidget {
                     Text(
                       "profile".tr,
                       style: TextStyle(
-                          fontSize: 9.sp,
+                          fontSize: 8.sp,
                           color: controllerImp.currentPage == 0
                               ? LightAppColors.primaryColor
                               : Colors.white),
@@ -131,7 +134,7 @@ class ButtomBar extends StatelessWidget {
                     Text(
                       "home".tr,
                       style: TextStyle(
-                          fontSize: 9.sp,
+                          fontSize: 8.sp,
                           color: controllerImp.currentPage == 1
                               ? LightAppColors.primaryColor
                               : Colors.white),
@@ -159,15 +162,15 @@ class ButtomBar extends StatelessWidget {
                 },
                 child: Column(
                   children: [
-                    Icon(Icons.message_outlined,
+                    Icon(Icons.notifications,
                         size: 18.sp,
                         color: controllerImp.currentPage == 2
                             ? LightAppColors.primaryColor
                             : Colors.white),
                     Text(
-                      "message".tr,
+                      "notifications".tr,
                       style: TextStyle(
-                          fontSize: 9.sp,
+                          fontSize: 8.sp,
                           color: controllerImp.currentPage == 2
                               ? LightAppColors.primaryColor
                               : Colors.white),
@@ -200,7 +203,7 @@ class ButtomBar extends StatelessWidget {
                     Text(
                       "settings".tr,
                       style: TextStyle(
-                          fontSize: 9.sp,
+                          fontSize: 8.sp,
                           color: controllerImp.currentPage == 3
                               ? LightAppColors.primaryColor
                               : Colors.white),

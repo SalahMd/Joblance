@@ -137,7 +137,7 @@ class FreelancerHomePage extends StatelessWidget {
                                   companyId: controller.jobs[index].companyId!,
                                   jobId: controller.jobs[index].id!,
                                   isFavourite:
-                                      controller.jobs[index].isFavorite!,
+                                     true,
                                   onFavouriteTap: () {
                                     controller.addRemoveFavourite(
                                         controller.jobs[index].id!, false);

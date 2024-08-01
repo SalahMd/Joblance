@@ -6,10 +6,10 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 import 'package:joblance/view/screens/home_page/company_home_page/company_home_page.dart';
-import 'package:joblance/view/screens/chat/conversations.dart';
 import 'package:joblance/view/screens/my_account/freelancer/my_aacount_freelancer.dart';
 import 'package:joblance/view/screens/my_account/company/my_account_company.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/freelancer_home_page.dart';
+import 'package:joblance/view/screens/notifications.dart';
 import 'package:joblance/view/screens/settings/settings.dart';
 
 abstract class ButtomBarController extends GetxController {
@@ -48,14 +48,14 @@ class ButtomBarControllerImp extends ButtomBarController {
       listPage = [
         const MyAccountCompany(),
         CompanyHomePage(),
-        Conversations(),
+        Notifications(),
         const Settings(),
       ];
     } else {
       listPage = [
         const MyAccountFreeLancer(),
         FreelancerHomePage(),
-        Conversations(),
+        Notifications(),
         const Settings(),
       ];
     }

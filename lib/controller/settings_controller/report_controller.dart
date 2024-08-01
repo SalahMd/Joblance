@@ -47,10 +47,10 @@ class ReportControllerImpl extends ReportController {
           Get.back();
           animationedAlert(AppAnimations.done, "yourreporthasbeensent".tr);
         } else {
-          animationedAlert(AppAnimations.done, "couldntsendreport".tr);
+          animationedAlert(AppAnimations.wrong, "couldntsendreport".tr);
         }
       } else {
-        animationedAlert(AppAnimations.done, "couldntsendreport".tr);
+        animationedAlert(AppAnimations.wrong, "couldntsendreport".tr);
       }
     }
   }

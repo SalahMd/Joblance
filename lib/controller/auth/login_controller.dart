@@ -68,7 +68,6 @@ class LogInControllerImpl extends LogiInController {
       });
       statusRequest = handelingData(response);
       Get.back();
-
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           saveUserData(response['data']);

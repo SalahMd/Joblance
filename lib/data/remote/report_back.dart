@@ -9,7 +9,7 @@ class ReportBack {
     var token,
   ) async {
     var response = await crud.postAndGetData(AppLinks.sendReport, data,
-        {'Authorization': 'Bearer $token'}, null, true, false, null);
+        {'Authorization': 'Bearer $token',"accept": "application/json"}, null, true, false, null);
     return response.fold((l) => l, (r) => r);
   }
 }

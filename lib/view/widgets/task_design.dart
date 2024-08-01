@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
@@ -18,7 +17,8 @@ class TaskDesign extends StatelessWidget {
   final String image;
   final bool isActive;
   final int taskId, id;
-
+  final bool? isFavourite;
+  final void Function()? onFavouriteTap;
   const TaskDesign(
       {super.key,
       required this.taskTitle,
@@ -30,7 +30,9 @@ class TaskDesign extends StatelessWidget {
       required this.isActive,
       required this.aboutTask,
       required this.taskId,
-      required this.id});
+      required this.id,
+      this.isFavourite,
+      this.onFavouriteTap});
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +90,6 @@ class TaskDesign extends StatelessWidget {
                                   style: TextStyles.w50013(context),
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                //SizedBox(height: .h),
                                 Text(
                                   userName,
                                   style: TextStyles.w50012(context),
@@ -147,15 +148,30 @@ class TaskDesign extends StatelessWidget {
                     children: [
                       Align(
                         alignment: AlignmentDirectional.centerEnd,
-                        child: Container(
-                            width: 20.w,
-                            height: 20,
-                            margin: EdgeInsets.only(bottom: 10),
-                            child: Image.asset(
-                              AppImages.save,
-                              fit: BoxFit.fill,
-                              color: Theme.of(context).colorScheme.onSecondary,
-                            )),
+                        child: isFavourite != null
+                            ? GestureDetector(
+                                onTap: onFavouriteTap,
+                                child: isFavourite != null
+                                    ? GestureDetector(
+                                        onTap: onFavouriteTap,
+                                        child: Container(
+                                            width: 20.w,
+                                            height: 20.h,
+                                            margin:
+                                                EdgeInsets.only(bottom: 10.h),
+                                            child: Image.asset(
+                                              AppImages.save,
+                                              fit: BoxFit.fill,
+                                              color: isFavourite!
+                                                  ? Colors.red[800]
+                                                  : Theme.of(context)
+                                                      .colorScheme
+                                                      .onSecondary,
+                                            )),
+                                      )
+                                    : null,
+                              )
+                            : null,
                       ),
                       SizedBox(
                         height: 25,

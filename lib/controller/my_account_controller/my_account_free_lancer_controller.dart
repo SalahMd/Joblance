@@ -10,6 +10,8 @@ import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
+import 'package:joblance/data/remote/budget_back.dart';
+import 'package:joblance/data/remote/favourite_back.dart';
 import 'package:joblance/data/remote/freelancer/freelancer_profile.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
@@ -21,11 +23,12 @@ abstract class MyAccountFreelancerController extends GetxController {
   getSkills();
   getUserData();
   refreshPage();
+  getBudget();
   getTasks();
 }
 
 class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
-  StatusRequest? statusRequest, skillStatus;
+  StatusRequest? statusRequest, skillStatus, addToFavouriteStatus;
   Myservices myServices = Get.find();
   FreelancerAccount freelancerAccount = FreelancerAccount(Get.put(Crud()));
   late TextEditingController skill;
@@ -34,10 +37,13 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
       new AddProjectOrProductBack(Get.put(Crud()));
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   Map data = {};
+  FavouriteBack favourite = FavouriteBack(Get.put(Crud()));
   List<TaskModel> tasks = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   List userSkills = [], skills = [];
   List<ProjectOrProductModel> projects = [];
+  double balance = 0;
+  BudgetBack budgetBack = new BudgetBack(Get.put(Crud()));
   List<Widget> tabs = [
     Tab(
       text: "about".tr,
@@ -60,6 +66,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     await getSkills();
     await getProjects();
     await getTasks();
+    await getBudget();
     skill = new TextEditingController();
     super.onInit();
   }
@@ -74,6 +81,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     await getProjects();
     await getSkills();
     await getTasks();
+    await getBudget();
   }
 
   getProjects() async {
@@ -179,6 +187,29 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     update();
   }
 
+  addRemoveFavourite(int id) async {
+    addToFavouriteStatus = StatusRequest.loading;
+    var response;
+
+    if (!tasks[id].isFavourite!)
+      response = await favourite
+          .addTaskAndJobsToFavourite(token, true, {"task_id": id.toString()});
+    else
+      response = await favourite.removeTaskAndJobsFromFavourite(
+        token,
+        id.toString(),
+        true,
+      );
+
+    addToFavouriteStatus = handelingData(response);
+    if (StatusRequest.success == addToFavouriteStatus) {
+      if (response['status'] == "success") {
+        tasks[id].isFavourite = !tasks[id].isFavourite!;
+      }
+    }
+    update();
+  }
+
   searchSkill() async {
     skills.clear();
     update();
@@ -197,5 +228,18 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
         }
       }
     }
+  }
+
+  @override
+  getBudget() async {
+    statusRequest = StatusRequest.loading;
+    var response = await budgetBack.getData(token);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        balance = response['data']["balance"].toDouble();
+      }
+    }
+    update();
   }
 }
