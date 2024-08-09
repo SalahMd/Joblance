@@ -14,7 +14,7 @@ import 'package:joblance/data/remote/task_back.dart';
 abstract class FreelancerHomePageController extends GetxController {
   getFreelancerInfo();
   getJobs();
-  addRemoveFavourite(int id, bool isTask);
+  addRemoveFavourite(int id, bool isTask, int index);
   getTasks();
   refreshPage();
 }
@@ -97,13 +97,13 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
     update();
   }
 
-  addRemoveFavourite(int id, bool isTask) async {
+  addRemoveFavourite(int id, bool isTask, int index) async {
     addToFavouriteStatus = StatusRequest.loading;
     var response;
     if (!isTask) {
-      if (!jobs[id].isFavorite!)
+      if (!jobs[index].isFavorite!)
         response = await favourite.addTaskAndJobsToFavourite(
-            token, isTask, {"job_id": id.toString()});
+            token, isTask, {"job_detail_id": id.toString()});
       else
         response = await favourite.removeTaskAndJobsFromFavourite(
           token,
@@ -125,9 +125,9 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
     if (StatusRequest.success == addToFavouriteStatus) {
       if (response['status'] == "success") {
         if (!isTask)
-          jobs[id].isFavorite = !jobs[id].isFavorite!;
+          jobs[index].isFavorite = !jobs[index].isFavorite!;
         else
-          tasks[id].isFavourite = !tasks[id].isFavourite!;
+          tasks[index].isFavourite = !tasks[index].isFavourite!;
       }
     }
     update();

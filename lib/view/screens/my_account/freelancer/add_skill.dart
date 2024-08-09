@@ -83,8 +83,8 @@ class AddSkill extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              controller
-                                  .addSkill(controller.skills[index]['id'],context);
+                              controller.addSkill(
+                                  controller.skills[index]['id'], context);
                             },
                             child: Text(
                               controller.skills[index]['name'],
@@ -101,15 +101,20 @@ class AddSkill extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomCenter,
                 //bottom: 1,
-                child: Container(
-                  width: Dimensions.screenWidth(context),
-                  height: 40.h,
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.symmetric(horizontal: 30.w),
-                  decoration: AppButtons.buttonDecoration,
-                  child: Text(
-                    "save".tr,
-                    style: TextStyles.w50016White(context),
+                child: GestureDetector(
+                  onTap: () {
+                    controller.addTag(context);
+                  },
+                  child: Container(
+                    width: Dimensions.screenWidth(context),
+                    height: 40.h,
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.symmetric(horizontal: 30.w),
+                    decoration: AppButtons.buttonDecoration,
+                    child: Text(
+                      "save".tr,
+                      style: TextStyles.w50016White(context),
+                    ),
                   ),
                 ),
               )

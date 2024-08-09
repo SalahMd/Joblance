@@ -41,7 +41,7 @@ class TaskPage extends StatelessWidget {
                               "-" +
                               controller.task.budgetMax.toString(),
                           userId: controller.task.userId!,
-                          duration: controller.task.taskDuration.toString(), userRole: controller.task.roleId!,),
+                          duration: controller.task.taskDuration.toString(), userRole: 2,),
                       SizedBox(
                         height: 5.h,
                       ),

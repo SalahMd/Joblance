@@ -9,7 +9,7 @@ import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 
 abstract class AddReviewController extends GetxController {
-  postReview();
+  postReview(BuildContext context);
 }
 
 class AddReviewControllerImpl extends AddReviewController {
@@ -30,28 +30,26 @@ class AddReviewControllerImpl extends AddReviewController {
   }
 
   @override
-  postReview() async {
+  postReview(BuildContext context) async {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
       statusRequest = StatusRequest.loading;
-
       animationedAlert(AppAnimations.loadings, "pleasewait".tr);
       var response = await addReviewBack.postData({
-        "user_id": id.toString(),
+        "company_id": id.toString(),
         "level": level.toString(),
         "comment": review.text
       }, token);
       statusRequest = handelingData(response);
       Get.back();
-
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           Get.back();
-          animationedAlert(AppAnimations.done, "yourreviewhasbeenposted".tr);
+          snackBar("","yourreviewhasbeenposted".tr,context);
         } else
-          print("error");
+          snackBar("","couldntpostreview".tr,context);
       } else {
-        print("wwwwww");
+        snackBar("","couldntpostreview".tr,context);
       }
     }
   }

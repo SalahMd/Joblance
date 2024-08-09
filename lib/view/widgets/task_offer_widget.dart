@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
@@ -14,6 +15,7 @@ class TaskOfferWidget extends StatelessWidget {
   final String budget;
   final String excutingTime;
   final String datePosted;
+  final void Function()? onAccepted;
   const TaskOfferWidget(
       {super.key,
       required this.userName,
@@ -22,13 +24,14 @@ class TaskOfferWidget extends StatelessWidget {
       required this.offerInfo,
       required this.budget,
       required this.excutingTime,
-      required this.datePosted});
+      required this.datePosted,
+      required this.onAccepted});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: Dimensions.screenWidth(context),
-      height: 180.h,
+      //height: 180.h,
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       decoration: BoxDecoration(
@@ -122,10 +125,33 @@ class TaskOfferWidget extends StatelessWidget {
           height: 5.h,
         ),
         Text("offerinfo".tr, style: TextStyles.w40011(context)),
-        Text(offerInfo,
+        Text(
+            "offerInfo dwaoidn oiwnd oiawoid oaw dwoa doawodiawoid awo doi dawj kdjwa i wia diua widuawiud awii diuuaw",
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyles.w40011grey(context)),
+        onAccepted != null
+            ? GestureDetector(
+                onTap: () {
+                  onAccepted!();
+                },
+                child: Center(
+                  child: Container(
+                    width: 100.w,
+                    height: 30.h,
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.only(top: 15.h, bottom: 5.h),
+                    decoration: BoxDecoration(
+                        color: LightAppColors.greenColor,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Text(
+                      "accept".tr,
+                      style: TextStyles.w50013White(context),
+                    ),
+                  ),
+                ),
+              )
+            : Container()
       ]),
     );
   }

@@ -52,9 +52,9 @@ class CompanyHomePage extends StatelessWidget {
                                   ],
                                 )),
                           ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
-                          Categories(
-                            controller: controller,
-                          ),
+                          // Categories(
+                          //   controller: controller,
+                          // ),
                           Align(
                             alignment: AlignmentDirectional.centerStart,
                             child: Padding(
@@ -89,12 +89,15 @@ class CompanyHomePage extends StatelessWidget {
                                     ['rate'],
                                 numOfRates: controller.freelancers[index]
                                     ['counter'],
+                                followers: controller.freelancers[index]
+                                    ['followers'],
+                                    
                                 onFavoriteTap: () {
-                                  controller.addToFavourite(controller.freelancers[index]['id'],);
-                                  
+                                  controller.addToFavourite(
+                                    controller.freelancers[index]['id'],index
+                                  );
                                 },
-                                isFavorite: controller.freelancers[index]
-                                    ['favourite'],
+                                isFavorite:controller.freelancers[index]['favourited'] ,
                               );
                             },
                           ),

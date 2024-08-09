@@ -17,10 +17,10 @@ abstract class MyJobsController extends GetxController {
 }
 
 class MyJobsControllerImpl extends MyJobsController {
-  StatusRequest? statusRequest;
+  StatusRequest? statusRequest, addToFavouriteStatus;
   Myservices myServices = Get.find();
   FavouriteBack favorite = new FavouriteBack(Get.put(Crud()));
-  late String token, role, lang;
+  late String token, role, lang, id;
   List<JobModel> jobs = [];
   List<TaskModel> tasks = [];
   List data = [];
@@ -37,6 +37,7 @@ class MyJobsControllerImpl extends MyJobsController {
     token = myServices.sharedPreferences.getString("token")!;
     lang = myServices.sharedPreferences.getString("lang")!;
     role = myServices.sharedPreferences.getString("role_id")!;
+    id = myServices.sharedPreferences.getInt("id").toString();
     if (role == "1") {
       getFavouriteFreelancers();
     } else {
@@ -63,7 +64,7 @@ class MyJobsControllerImpl extends MyJobsController {
   getSavedJobs() async {
     statusRequest = StatusRequest.loading;
     var response = await favorite.getFavourite(
-        token, AppLinks.favouriteJob + "?lang=" + lang);
+        token, AppLinks.favouriteJob + "?lang=" + lang + "&user_id=" + id);
     statusRequest = handelingData(response);
     print(response);
     if (StatusRequest.success == statusRequest) {
@@ -79,7 +80,7 @@ class MyJobsControllerImpl extends MyJobsController {
   getFavoriteTasks() async {
     statusRequest = StatusRequest.loading;
     var response = await favorite.getFavourite(
-        token, AppLinks.favouriteTask + "?lang=" + lang);
+        token, AppLinks.favouriteTask + "?lang=" + lang + "&user_id=" + id);
     statusRequest = handelingData(response);
     print(response);
     if (StatusRequest.success == statusRequest) {
@@ -87,6 +88,42 @@ class MyJobsControllerImpl extends MyJobsController {
         for (var data in response['data']) {
           tasks.add(TaskModel.fromJson(data));
         }
+      }
+    }
+    update();
+  }
+
+  addRemoveFavourite(int id, bool isTask, int index) async {
+    addToFavouriteStatus = StatusRequest.loading;
+    var response;
+    if (!isTask) {
+      if (!jobs[index].isFavorite!)
+        response = await favorite.addTaskAndJobsToFavourite(
+            token, isTask, {"job_detail_id": id.toString()});
+      else
+        response = await favorite.removeTaskAndJobsFromFavourite(
+          token,
+          id.toString(),
+          isTask,
+        );
+    } else {
+      if (!tasks[id].isFavourite!)
+        response = await favorite.addTaskAndJobsToFavourite(
+            token, isTask, {"task_id": id.toString()});
+      else
+        response = await favorite.removeTaskAndJobsFromFavourite(
+          token,
+          id.toString(),
+          isTask,
+        );
+    }
+    addToFavouriteStatus = handelingData(response);
+    if (StatusRequest.success == addToFavouriteStatus) {
+      if (response['status'] == "success") {
+        if (!isTask)
+          jobs[index].isFavorite = !jobs[index].isFavorite!;
+        else
+          tasks[index].isFavourite = !tasks[index].isFavourite!;
       }
     }
     update();

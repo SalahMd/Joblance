@@ -16,14 +16,20 @@ abstract class AddTaskController extends GetxController {
 }
 
 class AddTaskControllerImpl extends AddTaskController {
-  late TextEditingController aboutTask,additionalInfo,requirements,minBudget,maxBudget,taskTitle,taskDuration;
+  late TextEditingController aboutTask,
+      additionalInfo,
+      requirements,
+      minBudget,
+      maxBudget,
+      taskTitle,
+      taskDuration;
   TextDirection direction = TextDirection.ltr;
   CompanyHomePageBack companyHomePageBack =
       CompanyHomePageBack(Get.put(Crud()));
   Myservices myservices = Get.find();
   StatusRequest? statusRequest, majorStatus;
   int? id;
-  bool showNumOfEmployees = false,active = true;
+  bool showNumOfEmployees = false, active = true;
   String taskMajorValue = "1";
   late String lang, token, userId;
   List<DropdownMenuItem<String>> majors = [];
@@ -48,7 +54,7 @@ class AddTaskControllerImpl extends AddTaskController {
       taskTitle.text = Get.arguments['task_title'] as String;
       aboutTask.text = Get.arguments['about_task'] as String;
       requirements.text = Get.arguments['requirements'] as String;
-      taskDuration.text = Get.arguments['task_duration'].toString();
+      taskDuration.text = Get.arguments['duration'].toString();
       minBudget.text = Get.arguments['budget_min'].toString();
       maxBudget.text = Get.arguments['budget_max'].toString();
       active = Get.arguments['active'];
@@ -81,7 +87,7 @@ class AddTaskControllerImpl extends AddTaskController {
 
   postTask(BuildContext context, bool isUpdate) async {
     var formdata = formState.currentState;
-    if (int.parse(minBudget.text)>int.parse(maxBudget.text)) {
+    if (int.parse(minBudget.text) > int.parse(maxBudget.text)) {
       animationedAlert(AppAnimations.wrong, "minbudgetcantbehigherthanmax".tr);
       return;
     }
@@ -93,7 +99,7 @@ class AddTaskControllerImpl extends AddTaskController {
         "task_title": taskTitle.text,
         "requirements": requirements.text,
         "additional_information": additionalInfo.text,
-        "task_duration": taskDuration.text,
+        "duration": taskDuration.text,
         "budget_min": minBudget.text,
         "budget_max": maxBudget.text,
         "major_id": taskMajorValue,

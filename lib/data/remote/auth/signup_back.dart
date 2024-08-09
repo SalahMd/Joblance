@@ -9,7 +9,7 @@ class SignUpBack {
 
   signUp(Map<String, String> data, File image) async {
     var response = await crud.postAndGetData(
-        AppLinks.signUp, data, {}, "image", true, true, image);
+        AppLinks.signUp, data, {"accept": "application/json"}, "image", true, true, image);
     return response.fold((l) => l, (r) => r);
   }
 
@@ -17,7 +17,7 @@ class SignUpBack {
     Map data,
   ) async {
     var response = await crud.postAndGetData(
-        AppLinks.googleSignup, data, {}, null, true, false, null);
+        AppLinks.googleSignup, data, {"accept": "application/json"}, null, true, false, null);
     return response.fold((l) => l, (r) => r);
   }
 }

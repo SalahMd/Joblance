@@ -137,10 +137,12 @@ class FreelancerHomePage extends StatelessWidget {
                                   companyId: controller.jobs[index].companyId!,
                                   jobId: controller.jobs[index].id!,
                                   isFavourite:
-                                     true,
+                                      controller.jobs[index].isFavorite,
                                   onFavouriteTap: () {
                                     controller.addRemoveFavourite(
-                                        controller.jobs[index].id!, false);
+                                        controller.jobs[index].id!,
+                                        false,
+                                        index);
                                   },
                                 );
                               },

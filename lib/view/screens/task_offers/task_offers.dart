@@ -9,7 +9,11 @@ class TaskOffers extends StatelessWidget {
   final String id;
   final String name;
   final String dateOfPost;
-  const TaskOffers({super.key, required this.id, required this.name, required this.dateOfPost});
+  const TaskOffers(
+      {super.key,
+      required this.id,
+      required this.name,
+      required this.dateOfPost});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,12 @@ class TaskOffers extends StatelessWidget {
         child: GetBuilder<TaskOffersControllerImpl>(
           builder: (controller) => Column(
             children: [
-              TaskOffersTopBar(name: name, numOfOffers: controller.data.length.toString(), dateOfPost: dateOfPost),
+              TaskOffersTopBar(
+                name: name,
+                numOfOffers: controller.data.length.toString(),
+                dateOfPost: dateOfPost,
+                status: controller.status,
+              ),
               SizedBox(
                 height: 20.h,
               ),
@@ -37,6 +46,11 @@ class TaskOffers extends StatelessWidget {
                         budget: controller.data[index]['budget'].toString(),
                         excutingTime:
                             controller.data[index]['excuting_time'].toString(),
+                        onAccepted: controller.status == ''
+                            ? () {
+                                controller.acceptUser(index, context);
+                              }
+                            : null,
                         datePosted: controller.data[index]['created_at']);
                   })
             ],

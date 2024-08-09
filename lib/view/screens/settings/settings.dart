@@ -69,9 +69,18 @@ class Settings extends StatelessWidget {
                               Get.to(MyJobs());
                             },
                             child: ListTiles(
+                                leadingIcon: Icons.favorite_outline_outlined,
+                                trailingIcon: Icons.arrow_forward_ios_outlined,
+                                listText: "favourite".tr),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(MyJobs());
+                            },
+                            child: ListTiles(
                                 leadingIcon: Icons.work_outline,
                                 trailingIcon: Icons.arrow_forward_ios_outlined,
-                                listText: "myjobs".tr),
+                                listText: "tasks".tr),
                           ),
                           Visibility(
                             visible: controller.role == "2",

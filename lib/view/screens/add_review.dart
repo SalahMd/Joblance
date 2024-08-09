@@ -135,7 +135,7 @@ class AddReview extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    controller.postReview();
+                    controller.postReview(context);
                   },
                   child: Container(
                     width: Dimensions.screenWidth(context),

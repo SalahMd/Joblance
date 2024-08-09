@@ -8,6 +8,7 @@ import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/job_info/job_info.dart';
 import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class JobDesign extends StatelessWidget {
@@ -33,13 +34,14 @@ class JobDesign extends StatelessWidget {
       required this.isActive,
       required this.jobId,
       required this.companyId,
-       this.isFavourite,  this.onFavouriteTap});
+      this.isFavourite,
+      this.onFavouriteTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(CompanyProfile(id: companyId));
+        Get.to(JobInfo(id: jobId));
       },
       child: Container(
         width: Dimensions.screenWidth(context),
@@ -106,20 +108,24 @@ class JobDesign extends StatelessWidget {
                 children: [
                   Align(
                     alignment: AlignmentDirectional.centerEnd,
-                    child:isFavourite!=null? GestureDetector(
-                      onTap: onFavouriteTap,
-                      child: Container(
-                          width: 20.w,
-                          height: 20.h,
-                          margin: EdgeInsets.only(bottom: 10.h),
-                          child: Image.asset(
-                            AppImages.save,
-                            fit: BoxFit.fill,
-                            color: isFavourite!
-                                ? Colors.red[800]
-                                : Theme.of(context).colorScheme.onSecondary,
-                          )),
-                    ):null,
+                    child: isFavourite != null
+                        ? GestureDetector(
+                            onTap: onFavouriteTap,
+                            child: Container(
+                                width: 20.w,
+                                height: 20.h,
+                                margin: EdgeInsets.only(bottom: 10.h),
+                                child: Image.asset(
+                                  AppImages.save,
+                                  fit: BoxFit.fill,
+                                  color: isFavourite!
+                                      ? Colors.red[800]
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary,
+                                )),
+                          )
+                        : null,
                   ),
                   SizedBox(
                     height: 20.h,

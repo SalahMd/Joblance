@@ -19,6 +19,7 @@ class FreeLancerDesign extends StatelessWidget {
   final int numOfRates;
   final int openToWork;
   final rateLevel;
+  final int followers;
   final void Function() onFavoriteTap;
   final bool isFavorite;
   const FreeLancerDesign(
@@ -32,7 +33,9 @@ class FreeLancerDesign extends StatelessWidget {
       required this.rateLevel,
       required this.numOfRates,
       required this.openToWork,
-      required this.onFavoriteTap, required this.isFavorite});
+      required this.onFavoriteTap,
+      required this.isFavorite,
+      required this.followers});
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +106,7 @@ class FreeLancerDesign extends StatelessWidget {
                       child: Icon(
                         Icons.favorite_border_outlined,
                         size: 17.sp,
-                        color: isFavorite?Colors.red[800]:null,
+                        color: isFavorite ? Colors.red[800] : null,
                       ),
                     ),
                   ),
@@ -193,7 +196,7 @@ class FreeLancerDesign extends StatelessWidget {
                           width: 5.w,
                         ),
                         Text(
-                          "100 followers",
+                          followers.toString() + " " + "followers".tr,
                           style: TextStyles.w40012grey(context),
                         ),
                       ],

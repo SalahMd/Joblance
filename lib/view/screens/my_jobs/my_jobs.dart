@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/my_jobs_controller.dart';
+import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/my_jobs/my_Jobs_tab_bar_view.dart';
 
@@ -37,7 +38,13 @@ class MyJobs extends StatelessWidget {
                       ],
                     )),
                   ),
-                  Container(child: TabBar(tabs: controller.tabs)),
+                  Container(
+                      child: TabBar(
+                    tabs: controller.tabs,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    labelStyle: TextStyles.w50012(context),
+                    indicatorWeight: 3,
+                  )),
                   MyJobsTabBarView(
                     controller: controller,
                   )

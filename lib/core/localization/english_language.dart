@@ -315,4 +315,7 @@ Map<String, String> english = {
   "taskoffers":"Task offers",
   "yourjobhasbeendeleted":"Your job has been deleted",
   "yourjobhasbeenupdated":"Your job has been updated",
+  "followers":"Followers",
+  "couldntpostreview":"Couldn't post your review",
+  "youalreadyaddedyouroffer":"You already added your offer"
 };

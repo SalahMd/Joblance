@@ -13,7 +13,14 @@ abstract class AddOfferController extends GetxController {
 }
 
 class AddOfferControllerImpl extends AddOfferController {
-  late TextEditingController firstName,lastName,email,phoneNumber,offerBudget,offerInformation,excutingTime,yearsOfExperience;
+  late TextEditingController firstName,
+      lastName,
+      email,
+      phoneNumber,
+      offerBudget,
+      offerInformation,
+      excutingTime,
+      yearsOfExperience;
   final int taskId;
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   Myservices myServices = Get.find();
@@ -73,8 +80,11 @@ class AddOfferControllerImpl extends AddOfferController {
         if (response['status'] == "success") {
           Get.back();
           animationedAlert(AppAnimations.done, "yourrequesthasbeensent".tr);
-        } else
-          animationedAlert(AppAnimations.wrong, "errorsendingyourrequest".tr);
+        } else if (response['status'] == "failure" &&
+            response['error_message']['message'] ==
+                "This user already offered") {
+          animationedAlert(AppAnimations.wrong, "youalreadyaddedyouroffer".tr);
+        }
       } else
         animationedAlert(AppAnimations.wrong, "errorsendingyourrequest".tr);
     }

@@ -7,9 +7,10 @@ class BudgetBack {
 
   getData(
     var token,
+    String id
   ) async {
     var response = await crud.postAndGetData(
-        AppLinks.budget,
+        AppLinks.budget+"/"+id,
         {},
         {'Authorization': 'Bearer $token', "accept": "application/json"},
         null,

@@ -127,13 +127,22 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
       AppLinks.skills + "?id=" + id,
       token,
     );
+    var response2 = await freelancerAccount.getSkills(
+      AppLinks.tag + "?id=" + id,
+      token,
+    );
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         userSkills.addAll(response['data']);
       }
     } else {}
-    print(response);
+    statusRequest = handelingData(response2);
+    if (StatusRequest.success == statusRequest) {
+      if (response2['status'] == "success") {
+        userSkills.addAll(response2['data']);
+      }
+    } else {}
     update();
   }
 
@@ -152,10 +161,33 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     update();
   }
 
-  Future<void> addSkill(int? id, BuildContext context) async {
+  Future<void> addSkill(
+    int? id,
+    BuildContext context,
+  ) async {
     skillStatus = StatusRequest.loading;
     var response = await freelancerAccount.addSkill(
         token, {"skill_id": id.toString()}, AppLinks.skills);
+    skillStatus = handelingData(response);
+    Get.back();
+
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        snackBar("", "yourskillhasbeenadded".tr, context);
+      } else
+        snackBar("", "yourskillhasbeenadded".tr, context);
+    } else
+      snackBar("", "yourskillhasbeenadded".tr, context);
+
+    update();
+  }
+
+  Future<void> addTag(
+    BuildContext context,
+  ) async {
+    skillStatus = StatusRequest.loading;
+    var response = await freelancerAccount.addSkill(
+        token, {"name": skill.text}, AppLinks.tag);
     skillStatus = handelingData(response);
     Get.back();
 
@@ -233,7 +265,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   @override
   getBudget() async {
     statusRequest = StatusRequest.loading;
-    var response = await budgetBack.getData(token);
+    var response = await budgetBack.getData(token,id);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

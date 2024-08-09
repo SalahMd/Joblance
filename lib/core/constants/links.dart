@@ -41,4 +41,6 @@ class AppLinks {
   static String get favouriteJob => "$IP/api/favourite_job";
   static String get favouriteFreelancer => "$IP/api/favourite_freelancer";
   static String get budget => "$IP/api/budget";
+  static String get acceptUser => "$IP/api/accepted_tasks";
+  static String get tag => "$IP/api/user_tags";
 }

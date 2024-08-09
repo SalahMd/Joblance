@@ -12,7 +12,7 @@ class LoginBack {
 
   googleLogin(Map data) async {
     var response = await crud.postAndGetData(
-        AppLinks.googleSignin, data, {}, null, true, false, null);
+        AppLinks.googleSignin, data, {"accept": "application/json"}, null, true, false, null);
     return response.fold((l) => l, (r) => r);
   }
 }

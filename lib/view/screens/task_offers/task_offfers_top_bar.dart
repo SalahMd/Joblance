@@ -10,11 +10,12 @@ class TaskOffersTopBar extends StatelessWidget {
   final String name;
   final String dateOfPost;
   final String numOfOffers;
+  final String status;
   const TaskOffersTopBar(
       {super.key,
       required this.name,
       required this.numOfOffers,
-      required this.dateOfPost});
+      required this.dateOfPost, required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +97,20 @@ class TaskOffersTopBar extends StatelessWidget {
                               Jiffy.parse(dateOfPost)
                                   .from(Jiffy.now())
                                   .toString(),
+                              style: TextStyles.w40011grey(context)),
+                        ],
+                      ),
+                       Row(
+                        children: [
+                          Icon(
+                            Icons.pending_outlined,
+                            size: 13.sp,
+                          ),
+                          SizedBox(
+                            width: 3.w,
+                          ),
+                          Text(
+                             status,
                               style: TextStyles.w40011grey(context)),
                         ],
                       ),

@@ -81,23 +81,21 @@ class TaskDesign extends StatelessWidget {
                         ),
                         Container(
                           width: 115.w,
-                          child: Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  taskTitle,
-                                  style: TextStyles.w50013(context),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                Text(
-                                  userName,
-                                  style: TextStyles.w50012(context),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                ),
-                              ],
-                            ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                taskTitle,
+                                style: TextStyles.w50013(context),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                userName,
+                                style: TextStyles.w50012(context),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                            ],
                           ),
                         ),
                       ],

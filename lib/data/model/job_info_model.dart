@@ -71,7 +71,7 @@ class JobModel {
     active = json['active'];
     numOfEmployees = json['num_of_employees'];
     companyId = json['company_id'];
-    isFavorite = json['is_favourite'];
+    isFavorite = json['favourite'];
   }
 
   Map<String, dynamic> toJson() {
@@ -98,7 +98,7 @@ class JobModel {
     data['active'] = this.active;
     data['num_of_employees'] = this.numOfEmployees;
     data['company_id'] = this.companyImage;
-    data['is_favourite']= this.isFavorite;
+    data['favourite']= this.isFavorite;
     return data;
   }
 }

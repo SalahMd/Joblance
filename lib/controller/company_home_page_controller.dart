@@ -10,7 +10,7 @@ import 'package:joblance/data/remote/favourite_back.dart';
 abstract class CompanyHomePageController extends GetxController {
   getCompanyInfo();
   getMajors();
-  addToFavourite(int id);
+  addToFavourite(int id, int index);
   getFreelancers();
 }
 
@@ -100,12 +100,10 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
   }
 
   @override
-  addToFavourite(
-    int id,
-  ) async {
+  addToFavourite(int id, int index) async {
     addToFavouriteStatus = StatusRequest.loading;
     var response;
-    if (!freelancers[id]['favourite'])
+    if (!freelancers[index]['favourited'])
       response = await favorite.addFreelancerToFavorite(token, id.toString());
     else
       response =
@@ -113,7 +111,7 @@ class CompanyHomePageControllerImpl extends CompanyHomePageController {
     addToFavouriteStatus = handelingData(response);
     if (StatusRequest.success == addToFavouriteStatus) {
       if (response['status'] == "success") {
-        freelancers[id]['favourite'] = !freelancers[id]['favourite'];
+        freelancers[index]['favourited'] = !freelancers[index]['favourited'];
       }
     }
     update();

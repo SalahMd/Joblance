@@ -193,8 +193,4 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     }
     update();
   }
-
-  void dispose() {
-    super.dispose();
-  }
 }

@@ -79,4 +79,26 @@ class TaskBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
+  getTaskStatus(String token, String id,String lang) async {
+    var response = await crud.postAndGetData(
+        AppLinks.acceptUser +"?lang="+lang+"&&task_id="+id,
+        {},
+        {'Authorization': 'Bearer $token', "accept": "application/json"},
+        null,
+        false,
+        false,
+        null);
+    return response.fold((l) => l, (r) => r);
+  }
+  acceptUser(Map data,String token)async{
+    var response = await crud.postAndGetData(
+        AppLinks.acceptUser,
+        data,
+        {'Authorization': 'Bearer $token', "accept": "application/json"},
+        null,
+        true,
+        false,
+        null);
+    return response.fold((l) => l, (r) => r);
+  }
 }

@@ -11,6 +11,7 @@ import 'package:joblance/data/model/review_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/follow_back.dart';
+import 'package:joblance/data/remote/job_info_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 import 'package:joblance/data/remote/task_back.dart';
 import '../../data/model/task_model.dart';
@@ -19,6 +20,7 @@ abstract class CompanyProfileController extends GetxController {
   getReviews();
   getProduts();
   getUserData();
+  getJobs();
   getTasks();
 }
 
@@ -38,6 +40,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
   FollowBack follow = new FollowBack(Get.put(Crud()));
   List<ProjectOrProductModel> products = [];
   bool followed = false;
+  JobBack jobBack = new JobBack(Get.put(Crud()));
   List<Widget> tabs = [
     Tab(
       text: "jobs".tr,
@@ -59,6 +62,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     await getProduts();
     await getReviews();
     await getTasks();
+    await getJobs();
     super.onInit();
   }
 
@@ -128,6 +132,7 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     if (StatusRequest.success == followStatus) {
       if (response['status'] == "success") {
         followed = true;
+        data['followers'] += 1;
       }
     }
     update();
@@ -140,6 +145,23 @@ class CompanyProfileControllerImpl extends CompanyProfileController {
     if (StatusRequest.success == followStatus) {
       if (response['status'] == "success") {
         followed = false;
+        data['followers'] -= 1;
+      }
+    }
+    update();
+  }
+  
+    @override
+  getJobs() async {
+    statusRequest = StatusRequest.loading;
+    var response = await jobBack.getData(
+        token, AppLinks.jobInfo + "?lang=" + language + "&&company_id=" + id.toString());
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var data in response['data']) {
+          jobs.add(JobModel.fromJson(data));
+        }
       }
     }
     update();

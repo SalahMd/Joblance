@@ -158,8 +158,8 @@ class FreelancerProfileControllerImpl extends FreelancerProfileController {
     BuildContext context,
   ) async {
     reviewStatus = StatusRequest.loading;
-    var response = await addReviewBack
-        .postRate(token, {"level": level.toString(), "user_id": id.toString()});
+    var response = await addReviewBack.postRate(
+        token, {"level": level.toString(), "freelancer_id": id.toString()});
     reviewStatus = handelingData(response);
     if (StatusRequest.success == reviewStatus) {
       if (response['status'] == "success") {

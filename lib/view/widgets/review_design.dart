@@ -45,7 +45,7 @@ class ReviewDesign extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Image.network(
-                    image[0] == "h" ? image : AppLinks.IP + "/" + image,
+                    image[0] == "h" ? image : AppLinks.IP + image,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -59,13 +59,13 @@ class ReviewDesign extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 3.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                   width: 100.w,
-                  height: 40.h,
+                  //height: 40.h,
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
                   child: RatingBar.builder(
                       direction: Axis.horizontal,
                       allowHalfRating: true,
