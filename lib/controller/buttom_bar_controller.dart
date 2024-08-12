@@ -15,6 +15,7 @@ import 'package:joblance/view/screens/settings/settings.dart';
 abstract class ButtomBarController extends GetxController {
   changePage(int index);
   changeButtonState();
+  getSubscription();
 }
 
 class ButtomBarControllerImp extends ButtomBarController {
@@ -25,6 +26,7 @@ class ButtomBarControllerImp extends ButtomBarController {
   List<Widget> listPage = [];
   String? name, image, lang, token, id;
   StatusRequest? statusRequest;
+  bool subscribed = true;
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
   @override
   changePage(int index) {
@@ -38,11 +40,10 @@ class ButtomBarControllerImp extends ButtomBarController {
     update();
     role = myServices.sharedPreferences.getString("role_id");
     id = myServices.sharedPreferences.getInt("id")!.toString();
-
     lang = myServices.sharedPreferences.getString("lang")!;
     token = myServices.sharedPreferences.getString("token")!;
-    print(id);
-    getFreelancerInfo();
+    getUserInfo();
+    if (role == "1") getSubscription();
 
     if (role == "1") {
       listPage = [
@@ -68,7 +69,7 @@ class ButtomBarControllerImp extends ButtomBarController {
     update();
   }
 
-  getFreelancerInfo() async {
+  getUserInfo() async {
     var response = await profileBack.getData(token, id!, lang!);
     statusRequest = handelingData(response);
     update();
@@ -81,6 +82,21 @@ class ButtomBarControllerImp extends ButtomBarController {
               " " +
               response['data']['last_name'];
         image = response['data']['image'];
+      }
+    }
+    update();
+  }
+
+  getSubscription() async {
+    statusRequest = StatusRequest.loading;
+    var response = await profileBack.getSubscription(token!);
+    statusRequest = handelingData(response);
+    update();
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        if (response['data'] == 'This user does not have active subscription') {
+          subscribed = false;
+        } else {}
       }
     }
     update();

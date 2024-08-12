@@ -324,5 +324,16 @@ Map<String, String> english = {
   "lowest":"Lowest",
   "alltasks":"All tasks",
   "acceptedtasks":"Accepted tasks",
-  "couldn'tsavedata":"Couldn't save your data"
+  "couldn'tsavedata":"Couldn't save your data",
+  "youhavenosubscription":"You have no subscription in our app yet please choose a subscripttion plan",
+  "chooseplan":"Choose plan",
+  "cancel":"Cancel",
+  "pleasechooseasubscriptionplan":"Please choose a subscription plan",
+  "noads":"No Ads",
+  "searchingfreelancers":"Searching freelancers",
+  "postjobs":"Post jobs",
+  "posttasks":"Post tasks",
+  "thanksforsubscribing":"Thanks for Subscribing in our app",
+  "couldn'tsubscribe":"Couldn't subscribe",
+  "youhavenobalanceinyourwallet":"Your budget's balance less than request's balance"
 };

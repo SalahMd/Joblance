@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
@@ -14,4 +15,6 @@ class AppAnimations {
       Lottie.asset(path + "loadingDots.json", repeat: true);
   static LottieBuilder serverError =
       Lottie.asset(path + "server_error.json", repeat: false);
+  static LottieBuilder subscription =
+      Lottie.asset(path + "subscription.json", repeat: false,fit: BoxFit.fill);
 }

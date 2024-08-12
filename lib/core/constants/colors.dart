@@ -9,6 +9,7 @@ class LightAppColors {
   static Color? greenColor = Colors.green[900];
   static Color? greyColor = Colors.grey[700];
   static Color backGround = Color.fromARGB(255, 237, 237, 241);
+  
 }
 
 class DarkAppColors {

@@ -6,8 +6,8 @@ import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/my_jobs/my_Jobs_tab_bar_view.dart';
 
-class MyJobs extends StatelessWidget {
-  const MyJobs({super.key});
+class Favourite extends StatelessWidget {
+  const Favourite({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class MyJobs extends StatelessWidget {
                             },
                             child: Icon(Icons.arrow_back)),
                         SizedBox(width: 10.w),
-                        Text("myjobs".tr,
+                        Text("favourite".tr,
                             style: Theme.of(context).textTheme.headlineLarge)
                       ],
                     )),

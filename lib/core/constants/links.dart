@@ -44,4 +44,6 @@ class AppLinks {
   static String get acceptUser => "$IP/api/accepted_tasks";
   static String get tag => "$IP/api/user_tags";
   static String get studyCases => "$IP/api/study_case";
+  static String get subscription => "$IP/api/subscription";
+  static String get price => "$IP/api/price";
 }

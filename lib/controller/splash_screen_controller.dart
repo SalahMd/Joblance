@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:joblance/controller/buttom_bar_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/view/screens/choose_language.dart';
+import 'package:joblance/view/screens/choose_plan.dart';
 
 abstract class SplashScreenController extends GetxController {
   startTimer();
@@ -25,6 +27,11 @@ class SplashScreenControllerImpl extends SplashScreenController {
           if (controller!.statusRequest != StatusRequest.loading) {
             if (myservices.sharedPreferences.getString("step") == "2") {
               Get.offAllNamed("HomePage");
+              if(!controller!.subscribed){
+                subscriptionAlert(() {
+            Get.to(ChoosePlan());
+          });
+              }
             } else if (myservices.sharedPreferences.getString("step") == "1") {
               Get.offAllNamed("Login");
             } else {
@@ -48,7 +55,6 @@ class SplashScreenControllerImpl extends SplashScreenController {
   void onInit() {
     if (myservices.sharedPreferences.getString("step") == "2")
       controller = Get.put(ButtomBarControllerImp());
-
     startTimer();
     super.onInit();
   }

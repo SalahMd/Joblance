@@ -34,4 +34,19 @@ class ProfileBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
+  getSubscription(String token)async{
+      var response = await crud.postAndGetData(
+        "${AppLinks.subscription}",
+        
+        {
+        },
+        {
+          'Authorization': 'Bearer $token',
+        },
+        null,
+        false,
+        false,
+        null);
+    return response.fold((l) => l, (r) => r);
+  }
 }

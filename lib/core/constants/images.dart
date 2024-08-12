@@ -16,4 +16,5 @@ class AppImages {
   static const String englishimage = "assets/images/english.png";
   static const String enterIcon = "assets/images/enter_icon.png";
   static const String arabicimage = "assets/images/arabic.png";
+  static const String subscription = "assets/images/subscription.png";
 }

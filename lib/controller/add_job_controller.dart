@@ -40,11 +40,11 @@ class AddjobControllerImpl extends AddjobController {
   List<DropdownMenuItem<String>> jobType = [
     DropdownMenuItem<String>(
       value: '1',
-      child: Text("parttime".tr),
+      child: Text("fulltime".tr),
     ),
     DropdownMenuItem<String>(
       value: '2',
-      child: Text("fulltime".tr),
+      child: Text("parttime".tr),
     ),
     DropdownMenuItem<String>(
       value: '3',
@@ -54,15 +54,15 @@ class AddjobControllerImpl extends AddjobController {
   List<DropdownMenuItem<String>> remote = [
     DropdownMenuItem<String>(
       value: '1',
-      child: Text("remote".tr),
+      child: Text("onsite".tr),
     ),
     DropdownMenuItem<String>(
       value: '2',
-      child: Text("hybrid".tr),
+      child: Text("remote".tr),
     ),
     DropdownMenuItem<String>(
       value: '3',
-      child: Text("onsite".tr),
+      child: Text("hybrid".tr),
     ),
   ];
   List<DropdownMenuItem<String>> jobExperience = [];

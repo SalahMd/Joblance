@@ -9,7 +9,7 @@ import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/accepted_tasks.dart';
 import 'package:joblance/view/screens/create_CV/create_CV.dart';
 import 'package:joblance/view/screens/edit_profile/edit_profile.dart';
-import 'package:joblance/view/screens/my_jobs/my_jobs.dart';
+import 'package:joblance/view/screens/my_jobs/favourite.dart';
 import 'package:joblance/view/screens/settings/change_language.dart';
 import 'package:joblance/view/screens/settings/change_password.dart';
 import 'package:joblance/view/screens/settings/dark_mode.dart';
@@ -67,7 +67,7 @@ class Settings extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.to(MyJobs());
+                              Get.to(Favourite());
                             },
                             child: ListTiles(
                                 leadingIcon: Icons.favorite_outline_outlined,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:joblance/core/constants/animations.dart';
 import 'package:joblance/core/constants/buttons.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
@@ -34,6 +35,40 @@ Future<bool> exitAlert() {
               "no".tr,
               style: const TextStyle(color: Colors.blue),
             ))
+      ]);
+  return Future.value(false);
+}
+
+Future<bool> subscriptionAlert(Function() onChoosePlan) {
+  Get.defaultDialog(
+      title: "youhavenosubscription".tr,
+      //middleText: "youhavenosubscription".tr,
+      titleStyle: TextStyle(
+        fontSize: 13.sp,
+        fontWeight: FontWeight.w500,
+      ),
+      titlePadding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
+      content: Container(
+          alignment: Alignment.topCenter,
+          height: 100.h,
+          child: AppAnimations.subscription),
+      barrierDismissible: false,
+      actions: [
+        TextButton(
+            onPressed: () {
+              Get.back();
+              onChoosePlan();
+            },
+            child: Text(
+              "chooseplan".tr,
+              style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
+            )),
+        TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: Text("cancel".tr,
+                style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)))
       ]);
   return Future.value(false);
 }
@@ -352,7 +387,7 @@ Future<bool> popUp(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options:majors),
+        ChipsChoices(options: majors),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
@@ -372,7 +407,7 @@ Future<bool> popUp(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options:jobTypes),
+        ChipsChoices(options: jobTypes),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(
             horizontal: 10.w,
@@ -382,7 +417,7 @@ Future<bool> popUp(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options:experience),
+        ChipsChoices(options: experience),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
@@ -390,7 +425,7 @@ Future<bool> popUp(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options:remote),
+        ChipsChoices(options: remote),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
