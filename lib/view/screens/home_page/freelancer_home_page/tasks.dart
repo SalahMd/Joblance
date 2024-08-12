@@ -11,7 +11,7 @@ class Tasks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 195,
+      height: 185,
       width: Dimensions.screenWidth(context),
       child: ListView.builder(
         padding: EdgeInsets.zero,
@@ -32,7 +32,8 @@ class Tasks extends StatelessWidget {
             id: controller.tasks[index].userId!,
             isFavourite: controller.tasks[index].isFavourite,
             onFavouriteTap: () {
-              controller.addRemoveFavourite(controller.tasks[index].id!, true,index);
+              controller.addRemoveFavourite(
+                  controller.tasks[index].id!, true, index);
             },
           );
         },

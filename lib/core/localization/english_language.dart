@@ -322,5 +322,6 @@ Map<String, String> english = {
   "shortest":"Shortest",
   "highest":"Highest",
   "lowest":"Lowest",
-  
+  "alltasks":"All tasks",
+  "acceptedtasks":"Accepted tasks",
 };

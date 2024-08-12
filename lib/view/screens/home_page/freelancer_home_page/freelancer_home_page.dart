@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:joblance/all_tasks.dart';
 import 'package:joblance/controller/freelancer_home_page_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/colors.dart';
@@ -84,11 +85,17 @@ class FreelancerHomePage extends StatelessWidget {
                                         "tasks".tr,
                                         style: TextStyles.bold17(context),
                                       ),
-                                      Text(
-                                        "showall".tr,
-                                        style: TextStyle(
-                                            color: LightAppColors.primaryColor,
-                                            fontSize: 12.sp),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Get.to(AllTasks());
+                                        },
+                                        child: Text(
+                                          "showall".tr,
+                                          style: TextStyle(
+                                              color:
+                                                  LightAppColors.primaryColor,
+                                              fontSize: 12.sp),
+                                        ),
                                       ),
                                     ],
                                   )),

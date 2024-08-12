@@ -171,7 +171,7 @@ class TaskDesign extends StatelessWidget {
                             : null,
                       ),
                       SizedBox(
-                        height: 25,
+                        height: 15,
                       ),
                       Container(
                         width: 60.w,
