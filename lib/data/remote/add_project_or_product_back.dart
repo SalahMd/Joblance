@@ -19,7 +19,7 @@ class AddProjectOrProductBack {
     var token,
   ) async {
     var response = await crud.deleteData(
-      AppLinks.project+"/"+id,
+      AppLinks.project + "/" + id,
       {},
       {'Authorization': 'Bearer $token'},
     );
@@ -27,11 +27,12 @@ class AddProjectOrProductBack {
   }
 
   updateData(Map data, var token, String id, var images) async {
-    var response = await crud.putData(
-        AppLinks.project+"/"+id,
+    var response = await crud.postAndGetData(
+        AppLinks.project + "/" + id,
         data,
         {'Authorization': 'Bearer $token', 'accept': 'application/json'},
         "images_add",
+        true,
         true,
         images);
     return response.fold((l) => l, (r) => r);
@@ -42,8 +43,14 @@ class AddProjectOrProductBack {
     String link,
     var token,
   ) async {
-    var response = await crud.postAndGetData(link, data,
-        {'Authorization': 'Bearer $token',"accept":"application/json"}, null, false, false, null);
+    var response = await crud.postAndGetData(
+        link,
+        data,
+        {'Authorization': 'Bearer $token', "accept": "application/json"},
+        null,
+        false,
+        false,
+        null);
     return response.fold((l) => l, (r) => r);
   }
 }

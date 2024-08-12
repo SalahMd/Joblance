@@ -10,6 +10,7 @@ import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/functions/show_countries.dart';
 import 'package:joblance/core/services/services.dart';
+import 'package:joblance/data/remote/company/company_home_page_back.dart';
 import 'package:joblance/data/remote/edit_profile_back.dart';
 
 abstract class EditProfileController extends GetxController {
@@ -22,73 +23,29 @@ abstract class EditProfileController extends GetxController {
 }
 
 class EditProfileControllerImpl extends EditProfileController {
-  late TextEditingController firstName;
-  late TextEditingController lastName;
-  late TextEditingController companyName;
-  late TextEditingController phoneNumber;
-  late TextEditingController description;
-  late TextEditingController bio;
+  late TextEditingController firstName,
+      lastName,
+      companyName,
+      phoneNumber,
+      description,
+      bio;
   final BuildContext context;
   String? image;
   var newImage;
-
   EditProfileBack editProfileBack = new EditProfileBack(Get.put(Crud()));
-  StatusRequest? statusRequest;
-  StatusRequest? updateStatusRequest;
+  StatusRequest? statusRequest, updateStatusRequest;
   bool openToWork = false;
-  String link = AppLinks.freelancers;
+  String link = AppLinks.freelancers, studyCase = "1", major = "1";
   late String id, token, lang;
-  String studyCase = "1", major = "1";
   String? country, birthOfDate, numOfEmployees = "1";
   late bool isFreelancer;
   Myservices myservices = Get.find();
-  List<DropdownMenuItem<String>> studyCases = [
-    DropdownMenuItem<String>(
-      value: '1',
-      child: Text("highschool".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '2',
-      child: Text("ungraduated".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '3',
-      child: Text("graduated".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '4',
-      child: Text("master".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '5',
-      child: Text("phd".tr),
-    ),
-  ];
-  List<DropdownMenuItem<String>> majors = [
-    DropdownMenuItem<String>(
-      value: '1',
-      child: Text("engineering".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '2',
-      child: Text("technology".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '3',
-      child: Text("designing".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '4',
-      child: Text("medical".tr),
-    ),
-    DropdownMenuItem<String>(
-      value: '5',
-      child: Text("customerservicing".tr),
-    ),
-  ];
+  CompanyHomePageBack companyHomePageBack =
+      new CompanyHomePageBack(Get.put(Crud()));
+  late List<DropdownMenuItem<String>> studyCases = [];
+  late List<DropdownMenuItem<String>> majors = [];
   Map data = {};
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-
   EditProfileControllerImpl({required this.context});
   changeOpenToWork() {
     openToWork = !openToWork;
@@ -96,7 +53,7 @@ class EditProfileControllerImpl extends EditProfileController {
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     if (myservices.sharedPreferences.getString("role_id") == "1") {
       isFreelancer = false;
     } else {
@@ -105,10 +62,47 @@ class EditProfileControllerImpl extends EditProfileController {
     token = myservices.sharedPreferences.getString("token")!;
     id = myservices.sharedPreferences.getInt("id").toString();
     lang = myservices.sharedPreferences.getString("lang")!;
-
     initializeControllers();
-    getUserInfo();
+    await getMajors();
+    await getStudyCases();
+    await getUserInfo();
     super.onInit();
+  }
+
+  getMajors() async {
+    statusRequest = StatusRequest.loading;
+    var response = await companyHomePageBack.getMajor(token, lang);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (int i = 0; i < response['data'].length; i++) {
+          majors.add(DropdownMenuItem(
+            value: response['data'][i]['id'].toString(),
+            child: Text(response['data'][i]['name']),
+          ));
+        }
+        print(majors);
+      }
+    }
+    update();
+  }
+
+  getStudyCases() async {
+    statusRequest = StatusRequest.loading;
+    var response = await editProfileBack.getStudeCases(token, lang);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (int i = 0; i < response['data'].length; i++) {
+          studyCases.add(DropdownMenuItem(
+            value: response['data'][i]['id'].toString(),
+            child: Text(response['data'][i]['name']),
+          ));
+        }
+        print(majors);
+      }
+    }
+    update();
   }
 
   void dispose() {
@@ -145,6 +139,7 @@ class EditProfileControllerImpl extends EditProfileController {
         saveUserInfo();
       }
     }
+    update();
   }
 
   saveUserInfo() {
@@ -153,7 +148,7 @@ class EditProfileControllerImpl extends EditProfileController {
       lastName.text = data['last_name'];
       bio.text = data['bio'];
       openToWork = data['open_to_work'] == 1 ? true : false;
-      studyCase = data['study_case_id'].toString();
+      studyCase = data['study_case']['id'].toString();
     } else {
       companyName.text = data['name'];
       description.text = data['description'];
@@ -194,7 +189,11 @@ class EditProfileControllerImpl extends EditProfileController {
         if (response['status'] == "success") {
           Get.back();
           snackBar("", "yourdatahasbeensaved".tr, context);
+        } else {
+          snackBar("", "couldn'tsavedata".tr, context);
         }
+      } else {
+        snackBar("", "couldn'tsavedata".tr, context);
       }
     }
   }

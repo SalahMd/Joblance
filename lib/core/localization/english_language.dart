@@ -324,4 +324,5 @@ Map<String, String> english = {
   "lowest":"Lowest",
   "alltasks":"All tasks",
   "acceptedtasks":"Accepted tasks",
+  "couldn'tsavedata":"Couldn't save your data"
 };

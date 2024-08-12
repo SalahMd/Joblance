@@ -21,7 +21,7 @@ class TaskPageControllerImpl extends TaskPageController {
   final int id, taskId;
   final BuildContext context;
   StatusRequest? statusRequest, updateStatus;
-  late String token,lang;
+  late String token, lang;
   TaskModel task = TaskModel();
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   GlobalKey<FormState> formState = GlobalKey<FormState>();
@@ -47,8 +47,8 @@ class TaskPageControllerImpl extends TaskPageController {
   @override
   getData() async {
     statusRequest = StatusRequest.loading;
-    var response = await taskBack
-        .getData({}, AppLinks.task + "/" + taskId.toString()+"?lang="+lang, token);
+    var response = await taskBack.getData(
+        {}, AppLinks.task + "/" + taskId.toString() + "?lang=" + lang, token);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -82,19 +82,21 @@ class TaskPageControllerImpl extends TaskPageController {
   updateTask() {
     Get.to(
         AddTask(
-          isUpdate: true, image: task.image!,name: task.name!,
+          isUpdate: true,
+          image: task.image!,
+          name: task.name!,
         ),
         arguments: {
           "about_task": task.aboutTask,
           "task_title": task.taskTitle,
           "requirements": task.requirements,
           "additional_information": task.additionalInformation,
-          "task_duration": task.taskDuration,
+          "duration": task.taskDuration,
           "budget_min": task.budgetMin,
           "budget_max": task.budgetMax,
           "id": task.id,
-          "major_id":task.majorId,
-          "active":task.active==1?true:false,
+          "major_id": task.majorId,
+          "active": task.active == 1 ? true : false,
         });
   }
 }

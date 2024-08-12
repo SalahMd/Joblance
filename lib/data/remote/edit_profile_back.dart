@@ -34,4 +34,16 @@ class EditProfileBack {
         image);
     return response.fold((l) => l, (r) => r);
   }
+
+  getStudeCases(String token, String language) async {
+    var response = await crud.postAndGetData(
+        AppLinks.studyCases + "?lang=" + language,
+        {},
+        {'Authorization': 'Bearer $token', 'accept': 'application/json'},
+        null,
+        false,
+        false,
+        null);
+    return response.fold((l) => l, (r) => r);
+  }
 }
