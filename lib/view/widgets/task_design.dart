@@ -45,7 +45,6 @@ class TaskDesign extends StatelessWidget {
       },
       child: Container(
         alignment: Alignment.topRight,
-        width: 240.w,
         padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10),
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10),
         decoration: BoxDecoration(

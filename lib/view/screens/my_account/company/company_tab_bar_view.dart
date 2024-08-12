@@ -23,7 +23,7 @@ class CompanyTabBarViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(seconds: 1));
         controller.refreshPage();
       },
       child: TabBarView(children: [

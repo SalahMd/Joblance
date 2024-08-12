@@ -9,7 +9,6 @@ import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/job_info/job_info.dart';
-import 'package:joblance/view/screens/profile/company_profile/company_profile.dart';
 
 class JobDesign extends StatelessWidget {
   final String jobTitle;

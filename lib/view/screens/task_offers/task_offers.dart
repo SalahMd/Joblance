@@ -29,8 +29,24 @@ class TaskOffers extends StatelessWidget {
                 dateOfPost: dateOfPost,
                 status: controller.status,
               ),
+              SizedBox(height: 5.h),
+              Padding(
+                padding: EdgeInsetsDirectional.only(end: 15.w),
+                child: Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: GestureDetector(
+                    onTap: () {
+                      controller.showFilters(context);
+                    },
+                    child: Icon(
+                      Icons.filter_alt_outlined,
+                      size: 22.sp,
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(
-                height: 20.h,
+                height: 10.h,
               ),
               ListView.builder(
                   itemCount: controller.data.length,

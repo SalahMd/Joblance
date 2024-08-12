@@ -6,6 +6,7 @@ import 'package:joblance/core/constants/animations.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/view/screens/accepted_tasks.dart';
 import 'package:joblance/view/screens/create_CV/create_CV.dart';
 import 'package:joblance/view/screens/edit_profile/edit_profile.dart';
 import 'package:joblance/view/screens/my_jobs/my_jobs.dart';
@@ -75,7 +76,7 @@ class Settings extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.to(MyJobs());
+                              Get.to(AcceptedTasks());
                             },
                             child: ListTiles(
                                 leadingIcon: Icons.work_outline,

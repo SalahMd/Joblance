@@ -93,7 +93,7 @@ class MyJobsControllerImpl extends MyJobsController {
     update();
   }
 
-  addRemoveFavourite(int id, bool isTask, int index) async {
+  RemoveFavourite(int id, bool isTask, int index) async {
     addToFavouriteStatus = StatusRequest.loading;
     var response;
     if (!isTask) {
@@ -107,7 +107,7 @@ class MyJobsControllerImpl extends MyJobsController {
           isTask,
         );
     } else {
-      if (!tasks[id].isFavourite!)
+      if (!tasks[index].isFavourite!)
         response = await favorite.addTaskAndJobsToFavourite(
             token, isTask, {"task_id": id.toString()});
       else
@@ -121,9 +121,9 @@ class MyJobsControllerImpl extends MyJobsController {
     if (StatusRequest.success == addToFavouriteStatus) {
       if (response['status'] == "success") {
         if (!isTask)
-          jobs[index].isFavorite = !jobs[index].isFavorite!;
+          jobs.removeAt(index);
         else
-          tasks[index].isFavourite = !tasks[index].isFavourite!;
+          tasks.removeAt(index);
       }
     }
     update();

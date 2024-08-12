@@ -111,7 +111,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
           isTask,
         );
     } else {
-      if (!tasks[id].isFavourite!)
+      if (!tasks[index].isFavourite!)
         response = await favourite.addTaskAndJobsToFavourite(
             token, isTask, {"task_id": id.toString()});
       else

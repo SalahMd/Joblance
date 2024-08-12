@@ -37,7 +37,7 @@ Widget favouriteJobs(BuildContext context, MyJobsControllerImpl controller) {
           isActive: controller.jobs[index].active == 1 ? true : false,
           isFavourite: controller.jobs[index].isFavorite!,
           onFavouriteTap: () {
-            controller.addRemoveFavourite(
+            controller.RemoveFavourite(
                 controller.jobs[index].id!, false, index);
           },
         );
@@ -63,7 +63,7 @@ Widget favouriteTasks(BuildContext context, MyJobsControllerImpl controller) {
           id: controller.tasks[index].userId!,
           isFavourite: controller.tasks[index].isFavourite,
           onFavouriteTap: () {
-            controller.addRemoveFavourite(
+            controller.RemoveFavourite(
                 controller.tasks[index].id!, true, index);
           },
         );

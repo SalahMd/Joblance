@@ -11,6 +11,7 @@ import 'package:joblance/data/model/review_model.dart';
 import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
+import 'package:joblance/data/remote/budget_back.dart';
 import 'package:joblance/data/remote/company/company_profile.dart';
 import 'package:joblance/data/remote/favourite_back.dart';
 import 'package:joblance/data/remote/job_info_back.dart';
@@ -19,23 +20,26 @@ import 'package:joblance/data/remote/task_back.dart';
 abstract class MyAccountCompanyController extends GetxController {
   getUserData();
   getProduts();
+  getBudget();
   getReviews();
   getJobs();
 }
 
 class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
-  StatusRequest? statusRequest,addToFavouriteStatus;
+  StatusRequest? statusRequest, addToFavouriteStatus;
   AddProjectOrProductBack addProjectOrProductBack =
       AddProjectOrProductBack(Get.put(Crud()));
   CompanyAccount companyAccount = new CompanyAccount(Get.put(Crud()));
+  BudgetBack budgetBack = new BudgetBack(Get.put(Crud()));
   AddReviewBack addReviewBack = new AddReviewBack(Get.put(Crud()));
   Myservices myServices = Get.find();
   Map data = {};
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   List<TaskModel> tasks = [];
   List<JobModel> jobs = [];
+  double balance = 0;
   List<ReviewModel> reviews = [];
-    FavouriteBack favourite = new FavouriteBack(Get.put(Crud()));
+  FavouriteBack favourite = new FavouriteBack(Get.put(Crud()));
 
   List<ProjectOrProductModel> products = [];
   late String token, id, lang;
@@ -62,6 +66,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     await getProduts();
     await getReviews();
     await getTasks();
+    await getBudget();
     await getJobs();
     super.onInit();
   }
@@ -78,6 +83,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     await getProduts();
     await getReviews();
     await getTasks();
+    await getBudget();
     await getJobs();
   }
 
@@ -138,7 +144,8 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     }
     update();
   }
-    addRemoveFavourite(int id, bool isTask) async {
+
+  addRemoveFavourite(int id, bool isTask) async {
     addToFavouriteStatus = StatusRequest.loading;
     var response;
     if (!isTask) {
@@ -189,6 +196,19 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
               link: response['data'][i]['link'],
               userId: response['data'][i]['user_id']));
         }
+      }
+    }
+    update();
+  }
+
+  @override
+  getBudget() async {
+    statusRequest = StatusRequest.loading;
+    var response = await budgetBack.getData(token, id);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        balance = response['data']["balance"].toDouble();
       }
     }
     update();

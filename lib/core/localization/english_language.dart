@@ -317,5 +317,10 @@ Map<String, String> english = {
   "yourjobhasbeenupdated":"Your job has been updated",
   "followers":"Followers",
   "couldntpostreview":"Couldn't post your review",
-  "youalreadyaddedyouroffer":"You already added your offer"
+  "youalreadyaddedyouroffer":"You already added your offer",
+  "longest":"Longest",
+  "shortest":"Shortest",
+  "highest":"Highest",
+  "lowest":"Lowest",
+  
 };

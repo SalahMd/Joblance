@@ -40,7 +40,8 @@ class TaskTobBar extends StatelessWidget {
       required this.onTap,
       this.onDelete,
       required this.date,
-      required this.taskId, required this.userRole});
+      required this.taskId,
+      required this.userRole});
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +66,10 @@ class TaskTobBar extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      if(userRole==1)
-                      Get.to(CompanyProfile(id: userId));
+                      if (userRole == 1)
+                        Get.to(CompanyProfile(id: userId));
                       else
-                      Get.to(FreelancerProfile(id: userId));
+                        Get.to(FreelancerProfile(id: userId));
                     },
                     child: Container(
                       width: 45.w,
@@ -87,7 +88,7 @@ class TaskTobBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.only(start: 20.w),
+                        padding: EdgeInsetsDirectional.only(start: 12.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -104,7 +105,7 @@ class TaskTobBar extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.only(start: 15.w),
+                        padding: EdgeInsetsDirectional.only(start: 9.w),
                         child: Row(
                           children: [
                             Icon(
@@ -136,7 +137,7 @@ class TaskTobBar extends StatelessWidget {
                               Icons.access_time_outlined,
                               size: 15.sp,
                             ),
-                            SizedBox(width: 8.w),
+                            SizedBox(width: 5.w),
                             Text(
                               "excutingtime".tr + " : ",
                               style: TextStyles.w40011grey(context),
@@ -150,7 +151,7 @@ class TaskTobBar extends StatelessWidget {
                         Row(
                           children: [
                             Icon(Icons.work_outline, size: 15.sp),
-                            SizedBox(width: 8.w),
+                            SizedBox(width: 5.w),
                             Text(
                               "major".tr + ": " + major,
                               style: TextStyles.w40011grey(context),
@@ -160,9 +161,9 @@ class TaskTobBar extends StatelessWidget {
                         Row(
                           children: [
                             Icon(Icons.calendar_month_outlined, size: 15.sp),
-                            SizedBox(width: 8.w),
+                            SizedBox(width: 5.w),
                             Text(
-                              Jiffy.parse(date).Hm.toString(),
+                              Jiffy.parse(date).fromNow().toString(),
                               style: TextStyles.w40011grey(context),
                             ),
                           ],
@@ -179,7 +180,7 @@ class TaskTobBar extends StatelessWidget {
                                       : Colors.red[800],
                                   borderRadius: BorderRadius.circular(10)),
                             ),
-                            SizedBox(width: 10.w),
+                            SizedBox(width: 7.w),
                             Text(
                               isActive ? "active".tr : "inactive".tr,
                               style: TextStyles.w40011grey(context),
