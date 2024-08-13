@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/links.dart';
+import 'package:joblance/core/functions/alerts.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/job_info_model.dart';
@@ -10,26 +11,21 @@ import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/data/remote/favourite_back.dart';
 import 'package:joblance/data/remote/profile_back.dart';
 
-abstract class MyJobsController extends GetxController {
+abstract class FavouriteController extends GetxController {
   getSavedJobs();
   getFavouriteFreelancers();
   getFavoriteTasks();
 }
 
-class MyJobsControllerImpl extends MyJobsController {
+class FavouriteControllerImpl extends FavouriteController {
   StatusRequest? statusRequest, addToFavouriteStatus;
   Myservices myServices = Get.find();
   FavouriteBack favorite = new FavouriteBack(Get.put(Crud()));
   late String token, role, lang, id;
   List<JobModel> jobs = [];
   List<TaskModel> tasks = [];
-  List data = [];
-  List<Widget> tabs = [
-    Tab(
-      text: "jobs".tr,
-    ),
-    Tab(text: "tasks".tr),
-  ];
+  List freelancers = [];
+  late List<Widget> tabs = [];
   ProfileBack profileBack = new ProfileBack(Get.put(Crud()));
 
   @override
@@ -39,8 +35,19 @@ class MyJobsControllerImpl extends MyJobsController {
     role = myServices.sharedPreferences.getString("role_id")!;
     id = myServices.sharedPreferences.getInt("id").toString();
     if (role == "1") {
+      tabs = [
+        Tab(
+          text: "freelancers".tr,
+        ),
+      ];
       getFavouriteFreelancers();
     } else {
+      tabs = [
+        Tab(
+          text: "jobs".tr,
+        ),
+        Tab(text: "tasks".tr),
+      ];
       getSavedJobs();
       getFavoriteTasks();
     }
@@ -49,13 +56,13 @@ class MyJobsControllerImpl extends MyJobsController {
 
   getFavouriteFreelancers() async {
     statusRequest = StatusRequest.loading;
-    var response = await favorite.getFavourite(
-        token, AppLinks.favouriteFreelancer + "?lang=" + lang);
+    var response = await favorite.getFavourite(token,
+        AppLinks.favouriteFreelancer + "?lang=" + lang + "&user_id=" + id);
     statusRequest = handelingData(response);
     print(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        data.addAll(response['data']);
+        freelancers.addAll(response['data']);
       }
     }
     update();
@@ -93,27 +100,27 @@ class MyJobsControllerImpl extends MyJobsController {
     update();
   }
 
-  RemoveFavourite(int id, bool isTask, int index) async {
+  RemoveFavourite(int favId, bool isTask, int index) async {
     addToFavouriteStatus = StatusRequest.loading;
     var response;
     if (!isTask) {
       if (!jobs[index].isFavorite!)
         response = await favorite.addTaskAndJobsToFavourite(
-            token, isTask, {"job_detail_id": id.toString()});
+            token, isTask, {"job_detail_id": favId.toString()});
       else
         response = await favorite.removeTaskAndJobsFromFavourite(
           token,
-          id.toString(),
+          favId.toString(),
           isTask,
         );
     } else {
       if (!tasks[index].isFavourite!)
         response = await favorite.addTaskAndJobsToFavourite(
-            token, isTask, {"task_id": id.toString()});
+            token, isTask, {"task_id": favId.toString()});
       else
         response = await favorite.removeTaskAndJobsFromFavourite(
           token,
-          id.toString(),
+          favId.toString(),
           isTask,
         );
     }
@@ -125,6 +132,24 @@ class MyJobsControllerImpl extends MyJobsController {
         else
           tasks.removeAt(index);
       }
+    }
+    update();
+  }
+
+  RemoveFreelancer(int FreelancerId, int index, BuildContext context) async {
+    print(id);
+    addToFavouriteStatus = StatusRequest.loading;
+    var response = await favorite.removeFreelancerFromFavourite(
+        token, FreelancerId.toString());
+    addToFavouriteStatus = handelingData(response);
+    if (StatusRequest.success == addToFavouriteStatus) {
+      if (response['status'] == "success") {
+        freelancers.removeAt(index);
+      } else {
+        snackBar("", "couldn'tremoveformfavourite".tr, context);
+      }
+    } else {
+      snackBar("", "couldn'tremoveformfavourite".tr, context);
     }
     update();
   }

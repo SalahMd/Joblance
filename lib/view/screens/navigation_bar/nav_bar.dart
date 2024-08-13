@@ -17,7 +17,9 @@ class ButtomBar extends StatelessWidget {
         floatingActionButton: SpeedDial(
           activeIcon: Icons.add,
           icon: Icons.add,
-          backgroundColor: LightAppColors.primaryColor,
+          backgroundColor: controllerImp.subscribed
+              ? LightAppColors.primaryColor
+              : Colors.grey,
           foregroundColor: LightAppColors.whiteColor,
           overlayColor: LightAppColors.blackColor,
           overlayOpacity: 0.5,
@@ -29,7 +31,9 @@ class ButtomBar extends StatelessWidget {
           childrenButtonSize: Size(65.w, 65.h),
           children: [
             SpeedDialChild(
-              backgroundColor: LightAppColors.primaryColor,
+              backgroundColor: controllerImp.subscribed
+                  ? LightAppColors.primaryColor
+                  : Colors.grey,
               labelWidget: Container(
                 child: Text(
                   "task".tr,
@@ -38,17 +42,20 @@ class ButtomBar extends StatelessWidget {
               ),
               shape: CircleBorder(),
               onTap: () {
-                Get.to(AddTask(
-                  image: controllerImp.image!,
-                  name: controllerImp.name!,
-                ));
+                if (controllerImp.subscribed)
+                  Get.to(AddTask(
+                    image: controllerImp.image!,
+                    name: controllerImp.name!,
+                  ));
               },
               child: Icon(Icons.task_outlined,
                   size: 18.sp, color: LightAppColors.whiteColor),
             ),
             controllerImp.role == "1"
                 ? SpeedDialChild(
-                    backgroundColor: LightAppColors.primaryColor,
+                    backgroundColor: controllerImp.subscribed
+                        ? LightAppColors.primaryColor
+                        : Colors.grey,
                     labelWidget: Container(
                       child: Text(
                         "job".tr,
@@ -57,10 +64,11 @@ class ButtomBar extends StatelessWidget {
                     ),
                     shape: CircleBorder(),
                     onTap: () {
-                      Get.to(AddJob(
-                        name: controllerImp.name!,
-                        image: controllerImp.image!,
-                      ));
+                      if (controllerImp.subscribed)
+                        Get.to(AddJob(
+                          name: controllerImp.name!,
+                          image: controllerImp.image!,
+                        ));
                     },
                     child: Icon(Icons.work_outline,
                         size: 18.sp, color: LightAppColors.whiteColor),

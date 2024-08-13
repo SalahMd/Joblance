@@ -335,5 +335,7 @@ Map<String, String> english = {
   "posttasks":"Post tasks",
   "thanksforsubscribing":"Thanks for Subscribing in our app",
   "couldn'tsubscribe":"Couldn't subscribe",
-  "youhavenobalanceinyourwallet":"Your budget's balance less than request's balance"
+  "youhavenobalanceinyourwallet":"Your budget's balance less than request's balance",
+  "couldn'tremoveformfavourite":"Couldn't remove form favourite",
+  "lasttransactions":"Last transactions",
 };

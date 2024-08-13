@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:joblance/controller/my_jobs_controller.dart';
+import 'package:joblance/controller/favourite_controller.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/my_jobs/my_Jobs_tab_bar_view.dart';
@@ -11,9 +11,9 @@ class Favourite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MyJobsControllerImpl());
+    Get.put(FavouriteControllerImpl());
     return Scaffold(
-      body: GetBuilder<MyJobsControllerImpl>(
+      body: GetBuilder<FavouriteControllerImpl>(
         builder: (controller) => DefaultTabController(
           length: controller.tabs.length,
           child: SingleChildScrollView(

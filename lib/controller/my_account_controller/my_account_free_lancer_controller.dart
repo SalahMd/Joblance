@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/animations.dart';
@@ -9,6 +10,7 @@ import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/model/task_model.dart';
+import 'package:joblance/data/model/transaction_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/budget_back.dart';
 import 'package:joblance/data/remote/favourite_back.dart';
@@ -23,6 +25,7 @@ abstract class MyAccountFreelancerController extends GetxController {
   getSkills();
   getUserData();
   refreshPage();
+  getTransactions();
   getBudget();
   getTasks();
 }
@@ -43,6 +46,8 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   List userSkills = [], skills = [];
   List<ProjectOrProductModel> projects = [];
   double balance = 0;
+  List<TransactionModel> transactions = [];
+
   BudgetBack budgetBack = new BudgetBack(Get.put(Crud()));
   List<Widget> tabs = [
     Tab(
@@ -67,6 +72,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     await getProjects();
     await getTasks();
     await getBudget();
+    await getTransactions();
     skill = new TextEditingController();
     super.onInit();
   }
@@ -76,12 +82,14 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     data.clear();
     tasks.clear();
     userSkills.clear();
+    transactions.clear();
     update();
     await getUserData();
     await getProjects();
     await getSkills();
     await getTasks();
     await getBudget();
+    await getTransactions();
   }
 
   getProjects() async {
@@ -265,11 +273,26 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
   @override
   getBudget() async {
     statusRequest = StatusRequest.loading;
-    var response = await budgetBack.getData(token,id);
+    var response = await budgetBack.getData(token, id);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         balance = response['data']["balance"].toDouble();
+      }
+    }
+    update();
+  }
+
+  getTransactions() async {
+    statusRequest = StatusRequest.loading;
+    var response = await budgetBack.getTransactions(token, language, id,
+        Jiffy.now().year.toString(), Jiffy.now().month.toString());
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var data in response['data']) {
+          transactions.add(TransactionModel.fromJson(data));
+        }
       }
     }
     update();

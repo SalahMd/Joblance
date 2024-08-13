@@ -44,7 +44,6 @@ class Notifications extends StatelessWidget {
                 name: "Google",
                 notificationBody:
                     "Google posted a new job (IT engineer) Remote",
-                    
                 notificationDate: "6 hours ago"),
             MyDivider(
               height: 0,

@@ -10,6 +10,7 @@ import 'package:joblance/view/screens/my_account/freelancer/add_skill.dart';
 import 'package:joblance/view/widgets/divider.dart';
 import 'package:joblance/view/widgets/project_design.dart';
 import 'package:joblance/view/widgets/task_design.dart';
+import 'package:joblance/view/widgets/transaction_widget.dart';
 
 class TabBarViewWidgets extends StatelessWidget {
   final MyAccountFreelancerControllerImpl controller;
@@ -172,157 +173,24 @@ Widget about(
                   Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: Text("lasttransmissions".tr)),
-                  SizedBox(height: 20.h),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.background,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "deposit".tr,
-                            style: TextStyles.w50014(context),
-                          ),
-                          SizedBox(height: 10.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "on".tr,
-                                style: TextStyles.w50012(context),
-                              ),
-                              Text(
-                                "2024-2-2",
-                                style: TextStyles.w40011grey(context),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "value".tr,
-                                style: TextStyles.w50012(context),
-                              ),
-                              Text(
-                                "50 \$",
-                                style: TextStyle(
-                                  color: LightAppColors.greenColor,
-                                  fontSize: 12.sp,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  SizedBox(height: 10.h),
                   MyDivider(),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.background,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "deposit".tr,
-                            style: TextStyles.w50014(context),
-                          ),
-                          SizedBox(height: 10.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "on".tr,
-                                style: TextStyles.w50012(context),
-                              ),
-                              Text(
-                                "2024-2-2",
-                                style: TextStyles.w40011grey(context),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "value".tr,
-                                style: TextStyles.w50012(context),
-                              ),
-                              Text(
-                                "80 \$",
-                                style: TextStyle(
-                                  color: LightAppColors.greenColor,
-                                  fontSize: 12.sp,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  MyDivider(),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.background,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "withdrow".tr,
-                            style: TextStyles.w50014(context),
-                          ),
-                          SizedBox(height: 10.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "on".tr,
-                                style: TextStyles.w50012(context),
-                              ),
-                              Text(
-                                "2024-2-2",
-                                style: TextStyles.w40011grey(context),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "value".tr,
-                                style: TextStyles.w50012(context),
-                              ),
-                              Text(
-                                "-50 \$",
-                                style: TextStyle(
-                                  color: Colors.red[800],
-                                  fontSize: 12.sp,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  MyDivider()
+                  ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: controller.transactions.length,
+                      padding: EdgeInsets.zero,
+                      itemBuilder: (context, index) {
+                        return TransactionWidget(
+                          date: controller.transactions[index].date!,
+                          value:
+                              controller.transactions[index].balance.toString(),
+                          transName: controller
+                              .transactions[index].transactionTypeName!,
+                          transId:
+                              controller.transactions[index].transactionTypeId!,
+                        );
+                      })
                 ],
               ),
             )

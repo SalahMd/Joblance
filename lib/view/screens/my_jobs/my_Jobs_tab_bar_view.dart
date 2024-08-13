@@ -1,24 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:joblance/controller/my_jobs_controller.dart';
+import 'package:joblance/controller/favourite_controller.dart';
+import 'package:joblance/view/widgets/freelancer_design.dart';
 import 'package:joblance/view/widgets/job_design.dart';
 import 'package:joblance/view/widgets/task_design.dart';
 
 class MyJobsTabBarView extends StatelessWidget {
-  final MyJobsControllerImpl controller;
+  final FavouriteControllerImpl controller;
   const MyJobsTabBarView({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: TabBarView(children: [
-        favouriteJobs(context, controller),
-        favouriteTasks(context, controller)
-      ]),
+      child: controller.role == "1"
+          ? TabBarView(children: [favouriteFreelancers(context, controller)])
+          : TabBarView(children: [
+              favouriteJobs(context, controller),
+              favouriteTasks(context, controller)
+            ]),
     );
   }
 }
 
-Widget favouriteJobs(BuildContext context, MyJobsControllerImpl controller) {
+Widget favouriteFreelancers(
+    BuildContext context, FavouriteControllerImpl controller) {
+  return ListView.builder(
+    padding: EdgeInsets.zero,
+    shrinkWrap: true,
+    physics: NeverScrollableScrollPhysics(),
+    itemCount: controller.freelancers.length,
+    itemBuilder: (BuildContext context, int index) {
+      return FreeLancerDesign(
+        name: controller.freelancers[index]['first_name'] +
+            " " +
+            controller.freelancers[index]['last_name'],
+        bio: controller.freelancers[index]['bio'],
+        location: controller.freelancers[index]['location'],
+        image: controller.freelancers[index]['image'],
+        major: controller.freelancers[index]['major']['name'],
+        openToWork: controller.freelancers[index]['open_to_work'],
+        id: controller.freelancers[index]['id'],
+        rateLevel: controller.freelancers[index]['rate'],
+        numOfRates: controller.freelancers[index]['counter'],
+        followers: controller.freelancers[index]['followers'],
+        onFavoriteTap: () {
+          controller.RemoveFreelancer(
+              controller.freelancers[index]['id'], index, context);
+        },
+        isFavorite: controller.freelancers[index]['favourited'],
+      );
+    },
+  );
+}
+
+Widget favouriteJobs(BuildContext context, FavouriteControllerImpl controller) {
   return ListView.builder(
       padding: EdgeInsets.zero,
       shrinkWrap: true,
@@ -44,7 +78,8 @@ Widget favouriteJobs(BuildContext context, MyJobsControllerImpl controller) {
       });
 }
 
-Widget favouriteTasks(BuildContext context, MyJobsControllerImpl controller) {
+Widget favouriteTasks(
+    BuildContext context, FavouriteControllerImpl controller) {
   return ListView.builder(
       padding: EdgeInsets.zero,
       shrinkWrap: true,

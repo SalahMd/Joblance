@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:joblance/core/class/crud.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/links.dart';
@@ -9,6 +10,7 @@ import 'package:joblance/data/model/job_info_model.dart';
 import 'package:joblance/data/model/project_or_product_model.dart';
 import 'package:joblance/data/model/review_model.dart';
 import 'package:joblance/data/model/task_model.dart';
+import 'package:joblance/data/model/transaction_model.dart';
 import 'package:joblance/data/remote/add_project_or_product_back.dart';
 import 'package:joblance/data/remote/add_review_back.dart';
 import 'package:joblance/data/remote/budget_back.dart';
@@ -21,6 +23,7 @@ abstract class MyAccountCompanyController extends GetxController {
   getUserData();
   getProduts();
   getBudget();
+  getTransactions();
   getReviews();
   getJobs();
 }
@@ -39,6 +42,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   List<JobModel> jobs = [];
   double balance = 0;
   List<ReviewModel> reviews = [];
+  List<TransactionModel> transactions = [];
   FavouriteBack favourite = new FavouriteBack(Get.put(Crud()));
 
   List<ProjectOrProductModel> products = [];
@@ -68,6 +72,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     await getTasks();
     await getBudget();
     await getJobs();
+    await getTransactions();
     super.onInit();
   }
 
@@ -78,6 +83,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     data.clear();
     jobs.clear();
     reviews.clear();
+    transactions.clear();
     update();
     await getUserData();
     await getProduts();
@@ -85,6 +91,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     await getTasks();
     await getBudget();
     await getJobs();
+    await getTransactions();
   }
 
   @override
@@ -124,8 +131,8 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        for (var reviewData in response['data']) {
-          reviews.add(ReviewModel.fromJson(reviewData));
+        for (var data in response['data']) {
+          reviews.add(ReviewModel.fromJson(data));
         }
       }
     }
@@ -209,6 +216,21 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         balance = response['data']["balance"].toDouble();
+      }
+    }
+    update();
+  }
+
+  getTransactions() async {
+    statusRequest = StatusRequest.loading;
+    var response = await budgetBack.getTransactions(token, lang, id,
+        Jiffy.now().year.toString(), Jiffy.now().month.toString());
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var data in response['data']['transaction']) {
+          transactions.add(TransactionModel.fromJson(data));
+        }
       }
     }
     update();

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:joblance/controller/company_home_page_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/text_styles.dart';
-import 'package:joblance/view/screens/home_page/categories.dart';
 import 'package:joblance/view/screens/home_page/company_home_page/shimmer_company_home_page.dart';
 import 'package:joblance/view/screens/home_page/top_bar.dart';
 import 'package:joblance/view/screens/status_screen.dart';
@@ -45,10 +44,10 @@ class CompanyHomePage extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      "categories".tr,
-                                      style: TextStyles.bold17(context),
-                                    ),
+                                    // Text(
+                                    //   "categories".tr,
+                                    //   style: TextStyles.bold17(context),
+                                    // ),
                                   ],
                                 )),
                           ).animate().fade(duration: 600.ms).slideX(begin: 0.4),
@@ -91,13 +90,13 @@ class CompanyHomePage extends StatelessWidget {
                                     ['counter'],
                                 followers: controller.freelancers[index]
                                     ['followers'],
-                                    
                                 onFavoriteTap: () {
                                   controller.addToFavourite(
-                                    controller.freelancers[index]['id'],index
-                                  );
+                                      controller.freelancers[index]['id'],
+                                      index);
                                 },
-                                isFavorite:controller.freelancers[index]['favourited'] ,
+                                isFavorite: controller.freelancers[index]
+                                    ['favourited'],
                               );
                             },
                           ),

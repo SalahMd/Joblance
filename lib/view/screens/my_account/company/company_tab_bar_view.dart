@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/my_account_controller/my_account_company_controller.dart';
+import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/add_project_or_product/add_project_or_product.dart';
@@ -11,6 +12,7 @@ import 'package:joblance/view/widgets/job_design.dart';
 import 'package:joblance/view/widgets/project_design.dart';
 import 'package:joblance/view/widgets/review_design.dart';
 import 'package:joblance/view/widgets/task_design.dart';
+import 'package:joblance/view/widgets/transaction_widget.dart';
 
 class CompanyTabBarViewWidget extends StatelessWidget {
   final MyAccountCompanyControllerImpl controller;
@@ -239,76 +241,127 @@ Widget tasks(BuildContext context, var controller) {
 
 Widget contactInfo(
     BuildContext context, MyAccountCompanyControllerImpl controller) {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "contactinfo".tr,
-          style: TextStyles.w50017(context),
-        ),
-        SizedBox(
-          height: 30.h,
-        ),
-        Row(
+  return ListView(
+    padding: EdgeInsets.zero,
+    children: [
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(Icons.call_outlined),
-            SizedBox(
-              width: 10.w,
-            ),
             Text(
-              controller.data['phone_number'],
-              style: TextStyles.w50013(context),
-            )
+              "contactinfo".tr,
+              style: TextStyles.w50017(context),
+            ),
+            SizedBox(
+              height: 30.h,
+            ),
+            Row(
+              children: [
+                Icon(Icons.call_outlined),
+                SizedBox(
+                  width: 10.w,
+                ),
+                Text(
+                  controller.data['phone_number'],
+                  style: TextStyles.w50013(context),
+                )
+              ],
+            ),
+            MyDivider(
+              height: 10,
+            ),
+            Row(children: [
+              Icon(Icons.mail_outlined),
+              SizedBox(
+                width: 10.w,
+              ),
+              Expanded(
+                child: Text(
+                  controller.data['email'],
+                  style: TextStyles.w50013(context),
+                ),
+              ),
+            ]),
+            MyDivider(
+              height: 10,
+            ),
+            Row(children: [
+              Icon(Icons.location_on_outlined),
+              SizedBox(
+                width: 10.w,
+              ),
+              Expanded(
+                child: Text(
+                  controller.data['location'],
+                  style: TextStyles.w50013(context),
+                ),
+              ),
+            ]),
+            MyDivider(
+              height: 10,
+            ),
+            Row(children: [
+              Icon(Icons.link_outlined),
+              SizedBox(
+                width: 10.w,
+              ),
+              Expanded(
+                child: Text(
+                  "www.google.com",
+                  style: TextStyles.w50013(context),
+                ),
+              )
+            ]),
+            SizedBox(height: 30.h),
+            Text(
+              "mybudget".tr,
+              style: TextStyles.w50015(context),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Container(
+                //margin: EdgeInsets.symmetric(horizontal: 60.w),
+                padding: EdgeInsets.all(10),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Theme.of(context).colorScheme.primaryContainer),
+                child: Column(children: [
+                  Text(
+                    controller.balance.toString() + "\$",
+                    style: TextStyle(
+                        color: LightAppColors.greenColor,
+                        fontSize: 30.sp,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 10.h),
+                  Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text("lasttransactions".tr)),
+                  SizedBox(height: 10.h),
+                  MyDivider(),
+                  ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: controller.transactions.length,
+                      padding: EdgeInsets.zero,
+                      itemBuilder: (context, index) {
+                        return TransactionWidget(
+                          date: controller.transactions[index].date!,
+                          value:
+                              controller.transactions[index].balance.toString(),
+                          transName: controller
+                              .transactions[index].transactionTypeName!,
+                          transId:
+                              controller.transactions[index].transactionTypeId!,
+                        );
+                      })
+                ]))
           ],
         ),
-        MyDivider(
-          height: 10,
-        ),
-        Row(children: [
-          Icon(Icons.mail_outlined),
-          SizedBox(
-            width: 10.w,
-          ),
-          Expanded(
-            child: Text(
-              controller.data['email'],
-              style: TextStyles.w50013(context),
-            ),
-          ),
-        ]),
-        MyDivider(
-          height: 10,
-        ),
-        Row(children: [
-          Icon(Icons.location_on_outlined),
-          SizedBox(
-            width: 10.w,
-          ),
-          Expanded(
-            child: Text(
-              controller.data['location'],
-              style: TextStyles.w50013(context),
-            ),
-          ),
-        ]),
-        MyDivider(
-          height: 10,
-        ),
-        Row(children: [
-          Icon(Icons.link_outlined),
-          SizedBox(
-            width: 10.w,
-          ),
-          Expanded(
-            child: Text(
-              "www.google.com",
-              style: TextStyles.w50013(context),
-            ),
-          )
-        ])
-      ],
-    ),
+      ),
+    ],
   );
 }
