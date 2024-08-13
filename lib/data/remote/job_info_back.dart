@@ -5,7 +5,7 @@ class JobBack {
   Crud crud;
   JobBack(this.crud);
 
-  getData(var token, String link) async {
+  getData(String token, String link) async {
     var response = await crud.postAndGetData(
         link,
         {},
@@ -17,7 +17,7 @@ class JobBack {
     return response.fold((l) => l, (r) => r);
   }
 
-  postData(var token, Map data) async {
+  postData(String token, Map data) async {
     var response = await crud.postAndGetData(
         AppLinks.jobInfo,
         data,
@@ -29,7 +29,7 @@ class JobBack {
     return response.fold((l) => l, (r) => r);
   }
 
-  updateData(var token, String id, Map data) async {
+  updateData(String token, String id, Map data) async {
     var response = await crud.putData(
       AppLinks.jobInfo + "/" + id,
       data,
@@ -45,13 +45,28 @@ class JobBack {
 
   deleteData(
     String id,
-    var token,
+    String token,
   ) async {
     var response = await crud.deleteData(
       AppLinks.jobInfo + "/" + id,
       {},
       {'Authorization': 'Bearer $token'},
     );
+    return response.fold((l) => l, (r) => r);
+  }
+
+  addToImportantJobs(
+    String id,
+    String token,
+  ) async {
+    var response = await crud.postAndGetData(
+        AppLinks.importantJob,
+        {},
+        {'Authorization': 'Bearer $token', "accept": "application/json"},
+        null,
+        true,
+        false,
+        null);
     return response.fold((l) => l, (r) => r);
   }
 }

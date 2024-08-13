@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:joblance/controller/job_info_controller.dart';
 import 'package:joblance/core/class/statusrequest.dart';
+import 'package:joblance/core/constants/buttons.dart';
+import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/view/screens/add_to_important_job.dart';
 import 'package:joblance/view/screens/job_info/about_company.dart';
 import 'package:joblance/view/screens/job_info/about_job.dart';
 import 'package:joblance/view/screens/job_info/additiona_info.dart';
@@ -51,8 +54,26 @@ class JobInfo extends StatelessWidget {
                             controller.buttonFunction(id);
                           },
                         ),
-                        SizedBox(
-                          height: 5.h,
+                        Visibility(
+                          visible: controller.isOwner,
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.to(AddToImportantJob());
+                            },
+                            child: Center(
+                              child: Container(
+                                margin: EdgeInsets.symmetric(vertical: 15.h),
+                                width: 140.w,
+                                height: 35.h,
+                                alignment: Alignment.center,
+                                decoration: AppButtons.buttonDecoration,
+                                child: Text(
+                                  "addtoimportanjob".tr,
+                                  style: TextStyles.w50013White(context),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                         AboutCompany(),
                         AboutJob(

@@ -19,11 +19,12 @@ abstract class JobInfoController extends GetxController {
   getJobInfo();
   deleteJob();
   updateJob();
+  addToImportantJobs();
 }
 
 class JobInfoControllerImpl extends JobInfoController {
   Myservices myServices = Get.find();
-  StatusRequest? statusRequest;
+  StatusRequest? statusRequest, addToImportantJobsStatus;
   final int jobId;
   late int userId;
   JobBack jobInfoBack = new JobBack(Get.put(Crud()));
@@ -129,6 +130,28 @@ class JobInfoControllerImpl extends JobInfoController {
       Get.to(ApplayJobPage(
         JobId: id,
       ));
+    }
+  }
+
+  addToImportantJobs() async {
+    addToImportantJobsStatus = StatusRequest.loading;
+    animationedAlert(AppAnimations.loadings, "pleasewait".tr);
+    var response =
+        await jobInfoBack.addToImportantJobs(jobId.toString(), token);
+    addToImportantJobsStatus = handelingData(response);
+    Get.back();
+    if (StatusRequest.success == addToImportantJobsStatus) {
+      if (response['status'] == "success") {
+        Get.back();
+        animationedAlert(
+            AppAnimations.done, "yourjobhassbeenaddedtoimportantjobs".tr);
+      }else{
+         animationedAlert(
+            AppAnimations.done, "couldn'taddtoimportantjobs".tr);
+      }
+    }else{
+      animationedAlert(
+            AppAnimations.done, "couldn'taddtoimportantjobs".tr);
     }
   }
 }

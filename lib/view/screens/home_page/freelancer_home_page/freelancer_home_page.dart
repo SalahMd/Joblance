@@ -8,6 +8,7 @@ import 'package:joblance/core/class/statusrequest.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/alerts.dart';
+import 'package:joblance/view/screens/all_important_jobs.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/shimmer_freelancer_home_page.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/swiper.dart';
 import 'package:joblance/view/screens/home_page/freelancer_home_page/tasks.dart';
@@ -54,11 +55,17 @@ class FreelancerHomePage extends StatelessWidget {
                                         "popularjobs".tr,
                                         style: TextStyles.bold17(context),
                                       ),
-                                      Text(
-                                        "showall".tr,
-                                        style: TextStyle(
-                                            color: LightAppColors.primaryColor,
-                                            fontSize: 12.sp),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Get.to(AllImportantJobs());
+                                        },
+                                        child: Text(
+                                          "showall".tr,
+                                          style: TextStyle(
+                                              color:
+                                                  LightAppColors.primaryColor,
+                                              fontSize: 12.sp),
+                                        ),
                                       ),
                                     ],
                                   )),
