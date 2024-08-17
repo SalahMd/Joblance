@@ -18,4 +18,32 @@ class JobApplicantsBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
+  acceptUser(String token, Map data) async {
+    var response = await crud.postAndGetData(
+        AppLinks.acceptedJobs,
+        data,
+        {
+          'Authorization': 'Bearer $token',
+        },
+        null,
+        true,
+        false,
+        null);
+    return response.fold((l) => l, (r) => r);
+  }
+     getData(
+    String token,
+    String id,
+    String lang
+  ) async {
+    var response = await crud.postAndGetData(
+        AppLinks.jobApplications+"/"+id+"?lang="+lang,
+        {},
+        {'Authorization': 'Bearer $token', "accept": "application/json"},
+        null,
+        false,
+        false,
+        null);
+    return response.fold((l) => l, (r) => r);
+  }
 }

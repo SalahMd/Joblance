@@ -31,7 +31,7 @@ class TabBarViewWidgets extends StatelessWidget {
 Widget tasks(BuildContext context, var controller) {
   return RefreshIndicator(
     onRefresh: () async {
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 1));
       controller.refreshPage();
     },
     child: SingleChildScrollView(

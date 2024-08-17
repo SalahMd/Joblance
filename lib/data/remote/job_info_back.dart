@@ -61,7 +61,7 @@ class JobBack {
   ) async {
     var response = await crud.postAndGetData(
         AppLinks.importantJob,
-        {},
+        {"job_detail_id": id, "budget": "1"},
         {'Authorization': 'Bearer $token', "accept": "application/json"},
         null,
         true,

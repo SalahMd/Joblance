@@ -12,7 +12,6 @@ import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/core/functions/handeling_data.dart';
 import 'package:joblance/core/services/services.dart';
 import 'package:joblance/data/remote/task_back.dart';
-import 'package:joblance/view/widgets/chips_choice.dart';
 
 abstract class TaskOffersController extends GetxController {
   getOffers();
@@ -131,7 +130,7 @@ class TaskOffersControllerImpl extends TaskOffersController {
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options:['shortest'.tr,'longest'.tr]),
+        //ChipsChoices(options:['shortest'.tr,'longest'.tr]),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
@@ -139,10 +138,10 @@ class TaskOffersControllerImpl extends TaskOffersController {
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: [
-          "highest".tr,
-          "lowest".tr,
-        ]),
+        // ChipsChoices(options: [
+        //   "highest".tr,
+        //   "lowest".tr,
+        // ]),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
@@ -150,7 +149,7 @@ class TaskOffersControllerImpl extends TaskOffersController {
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options:['highest'.tr,'lowest'.tr]),
+       // ChipsChoices(options:['highest'.tr,'lowest'.tr]),
         InkWell(
           onTap: () {
             Get.back();

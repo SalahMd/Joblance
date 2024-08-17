@@ -39,44 +39,51 @@ class FreelancerHomePage extends StatelessWidget {
                               name: controller.name,
                               image: controller.image,
                             ),
-                            Align(
-                              alignment: AlignmentDirectional.centerStart,
-                              child: Padding(
-                                  padding: EdgeInsetsDirectional.only(
-                                    start: 15.w,
-                                    top: 15.h,
-                                    end: 15.w,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "popularjobs".tr,
-                                        style: TextStyles.bold17(context),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Get.to(AllImportantJobs());
-                                        },
-                                        child: Text(
-                                          "showall".tr,
-                                          style: TextStyle(
-                                              color:
-                                                  LightAppColors.primaryColor,
-                                              fontSize: 12.sp),
+                            Visibility(
+                              visible: controller.importantJobs.isNotEmpty,
+                              child: Align(
+                                alignment: AlignmentDirectional.centerStart,
+                                child: Padding(
+                                    padding: EdgeInsetsDirectional.only(
+                                      start: 15.w,
+                                      top: 15.h,
+                                      end: 15.w,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "popularjobs".tr,
+                                          style: TextStyles.bold17(context),
                                         ),
-                                      ),
-                                    ],
-                                  )),
-                            )
-                                .animate()
-                                .fade(duration: 600.ms)
-                                .slideX(begin: 0.4),
-                            Swiper()
-                                .animate()
-                                .fade(duration: 600.ms)
-                                .scaleXY(begin: 0.8),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Get.to(AllImportantJobs());
+                                          },
+                                          child: Text(
+                                            "showall".tr,
+                                            style: TextStyle(
+                                                color:
+                                                    LightAppColors.primaryColor,
+                                                fontSize: 12.sp),
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                              )
+                                  .animate()
+                                  .fade(duration: 600.ms)
+                                  .slideX(begin: 0.4),
+                            ),
+                            controller.importantJobs.isNotEmpty
+                                ? Swiper(
+                                    controller: controller,
+                                  )
+                                    .animate()
+                                    .fade(duration: 600.ms)
+                                    .scaleXY(begin: 0.8)
+                                : Container(),
                             Align(
                               alignment: AlignmentDirectional.centerStart,
                               child: Padding(

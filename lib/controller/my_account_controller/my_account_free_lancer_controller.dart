@@ -135,22 +135,19 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
       AppLinks.skills + "?id=" + id,
       token,
     );
-    var response2 = await freelancerAccount.getSkills(
-      AppLinks.tag + "?id=" + id,
-      token,
-    );
+
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         userSkills.addAll(response['data']);
       }
     } else {}
-    statusRequest = handelingData(response2);
-    if (StatusRequest.success == statusRequest) {
-      if (response2['status'] == "success") {
-        userSkills.addAll(response2['data']);
-      }
-    } else {}
+    // statusRequest = handelingData(response2);
+    // if (StatusRequest.success == statusRequest) {
+    //   if (response2['status'] == "success") {
+    //     userSkills.addAll(response2['data']);
+    //   }
+    // } else {}
     update();
   }
 
@@ -290,7 +287,7 @@ class MyAccountFreelancerControllerImpl extends MyAccountFreelancerController {
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        for (var data in response['data']) {
+        for (var data in response['data']['transaction']) {
           transactions.add(TransactionModel.fromJson(data));
         }
       }

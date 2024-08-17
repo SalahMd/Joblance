@@ -51,7 +51,7 @@ class ChoosePlanControllerImpl extends ChoosePlanController {
     Get.back();
     if (StatusRequest.success == subscriptionStatus) {
       if (response['status'] == "success") {
-        Get.to("HomePage");
+        Get.toNamed("HomePage");
         animationedAlert(
           AppAnimations.done,
           "thanksforsubscribing".tr,

@@ -47,5 +47,9 @@ class AppLinks {
   static String get subscription => "$IP/api/subscription";
   static String get price => "$IP/api/price";
   static String get transactions => "$IP/api/users";
-  static String get importantJob => "$IP/api/important_jobs";
+  static String get importantJob => "$IP/api/important_job";
+  static String get acceptedJobs => "$IP/api/accepted_jobs";
+  static String get notification => "$IP/api/user/newnotifications";
+  static String get acceptedTasks => "$IP/api/acceptedUserTask";
+  static String get jobApplications => "$IP/api/jobApplication";
 }

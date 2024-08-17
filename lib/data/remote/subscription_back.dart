@@ -10,7 +10,7 @@ class SubscriptionBack {
         AppLinks.price +"?lang=" + lang,
         {},
         {
-          'Authorization': 'Bearer $token',
+          'Authorization': 'Bearer $token', "accept": "application/json"
         },
         null,
         false,
@@ -23,7 +23,7 @@ class SubscriptionBack {
         AppLinks.subscription,
         data,
         {
-          'Authorization': 'Bearer $token',
+          'Authorization': 'Bearer $token', "accept": "application/json"
         },
         null,
         true,

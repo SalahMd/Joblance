@@ -34,14 +34,14 @@ class ProfileBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
-  getSubscription(String token)async{
+  getSubscription(String token,String lang)async{
       var response = await crud.postAndGetData(
-        "${AppLinks.subscription}",
+        "${AppLinks.subscription+"?lang="+lang}",
         
         {
         },
         {
-          'Authorization': 'Bearer $token',
+          'Authorization': 'Bearer $token', "accept": "application/json"
         },
         null,
         false,

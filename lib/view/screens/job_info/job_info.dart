@@ -63,7 +63,7 @@ class JobInfo extends StatelessWidget {
                             child: Center(
                               child: Container(
                                 margin: EdgeInsets.symmetric(vertical: 15.h),
-                                width: 140.w,
+                                width: 160.w,
                                 height: 35.h,
                                 alignment: Alignment.center,
                                 decoration: AppButtons.buttonDecoration,

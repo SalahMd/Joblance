@@ -61,12 +61,15 @@ class JobApplicants extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, i) {
                   return JobApplicantDesign(
-                      name: controller.applicants[i].name!,
+                      name: controller.applicants[i].firstName! +
+                          " " +
+                          controller.applicants[i].lastName!,
                       email: controller.applicants[i].email!,
                       major: controller.applicants[i].majorName!,
                       date: controller.applicants[i].createdAt!,
                       image: controller.applicants[i].image!,
                       coverLetter: controller.applicants[i].coverLetter,
+                      experience: "2",
                       id: controller.applicants[i].id.toString());
                 })
           ],

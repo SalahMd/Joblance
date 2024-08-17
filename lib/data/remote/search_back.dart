@@ -15,7 +15,8 @@ class SearchBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
-   getExperience(String token, String language) async {
+
+  getExperience(String token, String language) async {
     var response = await crud.postAndGetData(
         AppLinks.jobExperience + "?lang=" + language,
         {},
@@ -26,4 +27,21 @@ class SearchBack {
         null);
     return response.fold((l) => l, (r) => r);
   }
+
+  search(String token, String link) async {
+    var response = await crud.postAndGetData(
+        link, {}, {'Authorization': 'Bearer $token'}, null, false, false, null);
+    return response.fold((l) => l, (r) => r);
+  }
+  // getJobTypes(String token,String language,)async{
+  //    var response = await crud.postAndGetData(
+  //       AppLinks.jobExperience,
+  //       {},
+  //       {'Authorization': 'Bearer $token'},
+  //       null,
+  //       false,
+  //       false,
+  //       null);
+  //   return response.fold((l) => l, (r) => r);
+  // }
 }

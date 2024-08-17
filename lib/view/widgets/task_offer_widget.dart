@@ -125,9 +125,8 @@ class TaskOfferWidget extends StatelessWidget {
           height: 5.h,
         ),
         Text("offerinfo".tr, style: TextStyles.w40011(context)),
-        Text(
-            "offerInfo dwaoidn oiwnd oiawoid oaw dwoa doawodiawoid awo doi dawj kdjwa i wia diua widuawiud awii diuuaw",
-            maxLines: 2,
+        Text(offerInfo,
+            maxLines: 6,
             overflow: TextOverflow.ellipsis,
             style: TextStyles.w40011grey(context)),
         onAccepted != null

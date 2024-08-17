@@ -20,7 +20,8 @@ class TobBar extends StatelessWidget {
     required this.image,
     required this.name,
     required this.description,
-    this.isMyAccount = false, required this.followers,
+    this.isMyAccount = false,
+    required this.followers,
   });
 
   @override
@@ -91,24 +92,24 @@ class TobBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 5.h,
+                    height: 3.h,
                   ),
                   Text(
                     name,
                     style: TextStyles.w50017(context),
                   ),
                   SizedBox(
-                    height: 5.h,
+                    height: 3.h,
                   ),
                   Text(
                     description,
                     style: TextStyles.w50012(context),
                   ),
                   SizedBox(
-                    height: 5.h,
+                    height: 3.h,
                   ),
                   Text(
-                   followers.toString() ,
+                    followers.toString() + " " + "followers".tr,
                     style: TextStyles.w40012grey(context),
                   ),
                 ])),

@@ -74,14 +74,18 @@ class Settings extends StatelessWidget {
                                 trailingIcon: Icons.arrow_forward_ios_outlined,
                                 listText: "favourite".tr),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(AcceptedTasks());
-                            },
-                            child: ListTiles(
-                                leadingIcon: Icons.work_outline,
-                                trailingIcon: Icons.arrow_forward_ios_outlined,
-                                listText: "tasks".tr),
+                          Visibility(
+                            visible: controller.role == "2",
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.to(AcceptedTasks());
+                              },
+                              child: ListTiles(
+                                  leadingIcon: Icons.work_outline,
+                                  trailingIcon:
+                                      Icons.arrow_forward_ios_outlined,
+                                  listText: "tasks".tr),
+                            ),
                           ),
                           Visibility(
                             visible: controller.role == "2",

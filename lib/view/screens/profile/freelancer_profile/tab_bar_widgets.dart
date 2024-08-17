@@ -215,18 +215,6 @@ Widget contactInfo(context, controller) {
         MyDivider(
           height: 10,
         ),
-        Row(children: [
-          Icon(Icons.link_outlined),
-          SizedBox(
-            width: 10.w,
-          ),
-          Expanded(
-            child: Text(
-              "www.google.com",
-              style: TextStyles.w50013(context),
-            ),
-          )
-        ])
       ],
     ),
   );

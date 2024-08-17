@@ -16,6 +16,7 @@ abstract class FreelancerHomePageController extends GetxController {
   getJobs();
   addRemoveFavourite(int id, bool isTask, int index);
   getTasks();
+  getImportantJobs();
   refreshPage();
 }
 
@@ -28,6 +29,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   Myservices myservices = Get.find();
   List<TaskModel> tasks = [];
   List<JobModel> jobs = [];
+  List<JobModel> importantJobs = [];
   TaskBack taskBack = new TaskBack(Get.put(Crud()));
   FavouriteBack favourite = new FavouriteBack(Get.put(Crud()));
   @override
@@ -39,6 +41,7 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
     await getFreelancerInfo();
     await getTasks();
     await getJobs();
+    await getImportantJobs();
   }
 
   getFreelancerInfo() async {
@@ -76,9 +79,11 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
   refreshPage() async {
     tasks.clear();
     jobs.clear();
+    importantJobs.clear();
     await getFreelancerInfo();
     await getTasks();
     await getJobs();
+    await getImportantJobs();
   }
 
   @override
@@ -128,6 +133,21 @@ class FreelancerHomePageControllerImpl extends FreelancerHomePageController {
           jobs[index].isFavorite = !jobs[index].isFavorite!;
         else
           tasks[index].isFavourite = !tasks[index].isFavourite!;
+      }
+    }
+    update();
+  }
+
+  getImportantJobs() async {
+    statusRequest = StatusRequest.loading;
+    var response = await jobBack.getData(
+        token, AppLinks.importantJob + "?lang=" + language);
+    statusRequest = handelingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        for (var data in response['data']) {
+          importantJobs.add(JobModel.fromJson(data));
+        }
       }
     }
     update();

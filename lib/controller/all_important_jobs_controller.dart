@@ -16,30 +16,30 @@ abstract class AllImportantJobsController extends GetxController {
 class AllImportantJobsControllerImpl extends AllImportantJobsController {
   StatusRequest? statusRequest, addToFavouriteStatus;
   JobBack jobBack = new JobBack(Get.put(Crud()));
-  late String language, token, id, name, image;
+  late String language, token;
   Myservices myservices = Get.find();
   FavouriteBack favourite = new FavouriteBack(Get.put(Crud()));
-  List<JobModel> jobs = [];
+  List<JobModel> iJobs = [];
 
   @override
   void onInit() async {
+    statusRequest = StatusRequest.loading;
+    update();
     token = myservices.sharedPreferences.getString("token")!;
-    id = myservices.sharedPreferences.getInt("id").toString();
     language = myservices.sharedPreferences.getString("lang")!;
-    super.onInit();
     await getImportantJobs();
+    super.onInit();
   }
 
-  @override
-  getImportantJobs()async {
+  getImportantJobs() async {
     statusRequest = StatusRequest.loading;
-    var response =
-        await jobBack.getData(token, AppLinks.importantJob + "?lang=" + language);
+    var response = await jobBack.getData(
+        token, AppLinks.importantJob + "?lang=" + language);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         for (var data in response['data']) {
-          jobs.add(JobModel.fromJson(data));
+          iJobs.add(JobModel.fromJson(data));
         }
       }
     }
@@ -50,9 +50,9 @@ class AllImportantJobsControllerImpl extends AllImportantJobsController {
   addRemoveFavourite(int id, int index) async {
     addToFavouriteStatus = StatusRequest.loading;
     var response;
-    if (!jobs[index].isFavorite!)
-      response = await favourite
-          .addTaskAndJobsToFavourite(token, false, {"job_detail_id": id.toString()});
+    if (!iJobs[index].isFavorite!)
+      response = await favourite.addTaskAndJobsToFavourite(
+          token, false, {"job_detail_id": id.toString()});
     else
       response = await favourite.removeTaskAndJobsFromFavourite(
         token,
@@ -62,7 +62,7 @@ class AllImportantJobsControllerImpl extends AllImportantJobsController {
     addToFavouriteStatus = handelingData(response);
     if (StatusRequest.success == addToFavouriteStatus) {
       if (response['status'] == "success") {
-        jobs[index].isFavorite = !jobs[index].isFavorite!;
+        iJobs[index].isFavorite = !iJobs[index].isFavorite!;
       }
     }
     update();

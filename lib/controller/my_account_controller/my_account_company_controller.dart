@@ -98,7 +98,7 @@ class MyAccountCompanyControllerImpl extends MyAccountCompanyController {
   getJobs() async {
     statusRequest = StatusRequest.loading;
     var response = await jobBack.getData(
-        token, AppLinks.jobInfo + "?lang=" + lang + "&&company_id=" + id);
+        token, AppLinks.jobInfo + "?lang=" + lang + "&company_id=" + id);
     statusRequest = handelingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

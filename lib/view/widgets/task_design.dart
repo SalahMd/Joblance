@@ -5,6 +5,7 @@ import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/constants/text_styles.dart';
+import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/view/screens/task_info/task_page.dart';
 
 class TaskDesign extends StatelessWidget {
@@ -18,6 +19,7 @@ class TaskDesign extends StatelessWidget {
   final bool isActive;
   final int taskId, id;
   final bool? isFavourite;
+  final bool? isHomePage;
   final void Function()? onFavouriteTap;
   const TaskDesign(
       {super.key,
@@ -32,6 +34,7 @@ class TaskDesign extends StatelessWidget {
       required this.taskId,
       required this.id,
       this.isFavourite,
+      this.isHomePage,
       this.onFavouriteTap});
 
   @override
@@ -44,6 +47,7 @@ class TaskDesign extends StatelessWidget {
         ));
       },
       child: Container(
+        width: isHomePage != null ? 250.w : Dimensions.screenWidth(context),
         alignment: Alignment.topRight,
         padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10),
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10),
@@ -71,7 +75,7 @@ class TaskDesign extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             child: Image.network(
                               AppLinks.IP + image,
-                              fit: BoxFit.fill,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),

@@ -34,20 +34,29 @@ class AddToImportantJob extends StatelessWidget {
               ),
             ]),
           )),
-          SizedBox(height: 10.h),
-          Text(
-            "thiswilladdyourjobtoimportantjobslist".tr,
-            style: TextStyles.w50015(context),
+          SizedBox(height: 30.h),
+          Padding(
+            padding: EdgeInsetsDirectional.only(start: 8.w),
+            child: Text(
+              "thiswilladdyourjobtoimportantjobslist".tr,
+              style: TextStyles.w50017(context),
+            ),
           ),
           SizedBox(height: 10.h),
-          Text(
-            "importantjobexplain".tr,
-            style: TextStyles.w40014grey(context),
+          Padding(
+            padding: EdgeInsetsDirectional.symmetric(horizontal: 8.w),
+            child: Text(
+              "importantjobexplain".tr,
+              style: TextStyles.w40013grey(context),
+            ),
           ),
           SizedBox(height: 20.h),
-          Text(
-            "pleasechoosepaymentmethod".tr,
-            style: TextStyles.w50014(context),
+          Padding(
+            padding: EdgeInsetsDirectional.only(start: 8.w),
+            child: Text(
+              "pleasechoosepaymentmethod".tr,
+              style: TextStyles.w50014(context),
+            ),
           ),
           SizedBox(height: 10.h),
           Padding(
@@ -56,33 +65,33 @@ class AddToImportantJob extends StatelessWidget {
               builder: (controller) => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Expanded(
-                      child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10.w),
-                    height: 35.h,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Row(
-                      children: [
-                        Container(
-                            width: 30.w,
-                            height: 30.h,
-                            child: Image.asset(
-                              AppImages.paypalLogo,
-                              fit: BoxFit.fill,
-                            )),
-                        SizedBox(
-                          width: 5.w,
-                        ),
-                        Text(
-                          "paypal".tr,
-                          style: TextStyles.w50013(context),
-                        )
-                      ],
-                    ),
-                  )),
+                  // Expanded(
+                  //     child: Container(
+                  //   margin: EdgeInsets.symmetric(horizontal: 10.w),
+                  //   height: 35.h,
+                  //   alignment: Alignment.center,
+                  //   decoration: BoxDecoration(
+                  //       color: Theme.of(context).colorScheme.primaryContainer,
+                  //       borderRadius: BorderRadius.circular(20)),
+                  //   child: Row(
+                  //     children: [
+                  //       Container(
+                  //           width: 30.w,
+                  //           height: 30.h,
+                  //           child: Image.asset(
+                  //             AppImages.paypalLogo,
+                  //             fit: BoxFit.fill,
+                  //           )),
+                  //       SizedBox(
+                  //         width: 5.w,
+                  //       ),
+                  //       Text(
+                  //         "paypal".tr,
+                  //         style: TextStyles.w50013(context),
+                  //       )
+                  //     ],
+                  //   ),
+                  // )),
                   Expanded(
                       child: GestureDetector(
                     onTap: () {

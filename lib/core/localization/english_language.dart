@@ -346,5 +346,15 @@ Map<String, String> english = {
   "pleasechoosepaymentmethod":"Please choose a payment method",
   "yourjobhassbeenaddedtoimportantjobs":"Your job has been added to important jobs",
   "couldn'taddtoimportantjobs":"Could't add your job to important jobs",
-  "importantjobexplain":"Your job will appears in the important jobs list for 10 days\nIt will reaches the most avaliable users\nIt coasts only 10 \$"
+  "importantjobexplain":"Your job will appears in the important jobs list for 10 days\nIt will reaches the most avaliable users\nIt coasts only 10 \$",
+  "could'tacceptuser":"Could't accept user",
+  "thisuserisaccepted":"This user already accepted in this job",
+  "theuserisacceptedandrecivedanemail":"The user is accepted and recived an email",
+  "youarenotacceptedinanytask":"You are not accepted in any task",
+
+"userhasbeenaccepted":"User has been accepted",
+"couldn'tacceptuser":"Couldn't accept user",
+"freelancers":"Freelancers",
+"downloadedsuccessfully":"Downloaded successfully",
+"could'tdownload":"Could not download"
 };

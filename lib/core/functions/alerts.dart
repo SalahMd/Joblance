@@ -341,12 +341,15 @@ snackBar(String title, String message, BuildContext context) {
 }
 
 Future<bool> popUp(
-  BuildContext context,
-  List<String> jobTypes,
-  List<String> remote,
-  List<String> experience,
-  List<String> majors,
-) {
+    BuildContext context,
+    List<Map<String, String>> jobTypes,
+    List<Map<String, String>> remote,
+    List<Map<String, String>> experience,
+    List<Map<String, String>> majors,
+    void Function() tap,
+    bool isJob
+    //List search
+    ) {
   Get.bottomSheet(Container(
     width: Dimensions.screenWidth(context),
     decoration: BoxDecoration(
@@ -387,58 +390,93 @@ Future<bool> popUp(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: majors),
-        Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
-          child: Text(
-            "type".tr,
-            style: TextStyles.w50015(context),
-          ),
-        ),
-        ChipsChoices(options: [
-          "task".tr,
-          "job".tr,
-        ]),
+        ChipsChoices(options: majors, search: 'majors'),
+
         //SizedBox(height:10.h),
-        Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
-          child: Text(
-            "jobtype".tr,
-            style: TextStyles.w50015(context),
+        Visibility(
+          visible: isJob,
+          child: Padding(
+            padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+            child: Text(
+              "jobtype".tr,
+              style: TextStyles.w50015(context),
+            ),
           ),
         ),
-        ChipsChoices(options: jobTypes),
-        Padding(
-          padding: EdgeInsetsDirectional.symmetric(
-            horizontal: 10.w,
-          ),
-          child: Text(
-            "jobexperince".tr,
-            style: TextStyles.w50015(context),
+         Visibility(
+          visible: isJob,
+          child: ChipsChoices(
+            options: jobTypes,
+            search: 'jobtype',
           ),
         ),
-        ChipsChoices(options: experience),
-        Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
-          child: Text(
-            "remote".tr,
-            style: TextStyles.w50015(context),
+   Visibility(
+          visible: isJob,
+          child: Padding(
+            padding: EdgeInsetsDirectional.symmetric(
+              horizontal: 10.w,
+            ),
+            child: Text(
+              "jobexperince".tr,
+              style: TextStyles.w50015(context),
+            ),
           ),
         ),
-        ChipsChoices(options: remote),
-        Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
-          child: Text(
-            "dateposted".tr,
-            style: TextStyles.w50015(context),
+         Visibility(
+          visible: isJob,
+          child: ChipsChoices(
+            options: experience,
+            search: 'experience',
           ),
         ),
-        ChipsChoices(options: [
-          "lastweek".tr,
-          "lastmonth".tr,
-        ]),
+         Visibility(
+          visible: isJob,
+          child: Padding(
+            padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+            child: Text(
+              "remote".tr,
+              style: TextStyles.w50015(context),
+            ),
+          ),
+        ),
+        Visibility(
+          visible: isJob,
+          child: ChipsChoices(
+            options: remote,
+            search: 'remote',
+          ),
+        ),
+         Visibility(
+          visible: !isJob,
+          child: Padding(
+            padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+            child: Text(
+              "duration".tr,
+              style: TextStyles.w50015(context),
+            ),
+          ),
+        ),
+        Visibility(
+          visible: !isJob,
+          child: ChipsChoices(
+            options: [{"0":'high'.tr},{"1":'low'.tr}],
+            search: 'duration',
+          ),
+        ),
+        // Padding(
+        //   padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+        //   child: Text(
+        //     "dateposted".tr,
+        //     style: TextStyles.w50015(context),
+        //   ),
+        // ),
+        // ChipsChoices(options: [
+        //   "lastweek".tr,
+        //   "lastmonth".tr,
+        // ]),
         InkWell(
           onTap: () {
+            tap();
             Get.back();
           },
           child: Container(
@@ -504,12 +542,12 @@ Future<bool> applicantsFilter(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: [
-          "1 year".tr,
-          "2 years".tr,
-          "3 years".tr,
-          "4 and above".tr
-        ]),
+        // ChipsChoices(options: [
+        //   "1 year".tr,
+        //   "2 years".tr,
+        //   "3 years".tr,
+        //   "4 and above".tr
+        // ]),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
@@ -517,10 +555,10 @@ Future<bool> applicantsFilter(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: [
-          "hightolow".tr,
-          "lowtohigh".tr,
-        ]),
+        // ChipsChoices(options: [
+        //   "hightolow".tr,
+        //   "lowtohigh".tr,
+        // ]),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
@@ -528,10 +566,10 @@ Future<bool> applicantsFilter(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: [
-          "male".tr,
-          "female".tr,
-        ]),
+        // ChipsChoices(options: [
+        //   "male".tr,
+        //   "female".tr,
+        // ]),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
@@ -539,10 +577,10 @@ Future<bool> applicantsFilter(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: [
-          "male".tr,
-          "female".tr,
-        ]),
+        // ChipsChoices(options: [
+        //   "male".tr,
+        //   "female".tr,
+        // ]),
         Padding(
           padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
           child: Text(
@@ -550,10 +588,10 @@ Future<bool> applicantsFilter(
             style: TextStyles.w50015(context),
           ),
         ),
-        ChipsChoices(options: [
-          "new".tr,
-          "old".tr,
-        ]),
+        // ChipsChoices(options: [
+        //   "new".tr,
+        //   "old".tr,
+        // ]),
         InkWell(
           onTap: () {
             Get.back();

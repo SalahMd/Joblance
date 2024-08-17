@@ -89,7 +89,7 @@ class ButtomBarControllerImp extends ButtomBarController {
 
   getSubscription() async {
     statusRequest = StatusRequest.loading;
-    var response = await profileBack.getSubscription(token!);
+    var response = await profileBack.getSubscription(token!, lang!);
     statusRequest = handelingData(response);
     update();
     if (StatusRequest.success == statusRequest) {

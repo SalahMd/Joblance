@@ -29,7 +29,8 @@ class Categories extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) =>
                     GestureDetector(
                       onTap: () {
-                        Get.to(CategoryScreen(
+                       Get.to(
+                          CategoryScreen(
                             id: controller.majors[index].id!,
                             name: controller.majors[index].name!));
                       },
@@ -49,7 +50,7 @@ class Categories extends StatelessWidget {
                                 height: 30.h,
                                 child: Image.network(
                                   AppLinks.IP +
-                                      "/" +
+                                      
                                       controller.majors[index].image!,
                                   color: LightAppColors.primaryColor,
                                   width: 30.w,

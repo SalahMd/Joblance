@@ -127,15 +127,15 @@ class SignUpControllerImpl extends SignUpController {
     ),
     DropdownMenuItem<String>(
       value: '2',
-      child: Text("technology".tr),
+      child: Text("medical".tr),
     ),
     DropdownMenuItem<String>(
       value: '3',
-      child: Text("designing".tr),
+      child: Text("technology".tr),
     ),
     DropdownMenuItem<String>(
       value: '4',
-      child: Text("medical".tr),
+      child: Text("designing".tr),
     ),
     DropdownMenuItem<String>(
       value: '5',
@@ -192,7 +192,7 @@ class SignUpControllerImpl extends SignUpController {
           "password": passwordController.text,
           "is_company": isFreelancer ? "0" : "1",
           "major_id": majorValue,
-          "gender":genderValue,
+          "gender": genderValue,
           "description": aboutCompanyController.text,
           "bio": bio.text,
           "study_case_id": studyCaseValue,
@@ -326,7 +326,7 @@ class SignUpControllerImpl extends SignUpController {
           "last_name": googleLastName,
           "image": imageUrl,
           "email": googleEmail,
-          "gender":genderValue,
+          "gender": genderValue,
           "phone_number": phoneController.text,
           "is_company": isFreelancer ? "0" : "1",
           "major_id": majorValue,

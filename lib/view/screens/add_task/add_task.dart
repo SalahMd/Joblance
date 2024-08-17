@@ -82,31 +82,31 @@ class AddTask extends StatelessWidget {
                 SizedBox(
                   height: 25.h,
                 ),
-                Visibility(
-                    visible: isUpdate,
-                    child: GestureDetector(
-                      onTap: () {
-                        controller.changeTaskStatus();
-                      },
-                      child: Container(
-                        width: 90.w,
-                        height: 30.h,
-                        margin: EdgeInsetsDirectional.only(
-                            start: 15.w, bottom: 20.h),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: controller.active == true
-                                ? Colors.red
-                                : Colors.green[800]),
-                        child: Text(
-                          controller.active == true
-                              ? "deactivate".tr
-                              : "activate".tr,
-                          style: TextStyles.w50012White(context),
-                        ),
-                      ),
-                    )),
+                // Visibility(
+                //     visible: isUpdate,
+                //     child: GestureDetector(
+                //       onTap: () {
+                //         controller.changeTaskStatus();
+                //       },
+                //       child: Container(
+                //         width: 90.w,
+                //         height: 30.h,
+                //         margin: EdgeInsetsDirectional.only(
+                //             start: 15.w, bottom: 20.h),
+                //         alignment: Alignment.center,
+                //         decoration: BoxDecoration(
+                //             borderRadius: BorderRadius.circular(15),
+                //             color: controller.active == true
+                //                 ? Colors.red
+                //                 : Colors.green[800]),
+                //         child: Text(
+                //           controller.active == true
+                //               ? "deactivate".tr
+                //               : "activate".tr,
+                //           style: TextStyles.w50012White(context),
+                //         ),
+                //       ),
+                //     )),
                 TaskTextFields(controller: controller),
                 GestureDetector(
                   onTap: () {

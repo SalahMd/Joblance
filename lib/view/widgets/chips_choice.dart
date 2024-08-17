@@ -6,8 +6,11 @@ import 'package:joblance/controller/search_controller.dart';
 // ignore: must_be_immutable
 class ChipsChoices extends StatelessWidget {
   List<String> tags = [];
-  final List<String> options;
-  ChipsChoices({super.key, required this.options});
+  bool isItemSelected = false;
+
+  final String search;
+  final List<Map<String, String>> options;
+  ChipsChoices({super.key, required this.options, required this.search});
   @override
   Widget build(BuildContext context) {
     Get.put(SearchControllerImpl());
@@ -19,11 +22,17 @@ class ChipsChoices extends StatelessWidget {
         ),
         onChanged: (List<String> value) {
           tags = value;
-          print(value);
+          controller.updateSeach(search, value.last);
+          isItemSelected = !isItemSelected;
+          print(tags);
           controller.update();
         },
         choiceItems: C2Choice.listFrom(
-            source: options, value: (i, v) => v, label: (i, v) => v),
+          source: options,
+          value: (i, v) => v.values.first,
+          label: (i, v) => v.values.first,
+          disabled: (i, v) => isItemSelected,
+        ),
       ),
     );
   }

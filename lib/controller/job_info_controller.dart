@@ -147,11 +147,11 @@ class JobInfoControllerImpl extends JobInfoController {
             AppAnimations.done, "yourjobhassbeenaddedtoimportantjobs".tr);
       }else{
          animationedAlert(
-            AppAnimations.done, "couldn'taddtoimportantjobs".tr);
+            AppAnimations.wrong, "couldn'taddtoimportantjobs".tr);
       }
     }else{
       animationedAlert(
-            AppAnimations.done, "couldn'taddtoimportantjobs".tr);
+            AppAnimations.wrong, "couldn'taddtoimportantjobs".tr);
     }
   }
 }

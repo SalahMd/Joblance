@@ -4,10 +4,14 @@ import 'package:get/get.dart';
 import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
+import 'package:joblance/data/model/task_model.dart';
 import 'package:joblance/view/widgets/task_design.dart';
 
 class AcceptedTaskWidget extends StatelessWidget {
-  const AcceptedTaskWidget({super.key});
+  final String duration;
+  final TaskModel task;
+  const AcceptedTaskWidget(
+      {super.key, required this.duration, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class AcceptedTaskWidget extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              "22 days left".tr,
+              duration + " daysleft".tr,
               style:
                   TextStyle(color: LightAppColors.greenColor, fontSize: 15.sp),
             ),
@@ -34,31 +38,30 @@ class AcceptedTaskWidget extends StatelessWidget {
           ),
           Center(
             child: TaskDesign(
-                taskTitle: "dawd",
-                userName: "dadwa",
-                major: "daawd",
-                date: "12/2/2024",
-                duration: '22',
-                image:
-                    "\/storage\/freelancer\/efExpDU1KUoIF2dzqaoblOHfqGZskVl4Djv2CLoD.jpg",
-                isActive: true,
-                aboutTask: "dawd wd wa dw wa",
-                taskId: 2,
-                id: 12),
+                taskTitle: task.taskTitle!,
+                userName: task.name!,
+                major: task.majorName!,
+                date: task.createdAt!,
+                duration: task.taskDuration.toString(),
+                image: task.image!,
+                isActive: task.active == 1 ? true : false,
+                aboutTask: task.aboutTask!,
+                taskId: task.id!,
+                id: task.userId!),
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.only(start: 20.w, bottom: 5..h),
-            child: Text(
-              "you have been accepted in this task on 12-2-2024",
-              style: TextStyles.w40011grey(context),
-            ),
-          ),
+          // Padding(
+          //   padding: EdgeInsetsDirectional.only(start: 20.w, bottom: 5..h),
+          //   child: Text(
+          //     "you have been accepted in this task on 12-2-2024",
+          //     style: TextStyles.w40011grey(context),
+          //   ),
+          // ),
           Padding(
             padding: EdgeInsetsDirectional.only(
               start: 20.w,
             ),
             child: Text(
-              "offer information :",
+              "offerinformation:".tr,
               style: TextStyles.w40012grey(context),
             ),
           ),
@@ -67,7 +70,7 @@ class AcceptedTaskWidget extends StatelessWidget {
               start: 20.w,
             ),
             child: Text(
-              "excutingtime".tr + ":" + " 22 days",
+              "excutingtime".tr + ":" + duration + " days".tr,
               style: TextStyles.w40011grey(context),
             ),
           ),
