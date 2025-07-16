@@ -6,17 +6,18 @@ import 'package:joblance/core/constants/links.dart';
 import 'package:joblance/core/functions/notification_permission.dart';
 import 'package:joblance/core/localization/change_language.dart';
 import 'package:joblance/core/services/services.dart';
-import 'package:joblance/view/screens/auth/login.dart';
-import 'package:joblance/view/screens/auth/email_verifiction.dart';
-import 'package:joblance/view/screens/auth/sign_up/sign_up.dart';
-import 'package:joblance/view/screens/choose_language.dart';
-import 'package:joblance/view/screens/navigation_bar/nav_bar.dart';
-import 'package:joblance/view/screens/on_boarding.dart';
-import 'package:joblance/view/screens/search/search.dart';
-import 'package:joblance/view/screens/splash_sceen%20.dart';
-import 'controller/settings_controller/dark_mode.dart';
+import 'package:joblance/features/auth/presentation/screens/email_verifiction.dart';
+import 'package:joblance/features/auth/presentation/screens/login.dart';
+import 'package:joblance/features/on_boarding/presentation/screens/on_boarding.dart';
+import 'package:joblance/features/settings/controller/dark_mode.dart';
+import 'package:joblance/features/splash_screen/presentation/screens/splash_sceen%20.dart';
+
 import 'core/localization/translation.dart';
 import 'core/themes/app_theme.dart';
+import 'features/auth/sign_up/sign_up.dart';
+import 'features/choose_language/presentation/screens/choose_language.dart';
+import 'features/navigation_bar/presentation/screens/nav_bar.dart';
+import 'features/search/presentation/screens/search.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

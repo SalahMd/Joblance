@@ -10,7 +10,7 @@ import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
 import 'package:joblance/core/functions/payment.dart';
-import 'package:joblance/view/widgets/chips_choice.dart';
+import 'package:joblance/core/widgets/chips_choice.dart';
 
 Future<bool> exitAlert() {
   Get.defaultDialog(

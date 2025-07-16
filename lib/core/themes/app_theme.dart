@@ -12,14 +12,10 @@ class AppTheme {
       surfaceTint: Colors.black,
       primaryContainer: DarkAppColors.whiteColor,
       onPrimaryContainer: Color.fromARGB(255, 53, 52, 52),
-//     onErrorContainer: Color(0xFFF9DEDC),
-//     outline: Color(0xFF938F99),
-      background: Colors.grey[900]!,
 //     onBackground: Color.fromARGB(255, 2, 2, 2),
 //     surface: Color.fromARGB(255, 52, 50, 50),
       surface: Colors.black.withOpacity(0.2),
-      onSurface: Color(0xFFF3F3F3),
-      onBackground: Colors.black.withOpacity(0.3)
+      onSurface: Color(0xFFF3F3F3)
 //     surfaceVariant: Color.fromARGB(255, 222, 52, 30),
 //     //for chips after picking
 //  //   inversePrimary: Colors.amber,
@@ -42,12 +38,6 @@ class AppTheme {
     primary: LightAppColors.primaryColor,
     primaryContainer: LightAppColors.whiteColor,
     onSecondary: Colors.black,
-
-    // onPrimaryContainer: lightAppColors.blackColor,
-    background: LightAppColors.backGround,
-    // //onPrimary: Colors.indigo,
-    // //onSecondary: Colors.indigo,
-    onBackground: LightAppColors.whiteColor,
     // //for date picker
     surface: LightAppColors.whiteColor,
     // surface: lightAppColors.whiteColor,

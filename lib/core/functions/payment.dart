@@ -5,8 +5,9 @@ import 'package:joblance/core/constants/colors.dart';
 import 'package:joblance/core/constants/images.dart';
 import 'package:joblance/core/constants/text_styles.dart';
 import 'package:joblance/core/functions/dimenesions.dart';
-import 'package:joblance/view/screens/paypal.dart';
-import 'package:joblance/view/widgets/divider.dart';
+import 'package:joblance/core/widgets/divider.dart';
+import 'package:joblance/features/paypal/presentation/screens/paypal.dart';
+
 
 payment(BuildContext context, String amount) {
   Get.bottomSheet(Container(
